@@ -1,0 +1,80 @@
+\section{Introdução}
+
+\subsection{Motivação}
+
+\textit{ Com todos os concursos do IPRJ não temos nos reunido, mas me surgiram
+indiretamente várias reflexões, e algumas conversas informais com membros
+das bancas de altissimo nivel foram ajudando também a definir algumas
+questões importantes. Vou escrever de forma informal este email, não
+precisa entender tudo, mas gostaria de aos poucos discutir isso com você na
+medida em que você ganhar experiencia com o problema. Pode me escrever
+também sem muito medo de falar algo errado, eu te corrijo numa boa sem
+julgamentos. As ideias precisam fluir. Com o tempo a conversa fica mais
+sólida, mas sem travas. (não inclua o mauro na resposta se julgar que não
+vale a pena ele perder tempo)
+Seu problema é muito interessante em termos fundamentais de complexidade
+computacional, por estar entre um problema pequeno de 2 vistas (em que
+usamos soluções algébricas) e um problema grande de várias vistas (que
+usamos inicialização mais ou menos seguida de otimização) como eu havia te
+dito. O desafio é resolver sistemas de polinômios multivariados de tamanho
+médio, dado que é um problema combinatório fundamentalmente difícil
+resolver equações polinomiais genéricamente. E médio é legal pois é
+instrutivo para entender os limites das soluções por técnicas
+polinomiais/algébricas. A importância disso é fundamental e vai além de
+visão computacional.
+O matematico fields medal Smale definiu como um dos grandes problemas da
+matemática e computação a solução de sistema de polinômios em tempo médio
+polinomial (sim, as equações são polinomiais e o tempo médio asssintotico é
+também polinomial)
+%- http://en.wikipedia.org/wiki/Smale's_problems
+Talvez no futuro não precisaremos resolver os sistemas de forma 100%
+determinística, mas, fundamentalmente falando, até onde conseguimos
+resolver de forma simbólica deterministica e robusta? Nessas coisas de
+computação, muitas vezes ninguém sabe de verdade se existe um algoritmo
+mais eficiente para resolver algo.. as teorias parecem bem fundamentadas,
+porém numa raíz totalmente incerta (tipo P=NP?)
+Agora chego numa questão que gostaria que você pesquisasse agora junto com
+as suas outras investigacões, pra vc ir pensando e também para adquirir
+material para a intro da sua tese:
+*Por quê polinômios sao tão importantes?*
+Mais específicamente:
+- Por que representamos problemas por equações polinomiais?
+- O quê diferencia em termos de poder de modelagem os polinômios e as
+funções transcendentais, tipo exponencial? Por quê não usamos só polinômios?
+- Por que descrevemos equações com polinômios e outras vezes por
+diferenciais?
+- Por que expressar complexidade tipo O(f(n)) em tempo polinomial f(n) eh
+tão importante na computação? Por que f(n) tem que ser polinômio e não uma
+outra expressão maluca qualquer? A propria expressão de f poderia ser um
+algoritmo de classe mais complexa que o próprio algoritmo original? Será
+que o f() dentro do O() eh uma maneira de mapear o algoritmo original num
+algoritmo padrão em a linguagem matematica (tipo expressao polinomial etc)?
+Acho que com seu background em história da matemática você tem um potencial
+bem legal para fazer um apanhado e pesquisa nos próximos dias sobre os
+aspectos históricos, conceituais e ate mais aprofundados do assunto. Faça
+uma bela seção na introdução na sua tese (ou mesmo um capítulo mais
+elaborado), para convencer o leitor de que equações polinomiais são
+importantes na ciência, assim como as diferenciais, recursivas, e outras, e
+que seu poder expressivo de modelagem pode ser limitado, mas tem
+vantagens/desvantagens profundas.
+A gente também depois vai poder continuar essa discussão num nivel mais
+aprofundado no Lab. Troque idéias com o Mauro também. Inicie copiando este email na íntegra no seu Big Notes.}
+
+ *Polynomials of orders one to four are solvable using only rational operations and finite root extractions. A first-order equation is trivially solvable. A second-order equation is soluble using the quadratic equation. A third-order equation is solvable using the cubic equation. A fourth-order equation is solvable using the quartic equation. It was proved by Abel and Galois using group theory that general equations of fifth and higher order cannot be solved rationally with finite root extractions (Abel's impossibility theorem).
+However, solutions of the general quintic equation may be given in terms of Jacobi theta functions or hypergeometric functions in one variable. Hermite and Kronecker proved that higher order polynomials are not soluble in the same manner. Klein showed that the work of Hermite was implicit in the group properties of the icosahedron. Klein's method of solving the quintic in terms of hypergeometric functions in one variable can be extended to the sextic, but for higher order polynomials, either hypergeometric functions in several variables or "Siegel functions" must be used (Belardinelli 1960, King 1996, Chow 1999). In the 1880s, Poincaré created functions which give the solution to the nth order polynomial equation in finite form. These functions turned out to be "natural" generalizations of the elliptic functions.
+
+*This exponential behavior makes solving polynomial systems difficult and explains why there are few solvers that are able to automatically solve systems with Bézout's bound higher than, say, 25 (three equations of degree 3 or five equations of degree 2 are beyond this bound).
+
+*tentar otimizar o somatório dos quadrados das funções com método estocástico e depois com método de newton multivariado(determinístico).
+
+* One of the main "markets" is robotics. You can note that some of the notable authors in the field (Wampler most obviously) have jobs either directly in or related to (such as part-time consultant) the car industry.
+
+See also (Wampler and Sommese) http://dx.doi.org/10.1017/S0962492911000067
+
+"While systems of polynomial equations arise in fields as diverse as mathematical finance, astrophysics, quantum mechanics, and biology, perhaps no other application field is as intensively focused on such equations as rigid-body kinematics. This article reviews recent progress in numerical algebraic geometry, a set of methods for finding the solutions of systems of polynomial equations that relies primarily on homotopy methods, also known as polynomial continuation. Topics from kinematics are used to illustrate the applicability of the methods. High among these topics are questions concerning robot motion."
+
+The slides of Verschelde's 2003 talk also have some applications listed. %http://homepages.math.uic.edu/~jan/Talks/cimpa_first.pdf
+
+4) The market is not cornered, in particular methods that exploit sparsity are of high interest. For instance, in the Math Reviews of Li's 2003 survey, it is noted that half the 100 pages are involved with sparsity. %http://www.ams.org/mathscinet-getitem?mr=2009773
+
+\subsection{Visão Geral}

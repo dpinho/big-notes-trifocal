@@ -1,0 +1,134 @@
+\section{Pesquisas Anteriores para a Determinação de Pose}
+ 
+ O problema da determinação da pose de uma câmera  tem sido estudado extensivamente pela comunidade da área de visão computacional. Vamos citar alguns exemplos da determinação da pose de uma câmera.
+
+\subsection{Usando três Pontos}
+O caso mínimo da determinação de uma pose usando três pontos foi estudado por \cite{fischler}, e em seus estudos foi relatado o seguinte problema: 
+
+``Dado um grupo de $m$ pontos de referência, cujas coordenadas 3D são conhecidas em um certo sistema de coordenadas, e dada uma imagem de um subconjunto desses $ m $ pontos de referência, determinar a localização (no sistema de coordenadas desses pontos de referência) do ponto onde a imagem foi registrada."
+
+Assume-se que se conhece a correspondência entre os pontos de referência e os respectivos pontos na imagem, são conhecidos o ponto principal e o comprimento da distância focal para facilitar o cálculo dos ângulos entre pontos de referência a partir do centro da câmera, e por fim, assume-se que a câmera está localizada fora e ``acima" da região convexa formada pelos pontos de referência.
+Desta forma, calculando as três distância entre o centro da câmera e  três pontos de referência (chamadas de ``pernas"), é possível determinar a posição da câmera bem como a orientação do plano da imagem. Nota-se que esses três pontos de referência formam um triângulo e, juntamente com o  centro da câmera, forma-se um tetraedro. Para calcular essas três ``pernas" pode-se aplicar a lei dos cossenos e formar um sistema com três equações. Em seguida, [10] explicita uma solução algébrica para o sistema bem como uma solução iterativa, calcula o centro da câmera e a orientação do plano da imagem.
+
+Muitas outras formulações para problemas desse tipo foram comparadas e revisadas por \cite{haralick}. 
+
+\subsection{Usando três Linhas}
+ Para correspondência usando linha foi encontrada uma solução mínima usando três linhas e suas correspondências por \cite{chen}, como se segue:
+
+Neste artigo não é determinada a pose de uma câmera, mas sim feita uma exposição para detrminação da localização de objetos em geral, com relação a um detrminiado sistema de coordendas. Sendo $\mathbf{m_i} $ a direção de uma linha $\mathbf{L_i} $ e $\mathbf{n_i} $ o vetor unitário normal a um plano $\mathbf{F_i} $. Além disso, $\mathbf{p_i} $ é a posição de um ponto na linha $\mathbf{L_i} $ e $\mathbf{d_i} $ é a distância entre $\mathbf{F_i} $ e a origem do sistema de coordenadas. O problema pode ser matematicamente formulado:
+Dados $\mathbf{m_i} $,$\mathbf{n_i} $,$\mathbf{p_i} $,$\mathbf{d_i} $, determinar $ R $ e $ \mathbf{t} $ de maneira que 
+\begin{equation*}
+{\bf n}_i^{T}\,R\,{\bf m}_i = 0 \qquad {\bf n}_i^T\,(R\,{\bf p}_i+{\bf t}) = {\bf d}_i
+\end{equation*}
+
+As equações significam que, para uma matriz de rotação, o vetor linha rotacionado é perpendicular ao vetor normal. E, para um vetor de translação, o ponto transladado perntencerá ao plano. Mais ainda, toda a linha que contém esse ponto estará contida no plano. Como são necessárias seis restrições para a matriz de rotação e o vetor de translação, precisa-se de pelo menos três pares de correspondência para resolver o problema, pois cada par nos fornece duas equações.
+
+A solução dada por \cite{chen} é chamada solução canônica e consiste basicamente em calcular a matriz de rotação usando a primeira relação, definindo essa matriz com uma multiplicação de outras três matriz de rotação, onde cada uma produz uma rotação em torno de um eixo, os quais formam entre si uma base perpendicular. A primeira relação gera um sistema com duas equações onde é dada uma solução numérica. As entradas do vetor de translação são lineares na segunda relação, e são calculadas após o cálculo da matriz de rotação, usando um sistema com três equações.
+
+Outro desenvolvimento envolvendo linhas pode ser encontrado em \cite{dhome}.
+
+\subsection{Usando Combinação de Pontos e Linhas}
+Recentemente, um caso mínimo usando combinação de pontos e linhas foi publicado \cite{ramalingam}. Na correspondência entre pontos, usa-se o fato de que os pontos  ${\bf X}$ 3D na cena, ${\bf x}$ 2D na imagem e ${\bf C}$ o centro da câmera, estão alinhados. Esses pontos são empilhados numa matriz $3\times4$, onde cada submatriz $3\times3$ terá determinante zero por conta da linearidade dos pontos. As entradas do ponto 2D imagem nessa matriz são colocadas em função da matriz de rotação $R$ e do vetor de translação ${\bf t}$, retirados da equação de projeção $\lambda\,{\bf x}={\bf P}\,{\bf X}$.
+
+\begin{center}
+$\begin{bmatrix}
+C_1 & X_1 & R_{1,1}\,X_1\,+\,R_{1,2}\,X_2\,+\,R_{1,3}\,X_3\,+\,t_1 \\ 
+C_2 & X_2 & R_{2,1}\,X_1\,+\,R_{2,2}\,X_2\,+\,R_{2,3}\,X_3\,+\,t_2 \\ 
+C_3 & X_3 & R_{3,1}\,X_1\,+\,R_{3,2}\,X_2\,+\,R_{3,3}\,X_3\,+\,t_3 \\ 
+1 & 1 & 1
+\end{bmatrix} $
+\end{center}
+
+Apesar do cálculo de quatro derterminantes na matriz acima, temos apenas duas restrições já que nem todas as equações são L.I.
+
+Uma abordagem similar é construída para as correspondências entre linhas. Uma linha na cena possui pontos extremos ${\bf X}_1$ e ${\bf X}_2$, a linha correspondente na imagem possui extremos ${\bf x}_1$ e ${\bf x}_2$. Esses quatro pontos saõ coplanares juntamente com o centro ${\bf C}$ da câmera e, por isso, o determinante da matriz abaixo deve ser zero.
+
+\begin{center}
+$\begin{bmatrix}
+C_x & X_{1,x} & X_{2,x} & R_{1,1}\,X_{1,x}\,+\,R_{1,2}\,X_{1,y}\,+\,R_{1,3}\,X_{1,z}\,+\,t_1 \\ 
+C_y & X_{1,y} & X_{2,y} & R_{2,1}\,X_{2,x}\,+\,R_{2,2}\,X_{2,y}\,+\,R_{2,3}\,X_{2,z}\,+\,t_2 \\ 
+C_z & X_{1,z} & X_{2,z} & R_{3,1}\,X_{3,x}\,+\,R_{3,2}\,X_{3,y}\,+\,R_{3,3}\,X_{3,z}\,+\,t_3 \\ 
+1 & 1 & 1 & 1
+\end{bmatrix} $
+\end{center}
+
+O determinante dessa matriz fornece uma restrição usando a imagem ${\bf x}_1$, mas consegue-se outra restrição com o determinante de uma matriz similar usando a imagem ${\bf x}_2$. Assim, combinando duas linhas e um ponto ou dois pontos e uma linha, obtém-se as seis restrições necessárias. Com uma mudança de coordenadas que satisfaz algumas condições, ficam determinados os pontos na imagem, na cena e o centro da câmera. Além disso, o sistema de equações fica reduzido a um polinômino de grau 4 a 8, bem menor que o original (antes da mudança de coordenadas) que era 64. Outro estudo bastante interessante usando combinações de pontos, linhas e tagentes  pode ser encontrado em \cite{bib:kuang}. Nesse estudo, observa-se ainda a aplicação de técnicas recentes de resolução de sistemas de equações polinomiais multivariadas, baseadas em geometria algébrica. 
+
+\subsection{Usando quatro Pontos não Coplanares}
+A generalização para casos não planares, o caso mínimo usando quatro pontos 2D-3D foi primeiramente resolvido por \cite{triggs}. A ideia basica é determinar a pose e a distancia focal usando quatro correspondencias e tomando a matriz de calibraçao com os valores padronizados:
+
+\begin{center}
+$\begin{array}{cc}
+K =  & \begin{bmatrix}
+ 0 & 0 & 0 \\ 
+ 0 & 1 & 0 \\ 
+ 0 & 0 & 1/f
+\end{bmatrix} 
+\end{array}$
+\end{center}
+
+O primeiro passo é parecido com o algoritmo DLT onde dado um ponto 3D e sua imagem $\lambda\,{\bf x} = P\,{\bf X}$, elimina-se a profundidade $\lambda$ com o produto cruzado ${\bf x}\times P\,{\bf X} = {\bf 0}$ e escolhe-se duas restrições em $P$. Transformando ${\bf x}$ numa matriz de \textit{Householder}, as restrições podem ser reunidas numa matriz $2\,n\times 12$, e no caso do uso de quatro pontos teremos uma matriz $8\times 12$ que tem posto $8$ e deixa $4$ espaços nulos. $P$ pode ser descrita como:
+
+\begin{center}
+$P = P(\mu)\equiv\sum_{i=1}^d{\mu_i\,P_i} $,
+\end{center}
+
+onde $P_i$ são as matrizes $3\times 4$ correspondentes a cada vetor base do espaço nulo, os quais são calculados numericamente através da decomposição SVD.
+
+Sendo a decomposição $P\simeq K\,R(I| -{\bf t})$, a matriz quádrica absoluta e sua imagem
+
+\begin{center}$
+\begin{array}{cc}
+\begin{array}{cc}
+\Omega \equiv  & \begin{bmatrix}
+1 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0
+\end{bmatrix} 
+\end{array} 
+ & \text{e} \quad \omega \equiv P\,\Omega P^{T} \simeq KK^{T} \text{, respectivamente.}
+\end{array}$ 
+\end{center}
+
+Assim pode-se converter as restrições em $K$ naquelas das candidatas $P(\mu)$ ou nas imagens $\omega$:
+
+\begin{center}
+$\omega  = \omega (\mu) \equiv P(\mu)\,\Omega P(\mu)^T$
+\end{center}  
+
+Como $K = diag((f,f,1)$ então $K\,K^T = diag(f^2,f^2,1)$ e, consequentemente, 
+\begin{center}
+$\omega _{1,1} = \omega_{2,2}$ \quad e \quad $\omega_{1,2} = \omega_{1,3} = \omega_{2,3} = 0$
+\end{center}
+
+Assim temos um sistema de equações quadráticas nas quatro variáveis $\mu_i$ que tem pelo menos uma solução. Pode-se usar a decomposição SVD para obter os $\mu_i$, sustituí-los em $P(\mu)$ para obter $P$, em seguida fazer a decomposição de $P$ para obter pose e calibração. A matriz resultante é grande, $80\times 56$ mas ainda sim é tratável.
+
+
+ Outros autores como \cite{bujnak} resoveram para um caso mínimo de quatro pontos para câmeras sem conheciemnto da distância focal e distorção radial.
+
+\subsection{Usando Pontos-Tangentes}
+Em \cite{Fabbri:Giblin:Kimia:ECCV12} uma solução é dada usando um problema mínimo de dois pontos-tangentes,$\lbrace ({\bf X}_1^w,{\bf T}_1^w),({\bf X}_2^w,{\bf T}_2^w)\rbrace$, e suas respectivas imagens $\lbrace ({\bf x}_1,{\bf t}_1),({\bf x}_2,{\bf t}_2)\rbrace$. No artigo é demonstrado que a solução pode ser obtida resolvendo um sistema com duas equações:
+
+\begin{center}
+$\begin{cases}
+{\bf x}_1^T\,{\bf x}_1\,\rho_1^2 - 2\,{\bf x}_1^T\,{\bf x}_2\,\rho_1\,\rho_2 + {\bf x}_2^T\,{\bf x}_2\,\rho_2^2 = ||{\bf X}_1^w - {\bf X}_2^w||\\
+Q(\rho_1,\rho_2) = 0,
+\end{cases}$
+\end{center}
+
+onde $\rho$ é a profundidade em ${\bf x} = \rho\,{\bf X}$, $Q$ é um polinômio de grau 8, e a pose da câmera $R, {\bf \tau}$ relativa ao sistema de coordenadas do mundo é definida por ${\bf X} = R\,{\bf X}^w  + \tau$. 
+
+Fazendo-se umas substituições e isolando $R\, \text{e}\, \tau$ temos:
+
+\begin{center}
+$\begin{cases}
+R = [({\bf X}_1^w - {\bf X}_2^w)\,{\bf T}_1^w\,{\bf T}_2^w]^{-1} \cdot [\rho_1\,{\bf x}_1 - \rho_2\,{\bf x}_2\,\rho_1\,\frac{g_1}{G_1}\,{\bf t}_1 + \frac{\rho_1'}{G_1}\,{\bf x}_1\,\rho_2\,\frac{g_2}{G_2}\,{\bf t}_2 + \frac{\rho_2'}{G_2}\,{\bf x_2}]\\
+\tau = \rho_1\,{\bf x}_1 - R\,{\bf X}_1^w.
+\end{cases}$
+\end{center}
+
+Em material suplementar estão disponíveis expressões para $\frac{g_1}{G_1}, \frac{g_2}{G_2}\text{(razão das velocidades)}, \rho_1 \,\text{e}\, \rho_2$. 
+
+\texttt{ correspondência necessária é reduzida a uma única correspondência local feita por [20 - koser,koch].Contudo, esta última configuração é muito sensível aos ruídos medidos na correspondência. Para determinação de pose de câmera sem conhecimento da distância focal, o caso com imagens no mesmo plano foi formulado por [1 - abidi,chandra].  Soluções eficientes  e numericamente estáveis foram desenvolvidas por [4 - bujnak et.al.]. Combinando correspondências 2D-2D e 2D-3D, [19 - josephson, astrom, et. al.] investigaram muitos casos mínimos para determinação da pose sem conhecimento da distância focal.   }
+
