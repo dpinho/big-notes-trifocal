@@ -11,8 +11,7 @@ Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometri
 $\Longrightarrow$ A Reta
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^T \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^T$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^T$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser repsentada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^T$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^T$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^T$ em {\it coordenadas homogêneas}.
-\\
+Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^T \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^T$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^T$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser repsentada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^T$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^T$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^T$ em {\it coordenadas homogêneas}. Já que para determinar um reta precisamos determinar os valores do três parâmetros $a,b \text{e} c$, vemos que uma reta tem três graus de liberdade.
 
 $\Longrightarrow$ O Ponto
 
@@ -64,7 +63,10 @@ Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas
 \label{plano_P2}
 \end{figure}
 
-Podemos pensar no esapaço projetivo como um conjunto de raios passando pela origem do $\mathbb{R}^3$, onde cada raio representa um único ponto, que é a interseção desse raio com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar com a interseção do raio com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+Podemos pensar no esapaço projetivo como um conjunto de raios passando pela origem do $\mathbb{R}^3$, onde cada raio representa um único ponto, que é a interseção desse raio com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção do raio com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+
+
+Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, já que a terceira coordenada está em função das duas primeiras. Assim, dizemos que um ponto tem dois graus de liberdade e a terceira coordenada pode ser usada para fixar uma escala.
 \\
 
 $\Longrightarrow$ A Cônica
@@ -141,7 +143,7 @@ $
 \end{center}
 
 
-
+Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. 
 
 \subsubsection{O Espaço Projetivo em Três Dimensões}
 
@@ -149,11 +151,13 @@ $
 $\Longrightarrow$ O Ponto
 
 
-Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^T$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^T \in \mathbb{R}^3$. Para realizar essa mudança basta tomar 
+Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^T$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^T \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
 
 \begin{equation*}
 X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
 \end{equation*}
+
+ 
 
 
 $\Longrightarrow$ O Plano
@@ -163,6 +167,104 @@ Temos que a representação algébrica de um plano $\bpi$ no espaço $\mathbb{R}
 \begin{equation*}
 \pi_1\,X+\pi_2\,Y+\pi_3\,Z+\pi_4=0.
 \end{equation*}
+
+Um ponto pertence ao plano se, e somente se, satifaz a equação acima que na forma matricial usando a representação do ponto em coordenadas homogêneas fica:
+
+\begin{center}
+$
+\begin{array}{ccc}
+  (\pi_1,\pi_2,\pi_3,\pi_4)^T
+& \begin{pmatrix}
+  X\\
+  Y\\
+  Z\\
+  1
+  \end{pmatrix}
+& = 0.
+\end{array}
+$
+\end{center}
+
+Fazendo as substituições 
+\begin{equation*}
+X=X_1/X_4 \,\, , \,\, Y=X_2/X_4 \,\,\,\, \text{e} \,\,\,\, Z=X_3/X_4 ,
+\end{equation*}
+
+generalizamos a representação do ponto e a equação se torna:
+
+\begin{center}
+$
+\begin{array}{ccccc}
+(\pi_1,\pi_2,\pi_3,\pi_4)^T
+& \begin{pmatrix}
+  X_1\\
+  X_2\\
+  X_3\\
+  X_4
+  \end{pmatrix}
+& = 0
+& \qquad \text{ou} \qquad
+& \bpi^T \,\, \X = 0.
+\end{array}
+$
+\end{center}
+
+
+Desta forma, verificamos que, assim como os pontos, um plano $\bpi = (\pi_1,\pi_2,\pi_3,\pi_4)^T$ fica inteiramente determinado por um vetor com quatro coordenadas em $\mathbb{P}^3$. Aqui temos uma analogia com o espaço $\mathbb{P}^2$, já que pontos e retas têm a mesma representação vetorial com três coordenadas naquele espaço. Como multiplicar a equação algébrica de um plano por um escalar diferente de zero não altera seu valor, temos que os planos possuem três graus de liberdade. Podemos dividir as três primeiras coordenadas pela última, por exemplo, e fixar um escala.
+
+Obs: As três primeiras coordenadas do vetor que representa o plano corresponde ao vetor normal ao plano, conforme definido em Álgebra Linear.
+\\
+
+
+$\Longrightarrow$ A Reta
+
+Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas três graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes.
+
+
+Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^T \,\,\,\text{e} \,\,\, {\bf B}^T$ em linha:
+
+\begin{center}
+$
+\begin{array}{cc}
+W = 
+& \begin{bmatrix}
+  A^T\\
+  B^T
+  \end{bmatrix},
+\end{array}
+$
+\end{center}
+onde os espaço gerado por $W^T$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$ podem ser encontradas em (citar hartley).
+
+
+$\Longrightarrow$ A Quádrica
+
+
+Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ é definida pela equação
+
+\begin{equation*}
+\X^T\,Q\,\X = 0,
+\end{equation*}
+onde $Q$ é uma matriz simétrica $4\times4$ com nove graus de liberdade.
+
+
+
+
+\begin{figure}[!htb]
+$
+\begin{array}{cc}
+\includegraphics[scale=1.1]{paraboloide}
+&
+\includegraphics[scale=0.9]{hiperboloide_1_folha}
+\end{array}
+$
+\caption{Parabolóide à esquerda e hiperbolóide de uma folha à direita.}
+\label{quadricas}
+\end{figure}
+
+
+Podemos observar na figura \ref{quadricas} dois exemplos de quádricas.
+
 
 
 \subsection{Notação Usada por Fabbri}
