@@ -265,6 +265,52 @@ $
 
 Podemos observar na figura \ref{quadricas} dois exemplos de quádricas.
 
+\subsubsection{A Câmera P}
+
+A câmera é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem varios tipos de camera, mas para tratar das caracteristicas basicas vamos utilizar o modelo buraco de alfinete, do ingles \textit{pinhole}.
+
+Consideramos o centro de projeçao, ou centro da camera, como a origem do espaço tridimensional Euclidiano, com o plano da imagem ou plano focal sendo $Z = f$, onde $f$ e a distancia focal entre o plano da imagem e o centro de prjeçao. Como podemos obeservar na figura \ref{camera}, um ponto no espaço $\X$  mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção e intersepta o plano da imagem. Assim, ignorando a última coordenada, temos o mapeamento:
+
+\begin{center}
+$\X = (X,Y,Z)^T \rightarrow \x = (fX/Z,fY/Z,f) \rightarrow (fX/Z,fY/Z)$  
+\end{center}
+
+O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado plano principal, é o plano $xy$ na figura \ref{camera}. O eixo principal passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o ponto principal.
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=.64]{modelo_camera}
+\caption{Visualização das características básicas de uma câmera como distância focal, eixo principal, plano da imagem e centro de projeção.}
+\label{camera}
+\end{figure}
+
+Com vetores representados em coordenadas homogêneas, podemos expressar no mapeamento através de um operador linear, onde realizamos a multiplicação da matriz $P$ que representa a câmera  por um ponto no espaço, resultando num ponto na imagem conforme o esquema abaixo:
+
+\begin{center}
+$
+\begin{array}{ccc}
+\begin{pmatrix}
+fX\\
+fY\\
+Z
+\end{pmatrix} = 
+&
+\begin{bmatrix}
+f& & &0\\
+ &f& &0\\
+ & &1&0
+\end{bmatrix}
+&
+\begin{pmatrix}
+X\\
+Y\\
+Z\\
+1
+\end{pmatrix}
+\end{array}
+$
+\end{center}
 
 
 \subsection{Notação Usada por Fabbri}
