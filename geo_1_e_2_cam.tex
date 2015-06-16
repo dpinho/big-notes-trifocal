@@ -2,21 +2,21 @@
 
 \subsection{Notação Básica de Geometria Projetiva}
 
-Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em (citar hartley), por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
+Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em \cite{Hartley2004}, por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
 
 \subsubsection{O Espaço Projetivo em Duas Dimensões}
 
 
 
-$\Longrightarrow$ A Reta
+\noindent {\bf A Reta}
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^T \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^T$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^T$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser repsentada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^T$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^T$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^T$ em {\it coordenadas homogêneas}. Já que para determinar um reta precisamos determinar os valores do três parâmetros $a,b \text{e} c$, vemos que uma reta tem três graus de liberdade.
+Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^T \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^T$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^T$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^T$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^T$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^T$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
 
-$\Longrightarrow$ O Ponto
+\noindent {\bf O Ponto}
 
 
-Sabemos também, que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, assim cada ponto pode ser identificado como um vetor $(x,y)^T$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^T$. Sabemos também que um ponto $(x,y)^T$ pertence a uma reta $(a,b,c)^T$ se, e somente se $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
+Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^T$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^T$. Sabemos também que um ponto $(x,y)^T$ pertence a uma reta $(a,b,c)^T$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
 
 \begin{center}
 $\begin{array}{ccccc}
@@ -43,7 +43,7 @@ $\begin{array}{ccccccc}
  c 
  \end{pmatrix} 
 & = 0
-& \qquad \leftrightarrow \qquad
+& \qquad \Leftrightarrow \qquad
 & (x,y,1)^T
 &\begin{pmatrix}
  a  \\ 
@@ -59,17 +59,17 @@ Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.8]{espaco_P2}
-\caption{O plano $\pi$ representa o espaço projetivo $\mathbb{P}^2$. Pontos e retas pertencentes a esse espaço são representados, respectivamente, por raios e planos que passam pela origem do $\mathbb{R}^3$.}
+\caption{\textit{O plano $\pi$ representa o espaço projetivo $\mathbb{P}^2$. Pontos e retas pertencentes a esse espaço são representados, respectivamente, por raios e planos que passam pela origem do $\mathbb{R}^3$.}}
 \label{plano_P2}
 \end{figure}
 
-Podemos pensar no esapaço projetivo como um conjunto de raios passando pela origem do $\mathbb{R}^3$, onde cada raio representa um único ponto, que é a interseção desse raio com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção do raio com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+Podemos pensar no espaço projetivo como um conjunto de raios passando pela origem do $\mathbb{R}^3$, onde cada raio representa um único ponto, que é a interseção desse raio com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção do raio com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
 
 
 Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, já que a terceira coordenada está em função das duas primeiras. Assim, dizemos que um ponto tem dois graus de liberdade e a terceira coordenada pode ser usada para fixar uma escala.
 \\
 
-$\Longrightarrow$ A Cônica
+\noindent {\bf A Cônica}
 
 
 Em geometria Euclidiana, as cônicas são de três tipos principais: elipse, hipérbole e parábola. São definidas, algebricamente, por uma equação do segundo grau em duas variáveis, considerando coordenadas não homogêneas:
@@ -148,7 +148,7 @@ Percebemos que as cônicas são representadas por matrizes $3\times3$ simétrica
 \subsubsection{O Espaço Projetivo em Três Dimensões}
 
 
-$\Longrightarrow$ O Ponto
+\noindent {\bf O Ponto}
 
 
 Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^T$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^T \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
@@ -159,16 +159,16 @@ X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
 
  
 
-
-$\Longrightarrow$ O Plano
+\noindent {\bf O Plano}
 
 Temos que a representação algébrica de um plano $\bpi$ no espaço $\mathbb{R}^3$ é dada pela equação
 
 \begin{equation*}
-\pi_1\,X+\pi_2\,Y+\pi_3\,Z+\pi_4=0.
+\pi_1\,X+\pi_2\,Y+\pi_3\,Z+\pi_4=0,
 \end{equation*}
+onde $\pi_i$ são os coeficientes da equação.
 
-Um ponto pertence ao plano se, e somente se, satifaz a equação acima que na forma matricial usando a representação do ponto em coordenadas homogêneas fica:
+Um ponto em $\mathbb{R}^3$ pertence ao plano se, e somente se, satifaz a equação acima que na forma matricial usando a representação do ponto em coordenadas homogêneas fica:
 
 \begin{center}
 $
@@ -204,7 +204,7 @@ $
   \end{pmatrix}
 & = 0
 & \qquad \text{ou} \qquad
-& \bpi^T \,\, \X = 0.
+& \bpi^T \, \X = 0.
 \end{array}
 $
 \end{center}
@@ -216,9 +216,9 @@ Obs: As três primeiras coordenadas do vetor que representa o plano corresponde 
 \\
 
 
-$\Longrightarrow$ A Reta
+\noindent {\bf A Reta}
 
-Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas três graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes.
+Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas três graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$, diferentes da apresentada aqui, podem ser encontradas em \cite{Hartley2004}.
 
 
 Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^T \,\,\,\text{e} \,\,\, {\bf B}^T$ em linha:
@@ -234,10 +234,10 @@ W =
 \end{array}
 $
 \end{center}
-onde os espaço gerado por $W^T$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$ podem ser encontradas em (citar hartley).
+onde os espaço gerado por $W^T$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. \\
 
 
-$\Longrightarrow$ A Quádrica
+\noindent {\bf A Quádrica}
 
 
 Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ é definida pela equação
@@ -258,30 +258,30 @@ $
 \includegraphics[scale=0.9]{hiperboloide_1_folha}
 \end{array}
 $
-\caption{Parabolóide à esquerda e hiperbolóide de uma folha à direita.}
+\caption{\textit{Parabolóide à esquerda e hiperbolóide de uma folha à direita.}}
 \label{quadricas}
 \end{figure}
 
 
-Podemos observar na figura \ref{quadricas} dois exemplos de quádricas.
+Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.
 
 \subsubsection{A Câmera P}
 
-A câmera é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
+A \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
 
-Consideramos o centro de projeção, ou centro da câmera, como a origem do espaço tridimensional Euclidiano, com o plano da imagem ou plano focal sendo $Z = f$, onde $f$ é a distancia focal entre o plano da imagem e o centro de projeção. Como podemos obeservar na figura \ref{camera}, um ponto no espaço $\X$  é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersepta o plano da imagem. Assim, ignorando a última coordenada homogênea do vetor que representa o ponto, temos o mapeamento:
+Consideramos o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersepta o plano da imagem. Assim, ignorando a última coordenada homogênea do vetor que representa o ponto na imagem, temos o mapeamento:
 
 \begin{center}
 $\X = (X,Y,Z)^T \rightarrow \x = (fX/Z,fY/Z,f) \rightarrow (fX/Z,fY/Z)$  
 \end{center}
 
-O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado plano principal, é o plano $xy$ na figura \ref{camera}. O eixo principal passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o ponto principal.
+O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}.
 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=.64]{modelo_camera}
-\caption{Visualização das características básicas de uma câmera como distância focal, eixo principal, plano da imagem, centro de projeção e o ponto principal {\bf P}.}
+\caption{\textit{Visualização das características básicas de uma câmera como distância focal, eixo principal, plano da imagem, centro de projeção e o ponto principal {\bf P}.}}
 \label{camera}
 \end{figure}
 
@@ -373,7 +373,7 @@ onde $K$ é denominada matriz de calibração da câmera, a qual resume os parâ
 
 Até aqui temos expressado o ponto $\X$ no espaço em relação às coordenadas da câmera, assumindo que o centro da câmera está situado na origem do sistema de eixos, o qual recebe o nome de sistema de coordenadas da câmera. Mas na maioria das vezes esse não é o caso, portanto desejamos fazer o mapeamento de um ponto 3D cujo as coordenadas estejam expressas com relação a um sistema de coordenadas qualquer, chamado sistema de coordenadas do mundo. Portanto, vamos continuar completando a matriz $P$ para mapear pontos no sistema de coordenadas do mundo.
 
-Considerando o sistema de coordenadas do mundo, denotaremos um ponto nesse sistema, em coordenadas não homogêneas, por $\overline{\X}$, e o mesmo ponto no sistema de coordenadas da câmera será denotado por $\overline{\X}_{\textit{cam}}$. A transferência de sistemas de coordenadas é feita através da relação $\overline{\X}_{\textit{cam}}=R\,(\overline{\X}-\overline{\bf C})$, onde $\overline{\bf C}$ representa o centro da câmera no sistema de coordenadas do mundo e $R$ representa uma matriz de rotação $3\times3$. Passando os vetores para coordenadas homogêneas, podemos aplicar a rotação no vetor $\overline{\bf C}$, do centro da câmera, e inseri-lo na quarta coluna da matriz escrevendo a relação:
+Considerando o sistema de coordenadas do mundo, denotaremos um ponto nesse sistema, em coordenadas não homogêneas, por $\overline{\X}$, e o mesmo ponto no sistema de coordenadas da câmera será denotado por $\overline{\X}_{\textit{cam}}$. A transferência de sistemas de coordenadas é feita através da relação $\overline{\X}_{\textit{cam}}=R\,(\overline{\X}-\overline{\bf C})$, onde $\overline{\bf C}$ representa o centro da câmera no sistema de coordenadas do mundo e $R$ representa uma matriz de rotação $3\times3$. Passando os vetores para coordenadas homogêneas, podemos aplicar a rotação no vetor $\overline{\bf C}$, do centro da câmera, e inseri-lo na quarta coluna da matriz escrevendo a relação
 
 \begin{center}
 $
@@ -390,12 +390,11 @@ X\\
 Y\\
 Z\\
 1
-\end{pmatrix}.
+\end{pmatrix},
 \end{array}
 $
 \end{center} 
-
-Considerando as substituições
+onde podemos escrever
 
 \begin{center}
 $
@@ -414,7 +413,7 @@ g&h&i
 \end{array}
 $
 \end{center}
-podemos reescrever a relação acima:
+e a relação acima fica:
 
 \begin{center}
 $
@@ -473,7 +472,35 @@ Z\\
 \end{array}
 $
 \end{center}
-que pode ser escrita de forma resumida após multiplicarmos a segunda e a terceira matrizes:
+multiplicando a segunda e terceira matrizes,
+ 
+\begin{center}
+$
+\begin{array}{cccc}
+\x=
+&
+\begin{bmatrix}
+      f& &p_x\\
+       &f&p_y\\
+       & &1
+\end{bmatrix}
+&
+\begin{bmatrix}
+a&b&c&t_1\\
+d&e&f&t_2\\
+g&h&i&t_3
+\end{bmatrix}
+&
+\begin{pmatrix}
+X\\
+Y\\
+Z\\
+1
+\end{pmatrix},
+\end{array}
+$
+\end{center}
+que pode ser escrita de forma resumida como
 
 \begin{center}
 $
@@ -487,7 +514,7 @@ Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o ma
 
 \subsection{Notação Usada por Fabbri}
 
-Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Vamos utilizar a notação encontrada em citar fabbri, o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Como os conceitos e definições já foram abordados, nos limitaremos a construir a tabela \ref{tab_not} com as novas notações e uma breve descrição de cada uma.
+Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Na tabela \ref{tab_not} temos um resumo da notação encontrada em (citar fabbri PAMI ainda não publicado), artigo o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Essa nova notação é muito útil para a aplicação da projeção, já que para projetar um ponto na imagem fazemos a divisão de todas as três coordenadas desse ponto pela terceira coordenada. Outra ajuda acontece nas diferenciações, na obtenção das equações diferenciais e algébricas envolvidas no uso da geometria diferencial para abordar problemas do tipo.
 
 \begin{table}[!h]
 \begin{center}
@@ -498,13 +525,17 @@ $\Gama^w$&Ponto 3D no sistema de coordenadas do mundo.\\\hline
 $\Gama$&Ponto 3D no sistema de coordenadas da câmera.\\\hline
 $\rot$&Matriz de rotação: coordenadas do mundo para a câmera.\\\hline
 $\transl$&Vetor de translação.\\\hline
-$\mathcal K$&Matriz de calibração: parâmetros internos.\\\hline
+$\mathcal K$&Matriz de calibração: modelo basico (\textit{pinhole}).\\\hline
+$\mathcal K_{im}$&Matriz de calibração: coordenadas do plano medidas em pixels.\\\hline
 $\bc$&O centro da câmera.\\\hline
 $\depth$&Profundidade do ponto imagem.\\\hline
 $\gama$&Ponto 2D em coordenadas normalizadas.\\\hline
 $\t$&Imagem da tangente a um curva.\\\hline
 $\T$&Tangente a uma curva no espaço: coordenadas da câmera.\\\hline
 $\T^w$&Tangente a uma curva no espaço: coordenadas do mundo\\\hline
+$K$&Curvatura.\\\hline
+$G$&Velocidade de parametrizaçao.\\\hline
+$\N^w$&Vetor normal.\\\hline
 $\e_1$, $\e_2$, $\e_3$&Base de vetores do sistema de coordenadas da câmera.\\\hline
 $\e_1^w$, $\e_2^w$, $\e_3^w$&Base de vetores do sistema de coordenadas do mundo.\\\hline
 \end{tabular}
@@ -512,6 +543,97 @@ $\e_1^w$, $\e_2^w$, $\e_3^w$&Base de vetores do sistema de coordenadas do mundo.
 \caption{Notação.}
 \label{tab_not}
 \end{table}
+
+Dada uma curva no espaço 3D conforme a figura \ref{curva_3D}, podemos fazer a representação de seus pontos nas coordenadas da câmera em função da representação dos mesmos pontos nas coordenadas do mundo de acordo com a relação:
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=.8]{curva}
+\caption{\textit{Cruva no espaço 3D e sua respectiva imagem 2D. Observe a representação de um mesmo ponto nas coordenadas do mundo e nas coordenadas da câmera.}}
+\label{curva_3D}
+\end{figure}
+
+
+\begin{equation}\label{eq:coord:transf:RT}
+\Gama = \rot (\Gama^w - \bc) \qquad \text{ou} \qquad \Gama = \rot\Gama^w + \transl,
+\end{equation}
+onde $\transl = -\rot\bc$ são as coordenadas da origem do espaço 3D expressas no sistema de coordenadas da câmera, e $\rot$ é a matriz de rotação.
+
+A projeção de um ponto 3D $\Gama = [x,\, y,\, z]^\top$ no plano da imagem $z=1$ é o ponto $\gama = [\uu,\,\vv,\,1]^\top$ e esses pontos estão relacionados por:
+
+\begin{equation}\label{eq:projection}[x,\, y,\, z]^\top =
+[\depth\uu,\,\depth\vv,\,\depth]^\top \,\,\,\,\text{ou, compactamente,}\,\,\,\,  \Gama =
+\depth\gama,
+\end{equation}
+onde $\depth$ é a profundidade extraída da terceira coordenada do vetor que representa o ponto 3D escrito nas coordenadas da câmera, $\depth = z = \e_3^\top\Gama$, e $\e_3^\top = [0,0,1]^\top$.
+
+Substituindo $\depth$ em \ref{eq:projection} e isolando $\gama$, temos
+
+\begin{align}
+\gama &= \frac{\Gama}{\f^\top\Gama}.
+\label{eq:projection:isolated:gamma}
+\end{align}
+e assim observamos que pontos na imagem são sempre tratados como um vetor 3D com $z=1$. 
+
+Denotendo por $\gama^{(i)}$ a $i^{th}$ derivada de $\gama$ em relação a um parâmetro qualquer para $i$ um número natural, podemos verificar que
+
+\begin{equation*}
+\f^\top\gama^{(i)} = 0 \qquad \text{e} \qquad \f^\top\Gama^{(i)} = \depth^{(i)}.
+\end{equation*}
+
+Mais especificamente, calculando as derivadas primeira e segunda de $\depth$ obtemos
+
+\begin{equation}\label{eq:depth:derivs}
+\depth =
+\e_3^\top\Gama,\qquad \depth' = G\e_3^\top\T,\qquad \depth'' = G'\e_3^\top\T +
+G^2K\e_3^\top\N
+\end{equation}
+onde $G$ é a velocidade de parametrização, $\T^w$ é a tangente à curva no ponto $\Gama^{w}$ no espaço 3D, $K$ é a curvatura, e $\N^w$ é o vetor normal, cada qual com as seguintes definições:
+
+\begin{equation}\label{eq:definicoes}
+G  = \|\Gama^{w'}\|,\qquad \T^w = \frac{\Gama^{w'}}{G}, \qquad K  = \frac{\|\T^{w'}\|}{G} \qquad \text{e} \qquad \N^w = \frac{\T^{w'}}{\|\T^{w'}\|}.
+\end{equation}
+
+As definições da tangente e do vetor normal em \ref{eq:definicoes} foram dadas no sistema de coordenadas do mundo, enquanto em \ref{eq:depth:derivs} os mesmos são dados no sistema de coordenadas da câmera. Como visto anteriormente, para fazer a conversão basta aplicar 
+
+\begin{equation*}
+\T = \rot\T^w + \transl \qquad \text{e} \qquad \N = \rot\N^w + \transl,
+\end{equation*}
+e é interessante notar que para pontos perto/longe da curva temos $\depth' = 0$, $\e_3^\top\T = 0$.
+
+
+Lembramos que a matriz de calibração para o modelo básico \textit{pinhole} é
+
+\begin{center}
+$
+\begin{array}{cc}
+\mathcal K = & \begin{bmatrix}
+               f& &p_x\\
+                &f&p_y\\
+                & &1
+               \end{bmatrix}, 
+\end{array}
+$
+\end{center}
+mas na prática, pontos na imagem são descritos em pixels, $\gama_{im} = [x_{im},\, y_{im},\, 1]^\top$ após a aplicação da matriz de calibração com os parâmetros internos 
+
+\begin{equation}\label{eq:intrinsic:parameter:transf}
+\gama_{im} = \mathcal K_{im}\gama,
+\ \ \ \ \ \
+\mathcal K_{im} = \begin{bmatrix}
+\alpha_\uu & \sigma & \uu_o\\
+0 &\alpha_\vv &  \vv_o\\
+0 & 0 &  1
+\end{bmatrix},
+\end{equation}
+onde $\uu_o$ e $\vv_o$ são as coordenadas do ponto principal na imagem, $\sigma$ define a inclinação entre os eixos cartesianos no plano da imagem (se $\sigma=0$ os eixos são perpendiculares), e
+$\alpha_\uu$ e $\alpha_\vv$ são calculados dividindo-se a distância focal $f$ pela largura e altura do pixel medidas em unidades do mundo, respectivamente. Sendo $m_x$ e $m_y$ a largura e altura do pixel temos:
+
+\begin{equation*}
+\uu_o = \frac{p_x}{m_x}, \qquad \vv_o = \frac{p_y}{m_y}, \qquad \alpha_\uu = \frac{f}{m_x}, \qquad \alpha_\vv = \frac{f}{m_y}.
+\end{equation*}
+
+
 
 
 
