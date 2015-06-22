@@ -514,7 +514,7 @@ Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o ma
 
 \subsection{Notação Usada por Fabbri}
 
-Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Na tabela \ref{tab_not} temos um resumo da notação encontrada em (citar fabbri PAMI ainda não publicado), artigo o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Essa nova notação é muito útil para a aplicação da projeção, já que para projetar um ponto na imagem fazemos a divisão de todas as três coordenadas desse ponto pela terceira coordenada. Outra ajuda acontece nas diferenciações, na obtenção das equações diferenciais e algébricas envolvidas no uso da geometria diferencial para abordar problemas do tipo.
+Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Na tabela \ref{tab_not} temos um resumo da notação encontrada em \cite{Fabbri:Kimia:IJCV2015}, artigo o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Essa nova notação é muito útil para a aplicação da projeção, já que para projetar um ponto na imagem fazemos a divisão de todas as três coordenadas desse ponto pela terceira coordenada. Outra ajuda acontece nas diferenciações, na obtenção das equações diferenciais e algébricas envolvidas no uso da geometria diferencial para abordar problemas do tipo. Nas abordagens feitas por hartley, usa-se correspondência de pontos e retas, basicamente, o que é feito pela maioria dos pesquisadores em visão computacional, e fica ruim para trabalhar com tangentes por conta dessa abordagem mais matricial. Com a notação apresentada aqui, as equações são explícitas e proporciona o emprego das tangentes.
 
 \begin{table}[!h]
 \begin{center}
@@ -530,7 +530,7 @@ $\mathcal K_{im}$&Matriz de calibração: coordenadas do plano medidas em pixels
 $\bc$&O centro da câmera.\\\hline
 $\depth$&Profundidade do ponto imagem.\\\hline
 $\gama$&Ponto 2D em coordenadas normalizadas.\\\hline
-$\t$&Imagem da tangente a um curva.\\\hline
+&Imagem da tangente a uma curva.\\\hline
 $\T$&Tangente a uma curva no espaço: coordenadas da câmera.\\\hline
 $\T^w$&Tangente a uma curva no espaço: coordenadas do mundo\\\hline
 $K$&Curvatura.\\\hline
@@ -597,7 +597,7 @@ G  = \|\Gama^{w'}\|,\qquad \T^w = \frac{\Gama^{w'}}{G}, \qquad K  = \frac{\|\T^{
 As definições da tangente e do vetor normal em \ref{eq:definicoes} foram dadas no sistema de coordenadas do mundo, enquanto em \ref{eq:depth:derivs} os mesmos são dados no sistema de coordenadas da câmera. Como visto anteriormente, para fazer a conversão basta aplicar 
 
 \begin{equation*}
-\T = \rot\T^w + \transl \qquad \text{e} \qquad \N = \rot\N^w + \transl,
+\T = \rot\T^w \qquad \text{e} \qquad \N = \rot\N^w,
 \end{equation*}
 e é interessante notar que para pontos perto/longe da curva temos $\depth' = 0$, $\e_3^\top\T = 0$.
 
@@ -641,3 +641,21 @@ $\alpha_\uu$ e $\alpha_\vv$ são calculados dividindo-se a distância focal $f$ 
 
 \subsection{Resumo dos Resultados Fabbri}
 Projeção e reconstrução 3D com o uso de tangentes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
