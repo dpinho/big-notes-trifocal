@@ -11,16 +11,16 @@ Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometri
 \noindent {\bf A Reta}
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^T \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^T$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^T$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^T$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^T$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^T$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
+Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
 
 \noindent {\bf O Ponto}
 
 
-Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^T$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^T$. Sabemos também que um ponto $(x,y)^T$ pertence a uma reta $(a,b,c)^T$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
+Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
 
 \begin{center}
 $\begin{array}{ccccc}
- (x,y,1)^T 
+ (x,y,1)^\top 
 &\begin{pmatrix}
  a  \\ 
  b  \\ 
@@ -36,7 +36,7 @@ Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três
 
 \begin{center}
 $\begin{array}{ccccccc}
- (k\,x,k\,y,k)^T 
+ (k\,x,k\,y,k)^\top 
 &\begin{pmatrix}
  a  \\ 
  b  \\ 
@@ -44,7 +44,7 @@ $\begin{array}{ccccccc}
  \end{pmatrix} 
 & = 0
 & \qquad \Leftrightarrow \qquad
-& (x,y,1)^T
+& (x,y,1)^\top
 &\begin{pmatrix}
  a  \\ 
  b  \\ 
@@ -54,7 +54,7 @@ $\begin{array}{ccccccc}
 \end{array}$
 \end{center}
 
-Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas $(k\,x,k\,y,k)^T \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y)^T \in \mathbb{R}^2$, e podemos resgatar nossa representaçao original aplicando o procedimento $(x/k,y/k)^T$, pois $k \ne 0$.
+Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas $(k\,x,k\,y,k)^\top \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y)^\top \in \mathbb{R}^2$, e podemos resgatar nossa representaçao original aplicando o procedimento $(x/k,y/k)^\top$, pois $k \ne 0$.
 
 \begin{figure}[!htb]
 \centering
@@ -83,7 +83,7 @@ Sabemos que um ponto pertence à cônica se ele é solução da equação acima,
 \begin{center}
 $
 \begin{array}{cccc}
-  (x,y,1)^T 
+  (x,y,1)^\top 
 & \begin{bmatrix}
 a & b/2 & d/2\\
 b/2 & c & e/2\\
@@ -110,7 +110,7 @@ Novamente em notação matricial:
 \begin{center}
 $
 \begin{array}{cccccc}
-  (x_1,x_2,x_3)^T 
+  (x_1,x_2,x_3)^\top 
 & \begin{bmatrix}
   a & b/2 & d/2\\
   b/2 & c & e/2\\
@@ -123,7 +123,7 @@ $
   \end{pmatrix}
 & = 0
 & \qquad \text{ou} \qquad
-& \x^T\,C\,\x = 0.
+& \x^\top\,C\,\x = 0.
 \end{array}
 $
 \end{center}
@@ -151,7 +151,7 @@ Percebemos que as cônicas são representadas por matrizes $3\times3$ simétrica
 \noindent {\bf O Ponto}
 
 
-Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^T$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^T \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
+Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^\top$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^\top \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
 
 \begin{equation*}
 X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
@@ -173,7 +173,7 @@ Um ponto em $\mathbb{R}^3$ pertence ao plano se, e somente se, satifaz a equaç�
 \begin{center}
 $
 \begin{array}{ccc}
-  (\pi_1,\pi_2,\pi_3,\pi_4)^T
+  (\pi_1,\pi_2,\pi_3,\pi_4)^\top
 & \begin{pmatrix}
   X\\
   Y\\
@@ -195,7 +195,7 @@ generalizamos a representação do ponto e a equação se torna:
 \begin{center}
 $
 \begin{array}{ccccc}
-(\pi_1,\pi_2,\pi_3,\pi_4)^T
+(\pi_1,\pi_2,\pi_3,\pi_4)^\top
 & \begin{pmatrix}
   X_1\\
   X_2\\
@@ -204,13 +204,13 @@ $
   \end{pmatrix}
 & = 0
 & \qquad \text{ou} \qquad
-& \bpi^T \, \X = 0.
+& \bpi^\top \, \X = 0.
 \end{array}
 $
 \end{center}
 
 
-Desta forma, verificamos que, assim como os pontos, um plano $\bpi = (\pi_1,\pi_2,\pi_3,\pi_4)^T$ fica inteiramente determinado por um vetor com quatro coordenadas em $\mathbb{P}^3$. Aqui temos uma analogia com o espaço $\mathbb{P}^2$, já que pontos e retas têm a mesma representação vetorial com três coordenadas naquele espaço. Como multiplicar a equação algébrica de um plano por um escalar diferente de zero não altera seu valor, temos que os planos possuem três graus de liberdade. Podemos dividir as três primeiras coordenadas pela última, por exemplo, e fixar um escala.
+Desta forma, verificamos que, assim como os pontos, um plano $\bpi = (\pi_1,\pi_2,\pi_3,\pi_4)^\top$ fica inteiramente determinado por um vetor com quatro coordenadas em $\mathbb{P}^3$. Aqui temos uma analogia com o espaço $\mathbb{P}^2$, já que pontos e retas têm a mesma representação vetorial com três coordenadas naquele espaço. Como multiplicar a equação algébrica de um plano por um escalar diferente de zero não altera seu valor, temos que os planos possuem três graus de liberdade. Podemos dividir as três primeiras coordenadas pela última, por exemplo, e fixar um escala.
 
 Obs: As três primeiras coordenadas do vetor que representa o plano corresponde ao vetor normal ao plano, conforme definido em Álgebra Linear.
 \\
@@ -221,20 +221,20 @@ Obs: As três primeiras coordenadas do vetor que representa o plano corresponde 
 Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas três graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$, diferentes da apresentada aqui, podem ser encontradas em \cite{Hartley2004}.
 
 
-Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^T \,\,\,\text{e} \,\,\, {\bf B}^T$ em linha:
+Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^\top \,\,\,\text{e} \,\,\, {\bf B}^\top$ em linha:
 
 \begin{center}
 $
 \begin{array}{cc}
 W = 
 & \begin{bmatrix}
-  A^T\\
-  B^T
+  A^\top\\
+  B^\top
   \end{bmatrix},
 \end{array}
 $
 \end{center}
-onde os espaço gerado por $W^T$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. \\
+onde os espaço gerado por $W^\top$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. \\
 
 
 \noindent {\bf A Quádrica}
@@ -243,7 +243,7 @@ onde os espaço gerado por $W^T$ é o conjunto de pontos do tipo $a\,{\bf A} + b
 Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ é definida pela equação
 
 \begin{equation*}
-\X^T\,Q\,\X = 0,
+\X^\top\,Q\,\X = 0,
 \end{equation*}
 onde $Q$ é uma matriz simétrica $4\times4$ com nove graus de liberdade.
 
@@ -272,7 +272,7 @@ A \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e 
 Consideramos o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersepta o plano da imagem. Assim, ignorando a última coordenada homogênea do vetor que representa o ponto na imagem, temos o mapeamento:
 
 \begin{center}
-$\X = (X,Y,Z)^T \rightarrow \x = (fX/Z,fY/Z,f) \rightarrow (fX/Z,fY/Z)$  
+$\X = (X,Y,Z)^\top \rightarrow \x = (fX/Z,fY/Z,f) \rightarrow (fX/Z,fY/Z)$  
 \end{center}
 
 O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}.
@@ -322,7 +322,7 @@ onde $diag(f,f,1)\,[I|{\bf 0}]$ é a matriz da câmera para o modelo \textit{pin
 Nessa dedução, consideramos que o ponto principal  coincide com a origem do plano da imagem, mas na prática isso pode não acontecer. Dessa forma, devemos acrescentar as coordenadas do ponto na construção da matriz da câmera. Sendo $(p_x,p_y)$ as coordenadas do ponto principal, desejamos o seguinte mapeamento:
 
 \begin{center}
-$(X,Y,Z)^T \rightarrow (\frac{f\,X}{Z}+p_x\,,\,\frac{f\,Y}{Z}+p_y)$,
+$(X,Y,Z)^\top \rightarrow (\frac{f\,X}{Z}+p_x\,,\,\frac{f\,Y}{Z}+p_y)$,
 \end{center}
 o qual nos fornece a seguinte relação de projeção em coordenadas homogêneas:
 
@@ -382,7 +382,7 @@ $
 &
 \begin{bmatrix}
 R&-R\,\overline{\bf C}\\
-\,\,{\bf 0}^T&\,\,1
+\,\,{\bf 0}^\top&\,\,1
 \end{bmatrix}
 &
 \begin{pmatrix}
@@ -409,7 +409,7 @@ g&h&i
 &
 \qquad\text{e}\qquad
 &
--R\,\overline{\bf C}=(t_1,t_2,t_3)^T,
+-R\,\overline{\bf C}=(t_1,t_2,t_3)^\top,
 \end{array}
 $
 \end{center}
@@ -507,7 +507,7 @@ $
 \x=K\,[R|{\bf t}]\,\X,
 $
 \end{center}
-com ${\bf t}=(t_1,t_2,t_3)^T$ denominado vetor de translação.
+com ${\bf t}=(t_1,t_2,t_3)^\top$ denominado vetor de translação.
 
 Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o mapeamento de um ponto 3D homogêneo no sistema de coordenadas do mundo em seu respectivo ponto 2D no plano da imagem, no sistema de coordenadas da câmera. Temos três parâmetros internos na matriz de calibração $K$, $(f,p_x,p_y)$, três parâmetros externos na matriz de rotação $R$, apesar de suas nove entradas, e mais três parâmetros externos no vetor de translação. 
 
@@ -634,28 +634,6 @@ $\alpha_\uu$ e $\alpha_\vv$ são calculados dividindo-se a distância focal $f$ 
 \end{equation*}
 
 
-
-
-
-
-
 \subsection{Resumo dos Resultados Fabbri}
 Projeção e reconstrução 3D com o uso de tangentes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
