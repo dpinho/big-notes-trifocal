@@ -267,15 +267,38 @@ Mais detalhes sobre a dedução da definição de uma quádrica podem ser encont
 
 \subsubsection{A Câmera P}
 
-A \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
+A câmera é modelada como um dispositivo que mapeia um ponto no sistema de coordenadas do mundo em pontos no sistema de coordenadas da imagem. Matematicamente, a \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
+\\
+Esse tipo de câmera é uma composição de três mudanças de coordenadas, representada por uma matriz $P$ que pode ser decomposta em:
 
-Consideramos o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersepta o plano da imagem. Assim, ignorando a última coordenada homogênea do vetor que representa o ponto na imagem, temos o mapeamento:
+\begin{equation*}
+P = K \, [I|{\bf 0}]
+\begin{bmatrix}
+R&{\bf t}\\
+\,\,{\bf 0}^\top &1
+\end{bmatrix}
+= K\,[R|{\bf t}],
+\end{equation*}
+onde 
+
+\begin{itemize}
+\item a matriz $\begin{bmatrix}
+R&{\bf t}\\
+\,\,{\bf 0}^\top &1
+\end{bmatrix}$
+contendo os parâmetros extrínsecos transforma os pontos em coordenadas 3D no mundo para as coordenadas 3D da câmera.
+\item a matriz $[I|{\bf 0}]$ aplica a projeção perpectiva passando um ponto na coordenada 3D da câmera para um ponto 2D em coordenadas normalizadas no plano da imagem.
+\item a matriz $K$, matriz de calibração contendo os parâmetros intrínsecos, transforma pontos em coordenadas normalizadas no plano da imagem para as coordenadas na imagem ``final" (considerando mudanças como medida em pixels, por exemplo).  
+\end{itemize}
+Mais a frente vamos abordar cada um desses tópicos com mais detalhes.
+
+Para fazermos a construção da câmera, consideramos o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Assim, o plano da imagem é definido como $(x,y,f)^\top$ mas seu sistema de coordenadas é medido em pixels e é centralizado no canto inferior esquerdo da imagem. Por \textit{coordenadas normalizadas da imagem} nos referimos aos pontos $(x,y)^\top$ expressos como $(x,y,1)^\top$ (considerando que a câmera tenha distância focal unitária)no plano da imagem com relação ao sistema de coordenadas da câmera. O \textit{plano detector} fica em $(x,y,-f)^\top$. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersepta o plano da imagem. Assim, ignorando a última coordenada homogênea do vetor que representa o ponto na imagem, temos o mapeamento:
 
 \begin{center}
 $\X = (X,Y,Z)^\top \rightarrow \x = (fX/Z,fY/Z,f) \rightarrow (fX/Z,fY/Z)$  
 \end{center}
 
-O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}.
+O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}, o qual pode ser pensado como a projeção do centro da câmera no plano da imagem.
 
 
 \begin{figure}[!htb]
@@ -371,6 +394,44 @@ a relação de projeção assume a forma
 \end{equation}
 onde $K$ é denominada matriz de calibração da câmera, a qual resume os parâmetros internos da mesma, e $\X_{\textit{cam}}$ enfatiza que o ponto 3D está escrito no sistema de coordenadas da câmera.
 
+A matriz de calibração $K$ ainda não está completa, pois o sistema de coordenadas do plano da imagem é medido em pixels, que podem não ser quadrados, e além disso os eixos cartesianos desse sistema podem não ser ortogonais. Assim, vamos inserir mais dois parâmetros para definir a medição em pixels e mais um parâmetro para definir o ângulo de inclinação entre os eixos cartesianos.
+
+Sendo $m_x$ e $m_y$ a quantidade de pixels nas direções $x$ e $y$, respectivamente, a transformação para a coordenadas em pixels se dá pela multiplicação da matriz $diag(m_x,m_y,1)$ à esqueda da matriz $K$,
+\begin{equation*}
+\begin{bmatrix}
+m_x&0&0\\
+0&m_y&0\\
+0&0&1
+\end{bmatrix}      
+\begin{bmatrix}
+f& &p_x\\
+&f&p_y\\
+& &1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\alpha_x&0&x_0\\
+0&\alpha_y&y_0\\
+0&0&1
+\end{bmatrix}
+\end{equation*}
+onde $\alpha_x=m_x\,f$, $\alpha_y=m_y\,f$ representa a distância focal em termos das dimensões dos pixels. Similarmente, $x_0=m_x\,p_x$ e $y_0=m_y\,p_y$ são as coordenadas do ponto principal medidas em pixels.
+
+Para completar a generalidade, acrescentamos o parâmetro $s$, referente à inclinação entre os eixos, na matriz
+\begin{equation*}
+K=
+\begin{bmatrix}
+\alpha_x&s&x_0\\
+0&\alpha_y&y_0\\
+0&0&1
+\end{bmatrix}.
+\end{equation*}
+
+
+
+
+
+
 Até aqui temos expressado o ponto $\X$ no espaço em relação às coordenadas da câmera, assumindo que o centro da câmera está situado na origem do sistema de eixos, o qual recebe o nome de sistema de coordenadas da câmera. Mas na maioria das vezes esse não é o caso, portanto desejamos fazer o mapeamento de um ponto 3D cujo as coordenadas estejam expressas com relação a um sistema de coordenadas qualquer, chamado sistema de coordenadas do mundo. Portanto, vamos continuar completando a matriz $P$ para mapear pontos no sistema de coordenadas do mundo.
 
 Considerando o sistema de coordenadas do mundo, denotaremos um ponto nesse sistema, em coordenadas não homogêneas, por $\overline{\X}$, e o mesmo ponto no sistema de coordenadas da câmera será denotado por $\overline{\X}_{\textit{cam}}$. A transferência de sistemas de coordenadas é feita através da relação $\overline{\X}_{\textit{cam}}=R\,(\overline{\X}-\overline{\bf C})$, onde $\overline{\bf C}$ representa o centro da câmera no sistema de coordenadas do mundo e $R$ representa uma matriz de rotação $3\times3$. Passando os vetores para coordenadas homogêneas, podemos aplicar a rotação no vetor $\overline{\bf C}$, do centro da câmera, e inseri-lo na quarta coluna da matriz escrevendo a relação
@@ -445,11 +506,10 @@ $
 \x=
 &
 \begin{bmatrix}
-      f& &p_x\\
-       &f&p_y\\
-       & &1
-\end{bmatrix}
-&
+\alpha_x&s&x_0\\
+0&\alpha_y&y_0\\
+0&0&1
+\end{bmatrix}&
 \begin{bmatrix}
 1&0&0&0\\
 0&1&0&0\\
@@ -480,11 +540,10 @@ $
 \x=
 &
 \begin{bmatrix}
-      f& &p_x\\
-       &f&p_y\\
-       & &1
-\end{bmatrix}
-&
+\alpha_x&s&x_0\\
+0&\alpha_y&y_0\\
+0&0&1
+\end{bmatrix}&
 \begin{bmatrix}
 a&b&c&t_1\\
 d&e&f&t_2\\
@@ -509,7 +568,7 @@ $
 \end{center}
 com ${\bf t}=(t_1,t_2,t_3)^\top$ denominado vetor de translação.
 
-Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o mapeamento de um ponto 3D homogêneo no sistema de coordenadas do mundo em seu respectivo ponto 2D no plano da imagem, no sistema de coordenadas da câmera. Temos três parâmetros internos na matriz de calibração $K$, $(f,p_x,p_y)$, três parâmetros externos na matriz de rotação $R$, apesar de suas nove entradas, e mais três parâmetros externos no vetor de translação. 
+Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o mapeamento de um ponto 3D homogêneo no sistema de coordenadas do mundo em seu respectivo ponto 2D no plano da imagem, no sistema de coordenadas da imagem. Temos cinco parâmetros internos na matriz de calibração $K$, $(\alpha_x,\alpha_y,s,p_x,p_y)$, três parâmetros externos na matriz de rotação $R$, apesar de suas nove entradas, e mais três parâmetros externos no vetor de translação totalizando 11 graus de liberdade. Repare que, tendo a matriz $P$ dimensão $3\times4$, ela possui 12 componentes e, usando uma para determinar a escala, sobram exatamente os 11 graus de liberdade, e a câmera $P$ é chamda câmera de \textit{projeção finita}.
 
 
 \subsection{Notação Usada por Fabbri}
