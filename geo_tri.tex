@@ -8,9 +8,9 @@
 
 \subsubsection{Abordagem do Nistér}
 
-Para abordar um problema trifocal, primeiro (citar o artigo) desenvolvem uma abordagem num sistemna bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, considerando duas imagens de quatro pontos em 3D. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. Em seguida, utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens. Vamos reproduzir os detalhes mais importantes. 
+Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistemna bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, considerando duas imagens de quatro pontos em 3D. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. Em seguida, utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens. Vamos reproduzir os detalhes mais importantes. 
 
-Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} (faugeras 93) pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
+Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} \citep{faugeras93three} pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
 
 \begin{figure}[!htb]
 \centering
@@ -19,7 +19,7 @@ Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epi
 \label{retas-epipolares}
 \end{figure}
 
-Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restriçao \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por ${\bf e}$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por ${\bf e'}$. Na figura \ref{epipolar-kruppa} podemos visualizar as restrições epipolar e Kruppa simultaneamente.
+Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restriçao \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por ${\bf e}$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por ${\bf e'}$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
 \begin{figure}[!htb]
 \centering
@@ -28,7 +28,7 @@ Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ pod
 \label{epipolar-kruppa}
 \end{figure}
 
-De acordo com (semple e kneebone, 1952), podemos escolher as coordenadas projetivas de forma que os quatro pontos tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Desta forma, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem podem satisfazer a restrição epipolar. Esta cônica $B$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faça a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
+De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Desta forma, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem satisfazem a restrição epipolar. Esta cônica $B$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
 
 \begin{figure}[!htb]
 \centering
@@ -53,10 +53,10 @@ Podemos pensar na representação da projeção de  ${\bf \omega}$ e ${\bf \omeg
 \end{equation}
 onde $\omega^*$ é a matriz adjunta de $\omega$.
 
-Note que a reta $(\omega \diamond B)\,e$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,e$ e $(\omega' \diamond B)\,e'$ coincidem.
+Note que a reta $(\omega \diamond B)\,{\bf e}$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem.
 
 
-Note que $(\omega \diamond B) = B\,(\omega \cdot B)$ onde define-se a homografia
+Note que $(\omega \diamond B) = B\,(\omega \cdot B)$ se definirmos a homografia
 
 \begin{equation}
 (\omega \cdot B) \equiv 2\,\omega^*\,B - tr(\omega^*\,B)\,I,
@@ -64,19 +64,19 @@ Note que $(\omega \diamond B) = B\,(\omega \cdot B)$ onde define-se a homografia
 onde está sendo ``cancelado" $B$ na definição de $(\omega \diamond B)$. 
 
 
-Como $(\omega' \diamond B)\,e$ e $(\omega' \diamond B)\,e'$ coincidem e usando a equivalência anterior, pode-se demonstrar que 
+Como $(\omega' \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem e usando a equivalência anterior, podemos demonstrar que 
 
 \begin{equation}
-(\omega' \cdot B)\,e' \sim (\omega \cdot B)\,e
+(\omega' \cdot B)\,{\bf e'} \sim (\omega \cdot B)\,{\bf e}
 \end{equation} 
 (onde $\sim$ significa igualdade a menos da escala) o que implica num mapeamento de sétimo grau 
 
 \begin{equation}
-e \rightarrow e' \sim (\omega' \cdot B)^*\,(\omega \cdot B)\,e.
+{\bf e} \rightarrow {\bf e'} \sim (\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e}.
 \label{funcao-de-e}
 \end{equation}
 
-No artigo também é domonstrado que a restrição Kruppa disponibiliza quatro soluções (dois pares de soluções coincidentes) para ${\bf e}$ para cada cônica $B$ e as soluções são as interseções (figura \ref{inter-B-C}) de $B$ com a cônica 
+No artigo também é domonstrado que a restrição Kruppa disponibiliza quatro soluções (dois pares de soluções coincidentes) para cada ${\bf e}$, e as soluções são as interseções (figura \ref{inter-B-C}) de $B$ com a cônica 
 
 \begin{equation}
 C \equiv (\omega \cdot B)^\top\,(\omega' \cdot B)^{*\,\top}\,B\,(\omega' \cdot B)^*(\omega \cdot B).
@@ -104,7 +104,7 @@ se, somente se, ele satisfaz às restrições de projetividade e de calibração
 \label{plot-C}
 \end{figure}
 
-Qualquer epipolo ${\bf e}$ para o qual $|B|=0$ satisfaz as restrições de projetividade e calibração se, e somente se, ${\bf e}$ satisfaz a equação de d-ecimo grau remanescente de $e^\top\,C\,e=0$, ou seja, a equação restante após a eliminação do $|B|=0$. Geometricamente, temos que os pontos não podem se alojar em quaisquer das seis retas por conta da restrição de calibração. É possível remover $|B|=0$ da equação \ref{dezesseis} para se chegar à equação de décimo grau e o trabalho é algebricamente pesado mas também pode ser inteiramente encontrado no artigo tal. A curva de décimo grau é descrita pela equação
+Qualquer epipolo ${\bf e}$ para o qual $|B|\ne0$ satisfaz as restrições de projetividade e calibração se, e somente se, ${\bf e}$ satisfaz a equação de décimo grau remanescente de $e^\top\,C\,e=0$, ou seja, a equação restante após a eliminação do $|B|\ne0$. Geometricamente, temos que os pontos não podem se alojar em quaisquer das seis retas por conta da restrição de calibração. É possível remover $|B|\ne0$ da equação \ref{dezesseis} para se chegar à equação de décimo grau e o trabalho é algebricamente pesado mas também pode ser inteiramente encontrado em \cite{kneebone}. A curva de décimo grau é descrita pela equação
 
 \begin{equation}
 e^\top\,G\,e=0,
@@ -126,7 +126,7 @@ s&=&(16\,|B|\,|D'|\,t'+t'4-4\,t'2\,tr(B*\,D'*)).
 \end{array}
 \end{equation}
 
-A partir das consideraçoes feitas ate aqui, podemos expor o principal resultado de tal, o qual afirma que um ponto e um candidato a epipolo de acordo com as restriçoes de projetividade e calibraçao se, e somente se, satisfaz a equaçao de decimo grau definida em \ref{dez}. O que e equivalente ao fato de que ${\bf e}$ deve se alojar na conica $G$ definida em \ref{camera-G}. Para um epipolo ${\bf e}$ qualquer na curva de decimo grau, o outro epipolo ${\bf e'}$ e calculado pela funçao de setimo grau ${\bf e'} \sim U'*\,U\,{\bf e}$, dada em \ref{funcao-de-e}. Na figura \ref{curva-10} observamos alguns exemplos de curvas de decimo grau com seus possiveis epipolos. 
+A partir das consideraçoes feitas até aqui, podemos expor o principal resultado de \cite{kneebone}, o qual afirma que um ponto é um candidato a epipolo de acordo com as restrições de projetividade e calibração se, e somente se, satisfaz a equação de décimo grau definida em \ref{dez}. O que é equivalente ao fato de que ${\bf e}$ deve se alojar na cônica $G$ definida em \ref{camera-G}. Para um epipolo ${\bf e}$ qualquer na curva de décimo grau, o outro epipolo ${\bf e'}$ é calculado pela função de sétimo grau ${\bf e'} \sim U'*\,U\,{\bf e}$, dada em \ref{funcao-de-e}. Na figura \ref{curva-10} observamos alguns exemplos de curvas de décimo grau com seus possíveis epipolos. 
 
 \begin{figure}[!htb]
 \centering
@@ -135,7 +135,7 @@ A partir das consideraçoes feitas ate aqui, podemos expor o principal resultado
 \label{curva-10}
 \end{figure}
 
-Dado um ponto na curva de decimo grau, e importante verificar se o mesmo satisfaz a restriçao de orientaçao, que e o fato de o correspondente ponto 3D no espaço situar-se em frente ao plano das duas imagens, conforme retratado na figura tal. Ou seja, o ponto no espaço 3D deve situar-se na metade da frente dos raios emanados de seus respectivos pontos nas duas imagens. Dado um epipolo ${\bf e}$ numa imagem, ${\bf e'}$ fica unicamente determinado pela equaçao \ref{funcao-de-e} na outra imagem. Apos determinado o par de epipolos, a homografia da linha epipolar e unicamente definida pela correspondencia desses pontos e assim determinamos a matriz essencial. Se ignorarmos uma diferença de escala considerando que a linha base que liga as duas câmeras tem comprimento unitário, temos que existem quatro configurações para a posição das duas imagens num sistema 3D. A restrição projetiva é satisfeita em quisquer dessas quatro configurações, pois os dois rios emanados do par de pontos correspondentes nas duas imagens continuam coplanares e devem se interseptar num ponto comum. A restrição de orientação é satisfeita exatamente quando os quatro pares de pontos correspondentes indicam a mesma configuração. Pode-se dividir a restrição de orientação em duas partes: primeiro quando a homografia de reta epipolar é orientada, ou seja, quando os dois raios passando pelo par de pontos correspondentes nas imagens, estão no mesmo semiplano definido pela reta base onde se encontram as imagens (será chamada restrição de orientação epipolar); e segundo, a condição de que as duas metades dos raios que se projetam para a parte da frente devem convergir para um ponto comum (será chamada restrição de convergência).  
+Dado um ponto na curva de décimo grau, é importante verificar se o mesmo satisfaz a restrição de orientação, que é o fato de o correspondente ponto 3D no espaço situar-se em frente ao plano das duas imagens, conforme retratado na figura \ref{retr-orien}. Ou seja, o ponto no espaço 3D deve situar-se na metade da frente dos raios emanados de seus respectivos pontos nas duas imagens. Dado um epipolo ${\bf e}$ numa imagem, ${\bf e'}$ fica unicamente determinado pela equação \ref{funcao-de-e} na outra imagem. Após determinado o par de epipolos, a homografia da linha epipolar é unicamente definida pela correspondência desses pontos e assim determinamos a matriz essencial. Se ignorarmos uma diferença de escala considerando que a linha base que liga as duas câmeras tem comprimento unitário, temos que existem quatro configurações para a posição das duas imagens num sistema 3D. A restrição projetiva é satisfeita em quisquer dessas quatro configurações, pois os dois raios emanados do par de pontos correspondentes nas duas imagens continuam coplanares e devem se interseptar num ponto comum. A restrição de orientação é satisfeita exatamente quando os quatro pares de pontos correspondentes indicam a mesma configuração. Podemos dividir a restrição de orientação em duas partes: primeiro quando a homografia de reta epipolar é orientada, ou seja, quando os dois raios passando pelo par de pontos correspondentes nas imagens, estão no mesmo semiplano definido pela reta base onde se encontram as imagens (será chamada restrição de orientação epipolar); e segundo, a condição de que as duas metades dos raios que se projetam para a parte da frente devem convergir para um ponto comum (será chamada restrição de convergência).  
 
 \begin{figure}[!htb]
 \centering
@@ -147,7 +147,7 @@ Dado um ponto na curva de decimo grau, e importante verificar se o mesmo satisfa
 A restrição de convergência deve garantir que raios retroprojetados de cada imagem devem convergir. Isso não acontece somente se os raios forem paralelos e, uma forma de parametrizar, é através do ângulo formado entre o ponto na primeira imagem ${\bf x}$ e ${\bf e}$, e o ângulo entre o ponto na segunda imagem ${\bf x'}$ e ${\bf e'}$. Como a reta base passa por ${\bf e}$ e ${\bf e'}$, se os ângulos com os respectivos pontos forem iguais, os dois raios serão paralelos e não ocorrerá a convergência.
 
 
-{\bf Aplicação da teoria no caso trifocal, com quatro pontos e três imagens.} As novidades do artigo se encontram, basicamente, no tipo de reconstrução 3D para duas imagens. A aplicação a seguir segue o padrão, até então convencional, de projetar uma das reconstruções na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas as câmeras calibradas), pode-se escolher duas dessas imagens para traçar-se a curva de décimo grau de acordo com a esolha de um parâmetro $\theta$ que irá definir a cônica $B$, do feixe de cônicas, a ser utilizada.  Dada $B$ podemos calcular a cônica $G$ a partir da equação \ref{conica-G} como uma função de $B$, e as interseções de $B$ e $G$ podem ser determinadas como a solução de uma equação de quarto grau confrome descrito no apêndice do artigo. Assim, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{funcao-de-e}. Note que para cada parâmetro $\theta$ teremos, a partir daqui, dezesseis caminhos a seguir. Com os epipolos encontramos a homografia da reta epipolar  e daí, a matriz essencial das duas imagens para cada uma das soluções. Existem vários métodos para reconstrução à partir da triangulação usando duas imagens, como por exemplo, (nistér 2003a) e (fabbri). Consefuidas as reconstruções dos pontos 3D, existem também vários outros métodos de obtenção da câmera ralativa à terceira imagem, como por exemplo (haralick et. al. 94) e (astrom). Usados três pontos 3D para determinar a câmera da terceira imagem, podemos usar o quarto ponto para ser projetado na terceira imagem e comparar o resultado com o dado já obtido. Ou seja, para cada escolha do parâmetro $\theta$ (ou da cônica $B$), o procedimento consiste em minimizar um erro na imagem. Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, o valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmera da terceria imagem e dezesseis reporjeções, todas essas reprojeções deninem uma complexidade enorme de curvas na terceira imagem. Na figura tal é dada uma ideia da dificuldade extrema do problema envolvendo duas imagens e três pontos. 
+{\bf Aplicação da teoria no caso trifocal, com quatro pontos e três imagens.} As novidades do artigo se encontram, basicamente, no tipo de reconstrução 3D para duas imagens. A aplicação a seguir segue o padrão, até então convencional, de projetar as reconstruções na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas com as câmeras calibradas), podemos escolher duas dessas imagens para traçarmos a curva de décimo grau de acordo com a esolha de um parâmetro $\theta$ que irá definir a cônica $B$, do feixe de cônicas, a ser utilizada.  Dada $B$ podemos calcular a cônica $G$ a partir da equação \ref{conica-G} como uma função de $B$, e as interseções de $B$ e $G$ podem ser determinadas como a solução de uma equação de quarto grau confrome descrito no apêndice do artigo. Assim, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{funcao-de-e}. Note que para cada parâmetro $\theta$ teremos, a partir daqui, dezesseis caminhos a seguir. Com os epipolos encontramos a homografia da reta epipolar  e daí, a matriz essencial das duas imagens para cada uma das soluções. Existem vários métodos para reconstrução à partir da triangulação usando duas imagens, como por exemplo, \cite{nister5p2v} e \cite{Fabbri:Kimia:IJCV2015}. Conseguidas as reconstruções dos pontos 3D, existem também vários outros métodos de obtenção da câmera ralativa à terceira imagem, como por exemplo \cite{haralick} e \cite{bib:kuang}. Usados três pontos 3D para determinar a câmera da terceira imagem, podemos usar o quarto ponto para ser projetado na terceira imagem e comparar o resultado com o dado já obtido. Ou seja, para cada escolha do parâmetro $\theta$ (ou da cônica $B$), o procedimento consiste em minimizar um erro na imagem. Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, o valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmera da terceria imagem e dezesseis reporjeções, todas essas reprojeções definem uma complexidade enorme de curvas na terceira imagem. Na figura \ref{curvas-f(theta)} é dada uma ideia da dificuldade extrema do problema envolvendo três imagens e quatro pontos. 
 
 \begin{figure}[!htb]
 \centering
@@ -156,7 +156,7 @@ A restrição de convergência deve garantir que raios retroprojetados de cada i
 \label{curvas-f(theta)}
 \end{figure}
 
-Para um grupo aleatorio de quatro pontos, em geral a projeçao da curva de decimo grau nao passara pelos pontos. Antes de iniciar os calculos, os pontos sao co-registrados por uma homografia que sera usada para transformar de DIAC  da segunda imagem no sistema de coordenadas da primeira. Existem varias maneiras de parametrizar o feixe de conicas e uma delas e escolher duas conicas dentre as degeneradas como base para o feixe.
+Para um grupo aleatório de quatro pontos, em geral a projeção da curva de décimo grau não passará pelos pontos. Antes de iniciar os cálculos, os pontos são co-registrados por uma homografia que será usada para transformar o DIAC  da segunda imagem no sistema de coordenadas da primeira. Existem várias maneiras de parametrizar o feixe de cônicas e uma delas é escolher duas cônicas dentre as degeneradas como base para o feixe.
 
 
 
