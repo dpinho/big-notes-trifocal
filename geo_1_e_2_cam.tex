@@ -570,6 +570,86 @@ com ${\bf t}=(t_1,t_2,t_3)^\top$ denominado vetor de translação.
 
 Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o mapeamento de um ponto 3D homogêneo no sistema de coordenadas do mundo em seu respectivo ponto 2D no plano da imagem, no sistema de coordenadas da imagem. Temos cinco parâmetros internos na matriz de calibração $K$, $(\alpha_x,\alpha_y,s,p_x,p_y)$, três parâmetros externos na matriz de rotação $R$, apesar de suas nove entradas, e mais três parâmetros externos no vetor de translação totalizando 11 graus de liberdade. Repare que, tendo a matriz $P$ dimensão $3\times4$, ela possui 12 componentes e, usando uma para determinar a escala, sobram exatamente os 11 graus de liberdade, e a câmera $P$ é chamda câmera de \textit{projeção finita}.
 
+\subsubsection{A Matriz de Calibração K.}
+
+A intenção nesta seção é mostrar como é definido, mais intimamente, cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para a imagem da câmera.
+
+Dado um ponto 3D $p^w = (x^w,y^w,z^w)^\top$ em coordenadas do mundo e sendo $(\uu,\vv)$ as coordenadas do ponto na imagem da câmera, quais os valores de $(\uu,\vv)$?
+
+Primeiramente, vamos transformar o ponto em coordenadas do mundo para as coordenadas da câmera $p = (x,y,z)^\top$:
+\begin{align}
+p = R p^w + T
+\end{align}
+onde $R$ e $T$ são parâmetros extrínsecos.
+
+Agora, vamos projetar o ponto para o plano imagem normalizada usando similaridade de triângulos:
+\begin{empheq}[left=\empheqlbrace]{align}\label{eq:normalized:coords}
+\tilde x = \frac{x}{z}\\
+\tilde y = \frac{y}{z}
+\end{empheq}
+
+Depois dessa projeção, vamos aplicar os parâmetros internos para obtermos as coordenadas finais da imagem. O primeiro passo é incluir a distância focal.
+\begin{empheq}[left=\empheqlbrace]{align}
+\bar x &= f\frac{x}{z}\\
+\bar y &= f\frac{y}{z}
+\end{empheq}
+Então converter para pixels:
+\begin{empheq}[left=\empheqlbrace]{align}
+\bar x_{pix} &= s_\uu f\frac{x}{z}\\
+\bar y_{pix} &= s_\vv f\frac{y}{z}
+\end{empheq}
+Como podemos ver, $f$ tem efeito similar a $s_\uu$ e $s_\vv$. Seria suficiente mantermos apenas dois parâmetros, digamos $f$ e a razão de aspecto, mas vamos manter os três parâmetros por enquanto.
+%
+%
+Em seguida, fazemos a translação para o ponto inferior esquerdo da imagem usando $(t_{\tilde \uu},t_{\tilde \vv})$, que são as coordenadas do ponto principal em relação ao inferior esquerdo da imagem:
+\begin{empheq}[left=\empheqlbrace]{align}
+\tilde \uu &= s_\uu f\frac{x}{z} + t_{\tilde \uu}\\
+\tilde y &= s_\vv f\frac{y}{z} + t_{\tilde \vv}
+\end{empheq}
+
+E convertemos para o sistema de coordenadas em função de um ângulo $]theta$ entre os eixos, pois os eixos podem ser não ortogonais:
+\begin{empheq}[left=\empheqlbrace]{align}
+\uu &= \tilde \uu - \tilde \vv \cot\theta \\
+\vv &= \tilde \vv \csc\theta
+\end{empheq}
+os quais fornece
+\begin{empheq}[left=\empheqlbrace]{align}\label{eq:projection:explicit}
+\uu &= \overbrace{s_\uu f}^{\alpha_\uu}\frac{x}{z} + \overbrace{(-\cot\theta\, s_\vv
+f)}^{s_\theta} \frac{y}{z} + \overbrace{t_{\tilde \uu} - \cot\theta\, t_{\tilde \vv}}^{\uu_0}\\
+%
+\vv &= \underbrace{s_\vv f\csc\theta}_{\alpha_\vv} \frac{y}{z}+
+\underbrace{\csc\theta\, t_{\tilde \vv}}_{\vv_0}
+\end{empheq}
+Assim, a transformação de um ponto na câmera para a imagem é feita usando cinco parâmetros da matriz de calibração $K$. A fórmula acima explicita a interpretação de cada um desses parâmetros.
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c l} 
+\textbf{Variáveis Livres} & \textbf{Descrição}\\
+3	 & rotação \\
+3	 & translação \\
+2	 & mudança de escala em $x,y$\\
+1	 & distância focal (pode ser incorporada como escala)\\
+2	 & ponto principal\\
+1	 & ângulo entre os eixos \\
+6  & total extrinsecos\\
+6  & total intrinsecos\\
+12 & total\\
+11 & total único (distância focal para fixar escala)
+\end{tabular}
+\end{center}
+\caption{Resumo dos parâmetros da câmera.}
+\end{table}
+
+
+
+
+
+
+
+
+
 
 \subsection{Notação Usada por Fabbri}
 
