@@ -572,29 +572,29 @@ Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o ma
 
 \subsubsection{A Matriz de Calibração K.}
 
-A intenção nesta seção é mostrar como é definido, mais intimamente, cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para a imagem da câmera.
+A intenção nesta seção é mostrar como é definido, mais intimamente, cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para o plano da imagem na câmera.
 
 Dado um ponto 3D $p^w = (x^w,y^w,z^w)^\top$ em coordenadas do mundo e sendo $(\uu,\vv)$ as coordenadas do ponto na imagem da câmera, quais os valores de $(\uu,\vv)$?
 
 Primeiramente, vamos transformar o ponto em coordenadas do mundo para as coordenadas da câmera $p = (x,y,z)^\top$:
-\begin{align}
+\begin{align*}
 p = R p^w + T
-\end{align}
+\end{align*}
 onde $R$ e $T$ são parâmetros extrínsecos.
 
 Agora, vamos projetar o ponto para o plano imagem normalizada usando similaridade de triângulos:
-\begin{empheq}[left=\empheqlbrace]{align}\label{eq:normalized:coords}
+\begin{empheq}[left=\empheqlbrace]{align*}\label{eq:normalized:coords}
 \tilde x = \frac{x}{z}\\
 \tilde y = \frac{y}{z}
 \end{empheq}
 
 Depois dessa projeção, vamos aplicar os parâmetros internos para obtermos as coordenadas finais da imagem. O primeiro passo é incluir a distância focal.
-\begin{empheq}[left=\empheqlbrace]{align}
+\begin{empheq}[left=\empheqlbrace]{align*}
 \bar x &= f\frac{x}{z}\\
 \bar y &= f\frac{y}{z}
 \end{empheq}
 Então converter para pixels:
-\begin{empheq}[left=\empheqlbrace]{align}
+\begin{empheq}[left=\empheqlbrace]{align*}
 \bar x_{pix} &= s_\uu f\frac{x}{z}\\
 \bar y_{pix} &= s_\vv f\frac{y}{z}
 \end{empheq}
@@ -602,18 +602,27 @@ Como podemos ver, $f$ tem efeito similar a $s_\uu$ e $s_\vv$. Seria suficiente m
 %
 %
 Em seguida, fazemos a translação para o ponto inferior esquerdo da imagem usando $(t_{\tilde \uu},t_{\tilde \vv})$, que são as coordenadas do ponto principal em relação ao inferior esquerdo da imagem:
-\begin{empheq}[left=\empheqlbrace]{align}
+\begin{empheq}[left=\empheqlbrace]{align*}
 \tilde \uu &= s_\uu f\frac{x}{z} + t_{\tilde \uu}\\
 \tilde y &= s_\vv f\frac{y}{z} + t_{\tilde \vv}
 \end{empheq}
 
-E convertemos para o sistema de coordenadas em função de um ângulo $]theta$ entre os eixos, pois os eixos podem ser não ortogonais:
-\begin{empheq}[left=\empheqlbrace]{align}
+E convertemos para o sistema de coordenadas em função de um ângulo $\theta$ entre os eixos, pois os eixos podem ser não ortogonais. Observe na figura \ref{skew} a conversão das coordenadas de um ponto $P$ qualquer:
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{skew}
+\caption{\textit{Transformação das coordenadas de um ponto no plano ortogonal para um plano com eixos relacionados por um ângulo $\theta$ qualquer.}}
+\label{skew}
+\end{figure}
+
+
+\begin{empheq}[left=\empheqlbrace]{align*}
 \uu &= \tilde \uu - \tilde \vv \cot\theta \\
 \vv &= \tilde \vv \csc\theta
 \end{empheq}
 os quais fornece
-\begin{empheq}[left=\empheqlbrace]{align}\label{eq:projection:explicit}
+\begin{empheq}[left=\empheqlbrace]{align*}\label{eq:projection:explicit}
 \uu &= \overbrace{s_\uu f}^{\alpha_\uu}\frac{x}{z} + \overbrace{(-\cot\theta\, s_\vv
 f)}^{s_\theta} \frac{y}{z} + \overbrace{t_{\tilde \uu} - \cot\theta\, t_{\tilde \vv}}^{\uu_0}\\
 %
