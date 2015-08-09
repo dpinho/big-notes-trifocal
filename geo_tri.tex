@@ -10,8 +10,6 @@
 
 Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistemna bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, considerando duas imagens de quatro pontos em 3D. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. Em seguida, utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens. Vamos reproduzir os detalhes mais importantes. 
 
-Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} \citep{faugeras93three} pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
-
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=.85]{retas-epipolares}
@@ -19,16 +17,183 @@ Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epi
 \label{retas-epipolares}
 \end{figure}
 
-Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restriçao \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por ${\bf e}$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por ${\bf e'}$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
+{\bf A homografia da reta epipolar.} Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} \citep{faugeras93three} pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
+
+
+Supondo os epipolos na origem do plano de cada imagem, com as retas epipolares passando pelo epipolo, cada reta pode ser parametrizada através do ângulo que ela forma com o eixo das abscissas, denominados $\alpha_1$ e $\alpha_2$ na primeira e segunda imagens respectivamente.
+A homografia da reta epipolar pode ser representada pela equação de uma hipérbole alinhada aos eixos perpendiculares, conforme descrito em \cite{Fabbri:Kimia:IJCV2015}.
+
+\begin{equation}\label{eq.hiperbole}
+a\,x\,y+b\,x+c\,y+d=0 \qquad \text{ou} \qquad y=\frac{-b\,x-d}{a\,x+c},
+\end{equation} 
+onde $x=tan\,\alpha_1$ e $y=tan\,\alpha_2$. 
+
+Vemos na figura \ref{fig.reta-epipolar} que cada reta epipolar fica definida por um ponto no eixo da tangente, $(1,tan\,\alpha_1)$ na primeira imagem e $(1,tan\,\alpha_2)$ na segunda, onde consideramos o círculo trigonométrico de raio $1$. Usando esses pontos, a equação da hipérbole pode ser escrita na forma
+
+\begin{equation*}
+(1\,,\,tan\,\alpha_1)
+\overbrace{
+\begin{bmatrix}
+d&c\\
+b&a
+\end{bmatrix}
+}^{H}
+\begin{pmatrix}
+1\\
+tan\,\alpha_2
+\end{pmatrix}
+=0,
+\end{equation*}
+sendo 
+$\begin{bmatrix}d&c\\b&a\end{bmatrix}$ a homografia procurada.
+
+O problema é que a equação não está definida para retas epipolares verticas, quando utilizamos a tangente, e uma saída é parametrizar cada reta através da própria definição de tangente, pois assim temos uma representação isotrópica para as retas:
+
+\begin{equation}\label{eq.tan.alpha1-2}
+x=tan\,\alpha_1=\frac{sen\,\alpha_1 }{cos\,\alpha_1} \qquad \text{e} \qquad y=tan\,\alpha_2=\frac{sen\,\alpha_2}{cos\,\alpha_2}.
+\end{equation} 
+
+Desta forma, substituindo \ref{eq.tan.alpha1-2} em \ref{eq.hiperbole} e multiplicando por $cos\,\alpha_1\,cos\,\alpha_2$ temos
+
+\begin{equation*}
+a\,sen\,\alpha_1\,sen\,\alpha_2+b\,sen\,\alpha_1\,cos\,\alpha_2+c\,cos\,\alpha_1\,sen\,\alpha_2+d\,cos\,\alpha_1\,cos\,\alpha_2=0.
+\end{equation*}
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=.85]{restricao-epipolar-kruppa}
+\includegraphics[scale=1]{reta-epipolar-alpha1}
+\caption{\textit{Plano da imagem centrado em ${\bf e}$ com a reta epipolar parametrizada por $\alpha_1$.}}
+\label{fig.reta-epipolar}
+\end{figure}
+
+Com essa conversão, deixamos de parametrizar as retas epipolares pelo eixo da tangente e passamos a parametrizar pelo círculo trigonométrico. Aqui temos um argumento para contagem dos graus de liberdade para fixarmos a relação entre retas epipolares, pois devemos determinar os dois epipolos (duas variáveis cada totalizando quatro graus de liberdade), e mais a matriz que representa a homografia (quatro variáveis mas apenas três graus de liberdade utilizando uma variável para fixar a escala). Portanto, precisamos de no mínimo sete restrições para determinarmos a relação entre duas imagens na geometria epipolar. 
+
+Na nossa abordagem, consideramos o círculo trigonométrico com raio $1$ mas podemos estipular raios arbitrários $r_1$ e $r_2$ em cada uma das imagens que ajuda a garantir estabilidade numérica para a determinação dos coeficientes. Assim, obtemos a equação:
+
+\begin{equation*}
+a\,r_1\,sen\,\alpha_1\,r_2\,sen\,\alpha_2+b\,r_1\,sen\,\alpha_1\,r_2\,cos\,\alpha_2+c\,r_1\,cos\,\alpha_1\,r_2\,sen\,\alpha_2+d\,r_1\,cos\,\alpha_1\,r_2\,cos\,\alpha_2=0.
+\end{equation*}
+
+Em resumo, as vantagens dessa última representação é ser isotrópica e ter boa estabilidade numérica para escolhas convenientes de $r_1$ e $r_2$, e novamente  na representação matricial:
+
+\begin{equation*}
+(r_1\,cos\,\alpha_1\,,\,r_1\,sen\,\alpha_1)
+\begin{bmatrix}
+d&c\\
+b&a
+\end{bmatrix}
+\begin{pmatrix}
+r_2\,cos\,\alpha_2\\
+r_2\,sen\,\alpha_2
+\end{pmatrix}
+=0
+\end{equation*}
+
+Uma outra forma de pensar sobre essa homografia, encontrada em \cite{Hartley2004}, é considerando que as retas epipolares estão perspectivamente relacionadas com centro em um ponto $Q$ na reta base, conforme a figura \ref{fig.retas-epi-hartley}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{retas-epipolares-hartley}
+\caption{\textit{Retas epipolares com perspectiva centrada em $Q$ na reta base.}}
+\label{fig.retas-epi-hartley}
+\end{figure}
+
+
+Suponha que $\lightrgb$ e $\lightrgb'$ sejam duas retas epipolares correspondentes, e ${\bf m}$ é uma reta qualquer que não passa pelo epipolo $\e$. O produto vetorial 
+
+\begin{equation*}
+{\bf m}\times\lightrgb=\x\qquad\text{ou}\qquad\,[{\bf m}]_\times\,\lightrgb=\x,
+\end{equation*}
+nos fornece o ponto $\x$ de interseção entre essas retas. Assim, $\lightrgb$ é mapeada a $\lightrgb'$ através da relação 
+
+\begin{equation*}
+\lightrgb'=F\,[{\bf m}]_\times\,\lightrgb\qquad\text{já que}\qquad\lightrgb'=F\,\x.
+\end{equation*}
+
+
+Uma boa escolha para ${\bf m}$ é $\e$, já que
+
+\begin{equation*}
+{\bf m}^\top\,\e=\e^\top\,\e\neq0,
+\end{equation*}
+então $\e$ é uma reta que não passa pelo epipolo $\e$ como desejado. Assim, a homografia da reta epipolar pode ser escrita como 
+
+\begin{equation*}
+\lightrgb'=F\,[\e]_\times\,\lightrgb.
+\end{equation*}
+O argumento é análogo para o mapeamento da segunda imagem para a primeira.\\
+
+
+{\bf As restricoes Kruppa.}Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restriçao \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1.2]{restricao-epipolar-kruppa}
 \caption{\textit{Retas epipolares tangentes às cônicas ${\bf \omega}$ e ${\bf \omega'}$.}}
 \label{epipolar-kruppa}
 \end{figure}
 
-De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Desta forma, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem satisfazem a restrição epipolar. Esta cônica $B$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
+A restrição Kruppa está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC em inglês) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (definida por retas e com sigla DIAC em inglês), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta sera tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura tal. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
+
+\begin{equation}\label{eq.def.con.deg}
+D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times \qquad \text{ou, como um exemplo} \qquad D=\lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top
+\end{equation}
+
+Como $D$ é uma cônica (ponto) temos que para as duas definições  em \ref{eq.def.con.deg} é válida a relação $\y_1^\top D\,\y_1=0$, pois:
+
+\begin{equation*}
+\begin{array}{rcll}
+\y_1^\top\,D\,\y_1&=&\y_1^\top [\e]_\times\,{\bf \omega}^*\,[\e]_\times\,\y_1&\\
+&=&([\e]_\times\,\y_1)^\top {\bf \omega}^*\,[\e]_\times\,\y_1& \qquad [\e]_\times\,\text{é simétrica}\\
+&=&\lightrgb_1^\top {\bf \omega}^*\,\lightrgb_1& \qquad\text{pois}\qquad\lightrgb_1=\e\times\y_1\\
+&=&0&
+\end{array}
+\end{equation*}
+onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Analogamente, para a segunda definição de $D$:
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1.1]{geometria-kruppa}
+\caption{\textit{Um plano epipolar tangenciando uma cônica no espaco 3D projeta retas epipolares que tangenciam as cônicas nos planos das imagens}.}
+\label{geometria-kruppa}
+\end{figure}
+
+
+\begin{equation*}
+\y_1^\top\,D\,\y_1=\y_1^\top \lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top\y=0
+\end{equation*}
+pois como $\y\in\lightrgb_1$ então $\y_1^\top \lightrgb_1=\lightrgb_1^\top\y=0$. Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
+
+Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na seção tal. O símbolo $\infty$ se deve ao fato de que a homografia foi construída com base no plano no infinito. Assim:
+
+\begin{equation}
+\begin{array}{rcll}
+[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times&=&D'&\\
+&=&H_\infty^{-\top}D\,H_\infty^{-1}&\\
+&=&H_\infty^{-\top}[\e]_\times\,{\bf \omega}^*\,[\e]_\times\,H_\infty^{-1}&\qquad\text{pois}\qquad D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times\\
+&=&F\,\omega^* F^\top&\qquad\text{onde}\qquad F=H_\infty^{-\top}\,[\e]_\times.
+\end{array}
+\end{equation}
+
+Como \cite{2503343} aplica uma transformação no plano da imagem para que os objetos geométricos tenham as mesmas coordenadas nos dois planos, temos que $\omega^*$ e ${\omega^*}'$ têm as mesmas coordenadas, assim a relação
+
+\begin{equation*}
+[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times=F\,\omega^* F^\top
+\end{equation*}
+se transforma em 
+
+\begin{equation}\label{eq.kruppa}
+[\e']_\times\,{\bf \omega}^*\,[\e']_\times=F\,\omega^* F^\top.
+\end{equation}
+
+
+
+Da relação \ref{eq.kruppa} são extraídas as duas equações quadráticas independentes eliminando-se o fator de escala, onde tais equações são conhecidas como as restrições de Kruppa. 
+
+
+
+
+De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos também tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Desta forma, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem satisfazem a restrição epipolar. Esta cônica $B$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
 
 \begin{figure}[!htb]
 \centering
