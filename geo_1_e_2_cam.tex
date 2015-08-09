@@ -590,13 +590,13 @@ Agora, vamos projetar o ponto para o plano imagem normalizada usando similaridad
 
 Depois dessa projeção, vamos aplicar os parâmetros internos para obtermos as coordenadas finais da imagem. O primeiro passo é incluir a distância focal.
 \begin{empheq}[left=\empheqlbrace]{align*}
-\bar x &= f\frac{x}{z}\\
-\bar y &= f\frac{y}{z}
+\tilde x &= f\frac{x}{z}\\
+\tilde y &= f\frac{y}{z}
 \end{empheq}
 Então converter para pixels:
 \begin{empheq}[left=\empheqlbrace]{align*}
-\bar x_{pix} &= s_\uu f\frac{x}{z}\\
-\bar y_{pix} &= s_\vv f\frac{y}{z}
+\tilde x_{pix} &= s_\uu f\frac{x}{z}\\
+\tilde y_{pix} &= s_\vv f\frac{y}{z}
 \end{empheq}
 Como podemos ver, $f$ tem efeito similar a $s_\uu$ e $s_\vv$. Seria suficiente mantermos apenas dois parâmetros, digamos $f$ e a razão de aspecto, mas vamos manter os três parâmetros por enquanto.
 %
@@ -604,30 +604,38 @@ Como podemos ver, $f$ tem efeito similar a $s_\uu$ e $s_\vv$. Seria suficiente m
 Em seguida, fazemos a translação para o ponto inferior esquerdo da imagem usando $(t_{\tilde \uu},t_{\tilde \vv})$, que são as coordenadas do ponto principal em relação ao inferior esquerdo da imagem:
 \begin{empheq}[left=\empheqlbrace]{align*}
 \tilde \uu &= s_\uu f\frac{x}{z} + t_{\tilde \uu}\\
-\tilde y &= s_\vv f\frac{y}{z} + t_{\tilde \vv}
+\tilde \vv &= s_\vv f\frac{y}{z} + t_{\tilde \vv}
 \end{empheq}
 
-E convertemos para o sistema de coordenadas em função de um ângulo $\theta$ entre os eixos, pois os eixos podem ser não ortogonais. Observe na figura \ref{skew} a conversão das coordenadas de um ponto $P$ qualquer:
+E convertemos para o sistema de coordenadas em função de um ângulo $\theta$ entre os eixos, pois os eixos podem ser não ortogonais. Observe na figura \ref{skew} a conversão das coordenadas de um ponto $Q$ qualquer:
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{skew}
-\caption{\textit{Transformação das coordenadas de um ponto no plano ortogonal para um plano com eixos relacionados por um ângulo $\theta$ qualquer.}}
+\caption{\textit{Transformação das coordenadas de um ponto no plano com eixos perpendiculares para um plano com eixos relacionados por um ângulo $\theta$ qualquer.}}
 \label{skew}
 \end{figure}
+
+\begin{empheq}[left=\empheqlbrace]{align*}
+\tilde \uu &= \uu + \vv \, cos\,\theta
+\\
+\tilde \vv &= \vv \, sen\,\theta
+\end{empheq}
+
+Isolando as variáveis do sistema de coordenadas com ângulo genérico temos:
 
 
 \begin{empheq}[left=\empheqlbrace]{align*}
 \uu &= \tilde \uu - \tilde \vv \cot\theta \\
-\vv &= \tilde \vv \csc\theta
+\vv &= \tilde \vv \,cossec\, \theta
 \end{empheq}
 os quais fornece
 \begin{empheq}[left=\empheqlbrace]{align*}\label{eq:projection:explicit}
 \uu &= \overbrace{s_\uu f}^{\alpha_\uu}\frac{x}{z} + \overbrace{(-\cot\theta\, s_\vv
 f)}^{s_\theta} \frac{y}{z} + \overbrace{t_{\tilde \uu} - \cot\theta\, t_{\tilde \vv}}^{\uu_0}\\
 %
-\vv &= \underbrace{s_\vv f\csc\theta}_{\alpha_\vv} \frac{y}{z}+
-\underbrace{\csc\theta\, t_{\tilde \vv}}_{\vv_0}
+\vv &= \underbrace{s_\vv f\,cossec\,\theta}_{\alpha_\vv} \frac{y}{z}+
+\underbrace{cossec\,\theta\, t_{\tilde \vv}}_{\vv_0}
 \end{empheq}
 Assim, a transformação de um ponto na câmera para a imagem é feita usando cinco parâmetros da matriz de calibração $K$. A fórmula acima explicita a interpretação de cada um desses parâmetros.
 
@@ -651,12 +659,13 @@ Assim, a transformação de um ponto na câmera para a imagem é feita usando ci
 \caption{Resumo dos parâmetros da câmera.}
 \end{table}
 
+\subsection{Geometria Epipolar e a Matriz Fundamental $F$}
+
+Conside um cenario com um ponto $\X$ no espaco 3D e dois planos que contem as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contem esse ponto $\X$ e os dois centros de projecao (ou centro da camera) das duas cameras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relacoes existentes entre as intersecoes desse plano $\bpi$ com os dois planos das imagens observado na figura tal. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, essa construcao eh motivada pela busca de $\x'$, tambem 2D, que seja correspondente a $\x$, onde $\x'$ eh a imagem de $\X$ no segundo plano de imagem. Podemos observar que os dois raios de luz que se retroprojetam de $\x$ e de $\x'$ tambem pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade sera essencial para nos auxiliar em definir as correspondencias entre os pontos nas duas imagens. A \textit{reta base} eh a reta que passa pelo centro de cada camera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a intersecao de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que eh a imagem na segunda visao do raio de luz retroprojetado por $\x$. Pela construcao, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence a reta epipolar que sera denotada por $\lightrgb'$. Assim, nossa busca pela correspondencia de $\x$ se restringira a uma busca numa reta e nao a uma busca em todo o plano da segunda imagem. 
 
 
-
-
-
-
+Na geometria epipolar, a camera que fotografar uma cena tambem deve fotografar a outra camera, e a imagem do centro de projecao da primeira camera na segunda visao eh denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visao tembem eh chamada epipolo e eh denotada por $\e'$.
+O plano $\bpi$ eh denominado \textit{plano epipolar} e num sistema com duas visoes temos varios planos epipolares definidos por um unico parametro, e que formam o feixe de planos girando em torno da reta base.
 
 
 
