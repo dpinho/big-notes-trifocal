@@ -659,14 +659,85 @@ Assim, a transformação de um ponto na câmera para a imagem é feita usando ci
 \caption{Resumo dos parâmetros da câmera.}
 \end{table}
 
-\subsection{Geometria Epipolar e a Matriz Fundamental $F$}
+\subsection{O Tensor Bifocal}
 
-Conside um cenario com um ponto $\X$ no espaco 3D e dois planos que contem as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contem esse ponto $\X$ e os dois centros de projecao (ou centro da camera) das duas cameras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relacoes existentes entre as intersecoes desse plano $\bpi$ com os dois planos das imagens observado na figura tal. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, essa construcao eh motivada pela busca de $\x'$, tambem 2D, que seja correspondente a $\x$, onde $\x'$ eh a imagem de $\X$ no segundo plano de imagem. Podemos observar que os dois raios de luz que se retroprojetam de $\x$ e de $\x'$ tambem pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade sera essencial para nos auxiliar em definir as correspondencias entre os pontos nas duas imagens. A \textit{reta base} eh a reta que passa pelo centro de cada camera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a intersecao de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que eh a imagem na segunda visao do raio de luz retroprojetado por $\x$. Pela construcao, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence a reta epipolar que sera denotada por $\lightrgb'$. Assim, nossa busca pela correspondencia de $\x$ se restringira a uma busca numa reta e nao a uma busca em todo o plano da segunda imagem. 
+\subsubsection{A Geometria Epipolar}
 
 
-Na geometria epipolar, a camera que fotografar uma cena tambem deve fotografar a outra camera, e a imagem do centro de projecao da primeira camera na segunda visao eh denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visao tembem eh chamada epipolo e eh denotada por $\e'$.
-O plano $\bpi$ eh denominado \textit{plano epipolar} e num sistema com duas visoes temos varios planos epipolares definidos por um unico parametro, e que formam o feixe de planos girando em torno da reta base.
+Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, essa construção é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
 
+\begin{equation*}
+\x\rightarrow\lightrgb'
+\end{equation*}
+
+Na geometria epipolar, a câmera que fotografar uma cena também deve fotografar a outra câmera, e a imagem do centro de projeção da primeira câmera na segunda visão é denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visão também é chamada epipolo e é denotada por $\e'$.
+O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas visões temos vários planos epipolares definidos por um único parâmetro, e que formam o feixe de planos girando em torno da reta base.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1.2]{geometria-epipolar}
+\caption{\textit{O plano epipolar contém o ponto $\X$ e define as retas epipolares em cada imagem, o que é a base para correspondência entre $\x$ e $\x'$.}}
+\label{fig.geo-epipolar}
+\end{figure}
+
+
+\subsubsection{A Matriz Fundamental $F$}
+
+A \textit{matriz fundamental} reúne todas as informações da geometria epipolar, é a representação algébrica dessa geometria de duas visões e, por isso, também é conhecida como \textit{tensor bifocal}. 
+
+Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Note que esse plano $\bpi$ não é o plano epipolar da subseção anterior. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
+
+\begin{equation}\label{eq.homo-plano}
+\x'= H_{\bpi} \,\x,
+\end{equation}
+e eles são ditos projetivamente equivalentes, já que são projetivamente equivalentes a um mesmo ponto $\X_i$ no plano $\bpi$. Obtido o ponto $\x'$, a reta epipolar passando por $\x'$ e $\e'$ pode ser calculada fazendo 
+
+\begin{equation}\label{eq.reta-epi-pro-vet}
+\begin{array}{rcl}
+\lightrgb'&=&\e'\times\x'\\
+&=&[\e']_\times\x'
+\end{array}
+\end{equation}
+($[\e']_\times$ está definida no apêndice). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'&=&[\e']_\times\x'\\
+&=&[\e']_\times H_{\bpi} \,\x\\
+&=&F\,\x,
+\end{array}
+\end{equation*} 
+onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
+
+
+Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. O raio de luz retroprojetado de $\x$ pode ser obtido isolando $\X$ na equação de projeção $\x=P\,\X$,
+
+\begin{equation*}
+\X(\lambda)=P^+\,\x+\lambda\,\C,
+\end{equation*}
+onde $P^+$ é a pseudo-inversa da matriz $P$ ($P^+P=I$) e $\C$ é o centro da câmera tal que $P\,\C=0$. Como o raio é parametrizado por $\lambda$, um escalar, podemos extrair dois pontos em particular desse raio, $P^+\x$ se $\lambda=0$ e $\C$ se $\lambda\rightarrow\infty$. Computando a imagem desses dois pontos na segunda visão temos
+
+\begin{equation*}
+\begin{array}{c}
+P^+\x \rightarrow P'P^+\x\\
+\C \rightarrow P'\C,
+\end{array}
+\end{equation*}
+onde $P'\,\C$ é o epipolo na segunda imagem, e por isso, a reta epipolar pode ser definida em termos do produto vetorial desses dois pontos
+
+\begin{equation*}
+\lightrgb'=P'\C \times P'P^+\x.
+\end{equation*}
+Mas como $P'\C=\e'$, podemos substituir na equação anterior
+
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'&=&P'\C \times P'P^+\x\\
+&=&[\e']_\times P'P^+\x\\
+&=&F\,\x,
+\end{array}
+\end{equation*}
+definindo $F=[\e']_\times P'P^+\x$. Essa relação para $F$ é a mesma fórmula derivada anteriormente, com a homografia calculada em termos das duas câmeras, $H_{\bpi}=P'P^+$.
 
 
 \subsection{Notação Usada por Fabbri}
