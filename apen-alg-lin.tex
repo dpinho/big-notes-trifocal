@@ -1,0 +1,23 @@
+\section{Alguns Conceitos e Definicoes em Algebra Linear}
+Esta secao do apendice se destina a apresentar algumas ferramentas da algebra linear necessarias ao entendimento de algumas secoes da dissertacao, funcionando como complementacao dessas secoes.
+
+\subsection{A Matriz Anti-Simétrica $[{\bf v}]_\times$}
+Dado um vetor ${\bf v}=(v_1,v_2,v_3)^\top$ é possível construir uma matriz anti-simétrica com as componentes de ${\bf v}$ na forma
+
+\begin{equation*}
+[{\bf v}]_\times=
+\begin{bmatrix}
+0&-v_3&v_2\\
+v_3&0&-v_1\\
+-v_2&v_1&0
+\end{bmatrix},
+\end{equation*}
+onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qualquer ${\bf u}$ e ${\bf v}$. 
+
+\begin{equation*}
+{\bf v} \times {\bf u} = [{\bf v}]_\times {\bf u} = ({\bf v}^\top [{\bf u}]_\times)^\top
+\end{equation*}
+
+Sabemos que o produto vetorial entre um vetor e ele mesmo é sempre o vetor nulo, portanto o vetor ${\bf v}$ é o vetor nulo à direita e à esquerda de $[{\bf v}]_\times$. Desta forma, esta matriz anti-simétrica será sempre definida por seu vetor nulo.  
+
+\subsection{A Pseudo-Inversa de $P$}
