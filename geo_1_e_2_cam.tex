@@ -710,12 +710,17 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
 
 
-Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. O raio de luz retroprojetado de $\x$ pode ser obtido isolando $\X$ na equação de projeção $\x=P\,\X$,
+Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ (definida no apêndice). O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
 
 \begin{equation*}
-\X(\lambda)=P^+\,\x+\lambda\,\C,
+P^+\x \rightarrow P\,P^+\x=I\,\x=\x.
 \end{equation*}
-onde $P^+$ é a pseudo-inversa da matriz $P$ ($P^+P=I$) e $\C$ é o centro da câmera tal que $P\,\C=0$. Como o raio é parametrizado por $\lambda$, um escalar, podemos extrair dois pontos em particular desse raio, $P^+\x$ se $\lambda=0$ e $\C$ se $\lambda\rightarrow\infty$. Computando a imagem desses dois pontos na segunda visão temos
+Portanto, podemos formar o raio pela juncão dos pontos $\C$ e $P^+\x$
+
+\begin{equation*}
+\X(\lambda)=P^+\x+\lambda\,\C.
+\end{equation*}
+Computando a imagem desses dois pontos na segunda visão temos
 
 \begin{equation*}
 \begin{array}{c}
@@ -728,7 +733,7 @@ onde $P'\,\C$ é o epipolo na segunda imagem, e por isso, a reta epipolar pode s
 \begin{equation*}
 \lightrgb'=P'\C \times P'P^+\x.
 \end{equation*}
-Mas como $P'\C=\e'$, podemos substituir na equação anterior
+Mas como $P'\C=\e'$, podemos substitui-lo na equação anterior
 
 \begin{equation*}
 \begin{array}{rcl}
