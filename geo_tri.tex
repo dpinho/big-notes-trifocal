@@ -17,7 +17,7 @@ Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abord
 \label{retas-epipolares}
 \end{figure}
 
-{\bf A homografia da reta epipolar.} Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} \citep{faugeras93three} pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
+{\bf A homografia da reta epipolar.} Dados $n$ correspondências de pontos em duas imagens, a \textit{restrição epipolar} \citep{faugeras93three} pode ser expressa como: os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e}$ aos pontos ${\bf x}_i$ na primeira imagem, estão homograficamente relacionados com os parâmetros projetivos das $n$ retas ligando o epipolo ${\bf e'}$ aos pontos ${\bf x'}_i$ na segunda imagem. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe de retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
 
 
 Supondo os epipolos na origem do plano de cada imagem, com as retas epipolares passando pelo epipolo, cada reta pode ser parametrizada através do ângulo que ela forma com o eixo das abscissas, denominados $\alpha_1$ e $\alpha_2$ na primeira e segunda imagens respectivamente.
@@ -30,7 +30,7 @@ onde $x=tan\,\alpha_1$ e $y=tan\,\alpha_2$.
 
 Vemos na figura \ref{fig.reta-epipolar} que cada reta epipolar fica definida por um ponto no eixo da tangente, $(1,tan\,\alpha_1)$ na primeira imagem e $(1,tan\,\alpha_2)$ na segunda, onde consideramos o círculo trigonométrico de raio $1$. Usando esses pontos, a equação da hipérbole pode ser escrita na forma
 
-\begin{equation*}
+\begin{equation}\label{eq.homo-reta-epi}
 (1\,,\,tan\,\alpha_1)
 \overbrace{
 \begin{bmatrix}
@@ -43,11 +43,11 @@ b&a
 tan\,\alpha_2
 \end{pmatrix}
 =0,
-\end{equation*}
+\end{equation}
 sendo 
 $\begin{bmatrix}d&c\\b&a\end{bmatrix}$ a homografia procurada.
 
-O problema é que a equação não está definida para retas epipolares verticas, quando utilizamos a tangente, e uma saída é parametrizar cada reta através da própria definição de tangente, pois assim temos uma representação isotrópica para as retas:
+O problema é que a equação \ref{eq.homo-reta-epi} não está definida para retas epipolares verticais, pois utilizamos a tangente, e uma saída é parametrizar cada reta através da própria definição de tangente, pois assim temos uma representação isotrópica para as retas:
 
 \begin{equation}\label{eq.tan.alpha1-2}
 x=tan\,\alpha_1=\frac{sen\,\alpha_1 }{cos\,\alpha_1} \qquad \text{e} \qquad y=tan\,\alpha_2=\frac{sen\,\alpha_2}{cos\,\alpha_2}.
@@ -101,30 +101,39 @@ Uma outra forma de pensar sobre essa homografia, encontrada em \cite{Hartley2004
 
 Suponha que $\lightrgb$ e $\lightrgb'$ sejam duas retas epipolares correspondentes, e ${\bf m}$ é uma reta qualquer que não passa pelo epipolo $\e$. O produto vetorial 
 
-\begin{equation*}
+\begin{equation}
 {\bf m}\times\lightrgb=\x\qquad\text{ou}\qquad\,[{\bf m}]_\times\,\lightrgb=\x,
-\end{equation*}
-nos fornece o ponto $\x$ de interseção entre essas retas. Assim, $\lightrgb$ é mapeada a $\lightrgb'$ através da relação 
+\end{equation}
+nos fornece o ponto $\x$ de interseção entre essas retas. Pela subseção \ref{sec.matriz-F} temos que
 
 \begin{equation*}
-\lightrgb'=F\,[{\bf m}]_\times\,\lightrgb\qquad\text{já que}\qquad\lightrgb'=F\,\x.
+\lightrgb'=F\,\x,
+\end{equation*} 
+assim, $\lightrgb$ é mapeada a $\lightrgb'$ através da relação 
+
+\begin{equation*}
+\lightrgb'=F\,[{\bf m}]_\times\,\lightrgb
 \end{equation*}
 
 
-Uma boa escolha para ${\bf m}$ é $\e$, já que
+Uma boa escolha para ${\bf m}$ é a reta $\e$, já que
 
 \begin{equation*}
-{\bf m}^\top\,\e=\e^\top\,\e\neq0,
+{\bf m}^\top\e=\e^\top\e\neq0,
 \end{equation*}
 então $\e$ é uma reta que não passa pelo epipolo $\e$ como desejado. Assim, a homografia da reta epipolar pode ser escrita como 
 
 \begin{equation*}
 \lightrgb'=F\,[\e]_\times\,\lightrgb.
 \end{equation*}
-O argumento é análogo para o mapeamento da segunda imagem para a primeira.\\
+O argumento é análogo para o mapeamento da segunda imagem para a primeira.
+
+\begin{equation*}
+\lightrgb=F^\top [\e']_\times\,\lightrgb'
+\end{equation*}\\
 
 
-{\bf As restricoes Kruppa.}Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restriçao \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
+{\bf As restrições Kruppa.} Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restrição \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
 \begin{figure}[!htb]
 \centering
@@ -133,7 +142,7 @@ O argumento é análogo para o mapeamento da segunda imagem para a primeira.\\
 \label{epipolar-kruppa}
 \end{figure}
 
-A restrição Kruppa está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC em inglês) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (definida por retas e com sigla DIAC em inglês), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta sera tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura tal. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
+A restrição Kruppa está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC em inglês) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (definida por retas e com sigla DIAC em inglês), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta será tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura \ref{geometria-kruppa}. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica ${\bf \omega}$ na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
 
 \begin{equation}\label{eq.def.con.deg}
 D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times \qquad \text{ou, como um exemplo} \qquad D=\lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top
@@ -160,9 +169,9 @@ onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Analogamente
 
 
 \begin{equation*}
-\y_1^\top\,D\,\y_1=\y_1^\top \lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top\y=0
+\y_1^\top\,D\,\y_1=\y_1^\top \lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top\y_1=0
 \end{equation*}
-pois como $\y\in\lightrgb_1$ então $\y_1^\top \lightrgb_1=\lightrgb_1^\top\y=0$. Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
+pois como $\y_1\in\lightrgb_1$ então $\y_1^\top \lightrgb_1=\lightrgb_1^\top\y_1=0$. Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
 
 Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na seção tal. O símbolo $\infty$ se deve ao fato de que a homografia foi construída com base no plano no infinito. Assim:
 
@@ -171,9 +180,11 @@ Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'
 [\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times&=&D'&\\
 &=&H_\infty^{-\top}D\,H_\infty^{-1}&\\
 &=&H_\infty^{-\top}[\e]_\times\,{\bf \omega}^*\,[\e]_\times\,H_\infty^{-1}&\qquad\text{pois}\qquad D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times\\
-&=&F\,\omega^* F^\top&\qquad\text{onde}\qquad F=H_\infty^{-\top}\,[\e]_\times.
+&=&F\,\omega^* F^\top,&
 \end{array}
 \end{equation}
+onde $F=H_\infty^{-\top}\,[\e]_\times$ conforme a subseção \ref{sec.matriz-F}. 
+
 
 Como \cite{2503343} aplica uma transformação no plano da imagem para que os objetos geométricos tenham as mesmas coordenadas nos dois planos, temos que $\omega^*$ e ${\omega^*}'$ têm as mesmas coordenadas, assim a relação
 
