@@ -126,12 +126,43 @@ então $\e$ é uma reta que não passa pelo epipolo $\e$ como desejado. Assim, a
 \begin{equation*}
 \lightrgb'=F\,[\e]_\times\,\lightrgb.
 \end{equation*}
-O argumento é análogo para o mapeamento da segunda imagem para a primeira.
+O argumento é análogo para o mapeamento da segunda imagem para a primeira,
 
 \begin{equation*}
-\lightrgb=F^\top [\e']_\times\,\lightrgb'
+\lightrgb=F^\top [\e']_\times\,\lightrgb'.
 \end{equation*}\\
 
+{\bf A matriz de calibração e a imagem da cônica absoluta.} Uma ferramenta algébrica bastante utilizada nessa abordagem de \citep{2503343} é a imagem da cônica absoluta (IAC em inglês) denotada por ${\bf \omega}$. Como a abordagem assume que as câmeras são calibradas, vamos mostrar que é possível obter a IAC em função da matriz de calibração da câmera $K$. Vamos determinar a homografia que faz o mapeamento do plano no infinito $\bpi_\infty$ para o plano da imagem na câmera. Se $\X_\infty\in\bpi_\infty$ então pode ser escrito na forma
+
+\begin{equation*}
+\X_\infty=({\bf d}^\top,0)^\top
+\end{equation*} 
+e é projetado por uma câmera geral $P=K\,[R|{\bf t}]$ como
+
+\begin{equation*}
+\begin{array}{rcl}
+\x&=&P\,\X_\infty\\
+&=&K\,[R|{\bf t}]\,({\bf d}^\top,0)^\top\\
+&=&K\,R\,{\bf d}.
+\end{array}
+\end{equation*}
+Portanto temos a relação
+
+\begin{equation*}
+\x=H\,{\bf d}
+\end{equation*}
+onde $H=K\,R$. Como a cônica absoluta $\Omega_\infty$ está contida no plano no infinito (contém pontos no infinito), ela pode ser projetada sob a homografia $H$ para computarmos sua imagem.
+Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de acordo com $C\rightarrow H^{-\top} C\,H^{-1}$, conforme a seção tal. De acordo com a seção tal $C=\Omega_\infty =I$, daí temos
+
+\begin{equation*}
+\begin{array}{rcl}
+{\bf \omega}&=&H^{-\top}\Omega_\infty\,H^{-1}\\
+&=&(K\,R)^{-\top}\,I\,(K\,R)^{-1}\\
+&=&K^{-\top}R^{-\top}R^{-1}K^{-1}\\
+&=&K^{-\top}K^{-1}
+\end{array}
+\end{equation*}
+pois $R$ é uma matriz de rotação e portanto satisfaz $R^{-\top}R^{-1}=I$. Assim, de posse de uma câmera calibrada é simples obter a IAC.\\
 
 {\bf As restrições Kruppa.} Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restrição \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
@@ -145,10 +176,10 @@ O argumento é análogo para o mapeamento da segunda imagem para a primeira.
 A restrição Kruppa está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC em inglês) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (definida por retas e com sigla DIAC em inglês), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta será tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura \ref{geometria-kruppa}. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica ${\bf \omega}$ na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
 
 \begin{equation}\label{eq.def.con.deg}
-D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times \qquad \text{ou, como um exemplo} \qquad D=\lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top
+D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times \qquad \text{ou, como outra construção} \qquad D=\lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top
 \end{equation}
 
-Como $D$ é uma cônica (ponto) temos que para as duas definições  em \ref{eq.def.con.deg} é válida a relação $\y_1^\top D\,\y_1=0$, pois:
+Para mostrar que $D$ é uma cônica (ponto) temos que verificar que é válida a relação $\y_1^\top D\,\y_1=0$, onde $\y_1\in\lightrgb_1$.
 
 \begin{equation*}
 \begin{array}{rcll}
@@ -167,13 +198,12 @@ onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Analogamente
 \label{geometria-kruppa}
 \end{figure}
 
-
 \begin{equation*}
 \y_1^\top\,D\,\y_1=\y_1^\top \lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top\y_1=0
 \end{equation*}
 pois como $\y_1\in\lightrgb_1$ então $\y_1^\top \lightrgb_1=\lightrgb_1^\top\y_1=0$. Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
 
-Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na seção tal. O símbolo $\infty$ se deve ao fato de que a homografia foi construída com base no plano no infinito. Assim:
+Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na seção tal. O símbolo $\infty$ se deve ao fato de que a homografia foi deduzida de maneria similar àquela da seção  \ref{sec.homografia}, apenas com a diferença de ter sido com base no plano no infinito. Assim:
 
 \begin{equation}
 \begin{array}{rcll}
