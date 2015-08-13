@@ -572,7 +572,7 @@ Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o ma
 
 \subsubsection{A Matriz de Calibração K.}
 
-A intenção nesta seção é mostrar como é definido, mais intimamente, cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para o plano da imagem na câmera.
+A intenção nesta seção é mostrar qual é a natureza de cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para o plano da imagem na câmera.
 
 Dado um ponto 3D $p^w = (x^w,y^w,z^w)^\top$ em coordenadas do mundo e sendo $(\uu,\vv)$ as coordenadas do ponto na imagem da câmera, quais os valores de $(\uu,\vv)$?
 
@@ -663,7 +663,6 @@ Assim, a transformação de um ponto na câmera para a imagem é feita usando ci
 
 \subsubsection{A Geometria Epipolar}
 
-
 Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, essa construção é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
 
 \begin{equation*}
@@ -680,12 +679,91 @@ O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas vis�
 \label{fig.geo-epipolar}
 \end{figure}
 
+\subsubsection{A Homografia Induzida por um Plano.}\label{sec.homografia}
 
-\subsubsection{A Matriz Fundamental $F$}
+Considere um plano $\bpi$ no espaco 3D com coordenadas expressas em um referencial no mundo, com duas visões, mas que não passa pelo centro de nenhuma das duas câmeras. Portanto esse plano não é o plano epipolar e é dito estar em posicões gerais. Assim, vamos determinar uma homografia definida em função desse plano $\bpi$.\\
+
+Dadas as duas matrizes de projeção 
+
+\begin{equation*}
+P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}],
+\end{equation*}
+(repare que as câmeras não são calibradas e a origem do sistema cartesiano do mundo coincide com o centro da primeira câmera) um plano $\bpi=({\bf v},1)^\top$, e um ponto $\X\in\bpi$, então a homografia induzida por $\bpi$ é
+
+\begin{equation*}
+\x'=H\,\x,\qquad\text{onde}\qquad H=R-{\bf t}\,{\bf v}^\top.
+\end{equation*}
+
+Podemos tomar a última coordenada de $\bpi$ igual a $1$ pois, por enquanto, nos interessa apenas que o plano não passe pelo centro da primeira câmera $\C=(0,0,0,1)^\top$. Observe o esquema na figura tal. 
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1.2]{homografia}
+\caption{\textit{O mapeamento induzido por um plano no espaco 3D. O ponto $\x$ retroprojeta um raio que intersecta o plano $\bpi_{\infty}$ no ponto $\X_{\bpi}$, entao $\X_{\bpi}$ eh projetado na outra imagem em $\x'$.}}
+\label{fig.homografia}
+\end{figure}
+
+
+
+
+Na primeira câmera temos a projeção
+
+\begin{equation*}
+\x=P\,\X=[I|{\bf 0}]\,\X,
+\end{equation*}
+e qualquer ponto 3D do tipo $\X=(\x^\top,\rho)^\top$ vai satisfazer a projeção acima. De fato
+
+\begin{equation*}
+P\,\X=
+[I|{\bf 0}]\,(\x^\top,\rho)^\top=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0
+\end{bmatrix}
+\begin{pmatrix}
+x_1\\
+x_2\\
+x_3\\
+\rho
+\end{pmatrix}
+=\x,
+\end{equation*}
+e assim qualquer ponto no raio de luz retroprojetado por $\x$ pode ser parametrizado por $\rho$. Como $\X\in\bpi$, $\bpi^\top\X=0$ e  
+$\rho$ fica determinado
+
+\begin{equation*}
+\begin{array}{rcll}
+\bpi^\top\,\X&=&0&\Rightarrow\\
+({\bf v}^\top,1)\,(\x^\top,\rho)&=&0&\Rightarrow\\
+{\bf v}^\top\x+\rho&=&0&\Rightarrow\\
+\rho&=&-{\bf v}^\top\,\x,&
+\end{array}
+\end{equation*}
+e dessa forma o ponto $\X=(\x^\top,-{\bf v}^\top\x)$.
+
+Projetando o ponto 3D na segunda imagem temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\x'&=&P'\X\\
+&=&[R|{\bf t}]\,(\x^\top,-{\bf v}^\top\x)\\
+&=&R\,\x-{\bf t}\,{\bf v}^\top\x\\
+&=&(R-{\bf t}\,{\bf v}^\top)\,\x.
+\end{array}
+\end{equation*}
+Portanto
+
+\begin{equation*}
+\x'=H\,\x,\qquad\text{onde}\qquad H=R-{\bf t}\,{\bf v}^\top.
+\end{equation*}
+
+
+\subsubsection{A Matriz Fundamental $F$}\label{sec.matriz-F}
 
 A \textit{matriz fundamental} reúne todas as informações da geometria epipolar, é a representação algébrica dessa geometria de duas visões e, por isso, também é conhecida como \textit{tensor bifocal}. 
 
-Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Note que esse plano $\bpi$ não é o plano epipolar da subseção anterior. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
+Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Note que esse plano $\bpi$ não é o plano epipolar da subseção anterior. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela seção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
 
 \begin{equation}\label{eq.homo-plano}
 \x'= H_{\bpi} \,\x,
@@ -707,7 +785,7 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 &=&F\,\x,
 \end{array}
 \end{equation*} 
-onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
+onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
 
 
 Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ (definida no apêndice). O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
