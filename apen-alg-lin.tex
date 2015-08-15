@@ -1,7 +1,7 @@
 \section{Alguns Conceitos e Definicoes em Algebra Linear}
 Esta seção do apêndice se destina a apresentar algumas ferramentas da álgebra linear necessárias ao entendimento de algumas seções da dissertação, funcionando como complementação dessas seções.
 
-\subsection{A Matriz Anti-Simétrica $[{\bf v}]_\times$}
+\subsection{A Matriz Anti-Simétrica $[{\bf v}]_\times$}\label{sec.anti-simetrica}
 Dado um vetor ${\bf v}=(v_1,v_2,v_3)^\top$, é possível construir uma matriz anti-simétrica com as componentes de ${\bf v}$ na forma
 
 \begin{equation*}
@@ -21,14 +21,31 @@ onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qua
 Sabemos que o produto vetorial entre um vetor e ele mesmo é sempre o vetor nulo, portanto o vetor ${\bf v}$ é o vetor nulo à direita e à esquerda de $[{\bf v}]_\times$. Desta forma, esta matriz anti-simétrica será sempre definida por seu vetor nulo.  
 
 
-\subsection{O Método das Potências para Autovalores.}
-Segundo citar cox, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\lambda > \mu$ para todos os outros autovalores $\mu$ de $A$. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v_k}$ e determinar o autovetor ${\bf v_{k+1}}$ em cada iteração fazendo
+\subsection{O Método das Potências para Autovalores.}\label{sec.potencias-autovalores}
+Segundo citar cox, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v_k}$ e determinar o autovetor ${\bf v_{k+1}}$ em cada iteração fazendo
 
 \begin{equation*}
 {\bf v_{k+1}}=A\,{\bf v_k},
 \end{equation*}
-onde aproximamos um autovetor relativo a $\lambda$ quando $k\rightarrow \infty$. E encontramos um valor aproximado para $\lambda$ calculando $\begin{Vmatrix}
-A\,{\bf v_k}\end{Vmatrix}$. Se a matriz não possui um único valor dominante o método pode não convergir, portanto devemos fazer uma modificação na matriz de forma a garantir a convergência. O proceimento consiste em calcular o autovalor mais próximo de um determinado $s$, de uma matriz
+onde aproximamos um autovetor relativo a $\lambda$ quando $k\rightarrow \infty$. Encontrada a aproximação para o autovetor podemos determinar o autovalor dominante correspondente aplicando o \textit{quociente de Rayleigh}, pois sendo ${\bf v}$ o autovetor relativo a $\lambda$ temos
+
+\begin{equation*}
+A\,{\bf v}=\lambda\,{\bf v},
+\end{equation*}
+e aplicando o produto escalar na equação
+
+\begin{equation*}
+\begin{array}{rcl}
+A\,{\bf v}&=&\lambda\,{\bf v}\\
+A\,({\bf v}\cdot{\bf v})&=&\lambda\,({\bf v}\cdot{\bf v})\\
+\lambda&=&\frac{A\,({\bf v}\cdot{\bf v})}{{\bf v}\cdot{\bf v}}.
+\end{array}
+\end{equation*}
+
+Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma dos vetores ou dividindo o vetor pela maior de suas componentes. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v_k}\end{Vmatrix}$ a cada iteração. 
+
+
+Se a matriz não possui um único valor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um determinado $s$, de uma matriz
 
 \begin{equation*}
 A'=(A-s\,I)^{-1}
@@ -38,37 +55,37 @@ onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor
 \begin{equation*}
 \lambda=\frac{1}{\lambda'}+s
 \end{equation*} 
-onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz como se desejaria utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
+onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$ ,como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
 
-\subsection{A Decomposição SVD.}
+\subsection{A Decomposição SVD.}\label{sec.SVD}
 Uma das formas de se obter a decomposição em valores singulares de uma matriz $A$ é aplicando a decomposição em autovalores na matriz  $A^\top A$. Assim, queremos determinar a decomposição
 
-\begin{equation}
+\begin{equation*}
 A=U\,D\,V^\top
-\end{equation} 
+\end{equation*} 
 onde as matrizes $U$ e $V$ são ortogonais. Observe que calculando $A^\top A$ temos
 
-\begin{equation}
+\begin{equation*}
 \begin{array}{rcl}
 A^\top A&=&V\,D\,U^\top U\,D\,V^\top\\
 &=&V\,D^2 V^{-1},
 \end{array}
-\end{equation}
+\end{equation*}
 onde $V\,D^2 V^{-1}$ é uma decomposição em autovalores.
 
 Desta forma, aplicando a decomposição em autovalores na matriz $A^\top A$, conseguimos diretamente a matriz $V^\top$ da decomposicao SVD, e basta extrair a raiz quadrada de $D$ para obtermos os valores singulares. Com uma simples inversão de matrizes podemos obter a matriz $U$:
 
-\begin{equation}
+\begin{equation*}
 \begin{array}{rcll}
 A&=&U\,D\,V^\top &\Rightarrow\\
 U&=&A\,(D\,V^\top)^{-1} &\Rightarrow\\
 U&=&A\,V^{-\top}D^{-1}.
 \end{array}
-\end{equation}
+\end{equation*}
 
 Não são todos os problemas que envolvem a decomposição SVD que necessitam que sejam calculadas todas a matrizes. Existem problemas onde não é necessário o cálculo da matriz $U$ por exemplo. Então a complexidade computacional vai depender também daquilo que é necessário ao problema.
 
-\subsection{A Pseudo-Inversa de $P$}
+\subsection{A Pseudo-Inversa de $P$}\label{sec.pseudo-P}
 Primeiramente precisamos definir a inversa de uma matriz quadrada diagonal. Sendo $D$ essa matriz, sua inversa será
 
 \begin{empheq}{align*}
@@ -81,7 +98,7 @@ D_{ii}^+=
 \end{empheq}
 
 
-A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando linhas de zeros até que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linhas de zeros ela será singular. Assim, aplicamos a decomposição SVD (detalhada em outra subseção do apêndice) e em seguida definimos a pseudo-inversa.
+A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando linhas de zeros até que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linhas de zeros ela será singular. Assim, aplicamos a decomposição SVD (subseção \ref{sec.SVD}) e em seguida definimos a pseudo-inversa.
 
 \begin{equation*}
 P=U\,D\,V^\top
@@ -105,4 +122,4 @@ P^+P&=&V\,D^+U^\top\,U\,D\,V^\top\\
 \end{array}
 \end{equation*}
 
-Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seuida, fica relativamente fácil obter a matriz $U$. Em outra subseção do apêndice é apresentado um método para obtenção dos autovalores.
+Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$. Na subseção \ref{sec.potencias-autovalores} é apresentado um método para obtenção dos autovalores.
