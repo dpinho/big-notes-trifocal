@@ -18,48 +18,44 @@ Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equaç
 
 Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
 
-\begin{center}
-$\begin{array}{ccccc}
- (x,y,1)^\top 
-&\begin{pmatrix}
+\begin{equation*}
+(x,y,1)^\top 
+\begin{pmatrix}
  a  \\ 
  b  \\ 
  c 
  \end{pmatrix} 
-& = 0 \qquad 
-& \text{ou} 
-& \qquad \x ^T\lightrgb = 0.
-\end{array}$
-\end{center}
+ = 0 \qquad 
+ \text{ou} 
+ \qquad \x ^\top\lightrgb = 0.
+\end{equation*}
 
 Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três coordenadas. Observe que para $k \in \mathbb{R} - \{0\}$, temos:
 
-\begin{center}
-$\begin{array}{ccccccc}
- (k\,x,k\,y,k)^\top 
-&\begin{pmatrix}
+\begin{equation*}
+(k\,x,k\,y,k)^\top 
+\begin{pmatrix}
  a  \\ 
  b  \\ 
  c 
  \end{pmatrix} 
-& = 0
-& \qquad \Leftrightarrow \qquad
-& (x,y,1)^\top
-&\begin{pmatrix}
+ = 0
+ \qquad \Leftrightarrow \qquad
+ (x,y,1)^\top
+\begin{pmatrix}
  a  \\ 
  b  \\ 
  c 
  \end{pmatrix} 
-& = 0.
-\end{array}$
-\end{center}
+ = 0.
+\end{equation*}
 
 Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas $(k\,x,k\,y,k)^\top \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y)^\top \in \mathbb{R}^2$, e podemos resgatar nossa representaçao original aplicando o procedimento $(x/k,y/k)^\top$, pois $k \ne 0$.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=0.8]{espaco_P2}
-\caption{\textit{O plano $\pi$ representa o espaço projetivo $\mathbb{P}^2$. Pontos e retas pertencentes a esse espaço são representados, respectivamente, por raios e planos que passam pela origem do $\mathbb{R}^3$.}}
+\includegraphics[scale=1]{espaco_P2}
+\caption{\textit{O plano $\bpi$ representa o espaço projetivo $\mathbb{P}^2$. Pontos e retas pertencentes a esse espaço são representados, respectivamente, por vetores e planos que passam pela origem do $\mathbb{R}^3$. O ponto ideal é representado por um vetor que pertence ao plano $x\,y$, o qual é paralelo ao plano $\bpi$. O plano $x\,y$ representa a reta no infinito.}}
 \label{plano_P2}
 \end{figure}
 
@@ -68,6 +64,82 @@ Podemos pensar no espaço projetivo como um conjunto de raios passando pela orig
 
 Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, já que a terceira coordenada está em função das duas primeiras. Assim, dizemos que um ponto tem dois graus de liberdade e a terceira coordenada pode ser usada para fixar uma escala.
 \\
+
+\noindent {\bf Retas determinadas por dois pontos e a interseção de duas retas.}
+
+A representação de retas em coordenadas homogêneas nos permite calcular a interseção de duas retas usando o produto vetorial. Sabemos que o produto vetorial de dois vetores, digamos $\lightrgb\times\lightrgb'$ em $R^3$ resulta num terceiro vetor que é ortogonal ao plano definido pelos vetores $\lightrgb$ e $\lightrgb'$. Em particular, esse terceiro vetor $\lightrgb\times\lightrgb'$ será ortogonal a qualquer dos vetores $\lightrgb$ e $\lightrgb'$, assim seu produto escalar é zero:
+
+\begin{equation*}
+\lightrgb\cdot(\lightrgb\times\lightrgb')=\lightrgb'\cdot(\lightrgb\times\lightrgb')=0.
+\end{equation*}
+O produto escalar também pode ser representado por multiplicação matricial, assim
+
+\begin{equation}\label{eq.pro-vet}
+\lightrgb^\top(\lightrgb\times\lightrgb')=\lightrgb'^\top(\lightrgb\times\lightrgb')=0,
+\end{equation}
+mas sendo $\x$ o ponto de interseção entre as duas retas temos que
+
+\begin{equation}\label{eq.pro-vet-2}
+\lightrgb^\top\x=\lightrgb'^\top\x=0
+\end{equation}
+o que, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2}, nos sugere que
+
+\begin{equation*}
+\x=\lightrgb\times\lightrgb'.
+\end{equation*}
+
+
+Com argumento análogo podemos constatar que dois pontos definem uma reta através do produto vetorial entre eles, pois basta verificar que dois pontos $\x$ e $\x'$ pertencem a reta definida por
+
+\begin{equation*}
+\lightrgb=\x\times\x'.
+\end{equation*}
+
+
+\noindent {\bf Pontos Ideais e a Reta no Infinito.}
+
+Duas retas paralelas no espaço Euclidiano tem equações
+
+\begin{equation*}
+a\,x+b\,y+c=0\qquad\text{e}\qquad a\,x+b\,y+c'=0
+\end{equation*}
+com coordenadas homogêneas
+
+\begin{equation*}
+\lightrgb=(a,b,c)^\top\qquad\text{e}\qquad\lightrgb'=(a,b,c')^\top.
+\end{equation*}
+Computando a interseção entre as duas retas e ignorando o fator de escala $(c'-c)$ temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb\times\lightrgb'&=&(a,b,c)^\top\times(a,b,c')^\top\\
+&=&(c'-c)\,(b,-a,0)^\top\\
+&=&(b,-a,0)^\top,
+\end{array}
+\end{equation*}
+e se tentarmos encontrar as coordenadas não homogêneas do ponto de interseção temos
+
+\begin{equation*}
+\left(\frac{b}{0},\frac{-a}{0}\right)^\top,
+\end{equation*}
+o que não faz sentido matematicamente mas sugere que o ponto tem coordenadas que tendem ao infinito. Vetores homogêneos $(x,y,z)^\top$ com $z\neq0$ correspondem a pontos finitos em $R^2$ e, se $z=0$, os pontos são conhecidos como \textit{pontos ideais} ou \textit{pontos no infinito} em geometria projetiva.
+
+Se tomarmos um ponto no infinito genericamente $\x=(x,y,0)^\top$ percebemos que ele pertence a uma determinada reta $\lightrgb_\infty=(0,0,1)^\top$, pois
+
+\begin{equation*}
+\lightrgb_\infty^\top \x=(0,0,1)
+\begin{pmatrix}
+x\\
+y\\
+0
+\end{pmatrix}
+=0,
+\end{equation*} 
+e tal reta é conhecida como \textit{reta no infinto}. Assim, no plano projetivo temos que retas paralelas se encontram em ponto no infinito e o conjunto de pontos no infinito constituem a reta no infinito.\\
+
+
+
+
 
 \noindent {\bf A Cônica}
 
@@ -80,24 +152,20 @@ a\,x^2+b\,x\,y+c\,y^2+d\,x+e\,y+f=0.
 
 Sabemos que um ponto pertence à cônica se ele é solução da equação acima, a qual pode ser representada utilizando multiplicação matricial e vetores em coordenadas homogêneas, com a terceira coordenada configurada como 1:
 
-\begin{center}
-$
-\begin{array}{cccc}
-  (x,y,1)^\top 
-& \begin{bmatrix}
+\begin{equation*}
+(x,y,1)^\top 
+ \begin{bmatrix}
 a & b/2 & d/2\\
 b/2 & c & e/2\\
 d/2 & e/2 & f
 \end{bmatrix}
-& \begin{pmatrix}
+ \begin{pmatrix}
 x\\
 y\\
 1
 \end{pmatrix}
-& = 0.
-\end{array}
-$
-\end{center}
+ = 0.
+\end{equation*}
 
 Podemos generalizar essas coordenadas homogêneas fazendo as substituições $x = x_{1}/x_{3}$ e $y = x_{2}/x_{3}$, e nossa equação do elípse fica:
 
@@ -107,41 +175,32 @@ a\,x_1^2+b\,x_1\,x_2+c\,x_2^2+d\,x_1\,x_3+e\,x_2\,x_3+f\,x_3^2=0.
 
 Novamente em notação matricial:
 
-\begin{center}
-$
-\begin{array}{cccccc}
-  (x_1,x_2,x_3)^\top 
-& \begin{bmatrix}
+\begin{equation*}
+(x_1,x_2,x_3)^\top 
+ \begin{bmatrix}
   a & b/2 & d/2\\
   b/2 & c & e/2\\
   d/2 & e/2 & f
   \end{bmatrix}
-& \begin{pmatrix}
+ \begin{pmatrix}
   x_1\\
   x_2\\
   x_3
   \end{pmatrix}
-& = 0
-& \qquad \text{ou} \qquad
-& \x^\top\,C\,\x = 0.
-\end{array}
-$
-\end{center}
+ = 0
+ \qquad \text{ou} \qquad
+ \x^\top C\,\x = 0.
+\end{equation*}
 
 Já que um ponto pertence à cônica se, e somente se, satisfaz a última equação, temos que $C$ fica definida como a matriz que representa uma cônica no espaço projetivo $\mathbb{P}^2$.
 
-\begin{center}
-$
-\begin{array}{cc}
-C = & \begin{bmatrix}
+\begin{equation*}
+C =  \begin{bmatrix}
       a & b/2 & d/2\\
       b/2 & c & e/2\\
       d/2 & e/2 & f
       \end{bmatrix}.
-\end{array}
-$
-\end{center}
-
+\end{equation*}
 
 Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. 
 
@@ -776,7 +835,7 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 &=&[\e']_\times\x'
 \end{array}
 \end{equation}
-($[\e']_\times$ está definida no apêndice). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
+($[\e']_\times$ está definida na seção \ref{sec.anti-simetrica}). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -788,7 +847,7 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
 
 
-Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ (definida no apêndice). O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
+Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ definida na seção \ref{sec.pseudo-P}. O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
 
 \begin{equation*}
 P^+\x \rightarrow P\,P^+\x=I\,\x=\x.
