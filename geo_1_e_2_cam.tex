@@ -204,6 +204,43 @@ C =  \begin{bmatrix}
 
 Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. 
 
+{\bf Retas tangentes à cônicas.} Uma reta tangente a uma cônica tem a simples forma
+
+\begin{equation*}
+\lightrgb=C\x.
+\end{equation*}
+De fato, se a reta $\lightrgb$ passa por um ponto $\x$ temos que $\x^\top\lightrgb=0$, e se esse ponto $\x$ pertence à cônica $C$ então $\x^\top C\,\x=0$. Se $\x$ é o único ponto de interseção da reta com a cônica, comparando as duas relações  temos que $\lightrgb=C\x$ é a tangente procurada. Se a reta passa também por um outro ponto $\y$ na cônica, temos que $\y^\top C\,\y=0$ e $\lightrgb^\top\y=0$. Mas como $\lightrgb=C\x$ e considerando que $C$ é simétrica, temos
+
+\begin{equation*}
+\lightrgb^\top\y=(C\x)^\top\y=\x^\top C\,\y=0.
+\end{equation*}  
+Agora considerando todos os pontos em $\lightrgb=(\x+\alpha\y)$ parametrizados por $\alpha$, vamos verificar que todos eles pertencem à cônica $C$ usando as relações anteriores:
+
+\begin{equation*}
+(\x+\alpha\y)^\top C\,(\x+\alpha\y)=\x^\top C\,\x+\alpha\y^\top C\,\x+\x^\top C\,\alpha\y+\alpha\y^\top C\,\alpha\y=0,
+\end{equation*}
+já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.
+
+{\bf Cônica Dual ou de reta.} A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
+
+\begin{equation*}
+\begin{array}{rcl}
+\x^\top C\,\x&=&(C^{-1}\lightrgb)^\top C\,(
+C^{-1}\lightrgb)\\
+&=&\lightrgb^\top C^{-\top}\lightrgb\\
+&=&\lightrgb^\top C^{-1}\lightrgb\\
+&=&0.
+\end{array}
+\end{equation*}
+Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^\top C^*\,\lightrgb=0$ indica que as retas $\lightrgb_i$ são tangentes à cônica $C$, e por isso tal cônica é conhecida como cônica envelope, como podemos visualizar na figura \ref{fig.conica-envelope}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{conica-envelope}
+\caption{\textit{A conica $C$ eh o envelope de todas as retas que satisfazem $\lightrgb^\top C^*\,\lightrgb=0$.}}
+\label{fig.conica-envelope}
+\end{figure}
+
 \subsubsection{O Espaço Projetivo em Três Dimensões}
 
 
