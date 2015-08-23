@@ -8,7 +8,7 @@
 
 \subsubsection{Abordagem do Nistér}
 
-Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistemna bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, considerando duas imagens de quatro pontos em 3D. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. Em seguida, utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens. Vamos reproduzir os detalhes mais importantes. 
+Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistemna bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, considerando duas imagens de quatro pontos em 3D. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. Em seguida, utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens. Vamos incluir os detalhes mais importantes na reprodução desse artigo. 
 
 \begin{figure}[!htb]
 \centering
@@ -47,7 +47,7 @@ tan\,\alpha_2
 sendo 
 $\begin{bmatrix}d&c\\b&a\end{bmatrix}$ a homografia procurada.
 
-O problema é que a equação \ref{eq.homo-reta-epi} não está definida para retas epipolares verticais, pois utilizamos a tangente, e uma saída é parametrizar cada reta através da própria definição de tangente, pois assim temos uma representação isotrópica para as retas:
+O problema é que a equação \ref{eq.homo-reta-epi} não está definida para retas epipolares verticais, pois utilizamos a tangente, e uma saída é parametrizar cada reta através da própria definição de tangente, pois assim temos uma representação isotrópica \footnote{É o que se diz de um corpo que, em todas as direções, apresenta as mesmas propriedades ópticas.} para as retas:
 
 \begin{equation}\label{eq.tan.alpha1-2}
 x=tan\,\alpha_1=\frac{sen\,\alpha_1 }{cos\,\alpha_1} \qquad \text{e} \qquad y=tan\,\alpha_2=\frac{sen\,\alpha_2}{cos\,\alpha_2}.
@@ -132,7 +132,7 @@ O argumento é análogo para o mapeamento da segunda imagem para a primeira,
 \lightrgb=F^\top [\e']_\times\,\lightrgb'.
 \end{equation*}\\
 
-{\bf A matriz de calibração e a imagem da cônica absoluta.} Uma ferramenta algébrica bastante utilizada nessa abordagem de \citep{2503343} é a imagem da cônica absoluta (IAC em inglês) denotada por ${\bf \omega}$. Como a abordagem assume que as câmeras são calibradas, vamos mostrar que é possível obter a IAC em função da matriz de calibração da câmera $K$. Vamos determinar a homografia que faz o mapeamento do plano no infinito $\bpi_\infty$ para o plano da imagem na câmera. Se $\X_\infty\in\bpi_\infty$ então pode ser escrito na forma
+{\bf A matriz de calibração e a imagem da cônica absoluta.} Uma ferramenta algébrica bastante utilizada nessa abordagem de \citep{2503343} é a imagem da cônica absoluta (IAC em inglês) denotada por ${\bf \omega}$. Como a abordagem assume que as câmeras são calibradas, vamos mostrar que é possível obter a IAC em função da matriz de calibração da câmera $K$. Inicialmente, vamos determinar a homografia que faz o mapeamento do plano no infinito $\bpi_\infty$ para o plano da imagem na câmera. Se $\X_\infty\in\bpi_\infty$ então pode ser escrito na forma
 
 \begin{equation*}
 \X_\infty=({\bf d}^\top,0)^\top
@@ -152,7 +152,7 @@ Portanto temos a relação
 \x=H\,{\bf d}
 \end{equation*}
 onde $H=K\,R$. Como a cônica absoluta $\Omega_\infty$ está contida no plano no infinito (contém pontos no infinito), ela pode ser projetada sob a homografia $H$ para computarmos sua imagem.
-Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de acordo com $C\rightarrow H^{-\top} C\,H^{-1}$, conforme a seção tal. De acordo com a seção tal $C=\Omega_\infty =I$, daí temos
+Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de acordo com $C\rightarrow H^{-\top} C\,H^{-1}$, conforme a subseção \ref{sec.trans-proj-H}. De acordo com a subseção \ref{sec.con-absoluta} $C=\Omega_\infty =I$, daí temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -184,12 +184,12 @@ Para mostrar que $D$ é uma cônica (ponto) temos que verificar que é válida a
 \begin{equation*}
 \begin{array}{rcll}
 \y_1^\top\,D\,\y_1&=&\y_1^\top [\e]_\times\,{\bf \omega}^*\,[\e]_\times\,\y_1&\\
-&=&([\e]_\times\,\y_1)^\top {\bf \omega}^*\,[\e]_\times\,\y_1& \qquad [\e]_\times\,\text{é simétrica}\\
+&=&([\e]^\top_\times\,\y_1)^\top {\bf \omega}^*\,[\e]_\times\,\y_1&\\
 &=&\lightrgb_1^\top {\bf \omega}^*\,\lightrgb_1& \qquad\text{pois}\qquad\lightrgb_1=\e\times\y_1\\
 &=&0&
 \end{array}
 \end{equation*}
-onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Analogamente, para a segunda definição de $D$:
+onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Observe que usamos $[\e]^\top_\times\,\y_1=[\e]_\times\,\y_1$ quando na verdade $[\e]^\top_\times=-[\e]_\times$, mas aqui a diferença de escala é irrelevante. Analogamente, para a segunda definição de $D$:
 
 \begin{figure}[!htb]
 \centering
@@ -203,7 +203,7 @@ onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Analogamente
 \end{equation*}
 pois como $\y_1\in\lightrgb_1$ então $\y_1^\top \lightrgb_1=\lightrgb_1^\top\y_1=0$. Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
 
-Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na seção tal. O símbolo $\infty$ se deve ao fato de que a homografia foi deduzida de maneria similar àquela da seção  \ref{sec.homografia}, apenas com a diferença de ter sido com base no plano no infinito. Assim:
+Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com a regra $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na subseção \ref{sec.trans-proj-H}. O símbolo $\infty$ se deve ao fato de que a homografia foi deduzida de maneria similar àquela da subseção  \ref{sec.homografia}, apenas com a diferença de ter sido com base no plano no infinito. Assim:
 
 \begin{equation}
 \begin{array}{rcll}
