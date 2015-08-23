@@ -8,12 +8,12 @@ Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometri
 
 
 
-\noindent {\bf A Reta}
+\noindent {\bf A Reta.}
 
 
 Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
 
-\noindent {\bf O Ponto}
+\noindent {\bf O Ponto.}
 
 
 Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
@@ -93,7 +93,7 @@ Com argumento análogo podemos constatar que dois pontos definem uma reta atrav�
 
 \begin{equation*}
 \lightrgb=\x\times\x'.
-\end{equation*}
+\end{equation*}\\
 
 
 \noindent {\bf Pontos Ideais e a Reta no Infinito.}
@@ -135,13 +135,20 @@ y\\
 \end{pmatrix}
 =0,
 \end{equation*} 
-e tal reta é conhecida como \textit{reta no infinto}. Assim, no plano projetivo temos que retas paralelas se encontram em ponto no infinito e o conjunto de pontos no infinito constituem a reta no infinito.\\
+e tal reta é conhecida como \textit{reta no infinto}. Assim, no plano projetivo temos que retas paralelas se encontram em ponto no infinito e o conjunto de pontos no infinito constituem a reta no infinito.
+
+Um fato interessante sobre pontos no infinito é que eles constituem as direções das retas no plano projetivo $\mathbb{P}^2$. Observe que a interseção de uma reta qualquer $\lightrgb=(a,b,c)^\top$ com a reta no infinito $\lightrgb_\infty=(0,0,1)^\top$,
+
+\begin{equation*}
+[\lightrgb]_\times \lightrgb_\infty=(b,-a,0),
+\end{equation*}
+é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
 
 
 
 
 
-\noindent {\bf A Cônica}
+\noindent {\bf A Cônica.}
 
 
 Em geometria Euclidiana, as cônicas são de três tipos principais: elipse, hipérbole e parábola. São definidas, algebricamente, por uma equação do segundo grau em duas variáveis, considerando coordenadas não homogêneas:
@@ -202,9 +209,11 @@ C =  \begin{bmatrix}
       \end{bmatrix}.
 \end{equation*}
 
-Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. 
+Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. \\
 
-{\bf Retas tangentes à cônicas.} Uma reta tangente a uma cônica tem a simples forma
+\noindent {\bf Retas tangentes à cônicas.} 
+
+Uma reta tangente a uma cônica tem a simples forma
 
 \begin{equation*}
 \lightrgb=C\x.
@@ -219,9 +228,11 @@ Agora considerando todos os pontos em $\lightrgb=(\x+\alpha\y)$ parametrizados p
 \begin{equation*}
 (\x+\alpha\y)^\top C\,(\x+\alpha\y)=\x^\top C\,\x+\alpha\y^\top C\,\x+\x^\top C\,\alpha\y+\alpha\y^\top C\,\alpha\y=0,
 \end{equation*}
-já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.
+já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.\\
 
-{\bf Cônica Dual ou de reta.} A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
+\noindent {\bf Cônica Dual ou de reta.} 
+
+A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -237,9 +248,80 @@ Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{conica-envelope}
-\caption{\textit{A conica $C$ eh o envelope de todas as retas que satisfazem $\lightrgb^\top C^*\,\lightrgb=0$.}}
+\caption{\textit{A cônica $C$ é o envelope de todas as retas $\lightrgb_i$ que satisfazem $\lightrgb^\top C^*\,\lightrgb=0$.}}
 \label{fig.conica-envelope}
 \end{figure}
+
+\noindent {\bf Cônicas degeneradas.}
+
+Acontece quando a matriz não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
+
+\begin{equation*}
+C=\lightrgb\,{\bf m}^\top+{\bf m}\,\lightrgb^\top
+\end{equation*}
+é uma cônica ponto composta por duas retas $\lightrgb$ e ${\bf m}$. Assim, se um ponto $\x\in\lightrgb$ então $\lightrgb^\top\x=0$ e esse ponto deve satisfazer $\x^\top C\,\x=0$. Portanto
+
+\begin{equation*}
+\begin{array}{rcl}
+\x^\top C\,\x&=&\x^\top(\lightrgb\,{\bf m}^\top+{\bf m}\,\lightrgb^\top)\,\x\\
+&=&\x^\top\lightrgb\,{\bf m}^\top\x+\x^\top {\bf m}\,\lightrgb^\top\x\\
+&=&0\,{\bf m}^\top\x+\x^\top{\bf m}\,0\\
+&=&0.
+\end{array}
+\end{equation*}
+A argumentação é analoga caso $\x\in{\bf m}$. Uma cônica dual degenerada é formada por pontos e tem posto 2 caso seja composta por dois pontos, ou posto 1 caso seja composta por um ponto repetido, 
+
+\begin{equation*}
+C^*=\x\,\y^\top+\y\,\x^\top.
+\end{equation*}
+De forma análoga à argumentação anterior podemos demosntrar que $C^*$ define um equação em retas,
+
+\begin{equation*}
+\lightrgb^\top\,C^*\lightrgb=0.
+\end{equation*}
+
+\subsubsection{Transformação Projetiva em $\mathbb{P}^2$}\label{sec.trans-proj-H}
+
+A tranformação projetiva também conhecida como projetividade, colineação ou homografia,  é um mapeamento (invertível) que transforma pontos no plano $\mathbb{P}^2$ para pontos no plano $\mathbb{P}^2$ preservando a colinearidade desses pontos. Mais formalmente, um mapeamento $h:\mathbb{P}^2\rightarrow\mathbb{P}^2$ é uma transformação projetiva se, e somente se, existe uma matriz $H_{3\times3}$ onde para cada ponto $\x\in\mathbb{P}^2$ temos que $h(\x)=H\,\x$. De fato, dados três pontos $\x_1$, $\x_2$ e $\x_3$ na mesma reta $\lightrgb$, temos que $\lightrgb^\top\x_i=0$ para $i=1,2 \,\,\,\text{e}\,\,\, 3$. Seja dada ainda $H_{3\times3}$ uma matriz invertível.
+
+Definindo
+
+\begin{equation*}
+\lightrgb'=H^{-\top}\lightrgb \qquad\text{e}\qquad \x'_i=H\,\x_i,
+\end{equation*}
+vemos que todos os pontos $\x'_i$ pertencem à reta $\lightrgb'$, pois
+
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'^\top\x'_i&=&(H^{-\top}\lightrgb)^\top H\,\x_i\\
+&=&\lightrgb^\top H^{-1}H\,\x_i\\
+&=&\lightrgb^\top\x_i=0
+\end{array}
+\end{equation*}
+preservando assim, a colinearidade dos pontos. A implicação contrária é demasiadamente grande. A argumentação mostra que qualquer transformação linear aplicada a coordenadas homogêneas é uma transformação projetiva em $\mathbb{P}^2$, ou seja, a transformação projetiva é simplesmente uma transformação linear em $\mathbb{R}^3$. Podemos ver que o efeito da matriz $H$ não é alterado pela multiplicação por um escalar diferente de zero na equação
+
+\begin{equation*}
+\x'=H\,\x,
+\end{equation*}
+pois os pontos permanecem colineares após a transformação, alterando apenas a escala. Assim, a matriz $H$ é chamada homogênea, e apenas a razão entre os seus elementos é significante. São nove elementos com oito graus de liberdade.\\
+
+\noindent {\bf Transformação de retas.}
+
+Na argumentação anterior vimos que a reta $\lightrgb'$ foi definida na forma $\lightrgb'=H^{-\top}\lightrgb$ e tal definição não foi à toa. Pois a definição nesta forma garante que os pontos depois de transformados permanecem colineares. Assim, a transformação projetiva de pontos nos dá essa regra para transformação projetiva de retas.\\
+
+\noindent {\bf Transformação de cônicas.}
+
+Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x$ na equação matricial de uma cônica $\x^\top C\,\x=0$:
+
+\begin{equation*}
+\begin{array}{rcl}
+\x^\top C\,\x&=&(H^{-1}\x')^\top C\,H^{-1}\x'\\
+&=&\x'^\top H^{-\top}C\,H^{-1}\x'\\
+&=&\x'^\top C'\x'=0
+\end{array}
+\end{equation*}
+onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
+
 
 \subsubsection{O Espaço Projetivo em Três Dimensões}
 
@@ -359,7 +441,112 @@ $
 \end{figure}
 
 
-Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.
+Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
+
+\noindent {\bf A transformação de pontos e planos.}
+
+A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação de pontos $\X'=H\,\X$ temos que planos se transformam de acordo com
+
+\begin{equation*}
+\bpi'=H^{-\top}\bpi.
+\end{equation*}
+
+
+
+
+
+
+
+\subsubsection{Direções e o plano no infinito.}
+
+O plano no infinito é denotado por $\bpi_\infty$, tem a foma canônica $\bpi_\infty=(0,0,0,1)^\top$ e é composto por pontos no infinito $D=(x_1,x_2,x_3,0)^\top$ que são as direções das retas contidas no espaço. No espaço projetivo $\mathbb{P}^2$ duas retas paralelas se encontram num ponto no infinito, e analogamente, em  $\mathbb{P}^3$ dois planos paralelos se encontram numa reta que está contida no plano no infinito, e também, uma reta é paralela a outra reta (ou a um plano) se o ponto de interseção está no $\bpi_\infty$. O plano no infinito é invariável sob uma transformação afim.
+
+De acordo com a subseção tal temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção tal vimos que a transformação afim é dada por 
+
+\begin{equation*}
+H_A=
+\begin{bmatrix}
+A&{\bf t}\\
+{\bf 0}^\top&1
+\end{bmatrix},
+\end{equation*}
+então
+
+\begin{equation*}
+H_A^{-\top}=
+\begin{bmatrix}
+A^{-\top}&{\bf 0}\\
+-{\bf t}^\top A^{-\top}&1
+\end{bmatrix},
+\end{equation*}
+e aplicando ao plano no infinito temos:
+
+\begin{equation*}
+\begin{array}{rcl}
+\bpi'&=&H_A^{-\top}\bpi_\infty\\
+&=&
+\begin{bmatrix}
+A^{-\top}&{\bf 0}\\
+-{\bf t}^\top A^{-\top}&1
+\end{bmatrix}\,
+\begin{pmatrix}
+0\\
+0\\
+0\\
+1
+\end{pmatrix}\\
+&=&
+\begin{pmatrix}
+0&0&0&1
+\end{pmatrix}^\top\\
+&=&
+\bpi_\infty.
+\end{array}
+\end{equation*}
+Existem outros planos que podem ser invariáveis sob uma transformação afim menos específica, mas só o plano no ifinito é invariável em uma transformação afim geral. Cabe resaltar que $\bpi_\infty$ é invariável apenas quando a transformação é aplicada ao conjunto, e não a pontos isolados pertencentes a esse plano.
+
+
+\subsubsection{A cônica absoluta.}\label{sec.con-absoluta}
+
+A cônica absoluta é uma cônica (ponto) denotada por $\Omega_\infty$ e está contida no plano no infinito $\bpi_\infty$. Em coordenadas Euclidianas o plano no infinito tem definição $\bpi_\infty=(0,0,0,1)$ e a cônica absoluta é definida através da equação matricial
+
+\begin{equation*}
+\X^\top\Omega_\infty\X=0,
+\end{equation*} 
+onde as componentes de $\X$ obedecem às restrições
+
+\begin{equation*}
+X_1^2+X_2^2+X_3^2=0\qquad\text{e}\qquad\,X_4=0.
+\end{equation*}
+De acordo com essas restrições e com esse sistema de coordenadas, e para satisfazer a equação matrical da cônica, temos que $\Omega_\infty=I_{3\times3}$, pois
+
+\begin{equation*}
+(X_1,X_2,X_3)\,I\,(X_1,X_2,X_3)^\top=0.
+\end{equation*}
+
+Da mesma forma que o plano no infinito é invariável sob uma transformação afim, a cônica absoluta é invariável sob uma transformação de similaridade. Já que a cônica absoluta está contida no plano no infinito, a transformação afim que mantem fixo esse plano também deverá manter invariável as coordenadas da cônica, sendo então a cônica absoluta invariável sob uma transformação afim
+
+\begin{equation*}
+H_A=
+\begin{bmatrix}
+A&{\bf t}\\
+{\bf 0}^\top&1
+\end{bmatrix}.
+\end{equation*}
+De acordo com as restrições acima $\Omega_\infty=I_{3\times3}$ e é fixa sob $H_A$, portanto temos que $I$ sofre influência apenas de $A$, e de acordo com a tranformação de cônicas na subseção \ref{sec.trans-proj-H} temos que $A^\top I A^{-1}=I$, assim
+
+\begin{equation*}
+\begin{array}{rcl}
+I&=&A^{-\top}I\,A^{-1}\\
+&=&A^{-\top}A^{-1}\qquad\text{tomando a inversa}\\
+&=&A\,A^\top.
+\end{array}
+\end{equation*}
+Desta forma percebemos que $A$ é uma matriz ortogonal, o que está de acordo com a definição de tranformação de similaridade $H_S$ conforme a subseção tal.
+
+
+
+
 
 \subsubsection{A Câmera P}
 
@@ -759,7 +946,7 @@ Assim, a transformação de um ponto na câmera para a imagem é feita usando ci
 
 \subsubsection{A Geometria Epipolar}
 
-Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, essa construção é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
+Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, a construção desse cenário é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
 
 \begin{equation*}
 \x\rightarrow\lightrgb'
@@ -771,7 +958,7 @@ O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas vis�
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1.2]{geometria-epipolar}
-\caption{\textit{O plano epipolar contém o ponto $\X$ e define as retas epipolares em cada imagem, o que é a base para correspondência entre $\x$ e $\x'$.}}
+\caption{\textit{O plano epipolar contém o ponto $\X$, os centros das câmeras, e define as retas epipolares em cada imagem, o que é a base para correspondência entre $\x$ e $\x'$.}}
 \label{fig.geo-epipolar}
 \end{figure}
 
@@ -790,12 +977,12 @@ P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}],
 \x'=H\,\x,\qquad\text{onde}\qquad H=R-{\bf t}\,{\bf v}^\top.
 \end{equation*}
 
-Podemos tomar a última coordenada de $\bpi$ igual a $1$ pois, por enquanto, nos interessa apenas que o plano não passe pelo centro da primeira câmera $\C=(0,0,0,1)^\top$. Observe o esquema na figura tal. 
+Podemos tomar a última coordenada de $\bpi$ igual a $1$ pois, por enquanto, nos interessa apenas que o plano não passe pelo centro da primeira câmera $\C=(0,0,0,1)^\top$. Observe o esquema na figura \ref{fig.homografia}. 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1.2]{homografia}
-\caption{\textit{O mapeamento induzido por um plano no espaco 3D. O ponto $\x$ retroprojeta um raio que intersecta o plano $\bpi_{\infty}$ no ponto $\X_{\bpi}$, entao $\X_{\bpi}$ eh projetado na outra imagem em $\x'$.}}
+\caption{\textit{O mapeamento induzido por um plano no espaco 3D. O ponto $\x$ retroprojeta um raio que intersecta o plano $\bpi$ no ponto $\X_{\bpi}$, então $\X_{\bpi}$ é projetado na outra imagem em $\x'$.}}
 \label{fig.homografia}
 \end{figure}
 
@@ -831,19 +1018,19 @@ $\rho$ fica determinado
 \begin{equation*}
 \begin{array}{rcll}
 \bpi^\top\,\X&=&0&\Rightarrow\\
-({\bf v}^\top,1)\,(\x^\top,\rho)&=&0&\Rightarrow\\
+({\bf v}^\top,1)\,(\x^\top,\rho)^\top&=&0&\Rightarrow\\
 {\bf v}^\top\x+\rho&=&0&\Rightarrow\\
 \rho&=&-{\bf v}^\top\,\x,&
 \end{array}
 \end{equation*}
-e dessa forma o ponto $\X=(\x^\top,-{\bf v}^\top\x)$.
+e dessa forma o ponto $\X=(\x^\top,-{\bf v}^\top\x)^\top$.
 
 Projetando o ponto 3D na segunda imagem temos
 
 \begin{equation*}
 \begin{array}{rcl}
 \x'&=&P'\X\\
-&=&[R|{\bf t}]\,(\x^\top,-{\bf v}^\top\x)\\
+&=&[R|{\bf t}]\,(\x^\top,-{\bf v}^\top\x)^\top\\
 &=&R\,\x-{\bf t}\,{\bf v}^\top\x\\
 &=&(R-{\bf t}\,{\bf v}^\top)\,\x.
 \end{array}
@@ -859,7 +1046,7 @@ Portanto
 
 A \textit{matriz fundamental} reúne todas as informações da geometria epipolar, é a representação algébrica dessa geometria de duas visões e, por isso, também é conhecida como \textit{tensor bifocal}. 
 
-Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Note que esse plano $\bpi$ não é o plano epipolar da subseção anterior. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela seção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
+Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela seção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
 
 \begin{equation}\label{eq.homo-plano}
 \x'= H_{\bpi} \,\x,
@@ -872,7 +1059,7 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 &=&[\e']_\times\x'
 \end{array}
 \end{equation}
-($[\e']_\times$ está definida na seção \ref{sec.anti-simetrica}). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
+($[\e']_\times$ está definida na subseção \ref{sec.anti-simetrica}). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -884,12 +1071,12 @@ e eles são ditos projetivamente equivalentes, já que são projetivamente equiv
 onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
 
 
-Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ definida na seção \ref{sec.pseudo-P}. O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
+Algebricamente, a matriz fundamental pode ser determinada à partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa o raio de luz retroprojetado por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a este raio, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ definida na subseção \ref{sec.pseudo-P}. O ponto $P^+\x$ pertence ao raio pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
 
 \begin{equation*}
 P^+\x \rightarrow P\,P^+\x=I\,\x=\x.
 \end{equation*}
-Portanto, podemos formar o raio pela juncão dos pontos $\C$ e $P^+\x$
+Portanto, podemos formar o raio pela junção dos pontos $\C$ e $P^+\x$
 
 \begin{equation*}
 \X(\lambda)=P^+\x+\lambda\,\C.
@@ -916,7 +1103,7 @@ Mas como $P'\C=\e'$, podemos substitui-lo na equação anterior
 &=&F\,\x,
 \end{array}
 \end{equation*}
-definindo $F=[\e']_\times P'P^+\x$. Essa relação para $F$ é a mesma fórmula derivada anteriormente, com a homografia calculada em termos das duas câmeras, $H_{\bpi}=P'P^+$.
+definindo $F=[\e']_\times P'P^+$. Essa relação para $F$ é a mesma fórmula derivada anteriormente, com a homografia calculada em termos das duas câmeras, $H_{\bpi}=P'P^+$.
 
 
 \subsection{Notação Usada por Fabbri}
