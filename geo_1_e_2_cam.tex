@@ -4,7 +4,7 @@
 
 Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em \cite{Hartley2004}, por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
 
-\subsubsection{O Espaço Projetivo em Duas Dimensões}
+\subsubsection{O Espaço Projetivo em Duas Dimensões}\label{sec.espaco-P2}
 
 
 
@@ -213,7 +213,7 @@ Percebemos que as cônicas são representadas por matrizes $3\times3$ simétrica
 
 \noindent {\bf Retas tangentes à cônicas.} 
 
-Uma reta tangente a uma cônica tem a simples forma
+Uma reta tangente a uma cônica num ponto $\x$ qualquer tem a simples forma
 
 \begin{equation*}
 \lightrgb=C\x.
@@ -279,6 +279,54 @@ De forma análoga à argumentação anterior podemos demosntrar que $C^*$ define
 \begin{equation*}
 \lightrgb^\top\,C^*\lightrgb=0.
 \end{equation*}
+
+\subsubsection{A Relação Polo-Polar.}\label{sec.polo-polar}
+
+Vimos anteriormente que uma reta $\lightrgb$ é tangente a uma cônica num ponto $\x$ se 
+
+\begin{equation*}
+\lightrgb=C\,\x.
+\end{equation*}
+Mas se o ponto $\x$ não pertence à cônica $C$ então temos uma relação denominada \textit{polo-polar}, onde a reta $\lightrgb$ é chamada reta \textit{polar} de $\x$, e $\x$ é chamado o \textit{polo} da reta $\lightrgb$, conforme a ilustração na figura \ref{fig.polo-polar}.
+
+A reta polar $\lightrgb=C\,\x$ intersecta a cônica 
+$C$ em dois pontos $\y_1$ e $\y_2$, e as retas tangentes à cônica $C$ nesses dois pontos se intersectam em $\x$. Pois, considere o ponto $\y_1 \in C$ e a reta tangente a esse ponto ${\bf m}=C\,\y_1$. Essa tangente contém o ponto $\x$ se 
+
+\begin{equation*}
+\x^\top{\bf m}=0\qquad\text{ou}\qquad\x^\top C\,\y_1=0,
+\end{equation*}  
+e, usando a simetria da cônica $C$ e aplicando a transposição em $\x^\top C$, temos
+
+\begin{equation*}
+\x^\top C\,\y_1=(C\,\x)^\top\y_1=0,
+\end{equation*}
+mostando que o ponto $\y_1$ pertence à reta $\lightrgb=C\,\x$. Assim, a reta $\lightrgb$ intersecta a cônica $C$ no ponto $\y_1$, no qual a tangente à $C$ contém o ponto $\x$. Observe que se o ponto $\x$ se aproxima da cônica $C$, os dois pontos $\y_1$ e $\y_2$ vão se aproximando um do outro, e quando ponto $\x$ pertence à conica $C$ a reta polar se torna a reta tangente. O argumento é análogo para $\y_2$.\\
+
+
+\begin{figure}[!htb]
+\centering
+\subfloat[]{\includegraphics[scale=.64]{polo-polar}}
+\quad
+\subfloat[]{\includegraphics[scale=.64]{polo-polar-simetria}}
+\caption{\textit{(a) A reta $\lightrgb=C\,\x$ é a reta polar de $\x$, e o ponto $\x=C^{-1}\lightrgb$ é o polo da reta $\lightrgb$. Os pontos $\x$ e $\y$ são chamados conjugados, pois obedecem à relação $\y^\top C\,\x=0$. (b) Duplicação da figura para visualização da simetria da relação polo-polar. O ponto $\x$ pertence à reta polar de $\y$.}}
+\label{fig.polo-polar}
+\end{figure}
+
+
+
+
+
+
+\noindent {\bf Pontos conjugados.}
+
+Quando um ponto $\y$ qualquer pertence à reta polar $\lightrgb=C\,\x$ temos que 
+
+\begin{equation*}
+\y^\top\lightrgb=\y^\top C\,\x=0,
+\end{equation*}
+e quaisquer dois pontos que satisfazem a relação $\y^\top C\,\x=0$ são chamados \textit{conjugados} com relação à cônica $C$. Repare que o ponto $y$ não precisa necessariamente pertencer à cônica. Mais anida, se um ponto $\y$ está na reta polar de $\x$, então $\x$ está na reta polar de $\y$. Como vimos, se $\y$ está na reta polar de $\x$ vale a relação $\y^\top C\,\x=0$, e tomando a transposta temos que $\x^\top C\,\y=0$, pois $C$ é simétrica. 
+%Existe uma relacao de conjugacao para retas, digamos ${\bf l}$ e ${\bf m}$: ${\bf l}^\top C^*{\bf m}=0$.
+
 
 \subsubsection{Transformação Projetiva em $\mathbb{P}^2$}\label{sec.trans-proj-H}
 
@@ -544,9 +592,45 @@ I&=&A^{-\top}I\,A^{-1}\\
 \end{equation*}
 Desta forma percebemos que $A$ é uma matriz ortogonal, o que está de acordo com a definição de tranformação de similaridade $H_S$ conforme a subseção tal.
 
+\subsubsection{A quadrica dual absoluta.}
+A quadrica dual absouta eh a dual degenerada da conica absoluta $\Omega_\infty$, e eh denotada por 
+${\tt Q}^*_\infty$. Analogamente ao fato de que a conica dual $C^*$ eh o envlope das retas tangentes a conica $C$ no ${\mathbb{P}}^2$, temos que, geometricamnte, a quadrica dual absoluta eh o envelope de todos os planos que sao tangentes a conica absoluta. Algebricamente, 
+${\tt Q}^*_\infty$ eh representada por uma matriz homogeneea $4\times4$ e num sistem de coordenadas metrico tem a forma canonica
 
+\begin{equation}\label{eq.quadrica-dual-abs}
+{\tt Q}^*_\infty=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&0
+\end{bmatrix}=
+\begin{bmatrix}
+I&{\bf 0}\\
+{\bf 0}^\top&0
+\end{bmatrix}.
+\end{equation}
+Para ver que os planos que compoem a quadrica dual absoluta ${\tt Q}^*_\infty$ sao tangentes a conica absoluta $\Omega_\infty$, considere um plano $\bpi=({\bf v}, k)^\top$, onde tal plano esta no ebvelope definido por ${\tt Q}^*_\infty$ se, e somente se, $\bpi^\top {\tt Q}^*_\infty\bpi=0$. Usando a definicao em \ref{eq.quadrica-dual-abs} temos
 
-
+\begin{equation*}
+\begin{array}{rcl}
+\bpi^\top {\tt Q}^*_\infty\bpi&=&
+\begin{pmatrix}
+{\bf v}^\top&k
+\end{pmatrix}
+\begin{bmatrix}
+I&{\bf 0}\\
+{\bf 0}^\top&0
+\end{bmatrix}
+\begin{pmatrix}
+{\bf v}\\
+k
+\end{pmatrix}\\
+&=&{\bf v}^\top {\bf v}\\
+&=&0,
+\end{array}
+\end{equation*}
+onde, de acordo com a subsecao tal, ${\bf v}$ repreenta a reata de intersecao do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subsecoes \ref{sec.espaco-P2} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, eh tangente a conica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, ${\tt Q}^*_\infty$ eh composta pelos planos que sao tangebtes a $\Omega^*_\infty$. 
 
 \subsubsection{A Câmera P}
 
