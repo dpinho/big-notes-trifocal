@@ -162,7 +162,19 @@ Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de
 &=&K^{-\top}K^{-1}
 \end{array}
 \end{equation*}
-pois $R$ é uma matriz de rotação e portanto satisfaz $R^{-\top}R^{-1}=I$. Assim, de posse de uma câmera calibrada é simples obter a IAC.\\
+pois $R$ é uma matriz de rotação e portanto satisfaz $R^{-\top}R^{-1}=I$. Assim, de posse de uma câmera calibrada é simples obter a IAC.
+
+Analogamente ao que é feito na subseção \ref{sec.espaco-P2}, podemos definir a imagem dual da cônica absoluta (sigla DIAC em inglês), denotada por $\omega^*$, a partir de $\omega$ como
+
+\begin{equation*}
+\omega^*=\omega^{-1}=K\,K^\top.
+\end{equation*}
+Esta é uma cônica definida por retas e é a imagem da quádrica dual absoluta ${\tt Q^*_\infty}$, definida na subseção \ref{sec.quadrica-dual-abs}. A imagem é dada por
+
+\begin{equation*}
+\omega^*=P\,{\tt Q^*_\infty}P^\top,
+\end{equation*}
+conforme a subseção \ref{sec.proj-quadricas}.\\
 
 {\bf As restrições Kruppa.} Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restrição \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
@@ -173,7 +185,7 @@ pois $R$ é uma matriz de rotação e portanto satisfaz $R^{-\top}R^{-1}=I$. Ass
 \label{epipolar-kruppa}
 \end{figure}
 
-A restrição Kruppa foi originalmente introduzida por citar faugeras 92a (do hartley) e está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC em inglês) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (definida por retas e com sigla DIAC em inglês), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta será tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura \ref{geometria-kruppa}. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica ${\bf \omega}$ na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
+A restrição Kruppa foi originalmente introduzida por \cite{faugeras92} e está relacionada com uma cônica contida num plano no espaco 3D e suas imagens nas câmeras $1$ e $2$, e é válida para cônicas gerais, mas aqui no nosso caso vamos tratar especificamente da cônica absoluta $\Omega_\infty$ contida no plano infinito $\bpi_\infty$ no espaco, e as imagens da cônica absoluta (IAC) ${\bf \omega}$ e ${\bf \omega'}$. Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (DIAC), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaco. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta será tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura \ref{geometria-kruppa}. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica ${\bf \omega}$ na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $1$ ou $2$) da seguinte maneira:  
 
 \begin{equation}\label{eq.def.con.deg}
 D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times \qquad \text{ou, como outra construção} \qquad D=\lightrgb_1\,\lightrgb_2^\top + \lightrgb_2\,\lightrgb_1^\top
@@ -259,7 +271,7 @@ Podemos pensar na representação da projeção de  ${\bf \omega}$ e ${\bf \omeg
 \end{equation}
 onde $\omega^*$ é a matriz adjunta de $\omega$.
 
-Note que a reta $(\omega \diamond B)\,{\bf e}$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem.
+Note que a reta $(\omega \diamond B)\,{\bf e}$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Há uma breve explanação sobre a relação polo-polar na subseção \ref{sec.polo-polar}. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem.
 
 
 Note que $(\omega \diamond B) = B\,(\omega \cdot B)$ se definirmos a homografia
