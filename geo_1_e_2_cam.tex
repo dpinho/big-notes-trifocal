@@ -1,19 +1,15 @@
 \section{Geometria de Uma e Duas Câmeras}
-
-\subsection{Notação Básica de Geometria Projetiva}
-
 Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em \cite{Hartley2004}, por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
 
-\subsubsection{O Espaço Projetivo em Duas Dimensões}\label{sec.espaco-P2}
+\subsection{O Espaço Projetivo em Duas Dimensões}\label{sec.espaco-P2}
 
 
-
-\noindent {\bf A Reta.}
+\subsubsection{A Reta.}\label{sec.reta}
 
 
 Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
 
-\noindent {\bf O Ponto.}
+\subsubsection{O Ponto.}\label{sec.ponto}
 
 
 Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
@@ -65,7 +61,7 @@ Podemos pensar no espaço projetivo como um conjunto de raios passando pela orig
 Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, já que a terceira coordenada está em função das duas primeiras. Assim, dizemos que um ponto tem dois graus de liberdade e a terceira coordenada pode ser usada para fixar uma escala.
 \\
 
-\noindent {\bf Retas determinadas por dois pontos e a interseção de duas retas.}
+\subsubsection{Retas determinadas por dois pontos e a interseção de duas retas.}
 
 A representação de retas em coordenadas homogêneas nos permite calcular a interseção de duas retas usando o produto vetorial. Sabemos que o produto vetorial de dois vetores, digamos $\lightrgb\times\lightrgb'$ em $R^3$ resulta num terceiro vetor que é ortogonal ao plano definido pelos vetores $\lightrgb$ e $\lightrgb'$. Em particular, esse terceiro vetor $\lightrgb\times\lightrgb'$ será ortogonal a qualquer dos vetores $\lightrgb$ e $\lightrgb'$, assim seu produto escalar é zero:
 
@@ -148,7 +144,7 @@ Um fato interessante sobre pontos no infinito é que eles constituem as direçõ
 
 
 
-\noindent {\bf A Cônica.}
+\subsubsection{A Cônica.}
 
 
 Em geometria Euclidiana, as cônicas são de três tipos principais: elipse, hipérbole e parábola. São definidas, algebricamente, por uma equação do segundo grau em duas variáveis, considerando coordenadas não homogêneas:
@@ -211,7 +207,7 @@ C =  \begin{bmatrix}
 
 Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. \\
 
-\noindent {\bf Retas tangentes à cônicas.} 
+\subsubsection{Retas tangentes à cônicas.} 
 
 Uma reta tangente a uma cônica num ponto $\x$ qualquer tem a simples forma
 
@@ -230,7 +226,7 @@ Agora considerando todos os pontos em $\lightrgb=(\x+\alpha\y)$ parametrizados p
 \end{equation*}
 já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.\\
 
-\noindent {\bf Cônica Dual ou de reta.} 
+\subsubsection{Cônica Dual ou de reta.} 
 
 A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
 
@@ -252,7 +248,7 @@ Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^
 \label{fig.conica-envelope}
 \end{figure}
 
-\noindent {\bf Cônicas degeneradas.}
+\subsubsection{Cônicas degeneradas.}
 
 Acontece quando a matriz não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
 
@@ -305,9 +301,9 @@ mostando que o ponto $\y_1$ pertence à reta $\lightrgb=C\,\x$. Assim, a reta $\
 
 \begin{figure}[!htb]
 \centering
-\subfloat[]{\includegraphics[scale=.64]{polo-polar}}
+\subfloat[]{\includegraphics[scale=.81]{polo-polar}}
 \quad
-\subfloat[]{\includegraphics[scale=.64]{polo-polar-simetria}}
+\subfloat[]{\includegraphics[scale=.81]{polo-polar-simetria}}
 \caption{\textit{(a) A reta $\lightrgb=C\,\x$ é a reta polar de $\x$, e o ponto $\x=C^{-1}\lightrgb$ é o polo da reta $\lightrgb$. Os pontos $\x$ e $\y$ são chamados conjugados, pois obedecem à relação $\y^\top C\,\x=0$. (b) Duplicação da figura para visualização da simetria da relação polo-polar. O ponto $\x$ pertence à reta polar de $\y$.}}
 \label{fig.polo-polar}
 \end{figure}
@@ -371,10 +367,10 @@ Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x
 onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
 
 
-\subsubsection{O Espaço Projetivo em Três Dimensões}
+\subsection{O Espaço Projetivo em Três Dimensões}\label{sec.espaco-P3}
 
 
-\noindent {\bf O Ponto}
+\subsubsection{O Ponto} 
 
 
 Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^\top$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^\top \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
@@ -385,7 +381,7 @@ X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
 
  
 
-\noindent {\bf O Plano}
+\subsubsection{ O Plano}
 
 Temos que a representação algébrica de um plano $\bpi$ no espaço $\mathbb{R}^3$ é dada pela equação
 
@@ -442,7 +438,7 @@ Obs: As três primeiras coordenadas do vetor que representa o plano corresponde 
 \\
 
 
-\noindent {\bf A Reta}
+\subsubsection{A Reta}
 
 Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas três graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$, diferentes da apresentada aqui, podem ser encontradas em \cite{Hartley2004}.
 
@@ -463,7 +459,7 @@ $
 onde os espaço gerado por $W^\top$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. \\
 
 
-\noindent {\bf A Quádrica}
+\subsubsection{A Quádrica}
 
 
 Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ é definida pela equação
@@ -491,9 +487,9 @@ $
 
 Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
 
-\noindent {\bf A transformação de pontos e planos.}
+\subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$.}
 
-A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação de pontos $\X'=H\,\X$ temos que planos se transformam de acordo com
+A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada na subseção \ref{sec.espaco-P2} para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação projetiva de pontos $\X'=H\,\X$ temos que planos se transformam de acordo com
 
 \begin{equation*}
 \bpi'=H^{-\top}\bpi.
@@ -509,7 +505,7 @@ A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga 
 
 O plano no infinito é denotado por $\bpi_\infty$, tem a foma canônica $\bpi_\infty=(0,0,0,1)^\top$ e é composto por pontos no infinito $D=(x_1,x_2,x_3,0)^\top$ que são as direções das retas contidas no espaço. No espaço projetivo $\mathbb{P}^2$ duas retas paralelas se encontram num ponto no infinito, e analogamente, em  $\mathbb{P}^3$ dois planos paralelos se encontram numa reta que está contida no plano no infinito, e também, uma reta é paralela a outra reta (ou a um plano) se o ponto de interseção está no $\bpi_\infty$. O plano no infinito é invariável sob uma transformação afim.
 
-De acordo com a subseção tal temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção tal vimos que a transformação afim é dada por 
+De acordo com a subseção \ref{sec.espaco-P3} temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção tal vimos que a transformação afim é dada por 
 
 \begin{equation*}
 H_A=
@@ -581,7 +577,33 @@ A&{\bf t}\\
 {\bf 0}^\top&1
 \end{bmatrix}.
 \end{equation*}
-De acordo com as restrições acima $\Omega_\infty=I_{3\times3}$ e é fixa sob $H_A$, portanto temos que $I$ sofre influência apenas de $A$, e de acordo com a tranformação de cônicas na subseção \ref{sec.trans-proj-H} temos que $A^\top I A^{-1}=I$, assim
+Aplicando a homografia afim $H_A$ aos pontos da cônica absoluta temos que as três primeiras componentes desses pontos são afetadas apenas pela submatriz $A_{3\times3}$,
+
+\begin{equation*}
+\begin{bmatrix}
+A&{\bf t}\\
+{\bf 0}^\top&1
+\end{bmatrix}
+\begin{pmatrix}
+X_1\\
+X_2\\
+X_3\\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+A\,
+\begin{pmatrix}
+X_1\\
+X_2\\
+X_3
+\end{pmatrix}\\
+0
+\end{pmatrix}.
+\end{equation*}
+Como vimos, essas três primeiras componentes são utilizadas na definição da cônica absoluta, e portanto $\Omega_\infty$ vai sofrer influência apenas de $A$ em tal transformação. 
+De acordo com a tranformação de cônicas na subseção \ref{sec.trans-proj-H}, e com o fato de $\Omega_\infty$ ser invariável sob 
+$H_A$, temos que $A^\top I A^{-1}=I$, assim
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -590,12 +612,12 @@ I&=&A^{-\top}I\,A^{-1}\\
 &=&A\,A^\top.
 \end{array}
 \end{equation*}
-Desta forma percebemos que $A$ é uma matriz ortogonal, o que está de acordo com a definição de tranformação de similaridade $H_S$ conforme a subseção tal.
+Desta forma percebemos que $A$ é uma matriz ortogonal (possivelmente com aplicação de escala), o que está de acordo com a definição de tranformação de similaridade $H_S$ conforme a subseção tal.
 
-\subsubsection{A quadrica dual absoluta.}
-A quadrica dual absouta eh a dual degenerada da conica absoluta $\Omega_\infty$, e eh denotada por 
-${\tt Q}^*_\infty$. Analogamente ao fato de que a conica dual $C^*$ eh o envlope das retas tangentes a conica $C$ no ${\mathbb{P}}^2$, temos que, geometricamnte, a quadrica dual absoluta eh o envelope de todos os planos que sao tangentes a conica absoluta. Algebricamente, 
-${\tt Q}^*_\infty$ eh representada por uma matriz homogeneea $4\times4$ e num sistem de coordenadas metrico tem a forma canonica
+\subsubsection{A quádrica dual absoluta.}\label{sec.quadrica-dual-abs}
+A quádrica dual absouta é a dual degenerada da cônica absoluta $\Omega_\infty$, e é denotada por 
+${\tt Q}^*_\infty$. Analogamente ao fato de que o envelope da cônica dual $C^*$ é composto pelas retas tangentes à cônica $C$ no ${\mathbb{P}}^2$, temos que, geometricamente,  o envelope da quádrica dual absoluta é composto de todos os planos que são tangentes à cônica absoluta. Algebricamente, 
+${\tt Q}^*_\infty$ é representada por uma matriz homogênea $4\times4$ e num sistema de coordenadas métrico tem a forma canônica
 
 \begin{equation}\label{eq.quadrica-dual-abs}
 {\tt Q}^*_\infty=
@@ -610,7 +632,7 @@ I&{\bf 0}\\
 {\bf 0}^\top&0
 \end{bmatrix}.
 \end{equation}
-Para ver que os planos que compoem a quadrica dual absoluta ${\tt Q}^*_\infty$ sao tangentes a conica absoluta $\Omega_\infty$, considere um plano $\bpi=({\bf v}, k)^\top$, onde tal plano esta no ebvelope definido por ${\tt Q}^*_\infty$ se, e somente se, $\bpi^\top {\tt Q}^*_\infty\bpi=0$. Usando a definicao em \ref{eq.quadrica-dual-abs} temos
+Para ver que os planos envelopados pela quádrica dual absoluta ${\tt Q}^*_\infty$ são tangentes à cônica absoluta $\Omega_\infty$, considere um plano $\bpi=({\bf v}, k)^\top$. Esse plano está no envelope definido por ${\tt Q}^*_\infty$ se, por definição, $\bpi^\top {\tt Q}^*_\infty\bpi=0$. Usando a definição em \ref{eq.quadrica-dual-abs} temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -630,9 +652,44 @@ k
 &=&0,
 \end{array}
 \end{equation*}
-onde, de acordo com a subsecao tal, ${\bf v}$ repreenta a reata de intersecao do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subsecoes \ref{sec.espaco-P2} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, eh tangente a conica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, ${\tt Q}^*_\infty$ eh composta pelos planos que sao tangebtes a $\Omega^*_\infty$. 
+onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.espaco-P2} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
 
-\subsubsection{A Câmera P}
+Para ver que ${\bf v}$ é a reta de interseção de $\bpi$ com $\bpi_\infty$, considere o sistema abaixo onde um ponto $\X$ pertence a esses dois planos. Esse ponto pertence a cada um dos planos se
+
+\begin{empheq}[left=\empheqlbrace]{align*}
+\begin{pmatrix}
+{\bf v}^\top&k
+\end{pmatrix}
+\begin{pmatrix}
+X_1\\
+X_2\\
+X_3\\
+X_4
+\end{pmatrix}
+=0\\
+\bpi^\top_\infty
+\begin{pmatrix}
+X_1\\
+X_2\\
+X_3\\
+X_4
+\end{pmatrix}
+=0.
+\end{empheq}
+Pela segunda equação, como $\bpi=(0,0,0,1)$ temos que $X_4=0$ (o que já não era novidade). Substituindo $X_4=0$ na primeira equação e efetuando a multiplicação matricial, a constante $k$ desaparece multiplicada por zero e restará
+
+\begin{equation*}
+{\bf v}^\top
+\begin{pmatrix}
+X_1\\
+X_2\\
+X_3
+\end{pmatrix}=0.
+\end{equation*}
+A última equação representa a equação de pertinência de um ponto a uma reta conforme as subseções \ref{sec.reta} e \ref{sec.ponto}. 
+
+
+\subsection{A Câmera P}
 
 A câmera é modelada como um dispositivo que mapeia um ponto no sistema de coordenadas do mundo em pontos no sistema de coordenadas da imagem. Matematicamente, a \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
 \\
@@ -670,7 +727,7 @@ O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é cha
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=.64]{modelo_camera}
+\includegraphics[scale=.75]{modelo_camera}
 \caption{\textit{Visualização das características básicas de uma câmera como distância focal, eixo principal, plano da imagem, centro de projeção e o ponto principal {\bf P}.}}
 \label{camera}
 \end{figure}
@@ -1026,7 +1083,104 @@ Assim, a transformação de um ponto na câmera para a imagem é feita usando ci
 \caption{Resumo dos parâmetros da câmera.}
 \end{table}
 
-\subsection{O Tensor Bifocal}
+\subsection{A ação projetiva de uma câmera $P$.}
+Nesta subseção iremos verificar como se dá a projeção aplicada por uma câmera $P$ em planos, retas, cônicas e quádricas.
+
+
+\subsubsection{Ação projetiva de $P$ em planos.}
+A equação de projeção é uma transformação de um ponto em coordenadas 3D no sistema de coordenadas do mundo para pontos 2D no sistema de coordenadas do plano da imagem na câmera e, nessa estrutura, temos a liberdade para escolher o sistema de coordenadas do mundo. Assim, suponha que tal sistema de coordenadas seja posicionado de forma que o plano $xy$ corresponda ao plano $\bpi$, conforme ilustrado na figura \ref{fig.projecao-planos-retas}. Desta forma, pontos no espaço que pertencam ao plano $\bpi$ terão a componente $X_3=0$, e a ação de uma câmera $P$ nesses pontos é dada por
+
+\begin{equation*}
+\begin{array}{rcl}
+\x&=&P\,\X\\
+&=&
+\begin{pmatrix}
+{\bf p_1}&{\bf p_2}&{\bf p_3}&{\bf p_4}
+\end{pmatrix}
+\begin{pmatrix}
+X_1\\
+X_2\\
+0\\
+1
+\end{pmatrix}\\
+&=&
+\begin{pmatrix}
+{\bf p_1}&{\bf p_2}&{\bf p_4}
+\end{pmatrix}
+\begin{pmatrix}
+X_1\\
+X_2\\
+1
+\end{pmatrix},
+\end{array}
+\end{equation*}
+onde ${\bf p_i}$ são as colunas da matriz $P$. Assim, a transformação de um ponto $\X_\pi=(X_1,X_2,1)^\top\in\bpi$ para um ponto na imagem é, em geral, uma homografia planar, ou uma transformação projetiva de plano a plano $\x=H\,\X_\pi$.
+
+
+\begin{figure}[htb!]
+\centering
+\subfloat[]{\includegraphics[scale=.5]{projecao-planos}}
+\quad
+\subfloat[]{\includegraphics[scale=.5]{projecao-retas}}
+\caption{({\tt a})\textit{Transformcao projetiva de plano a plano induzida pela camera $P$.}\,\,({\tt b})\textit{Plano $\bpi$ retroprojetado por uma reta $\lightrgb$ no plano da imagem atraves camera $P$.}}
+\label{fig.projecao-planos-retas}
+\end{figure}
+
+\subsubsection{A ação projetiva de $P$ em retas.}\label{sec.proj.retas}
+Geometricamente, como podemos ver na figura \ref{fig.projecao-planos-retas}, uma reta ${\bf L}$ no espaco 3D junto com o centro $\C$ da câmera definem um plano. A interseção desse plano com o plano da imagem é uma reta $\lightrgb$, que é a imagem da reta ${\bf L}$ no espaço. Algebricamente, considere uma reta ${\bf L}$ parametrizada por $\lambda$ passando pelos pontos ${\bf A}$ e ${\bf B}$, onde cada ponto nessa reta é dado por $\X(\lambda)={\bf A}+(\lambda)\,{\bf B}$. Considere ainda, ${\bf a}$ e ${\bf b}$ sendo as imagens dos pontos ${\bf A}$ e ${\bf B}$ sob a ação da câmera $P$. Aplicando a projeção da câmera $P$ aos pontos da reta ${\bf L}$ temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\x(\lambda)&=&P\,\X(\lambda)\\
+&=&P({\bf A}+(\lambda)\,{\bf B})\\
+&=&P\,{\bf A}+(\lambda)\,P\,{\bf B}\\
+&=&{\bf a}+(\lambda)\,{\bf b},
+\end{array}
+\end{equation*}
+onde cada $\x$ em função de $\lambda$ pertence à reta passando por ${\bf a}$ e ${\bf b}$ no plano da imagem.  
+
+\subsubsection*{Retroprojeção de retas.}
+Geometricamente, a retroprojeção de retas é o conjunto de pontos no espaço pertencentes a um plano, o qual é definido pelo centro da câmera e uma reta na imagem, como na figura \ref{fig.projecao-planos-retas}. Algebricamente, sendo a reta na imagem denotada por $\lightrgb$ e a camera por $P$, o plano retroprojetado é $P^\top\lightrgb$. De fato, um ponto $\X$ no espaco é projetado na imagem como $\x=P\,\X$, e esse ponto pertence a reta $\lightrgb$ na imagem se $\x^\top\lightrgb=0$ ou, substituindo, $(P\,\X)^\top\lightrgb=0$. Então, aplicando a transposta, $\X^\top P^\top\lightrgb=0$ e $P^\top\lightrgb$ é tomado como o plano que contém o ponto $\X$ no espaço. Assim, tal plano é retroprojetado da reta $\lightrgb$.  
+
+\subsubsection{A ação projetiva de $P$ em cônicas.}
+Um cone é uma quádrica degenerada, representada por uma matriz $4\times4$ que não tem posto completo, e é denotada por ${\tt Q}_{co}$.
+
+\subsubsection*{Retroprojeção de cônicas.}
+Uma cônica retroprojeta um cone ${\tt Q}_{co}$ que, neste caso, tem o vértice coincidindo com o centro da câmera, onde esse vértice é o vetor nulo da matriz $4\times4$ que representa o cone. Uma cônica retorpojeta um cone de acordo com 
+
+\begin{equation*}
+{\tt Q}_{co}=P^\top C\,P
+\end{equation*}
+pois, um ponto $\X$ no espaço é projetado na imagem na forma $\x=P\,\X$, e $\x\in C$ se satisfaz a equação $\x^\top C\,\x=0$. Substituindo $\x$ na equação da cônica temos $(P\,\X)^\top C\,P\,\X=0$, e aplicando a transposição, $\X^\top P^\top C\,P\,\X=0$. O ponto $\X$ é projetado na cônica $C$ se , se e somente se, $\X\in {\tt Q}_{co}$, que deve ser definida como ${\tt Q}_{co}=P^\top C\,P$. Assim, o cone é a retroprojeção da câmera. 
+
+\subsubsection{A ação projetiva de $P$ em quádricas.}\label{sec.proj-quadricas}
+Para tratarmos desse assunto, primeiramente precisamos definir alguns conceitos.
+
+\subsubsection*{Contorno gerador e contorno aparente.}
+Na formação da imagem de uma superfície, os raios de luz passando pelo centro da câmera são tangentes à essa superficie em 3D. O contorno dessa superfície nesses pontos de tangência é transformado num contorno no plano da imagem conforme a figura \ref{fig.cont-gerador-aparente}. O contorno da superfície é denominado \textit{contorno gerador} e denotado por ${\bf G}$, o contorno formado na imagem é chamado \textit{contorno aparente} e denotado por ${\bf g}$. Vale ressaltar que o contorno gerador depende das posições do centro da câmera e da própria superfície, e não depende do plano da imagem.  
+
+\begin{figure}[htb!]
+\centering
+\subfloat[]{\includegraphics[scale=1.1]{contorno-gerador-aparente}}
+\subfloat[]{\includegraphics[scale=.95]{superficie-lisa}}
+\caption{\textit{$({\tt a})\,$O contorno aparente é a imagem do contorno gerador, onde essa imagem fica definida pelas retas através do centro da câmera que são tangentes aos pontos no contorno gerador.$\,\,({\tt b})\,$}}
+\label{fig.cont-gerador-aparente}
+\end{figure}
+
+\subsubsection*{Projeção de quádricas.}
+A quádrica é uma superfície lisa  e o seu contorno gerador produz um contorno aparente no plano da imagem, através dos raios retroprojetados pelos pontos do contorno aparente e passando pelo centro da câmera, conforme um exemplo na figura \ref{fig.cont-gerador-aparente}. Assim, o contorno gerador é uma cônica e sob uma transformação projetiva o contorno aparente também é uma cônica na imagem. Como estamos usando relações de tangências aos contornos gerador e aparente, será necessária a utilização da quádrica dual	${\tt Q}^*$, já que esta define uma equação usando os planos que são tangentes ao contorno gerador. Seja $\lightrgb$ as retas tangentes à conica $C$ na imagem (contorno aparente), onde a cônica dual define a relação $\lightrgb^\top C^*\lightrgb=0$. Essas retas $\lightrgb$ retroprojetam planos definidos por $\bpi=P^\top\lightrgb$ (subseção \ref{sec.proj.retas}), que são tangentes à quádrica ${\tt Q}$ e satisfazem a relação $\bpi^\top {\tt Q}^*\bpi=0$. Substituindo o plano nessa última relação temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\bpi^\top {\tt Q}^*\bpi&=&(P^\top\lightrgb)^\top {\tt Q}^*P^\top\lightrgb\\
+&=&\lightrgb^\top P\,{\tt Q}^*P^\top\lightrgb\\
+&=&\lightrgb^\top C^*\lightrgb\\
+&=&0,
+\end{array}
+\end{equation*}
+onde tomamos $C^*=P\,{\tt Q}^*P^\top$, a imagem da quádrica sob a projeção $P$.
+
+\subsection{A Geometria Bifocal}
 
 \subsubsection{A Geometria Epipolar}
 
@@ -1130,7 +1284,7 @@ Portanto
 
 A \textit{matriz fundamental} reúne todas as informações da geometria epipolar, é a representação algébrica dessa geometria de duas visões e, por isso, também é conhecida como \textit{tensor bifocal}. 
 
-Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela seção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
+Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem através de um plano $\bpi$ qualquer no espaço. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito um raio de luz retroprojetado por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence ao raio retroprojetado por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda visão do raio retroprojetado por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela subseção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
 
 \begin{equation}\label{eq.homo-plano}
 \x'= H_{\bpi} \,\x,
