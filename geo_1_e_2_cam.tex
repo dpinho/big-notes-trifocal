@@ -144,7 +144,7 @@ Um fato interessante sobre pontos no infinito é que eles constituem as direçõ
 
 
 
-\subsubsection{A Cônica.}
+\subsubsection{A Cônica.}\label{sec.definicao-conica}
 
 
 Em geometria Euclidiana, as cônicas são de três tipos principais: elipse, hipérbole e parábola. São definidas, algebricamente, por uma equação do segundo grau em duas variáveis, considerando coordenadas não homogêneas:
@@ -205,7 +205,7 @@ C =  \begin{bmatrix}
       \end{bmatrix}.
 \end{equation*}
 
-Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade. Podemos, por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. \\
+Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade, pois podemos por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. Portanto, são necessários cinco pontos para que a mesma fique determinada.  \\
 
 \subsubsection{Retas tangentes à cônicas.} 
 
@@ -226,7 +226,7 @@ Agora considerando todos os pontos em $\lightrgb=(\x+\alpha\y)$ parametrizados p
 \end{equation*}
 já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.\\
 
-\subsubsection{Cônica Dual ou de reta.} 
+\subsubsection{Cônica Dual ou de reta.}\label{sec.conica-dual} 
 
 A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
 
@@ -487,9 +487,9 @@ $
 
 Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
 
-\subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$.}
+\subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$.}\label{sec.trans-pontos-planos-P3}
 
-A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada na subseção \ref{sec.espaco-P2} para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação projetiva de pontos $\X'=H\,\X$ temos que planos se transformam de acordo com
+A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada na subseção \ref{sec.trans-proj-H} para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação projetiva de pontos $\X'=H\,\X$ temos que planos se transformam de acordo com
 
 \begin{equation*}
 \bpi'=H^{-\top}\bpi.
@@ -501,11 +501,11 @@ A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga 
 
 
 
-\subsubsection{Direções e o plano no infinito.}
+\subsubsection{Direções e o plano no infinito.}\label{sec.direcoes-plano-infinito}
 
 O plano no infinito é denotado por $\bpi_\infty$, tem a foma canônica $\bpi_\infty=(0,0,0,1)^\top$ e é composto por pontos no infinito $D=(x_1,x_2,x_3,0)^\top$ que são as direções das retas contidas no espaço. No espaço projetivo $\mathbb{P}^2$ duas retas paralelas se encontram num ponto no infinito, e analogamente, em  $\mathbb{P}^3$ dois planos paralelos se encontram numa reta que está contida no plano no infinito, e também, uma reta é paralela a outra reta (ou a um plano) se o ponto de interseção está no $\bpi_\infty$. O plano no infinito é invariável sob uma transformação afim.
 
-De acordo com a subseção \ref{sec.espaco-P3} temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção tal vimos que a transformação afim é dada por 
+De acordo com a subseção \ref{sec.trans-pontos-planos-P3} temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção tal vimos que a transformação afim é dada por 
 
 \begin{equation*}
 H_A=
@@ -552,7 +552,7 @@ Existem outros planos que podem ser invariáveis sob uma transformação afim me
 
 \subsubsection{A cônica absoluta.}\label{sec.con-absoluta}
 
-A cônica absoluta é uma cônica (ponto) denotada por $\Omega_\infty$ e está contida no plano no infinito $\bpi_\infty$. Em coordenadas Euclidianas o plano no infinito tem definição $\bpi_\infty=(0,0,0,1)$ e a cônica absoluta é definida através da equação matricial
+A cônica absoluta é uma cônica (ponto) denotada por $\Omega_\infty$ e está contida no plano no infinito $\bpi_\infty$. Em coordenadas Euclidianas o plano no infinito tem definição $\bpi_\infty=(0,0,0,1)$ (subseção \ref{sec.direcoes-plano-infinito}) e a cônica absoluta é definida através da equação matricial
 
 \begin{equation*}
 \X^\top\Omega_\infty\X=0,
@@ -652,7 +652,7 @@ k
 &=&0,
 \end{array}
 \end{equation*}
-onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.espaco-P2} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
+onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.conica-dual} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
 
 Para ver que ${\bf v}$ é a reta de interseção de $\bpi$ com $\bpi_\infty$, considere o sistema abaixo onde um ponto $\X$ pertence a esses dois planos. Esse ponto pertence a cada um dos planos se
 
@@ -676,7 +676,7 @@ X_4
 \end{pmatrix}
 =0.
 \end{empheq}
-Pela segunda equação, como $\bpi=(0,0,0,1)$ temos que $X_4=0$ (o que já não era novidade). Substituindo $X_4=0$ na primeira equação e efetuando a multiplicação matricial, a constante $k$ desaparece multiplicada por zero e restará
+Pela segunda equação, como $\bpi=(0,0,0,1)$ (subseção \ref{sec.direcoes-plano-infinito}) temos que $X_4=0$ (o que já não era novidade). Substituindo $X_4=0$ na primeira equação e efetuando a multiplicação matricial, a constante $k$ desaparece multiplicada por zero e restará
 
 \begin{equation*}
 {\bf v}^\top
@@ -1161,9 +1161,9 @@ Na formação da imagem de uma superfície, os raios de luz passando pelo centro
 
 \begin{figure}[htb!]
 \centering
-\subfloat[]{\includegraphics[scale=1.1]{contorno-gerador-aparente}}
-\subfloat[]{\includegraphics[scale=.95]{superficie-lisa}}
-\caption{\textit{$({\tt a})\,$O contorno aparente é a imagem do contorno gerador, onde essa imagem fica definida pelas retas através do centro da câmera que são tangentes aos pontos no contorno gerador.$\,\,({\tt b})\,$}}
+\subfloat[]{\includegraphics[scale=.94]{contorno-gerador-aparente}}
+\subfloat[]{\includegraphics[scale=.94]{superficie-lisa}}
+\caption{\textit{$({\tt a})\,$O contorno aparente é a imagem do contorno gerador, onde essa imagem fica definida pelas retas através do centro da câmera que são tangentes aos pontos no contorno gerador.$\,\,({\tt b})\,$ Uma quádrica tangenciada por um cone que é o formado pelo conjunto de retas passando pelo centro da câmera, onde tais retas são tangentes ao contorno gerador $G$. }}
 \label{fig.cont-gerador-aparente}
 \end{figure}
 
