@@ -367,6 +367,123 @@ Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x
 onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
 
 
+\subsubsection{Subgrupo de transformações projetivas}\label{sec.hierarquia-transformacoes}
+
+As transformações projetivas se dividem em subgrupos de transformações com características mais específicas. Esses subgrupos são as \textit{isometrias}, \textit{similaridades}, \textit{afinidades} e a própria \textit{transformação projetiva}. Cada subgrupo mantém \textit{invariante} algumas propriedades do objeto ao qual a transformação está sendo aplicada. Por exemplo, a distância entre dois pontos num quadrado se mantém a mesma após a aplicação de uma transformação isométrica (translação, rotação e possível reflexão), mas pode variar após a aplicação de uma transformação de similaridade, a qual pode gerar um quadrado maior ou menor que o original. Portanto, distância entre dois pontos é uma invariante sob isometria mas não é sob similaridade.
+
+\subsubsection*{Transformação isométrica.}
+É representada pela matriz
+
+\begin{equation*}
+\begin{bmatrix}
+\epsilon\,cos\,\theta&-sen\,\theta&t_x\\
+\epsilon\,sen\,\theta&cos\,\theta&t_y\\
+0&0&1
+\end{bmatrix},
+\end{equation*}
+onde $\epsilon=\pm1$. Se $\epsilon=1$ a isometria preserva a orientação e é chamada \textit{transformação Euclidiana}(composição de translação e rotação). Se $\epsilon=-1$ a isometria reverte a orientação. A transformação Euclidiana é a isometria mais imortante, denotada por $H_E$ e representada pela matriz em forma de blocos
+
+\begin{equation*}
+H_E=
+\begin{bmatrix}
+R&{\bf t}\\
+{\bf 0}^\top&1
+\end{bmatrix}.
+\end{equation*}
+Sendo $R_{2\times2}$ uma matriz de rotação, ${\bf t}$ um vetor com duas componentes e ${\bf 0}=(0,0)^\top$ um vetor nulo. Essa transformação tem três graus de liberdade, um para o ângulo de rotação e dois para o vetor de translação. Assim, são necessários no mínimo dois pontos com suas correspondências para determinarmos a matriz da transformação Euclidiana. As invariantes são distância entre dois pontos, ângulo entre duas retas e área. 
+
+\subsection*{Tranformação de similaridade.}
+A transformação de similaridade é denotada por $H_S$ e é representada pela matriz 
+
+\begin{equation*}
+H_S=
+\begin{bmatrix}
+s\,cos\,\theta&-s\,sen\,\theta&t_x\\
+s\,sen\,\theta&s\,cos\,\theta&t_y\\
+0&0&1
+\end{bmatrix},
+\end{equation*} 
+que neste caso é a composição de uma transformação Euclidiana com uma escala (sem reflexão) $s$. A transformação de similaridade preserva a forma dos objetos e tem quatro graus de liberdade, com a escala contando para um grau a mais que a transformção Euclidiana. A similaridade também pode ser determinada usando dois pontos com suas correspondências e tem a matriz em bloco
+
+\begin{equation*}
+H_S=
+\begin{bmatrix}
+s\,R&{\bf t}\\
+\,{\bf 0}^\top&1
+\end{bmatrix}.
+\end{equation*}
+Com a mudança na escala das figuras, a área e a distância entre dois pontos não é mais a mesma após a transformação, mas os ângulos entre as retas não mudam, e pontanto, ângulo é uma invariante sob similaridade. Em particular, retas paralelas permanecem paralelas. A razão entre as distâncias antes e após a transformação permanece a mesma por conta do cancelamento da escala, e analogamente, a razão entre as áreas também permanece a mesma por conta do cancelamento do quadrado da escala.
+
+\subsection*{Transformação afim.}
+A transformação afim, ou afinidade, é uma transformação linear seguida de uma translação, denotada por $H_A$ e representada pela matriz
+
+\begin{figure}[!htb]
+\centering
+\subfloat[]{\includegraphics[scale=.7]{aplicacao-phi-escala-afinidades}}
+\quad
+\subfloat[]{\includegraphics[scale=.7]{aplicacao-theta-afinidades}}
+\caption{$({\tt a})\,$\textit{Aplicação da rotação $\phi$ e das escalas não-isotrópicas contidas em $D$. Note que as escalas tem efeitos em direções ortogonais.}$\,({\tt b})\,$\textit{Aplicação da rotação $\theta$.}}
+\label{fig.angulos-afinidades}
+\end{figure}
+
+\begin{equation*}
+H_A=
+\begin{bmatrix}
+a_{11}&a_{12}&t_x\\
+a_{21}&a_{22}&t_y\\
+0&0&1
+\end{bmatrix}.
+\end{equation*}
+A matriz possui seis graus de liberdade correspondentes ao seis elementos da matriz, e são necessários três pontos com suas correspondências para determinarmos a matriz da afinidade que pode ser escrita em blocos como
+
+\begin{equation*}
+H_A=
+\begin{bmatrix}
+A&{\bf t}\\
+{\bf 0}^\top&1
+\end{bmatrix}.
+\end{equation*}
+Como uma forma de ajudar a entender os efeitos da matriz $A$ vamos decompô-la em transformações mais fundamentais
+
+\begin{equation*}
+A=R(\theta)R(-\phi)DR(\phi),
+\end{equation*}
+com uma matriz diagonal $D=diag(\lambda_1, \lambda_2)$ onde as componentes são escalares não-isotrópicos. Uma rotação $\phi$ que define o sentido de aplicação dos escalares da matriz $D$, uma rotação contrária $-\phi$ e uma última rotação $\theta$. Podemos visualizar os efeitos das rotações e dos escalares na figura \ref{fig.angulos-afinidades}. Os dois graus de liberdade a mais em relação a uma similaridade vêm do ângulo $\phi$ e da razão entre os escalares aplicados por $D$, $\frac{\lambda_1}{\lambda_2}$. 
+
+
+Temos três importantes invariantes sob afinidade: retas paralelas se matêm paralelas, razão entre seguimentos de retas paralelas e razão entre as áreas. Mesmo que retas paralelas sejam invariantes, a afinidade não mantém, em geral, o ângulo entre retas nem a razão entre as distâncias correspondentes como acontece com a similaridade.
+
+\subsubsection*{Transformações projetivas.}
+É uma transformação linear mais geral de coordenadas homogêneas (já definida na subseção tal), pois generaliza  a transformação de afinidade. Na forma de blocos temos a representação
+
+\begin{equation*}
+H_P=
+\begin{bmatrix}
+A&{\bf t}\\
+{\bf v}^\top&v
+\end{bmatrix},
+\end{equation*}
+onde ${\bf v}=(v_1,v_2)$. Como a matriz é $3\times3$ temos nove variáveis a serem determinadas, mas que se reduzem a oito tomando uma das variáveis para escala. Assim, precisamos de quatro pontos com suas correspondências para determinarmos os oito parâmetros da matriz. Além de manter a colinearidade dos pontos, uma invariante fundamental na transformação porjetiva é a razão cruzada entre quatro pontos colineares, ou seja, a razão das razões de segmentos contidos numa mesma reta. Na figura \ref{fig.transformacoes-2D} podemos ver um resumo das características geométricas preservadas em um quadrado por cada subgrupo de transformação.   
+
+\begin{figure}[!htb]
+\centering
+\subfloat[]{\includegraphics[scale=.6]{trans-euclidiana-2D}}
+\qquad
+\subfloat[]{\includegraphics[scale=.6]{trans-similaridade-2D}}
+\qquad
+\subfloat[]{\includegraphics[scale=.6]{trans-afinidade-2D}}
+\qquad
+\subfloat[]{\includegraphics[scale=.6]{trans-projetividade-2D}}
+\quad
+\caption{\textit{Transformacoes:}$\,({\tt a})\,$\textit{Euclidiana,}$\,({\tt b})\,$\textit{similaridade,}$\,({\tt c})\,${\it afinidade, e}$\,({\tt d})\,${\it projetividade.}}
+\label{fig.transformacoes-2D}
+\end{figure}
+
+
+
+
+
+
 \subsection{O Espaço Projetivo em Três Dimensões}\label{sec.espaco-P3}
 
 
