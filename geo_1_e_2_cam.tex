@@ -367,7 +367,76 @@ Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x
 onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
 
 
-\subsubsection{Subgrupo de transformações projetivas}\label{sec.hierarquia-transformacoes}
+\subsubsection{A geometria projetiva de uma dimensão.}
+Vamos abrir um parênteses no espaço ${\mathbb{P}^2}$ para falar rapidamente sobre o espaço ${\mathbb{P}}$. A reta projetiva tem muita similaridade com o plano projetivo, pois pontos na reta são representados em coordenadas homogêneas (vetores com duas componentes) e são transformados de acordo com uma homografia $H_{2\times2}$. Na reta projetiva ${\mathbb{P}}$ os pontos tem as seguintes denotação e transformação projetiva: 
+
+\begin{equation}\label{eq.ponto-homografia-em-P}
+\overline{\x}=
+\begin{pmatrix}
+x_1\\
+x_2
+\end{pmatrix}
+\qquad\text{e}\qquad
+\overline{\x}'=H\,\overline{\x}.
+\end{equation}
+Pontos no infinito tem a componente $x_2=0$.
+
+\begin{figure}[!htb]
+\centering
+\subfloat[]{\includegraphics[scale=.9]{geometria-P1}}
+\quad
+\subfloat[]{\includegraphics[scale=.9]{razao-cruzada-retas}}
+\caption{$({\tt a})\,$\textit{Cada grupo de quatro pontos está relacionado aos outros por uma transformação projetiva em ${\mathbb{P}}$. Como a razão cruzada é uma invariante, tais grupo possuem a mesma razão cruzada.}$\,({\tt b})\,$\textit{A razão cruzada das quatro retas é uma invariante projetiva do plano que as contém. Ver subseção \ref{sec.hierarquia-transformacoes}.}}
+\label{fig.razao-cruzada}
+\end{figure}
+
+\subsubsection*{A razao cruzada.}
+A definição a seguir é uma \textit{invariante} (ver subseção \ref{sec.hierarquia-transformacoes}) básica da geometria projetiva. Dados quatro pontos numa reta, conforme a figura \ref{fig.razao-cruzada}, a razão cruzada é definida por 
+
+\begin{equation*}
+\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\frac{|\overline{\x}_1\,\overline{\x}_2||\overline{\x}_3\,\overline{\x}_4|}{|\overline{\x}_1\,\overline{\x}_3||\overline{\x}_2\,\overline{\x}_4|},
+\end{equation*}
+onde 
+
+\begin{equation*}
+|\overline{\x}_i\,\overline{\x}_j|=
+\text{det}
+\begin{bmatrix}
+x_{i1}&x_{j1}\\
+x_{i2}&x_{j2}
+\end{bmatrix}.
+\end{equation*}
+
+Vamos mostrar que a razão cruzada é uma invariante sob transformação projetiva. Dada uma homografia como em \ref{eq.ponto-homografia-em-P} temos que 
+
+\begin{equation}\label{eq.invariante-cross}
+\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4).
+\end{equation}
+De fato,
+
+\begin{equation*}
+\begin{array}{rcll}
+\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)&=&\frac{|\overline{\x}'_1\,\overline{\x}'_2||\overline{\x}'_3\,\overline{\x}'_4|}{|\overline{\x}'_1\,\overline{\x}'_3||\overline{\x}'_2\,\overline{\x}'_4|}&\text{e como}\qquad\overline{\x}'=H\,\overline{\x}\\\\
+&=&
+\frac{|H\,\overline{\x}_1\,H\,\overline{\x}_2||H\,\overline{\x}_3\,H\,\overline{\x}_4|}{|H\,\overline{\x}_1\,H\,\overline{\x}_3||H\,\overline{\x}_2\,H\,\overline{\x}_4|}&\\\\
+&=&
+\frac{|H\,[\overline{\x}_1\,\overline{\x}_2]||H\,[\overline{\x}_3\,\overline{\x}_4]|}{|H\,[\overline{\x}_1\,\overline{\x}_3]||H\,[\overline{\x}_2\,\overline{\x}_4|]}&\\\\
+&=&
+\frac{|H|\,|\overline{\x}_1\,\overline{\x}_2|\,|H|\,|\overline{\x}_3\,\overline{\x}_4|}{|H|\,|\overline{\x}_1\,\overline{\x}_3|\,|H|\,|\overline{\x}_2\,\overline{\x}_4|}&\\\\
+&=&
+\frac{|\overline{\x}_1\,\overline{\x}_2||\overline{\x}_3\,\overline{\x}_4|}{|\overline{\x}_1\,\overline{\x}_3||\overline{\x}_2\,\overline{\x}_4|}&\\\\
+&=&
+\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4),
+\end{array}
+\end{equation*}
+e portanto \ref{eq.invariante-cross} segue.
+
+\subsubsection*{Retas concorrentes.}
+Quatro retas concorrentes em um único ponto têm geometria em ${\mathbb{P}}$ dual com quatro pontos colineares, assim a razão cruzada entre essas retas também é uma invariante sob projetividade. Conforme a figura \ref{fig.razao-cruzada}, o valor da razão cruzada entre as quatro retas é dados pelos pontos de interseção de uma quinta reta transversal a essas quatro.
+
+
+
+\subsubsection{Subgrupo de transformações projetivas.}\label{sec.hierarquia-transformacoes}
 
 As transformações projetivas se dividem em subgrupos de transformações com características mais específicas. Esses subgrupos são as \textit{isometrias}, \textit{similaridades}, \textit{afinidades} e a própria \textit{transformação projetiva}. Cada subgrupo mantém \textit{invariante} algumas propriedades do objeto ao qual a transformação está sendo aplicada. Por exemplo, a distância entre dois pontos num quadrado se mantém a mesma após a aplicação de uma transformação isométrica (translação, rotação e possível reflexão), mas pode variar após a aplicação de uma transformação de similaridade, a qual pode gerar um quadrado maior ou menor que o original. Portanto, distância entre dois pontos é uma invariante sob isometria mas não é sob similaridade.
 
@@ -751,7 +820,7 @@ I&{\bf 0}\\
 \end{equation}
 Para ver que os planos envelopados pela quádrica dual absoluta ${\tt Q}^*_\infty$ são tangentes à cônica absoluta $\Omega_\infty$, considere um plano $\bpi=({\bf v}, k)^\top$. Esse plano está no envelope definido por ${\tt Q}^*_\infty$ se, por definição, $\bpi^\top {\tt Q}^*_\infty\bpi=0$. Usando a definição em \ref{eq.quadrica-dual-abs} temos
 
-\begin{equation*}
+\begin{equation}\label{eq.envelope-quadrica}
 \begin{array}{rcl}
 \bpi^\top {\tt Q}^*_\infty\bpi&=&
 \begin{pmatrix}
@@ -768,8 +837,8 @@ k
 &=&{\bf v}^\top {\bf v}\\
 &=&0,
 \end{array}
-\end{equation*}
-onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.conica-dual} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
+\end{equation}
+onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.conica-dual} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$, o que está de acordo com \ref{eq.envelope-quadrica}. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
 
 Para ver que ${\bf v}$ é a reta de interseção de $\bpi$ com $\bpi_\infty$, considere o sistema abaixo onde um ponto $\X$ pertence a esses dois planos. Esse ponto pertence a cada um dos planos se
 
