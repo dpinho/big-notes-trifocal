@@ -367,8 +367,8 @@ Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x
 onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
 
 
-\subsubsection{A geometria projetiva de uma dimensão.}
-Vamos abrir um parênteses no espaço ${\mathbb{P}^2}$ para falar rapidamente sobre o espaço ${\mathbb{P}}$. A reta projetiva tem muita similaridade com o plano projetivo, pois pontos na reta são representados em coordenadas homogêneas (vetores com duas componentes) e são transformados de acordo com uma homografia $H_{2\times2}$. Na reta projetiva ${\mathbb{P}}$ os pontos tem as seguintes denotação e transformação projetiva: 
+\subsubsection{A geometria projetiva de uma dimensão.}\label{sec.geometria-1D}
+Vamos abrir um parênteses no espaço ${\mathbb{P}^2}$ para falar rapidamente sobre o espaço ${\mathbb{P}}$. A reta projetiva tem muita similaridade com o plano projetivo, pois pontos na reta são representados em coordenadas homogêneas (vetores com duas componentes) e são projetivamente transformados de acordo com uma homografia $H_{2\times2}$. Na reta projetiva ${\mathbb{P}}$ os pontos tem as seguintes denotação e transformação projetiva: 
 
 \begin{equation}\label{eq.ponto-homografia-em-P}
 \overline{\x}=
@@ -390,7 +390,7 @@ Pontos no infinito tem a componente $x_2=0$.
 \label{fig.razao-cruzada}
 \end{figure}
 
-\subsubsection*{A razao cruzada.}
+\subsubsection*{A razão cruzada.}
 A definição a seguir é uma \textit{invariante} (ver subseção \ref{sec.hierarquia-transformacoes}) básica da geometria projetiva. Dados quatro pontos numa reta, conforme a figura \ref{fig.razao-cruzada}, a razão cruzada é definida por 
 
 \begin{equation*}
@@ -407,7 +407,7 @@ x_{i2}&x_{j2}
 \end{bmatrix}.
 \end{equation*}
 
-Vamos mostrar que a razão cruzada é uma invariante sob transformação projetiva. Dada uma homografia como em \ref{eq.ponto-homografia-em-P} temos que 
+Vamos mostrar que a razão cruzada é uma invariante sob transformação projetiva, ou seja, dada uma homografia como a equação \ref{eq.ponto-homografia-em-P} temos que 
 
 \begin{equation}\label{eq.invariante-cross}
 \text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4).
@@ -416,23 +416,33 @@ De fato,
 
 \begin{equation*}
 \begin{array}{rcll}
-\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)&=&\frac{|\overline{\x}'_1\,\overline{\x}'_2||\overline{\x}'_3\,\overline{\x}'_4|}{|\overline{\x}'_1\,\overline{\x}'_3||\overline{\x}'_2\,\overline{\x}'_4|}&\text{e como}\qquad\overline{\x}'=H\,\overline{\x}\\\\
+\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)&=&\displaystyle\frac{|\overline{\x}'_1\,\overline{\x}'_2||\overline{\x}'_3\,\overline{\x}'_4|}{|\overline{\x}'_1\,\overline{\x}'_3||\overline{\x}'_2\,\overline{\x}'_4|}&\text{e como}\qquad\overline{\x}'=H\,\overline{\x}\\\\
 &=&
-\frac{|H\,\overline{\x}_1\,H\,\overline{\x}_2||H\,\overline{\x}_3\,H\,\overline{\x}_4|}{|H\,\overline{\x}_1\,H\,\overline{\x}_3||H\,\overline{\x}_2\,H\,\overline{\x}_4|}&\\\\
+\displaystyle\frac{|H\,\overline{\x}_1\,H\,\overline{\x}_2||H\,\overline{\x}_3\,H\,\overline{\x}_4|}{|H\,\overline{\x}_1\,H\,\overline{\x}_3||H\,\overline{\x}_2\,H\,\overline{\x}_4|}&\\\\
 &=&
-\frac{|H\,[\overline{\x}_1\,\overline{\x}_2]||H\,[\overline{\x}_3\,\overline{\x}_4]|}{|H\,[\overline{\x}_1\,\overline{\x}_3]||H\,[\overline{\x}_2\,\overline{\x}_4|]}&\\\\
+\displaystyle\frac{|H\,[\overline{\x}_1\,\overline{\x}_2]||H\,[\overline{\x}_3\,\overline{\x}_4]|}{|H\,[\overline{\x}_1\,\overline{\x}_3]||H\,[\overline{\x}_2\,\overline{\x}_4|]}&\\\\
 &=&
-\frac{|H|\,|\overline{\x}_1\,\overline{\x}_2|\,|H|\,|\overline{\x}_3\,\overline{\x}_4|}{|H|\,|\overline{\x}_1\,\overline{\x}_3|\,|H|\,|\overline{\x}_2\,\overline{\x}_4|}&\\\\
+\displaystyle\frac{|H|\,|\overline{\x}_1\,\overline{\x}_2|\,|H|\,|\overline{\x}_3\,\overline{\x}_4|}{|H|\,|\overline{\x}_1\,\overline{\x}_3|\,|H|\,|\overline{\x}_2\,\overline{\x}_4|}&\\\\
 &=&
-\frac{|\overline{\x}_1\,\overline{\x}_2||\overline{\x}_3\,\overline{\x}_4|}{|\overline{\x}_1\,\overline{\x}_3||\overline{\x}_2\,\overline{\x}_4|}&\\\\
+\displaystyle\frac{|\overline{\x}_1\,\overline{\x}_2||\overline{\x}_3\,\overline{\x}_4|}{|\overline{\x}_1\,\overline{\x}_3||\overline{\x}_2\,\overline{\x}_4|}&\\\\
 &=&
 \text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4),
 \end{array}
 \end{equation*}
-e portanto \ref{eq.invariante-cross} segue.
+e portanto a equação \ref{eq.invariante-cross} segue.
+
+Como colorário, segundo \cite{kneebone}, existe homografia $H$ onde $\overline{\x}_i=H\,\overline{\x}'_i$ se, e somente se, $\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)$.
+
+
+
 
 \subsubsection*{Retas concorrentes.}
-Quatro retas concorrentes em um único ponto têm geometria em ${\mathbb{P}}$ dual com quatro pontos colineares, assim a razão cruzada entre essas retas também é uma invariante sob projetividade. Conforme a figura \ref{fig.razao-cruzada}, o valor da razão cruzada entre as quatro retas é dados pelos pontos de interseção de uma quinta reta transversal a essas quatro.
+Quatro retas concorrentes em um único ponto têm geometria em ${\mathbb{P}}$ dual com quatro pontos colineares, assim a razão cruzada entre essas retas também é uma invariante sob projetividade. Conforme a figura \ref{fig.razao-cruzada}, o valor da razão cruzada entre as quatro retas é dado pelos pontos de interseção de uma quinta reta transversal a essas quatro, ou seja:
+
+\begin{equation*}
+\text{cross}(\lightrgb_1,\lightrgb_2,\lightrgb_3,\lightrgb_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)
+\end{equation*}
+Tal asserção é devida ao teorema de \textit{Pappus} conforme \citep{springer64}. 
 
 
 
