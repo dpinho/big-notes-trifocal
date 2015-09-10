@@ -86,7 +86,7 @@ r_2\,sen\,\alpha_2
 =0
 \end{equation*}
 
-\subsubsection{Detalhamento: segunda abordagem para mapeamento entre retas epipolares.}
+\subsubsection{Detalhamento: segunda abordagem para mapeamento entre retas epipolares.}\label{sec.homografia-reta-epipolar}
 
 
 Uma outra forma de pensar sobre essa homografia, encontrada em \cite{Hartley2004}, é considerando que as retas epipolares estão perspectivamente relacionadas com centro em um ponto $Q$ na reta base, conforme a figura \ref{fig.retas-epi-hartley}.
@@ -182,10 +182,10 @@ Esta é uma cônica definida por retas e é a imagem da quádrica dual absoluta 
 \end{equation*}
 conforme a subseção \ref{sec.proj-quadricas}.\\
 
-\subsection{O teorema 2.}
+\subsection{O teorema 2.}\label{sec.teorema-2}
 
 
-Para a correspondência entre duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restrição \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
+Para a correspondência entre retas tangentes às duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ podemos utilizar a restrição \textit{Kruppa}: as duas retas tangentes à ${\bf \omega}$ e passando por $\e$, estão relacionadas por uma homografia de reta epipolar às duas tangentes à ${\bf \omega'}$ passando por $\e'$. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
 \begin{figure}[!htb]
 \centering
@@ -245,15 +245,12 @@ onde $F=H_\infty^{-\top}\,[\e]_\times$ conforme a subseção \ref{sec.matriz-F}.
 
 Da relação \ref{eq.kruppa} são extraídas as duas equações quadráticas independentes eliminando-se o fator de escala, onde tais equações são conhecidas como as restrições de Kruppa. 
 
-\begin{equation*}
-***
-\end{equation*}
 
 \subsection{Mudança de coordenadas projetivas.}
 
 De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos também tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Vejamos como isso pode ser feito.
 
-\subsubsection{Corregistro de pontos pertencentes a diferentes planos de imagem.}
+\subsubsection{Detalhamento: corregistro de pontos pertencentes a diferentes planos de imagem.}\label{sec.corregistro-pontos}
 Suponha a existência de pontos em correspondêcia em dois planos de imagem relacionados por uma transformação projetiva $\x'=H\,\x$, onde $\x\in {\mathbb{P}^2}$ e $\x'\in {\mathbb{P'}^2}$. Fazendo as seguintes mudanças de coordenadas projetivas
 
 \begin{equation}\label{eq.igualando-coordenadas}
@@ -272,11 +269,21 @@ H\,\overline{\x}'&=&H\,\overline{\x}&\Rightarrow\\
 \overline{\x}'&=&\overline{\x}.&
 \end{array}
 \end{equation*}
-Cabe ressaltar que as mudanças de coordenadas em \ref{eq.igualando-coordenadas} não altera nosso desenvolvimento, já que aqui nos interessa propriedades que são invariantes sob transformações projetivas, como tangências e interseções.
+Cabe ressaltar que as mudanças de coordenadas em \ref{eq.igualando-coordenadas} não altera nosso desenvolvimento, já que aqui nos interessa propriedades que são invariantes sob transformações projetivas, como tangências, interseções e raz\~ao cruzada.
 
-\subsection{O teorema 3.}
+\subsection{O teorema 3.}\label{sec.teorema-3}
 
-Aplicando essas mudanças de coordenadas, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem satisfazem a restrição epipolar. Pela subseção \ref{sec.definicao-conica}, uma cônica fica determinada por cinco pontos, como temos quatro pontos na imagem vamos deixar a cônica $B$ na dependência de $\e$ (o quinto ponto necessário), onde essa cônica será definida por um parâmetro $\theta$. Esta cônica $B=B(\e)$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
+Aplicando as mudanças de coordenadas descritas na subsec\~ao \ref{sec.corregistro-pontos} nos quatro pontos e nos epipolos, a restrição epipolar pode ser convertida em: os epipolos ${\bf e}$ e ${\bf e'}$ juntamente com os quatros pontos, que obedecem a restrição epipolar, devem estar alojados numa cônica $B$ e, reciprocamente, dois epipolos ${\bf e}$ e ${\bf e'}$ que são concônicos com quatro pontos na imagem satisfazem a restrição epipolar. 
+
+\subsubsection{Detalhamento: argumentação do teorema.}
+
+Pela subseção \ref{sec.definicao-conica}, uma cônica fica determinada por cinco pontos, como temos quatro pontos na imagem vamos deixar a cônica $B$ na dependência de $\e$ (o quinto ponto necessário). Analogamente, o epipolo $\e'$ também define uma cônica com os quatro pontos na imagem, digamos $B'$. Pela subsec\~ao \ref{sec.homografia-reta-epipolar}, existe a homografia da reta epipolar que relaciona essas quatro retas de cada feixe passando por $\e$ e $\e'$. Pelo teorema de Steiner, \citep{kneebone}, se dois feixes de retas passando por $\e$ e $\e'$ estão homograficamente relacionados, o ponto de interseção entre retas correspondentes desses feixes descreve uma cônica que passa por $\e$ e $\e'$. Portanto $B=B'$ e todos os seis pontos em questão são concônicos.
+
+
+Reciprocamente, pelo teorema de Chasles em \citep{kneebone}, se quatro pontos $\x_i$ numa cônica formam um feixe de retas concorrentes em um quinto ponto $\e\in B$, a razão cruzada entre as quatro retas não depende da posição de $\e$. Assim, a razão cruzada  do feixe concorrente em $\e$ é igual a do feixe concorrente em $\e'$. Pela subseção \ref{sec.geometria-1D}, a razão cruzada num feixe de retas é igual à razão cruzada entre os quatro pontos de interseção de uma reta qualquer com o feixe. Pelo corolário ainda na subseção \ref{sec.geometria-1D}, dois conjuntos de quatro pontos colineares têm a mesma razão cruzada se, e somente se, correspondem sob uma homografia.  
+
+
+Esta cônica $B=B(\e)$ será bastante importante durante a abordagem pois, se os dois epipolos são concônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das quatro retas através ${\bf e}$ com as quatro retas através ${\bf e'}$. 
 
 \begin{figure}[!htb]
 \centering
@@ -285,7 +292,14 @@ Aplicando essas mudanças de coordenadas, a restrição epipolar pode ser conver
 \label{pontos-conconicos}
 \end{figure}
 
-Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes intersectam $B$ no mesmo ponto. Desta forma, a restrição Kruppa pode ser traduzida como: as restrições de calibração são equivalentes à condição de que as duas retas tangentes à cônica ${\bf \omega}$ e passando por ${\bf e}$, intersectam a cônica $B$ nos mesmos dois pontos adicionais que as retas tangentes à ${\bf \omega'}$ e passando por ${\bf e'}$. Isto é, as projeções de ${\bf \omega}$ e ${\bf \omega'}$ em $B$, através dos respectivos epipolos, devem coincidir. Essa construção geométrica pode ser visualizada na figura \ref{omega-B} e será a fundação para o resto da abordagem. 
+\subsection{O teorema 4.}
+
+Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes intersectam $B$ no mesmo ponto. Desta forma, o teorema 4 é anunciado como: as restrições de calibração são equivalentes à condição de que as duas retas tangentes à cônica ${\bf \omega}$ e passando por ${\bf e}$, intersectam a cônica $B$ nos mesmos dois pontos adicionais que as retas tangentes à ${\bf \omega'}$ e passando por ${\bf e'}$. 
+
+\subsubsection{Detalhamento: argumentação do teorema.}
+Na subseção \ref{sec.teorema-2}, vimos que as duas retas tangentes à conica $\omega$ estão projetivamente relacionadas com as duas tangentes à cônica $\omega'$. Pelo teorema de Steiner, na subseção \ref{sec.teorema-3}, o ponto de interseção entre duas retas correspondentes, em dois feixes homograficamente relacionados, descrevem uma cônica. Assim, as retas tangentes à cônica $\omega$ se intersectam às retas tangentes à cônica $\omega'$ em dois pontos adicionais sobre a cônica $B$. 
+
+Isto é, as projeções de ${\bf \omega}$ e ${\bf \omega'}$ em $B$, através dos respectivos epipolos, devem coincidir. Essa construção geométrica pode ser visualizada na figura \ref{omega-B} e será a fundação para o resto da abordagem. 
 
 \begin{figure}[!htb]
 \centering
@@ -294,12 +308,34 @@ Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf
 \label{omega-B}
 \end{figure}
 
+\subsection{O teorema 5.}
+
+A demonstração desse teorema é dada em \cite{2503343} e vamos incluir alguns detalhes.
 Podemos pensar na representação da projeção de  ${\bf \omega}$ e ${\bf \omega'}$ em $B$ como a reta que liga os dois pontos de interseção das tangentes com $B$. Essa reta que liga os dois pontos de interseção, de acordo com a projeção de ${\bf \omega}$ através do epipolo ${\bf e}$ é representada por $({\bf \omega}\diamond B)\,{\bf e}$, e a cônica $({\bf \omega}\diamond B)$ é definida como:
 
-\begin{equation}
+\begin{equation}\label{eq.conica-diamond}
 (\omega \diamond B)\equiv 2\,B\,\omega^*B - tr(\omega^*\,B)\,B,
 \end{equation}
 onde $\omega^*$ é a matriz adjunta de $\omega$.
+
+A equação \ref{eq.conica-diamond} é uma fórmula projetivamente invariante de uma cônica. Para ver isso, basta tomar uma configuração genérica para as cônicas $B$ e $\omega^*$, digamos
+
+\begin{equation*}
+B=
+\begin{bmatrix}
+a&b&c\\
+b&d&e\\
+c&e&f
+\end{bmatrix}
+\qquad\text{e}\qquad
+\omega^*=
+\begin{bmatrix}
+g&h&i\\
+h&j&l\\
+i&l&m
+\end{bmatrix},
+\end{equation*} 
+e efetuar as multiplicações constantes na equação \ref{eq.conica-diamond}. Lembrando que o traço de uma matriz é definido pela soma dos elementos da diagonal principal, o resultado das multiplicações é uma matriz simétrica, que pela subseção \ref{sec.definicao-conica}, representa uma cônica. Pela subseção \ref{sec.trans-proj-H}, uma homografia leva uma cônica em outra cônica, a qual mantém as características invariantes sob transformação projetiva.
 
 Note que a reta $(\omega \diamond B)\,{\bf e}$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Há uma breve explanação sobre a relação polo-polar na subseção \ref{sec.polo-polar}. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem.
 
