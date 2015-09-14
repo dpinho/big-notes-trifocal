@@ -259,7 +259,7 @@ Suponha a existência de pontos em correspondêcia em dois planos de imagem rela
 \overline{\x}'&=&H^{-1}\x',
 \end{array}
 \end{equation}
-temos que $\x=\overline{\x}'$ e $\x'=H\,\overline{\x}'$. Substituindo essas duas últimas igualdades em $\x'=H\,\x$ temos
+temos que $\x=\overline{\x}$ e $\x'=H\,\overline{\x}'$. Substituindo essas duas últimas igualdades em $\x'=H\,\x$ temos
 
 \begin{equation*}
 \begin{array}{rcll}
@@ -337,6 +337,163 @@ i&l&m
 \end{equation*} 
 e efetuar as multiplicações constantes na equação \ref{eq.conica-diamond}. Lembrando que o traço de uma matriz é definido pela soma dos elementos da diagonal principal, o resultado das multiplicações é uma matriz simétrica, que pela subseção \ref{sec.definicao-conica}, representa uma cônica. Pela subseção \ref{sec.trans-proj-H}, uma homografia leva uma cônica em outra cônica, a qual mantém as características invariantes sob transformação projetiva.
 
+\subsubsection{Representação canônica de uma cônica.}
+
+Como vimos na subseção \ref{sec.espaco-P2}, o plano projetivo $\mathbb{P}^2$ tem seus pontos representados por vetores homogêneos com três componentes. Da algebra linear sabemos que o espaço $\mathbb{R}^3$ também tem seus pontos representados por vetores com três componentes. Portanto, existe uma analogia entre as representações mesmo que no plano projetivo a relação entre vetores e pontos não seja biunívoca como em $\mathbb{R}^3$. Da mesma forma que podemos escolher a base canônica para representar vetores em $\mathbb{R}^3$, fazendo a devida transformação projetiva do sistema de coordeandas, podemos escolher uma base para representação do plano projetivo incluindo um \textit{vetor unitário} ${\bf u}=(1,1,1)$. Assim, cada ponto em $\mathbb{P}^2$ pode ser representado em termos da base \{$\x_1=(1,0,0),\x_2=(0,1,0),\x_3=(0,0,1),{\bf u}=(1,1,1)$\} onde os três primeiros vetores são chamados {\it pontos de referência}. Para detalhes ver \citep{kneebone}.
+
+Os pontos de referência, que são linearmente independentes, formam os vértices de um triângulo chamado \textit{triângulo de referência}, com o ponto unitário no interior do triângulo. Esse triângulo vai servir como uma base para a representação do plano projetivo, conforme a figura \ref{fig.triangulo-referencia}. Por exemplo, representando um ponto qualquer por $\x=(x,y,z)^\top$ e uma reta qualquer por $\lightrgb=(a,b,c)^\top$ a reta determinada pelos pontos $\x_1$ e ${\bf u}$ tem equação $z-y=0$.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{triangulo-referencia}
+\caption{{\it Triângulo de referência com vértices determinados por três vetores que, juntamente com o vetor unitário, servem de base para representação do plano projetivo.}}
+\label{fig.triangulo-referencia}
+\end{figure}
+
+Pois, se $\x_1\in\lightrgb$ e ${\bf v}\in\lightrgb$ então
+
+\begin{equation}\label{eq.exemplo-tri-referencia}
+\lightrgb^\top{\bf u}=0\Rightarrow a+b+c=0\qquad\text{e}\qquad\lightrgb^\top\x_1=0\Rightarrow a=0.\qquad\text{Assim,}\quad c=-b.
+\end{equation}
+
+Dado um ponto qualquer $\x\in\lightrgb$ a equação da reta fica
+
+\begin{equation*}
+\lightrgb^\top\x=0\Rightarrow a\,x+b\,y+c\,z=0,
+\end{equation*}
+usando \ref{eq.exemplo-tri-referencia} temos que
+
+\begin{equation*}
+-c\,y+c\,z=0\Rightarrow z-y=0,
+\end{equation*}
+já que $c=0$ pois do contrário $\lightrgb$ representaria um ponto no infinito.
+
+Existem algumas formas padronizadas pelas quais a representação de uma cônica $C$ pode ser simplificada através da escolha conveniente de uma estrutura de referência. Umas dessas escolhas é tomar o triângulo de referência como tendo dois de seus lados tangentes à cônica, e o terceiro lado como reta polar em relação ao vértice oposto, e escolher um ponto  da cônica como ponto unitário. Ver figura \ref{fig.conica-tri-referencia}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{conica-tri-referencia}
+\caption{{\it Uma cônica $C$ numa relação polo-polar com um triângulo de referência que representa o plano projetivo $\mathbb{P}^2$}.}
+\label{fig.conica-tri-referencia}
+\end{figure}
+
+Como vimos na subseção \ref{sec.definicao-conica}, uma cônica $C$ pode ser representada na forma matricial com coordenadas homogêneas como
+
+\begin{equation*}
+\begin{pmatrix}
+x&y&z
+\end{pmatrix}
+\begin{bmatrix}
+a&b/2&c/2\\
+b/2&d&e/2\\
+c/2&e/2&f
+\end{bmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z
+\end{pmatrix}
+=0
+\end{equation*}
+ou através da equação
+
+\begin{equation*}
+a\,x^2+b\,x\,y+d\,y^2+c\,x\,z+e\,y\,z+f\,z^2=0.
+\end{equation*}
+
+Supondo que a cônica passe pelos pontos $\x_1=(1,0,0)^\top$ e $\x_3=(0,0,1)^\top$ temos que
+
+\begin{equation*}
+\x_1\in C\Rightarrow a=0\quad\text{e}\quad\x_3\in C\Rightarrow f=0,
+\end{equation*}
+daí a equação da cônica será 
+
+\begin{equation}\label{eq.reducao-parcial-conica}
+d\,y^2+b\,x\,y+c\,x\,z+e\,y\,z=0.
+\end{equation}
+
+Consirede a reta $\lightrgb=(l_1,l_2,l_3)^\top$ que passa pelos pontos $\x_1$ e $\x_3$,
+
+\begin{equation*}
+\lightrgb^\top\x_1=
+\begin{pmatrix}
+l_1&l_2&l_3
+\end{pmatrix}
+\begin{pmatrix}
+1\\
+0\\
+0
+\end{pmatrix}
+=0
+\Rightarrow l_1=0,
+\end{equation*} 
+
+\begin{equation*}
+\lightrgb^\top\x_1=
+\begin{pmatrix}
+l_1&l_2&l_3
+\end{pmatrix}
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+=0
+\Rightarrow l_3=0,
+\end{equation*} 
+e portanto $\lightrgb=(0,l_2,0)^\top$.
+
+Observando que $\lightrgb$ está numa relação polo-polar com o ponto $\x_2$, pela subseção \ref{sec.polo-polar} temos que $C\,\x_2=\lightrgb$, daí
+
+\begin{equation*}
+\begin{bmatrix}
+a&b/2&c/2\\
+b/2&d&e/2\\
+c/2&e/2&f
+\end{bmatrix}
+\begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+b/2\\
+d\\
+e/2
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+l_2\\
+0
+\end{pmatrix},
+\end{equation*}
+e teremos $b=e=0$ e $d=l_2$.
+
+Assim a equação \ref{eq.reducao-parcial-conica} toma a forma
+
+\begin{equation}\label{eq.reducao-parcial2-conica}
+l_2\,y^2+c\,x\,z=0\quad\text{e}\quad y^2=k\,x\,z\quad\text{com}\quad k=\frac{-c}{l_2}.
+\end{equation}
+
+A cônica $C$ passa também pelo ponto unitário ${\bf u}=(1,1,1)$, assim substituindo na equação \ref{eq.reducao-parcial2-conica} temos que $k=1$, e a equação da cônica se reduz finalmente a 
+
+\begin{equation}\label{eq.reducao-total-conica}
+y^2=x\,z,
+\end{equation}
+que é a equação conônica da cônica.
+
+\subsubsection{Representação canônica paramétrica.}
+A equação \ref{eq.reducao-total-conica} pode ser escrita na forma 
+
+\begin{equation*}
+(\frac{y}{z})^2=\frac{x}{z},
+\end{equation*}
+e fazendo as substituições $\displaystyle{\frac{y}{z}=\theta}$ e $\displaystyle{\frac{x}{z}=\theta^2}$ temos $x:y:z=\theta^2:\theta:1$.
+A representação paramétrica de uma cônica própria $(\theta^2,\theta,1)$ é realmente uma parametrização da curva, no sentido de que existe uma relação biunívoca entre cada ponto da curva e o valor do parâmetro. No caso do artigo de \citep{2503343} esta formalização é bastante útil pois, como a cônica $B$ está em função do quinto ponto, o epipolo $\e$, temos que esse ponto, e consequentemente a cônica, pode ser definida apenas pelo parâmetro $\theta$.
+
+ 
 Note que a reta $(\omega \diamond B)\,{\bf e}$ é a reta polar de ${\bf e}$ com relação à cônica $(\omega \diamond B)$. Está sendo usada a relação polo-polar definida pelo locus da cônica $(\omega \diamond B)$ para executar a projeção. Há uma breve explanação sobre a relação polo-polar na subseção \ref{sec.polo-polar}. Já que os pontos de interseção das tangentes com $B$ são os mesmos para as duas cônicas $\omega$ e $\omega'$, pode ser verificado que, dado que ${\bf e}$ e ${\bf e'}$ são concônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restrição de que as retas polares $(\omega \diamond B)\,{\bf e}$ e $(\omega' \diamond B)\,{\bf e'}$ coincidem.
 
 
