@@ -248,7 +248,7 @@ Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^
 \label{fig.conica-envelope}
 \end{figure}
 
-\subsubsection{Cônicas degeneradas.}
+\subsubsection{Cônicas degeneradas.}\label{sec.conicas-degeneradas}
 
 Acontece quando a matriz não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
 
@@ -416,11 +416,11 @@ De fato,
 
 \begin{equation*}
 \begin{array}{rcll}
-\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)&=&\displaystyle\frac{|\overline{\x}'_1\,\overline{\x}'_2||\overline{\x}'_3\,\overline{\x}'_4|}{|\overline{\x}'_1\,\overline{\x}'_3||\overline{\x}'_2\,\overline{\x}'_4|}&\text{e como}\qquad\overline{\x}'=H\,\overline{\x}\\\\
+\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)&=&\displaystyle\frac{|\overline{\x}'_1\,\overline{\x}'_2||\overline{\x}'_3\,\overline{\x}'_4|}{|\overline{\x}'_1\,\overline{\x}'_3||\overline{\x}'_2\,\overline{\x}'_4|}&\text{como}\qquad\overline{\x}'=H\,\overline{\x}\\\\
 &=&
 \displaystyle\frac{|H\,\overline{\x}_1\,H\,\overline{\x}_2||H\,\overline{\x}_3\,H\,\overline{\x}_4|}{|H\,\overline{\x}_1\,H\,\overline{\x}_3||H\,\overline{\x}_2\,H\,\overline{\x}_4|}&\\\\
 &=&
-\displaystyle\frac{|H\,[\overline{\x}_1\,\overline{\x}_2]||H\,[\overline{\x}_3\,\overline{\x}_4]|}{|H\,[\overline{\x}_1\,\overline{\x}_3]||H\,[\overline{\x}_2\,\overline{\x}_4|]}&\\\\
+\displaystyle\frac{|H\,[\overline{\x}_1\,\overline{\x}_2]||H\,[\overline{\x}_3\,\overline{\x}_4]|}{|H\,[\overline{\x}_1\,\overline{\x}_3]||H\,[\overline{\x}_2\,\overline{\x}_4|]}&[\overline{\x}_i\,\overline{\x}_j]\quad\text{é matriz}      \\\\
 &=&
 \displaystyle\frac{|H|\,|\overline{\x}_1\,\overline{\x}_2|\,|H|\,|\overline{\x}_3\,\overline{\x}_4|}{|H|\,|\overline{\x}_1\,\overline{\x}_3|\,|H|\,|\overline{\x}_2\,\overline{\x}_4|}&\\\\
 &=&
@@ -431,7 +431,29 @@ De fato,
 \end{equation*}
 e portanto a equação \ref{eq.invariante-cross} segue.
 
-Como colorário, segundo \cite{kneebone}, existe homografia $H$ onde $\overline{\x}_i=H\,\overline{\x}'_i$ se, e somente se, $\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)$.
+Como corolário, segundo \cite{kneebone}, existe homografia $H$ onde $\overline{\x}'_i=H\,\overline{\x}_i$ se, e somente se, $\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)$. Como a implicação direta já foi feita na argumentação anterior, vamos fazer a implicação contrária. Sabemos que a razão cruzada é invariante sob projetividade, portanto
+
+\begin{equation*}
+\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\text{cross}(H\,\overline{\x}_1,H\,\overline{\x}_2,H\,\overline{\x}_3,H\,\overline{\x}_4).
+\end{equation*}
+Como
+
+\begin{equation*}
+\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)=\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4),
+\end{equation*}
+temos que
+
+\begin{equation*}
+\text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)=\text{cross}(H\,\overline{\x}_1,H\,\overline{\x}_2,H\,\overline{\x}_3,H\,\overline{\x}_4).
+\end{equation*}
+Assim,
+
+\begin{equation*}
+\overline{\x}'=H\,\overline{\x}.
+\end{equation*}
+
+
+
 
 
 
@@ -1380,7 +1402,7 @@ onde tomamos $C^*=P\,{\tt Q}^*P^\top$, a imagem da quádrica sob a projeção $P
 
 \subsubsection{A Geometria Epipolar}
 
-Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, a construção desse cenário é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
+Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, a construção desse cenário é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Ou seja, existem as matrizes que promovem a ação de cada câmera onde $\x=P\,\X$ e $\x'=P'\,\X$, e quando isso acontece dizemos que os pontos são {\it pontos correspondentes}, e denotamos por $\x\leftrightarrow\x'$. Podemos observar que $\x$ e $\x'$ retroprojetam dois raios de luz definidos por $\C$ e $\C'$, onde esses raios pertencem a $\bpi$ e se intersectam em $\X$, e essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pelo raio de luz definido por $\x$ e $\C$, e a interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão do raio de luz retroprojetado por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epiplar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano da segunda imagem. 
 
 \begin{equation*}
 \x\rightarrow\lightrgb'
