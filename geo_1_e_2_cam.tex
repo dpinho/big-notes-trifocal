@@ -4,12 +4,12 @@ Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometri
 \subsection{O Espaço Projetivo em Duas Dimensões}\label{sec.espaco-P2}
 
 
-\subsubsection{A Reta.}\label{sec.reta}
+\subsubsection{A Reta}\label{sec.reta}
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utlizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma classe de equivalência, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}. Já que para determinar uma reta precisamos determinar os valores do três parâmetros $a,b \,\,\text{e}\,\, c$, vemos que uma reta tem três graus de liberdade.\\
+Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}-\{0\}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
 
-\subsubsection{O Ponto.}\label{sec.ponto}
+\subsubsection{O Ponto}\label{sec.ponto}
 
 
 Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
@@ -55,10 +55,10 @@ Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas
 \label{plano_P2}
 \end{figure}
 
-Podemos pensar no espaço projetivo como um conjunto de raios passando pela origem do $\mathbb{R}^3$, onde cada raio representa um único ponto, que é a interseção desse raio com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção do raio com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+Podemos pensar no espaço projetivo como um conjunto de retas passando pela origem do $\mathbb{R}^3$, onde cada reta representa um único ponto, que é a interseção desse reta com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção da reta com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
 
 
-Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, já que a terceira coordenada está em função das duas primeiras. Assim, dizemos que um ponto tem dois graus de liberdade e a terceira coordenada pode ser usada para fixar uma escala.
+Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, pode ser tomada como escala. Assim, dizemos que um ponto tem dois graus de liberdade.
 \\
 
 \subsubsection{Retas determinadas por dois pontos e a interseção de duas retas.}
@@ -138,7 +138,7 @@ Um fato interessante sobre pontos no infinito é que eles constituem as direçõ
 \begin{equation*}
 [\lightrgb]_\times \lightrgb_\infty=(b,-a,0),
 \end{equation*}
-é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
+(a notação $[\lightrgb]_\times$ está definida no apêndice \ref{sec.anti-simetrica}) é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
 
 
 
@@ -909,7 +909,7 @@ A última equação representa a equação de pertinência de um ponto a uma ret
 
 \subsection{A Câmera P}
 
-A câmera é modelada como um dispositivo que mapeia um ponto no sistema de coordenadas do mundo em pontos no sistema de coordenadas da imagem. Matematicamente, a \textit{câmera} é uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
+A câmera é um dispositivo que transforma um cenário 3D referenciado por um sistema de coordenadas do mundo em uma imagem 2D no sistema de coordenadas da câmera. Matematicamente, a \textit{câmera} é modelada como uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
 \\
 Esse tipo de câmera é uma composição de três mudanças de coordenadas, representada por uma matriz $P$ que pode ser decomposta em:
 
@@ -1408,7 +1408,7 @@ Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm 
 \x\rightarrow\lightrgb'
 \end{equation*}
 
-Na geometria epipolar, a câmera que fotografar uma cena também deve fotografar a outra câmera, e a imagem do centro de projeção da primeira câmera na segunda visão é denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visão também é chamada epipolo e é denotada por $\e'$.
+A imagem do centro de projeção da primeira câmera na segunda visão é denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visão também é chamada epipolo e é denotada por $\e'$.
 O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas visões temos vários planos epipolares definidos por um único parâmetro, e que formam o feixe de planos girando em torno da reta base.
 
 \begin{figure}[!htb]
@@ -1547,9 +1547,9 @@ P^+\x \rightarrow P'P^+\x\\
 \end{equation*}
 onde $P'\,\C$ é o epipolo na segunda imagem, e por isso, a reta epipolar pode ser definida em termos do produto vetorial desses dois pontos
 
-\begin{equation*}
+\begin{equation}\label{eq.reta-epipolar-funcao-cameras}
 \lightrgb'=P'\C \times P'P^+\x.
-\end{equation*}
+\end{equation}
 Mas como $P'\C=\e'$, podemos substitui-lo na equação anterior
 
 \begin{equation*}
@@ -1560,6 +1560,61 @@ Mas como $P'\C=\e'$, podemos substitui-lo na equação anterior
 \end{array}
 \end{equation*}
 definindo $F=[\e']_\times P'P^+$. Essa relação para $F$ é a mesma fórmula derivada anteriormente, com a homografia calculada em termos das duas câmeras, $H_{\bpi}=P'P^+$.
+
+Em problemas de reconstrucao 3D podemos considerar o a posicao da primeira camera como a origem do sistema de coordenadas do mundo, assim a matriz $P$, sua pseudo-inversa e a matriz da segunda camera sao, respectivamente 
+
+\begin{equation*}
+P=K\,[I|0],\qquad
+P^+=
+\begin{bmatrix}
+K^{-1}\\
+{\bf 0}^\top
+\end{bmatrix}\qquad\text{e}\qquad
+P'=K'[R|{\bf t}].
+\end{equation*}
+Substituindo na equacao \ref{eq.reta-epipolar-funcao-cameras} temos
+
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'&=&P'\C \times P'P^+\x\\
+&=&K'[R|{\bf t}]
+\begin{pmatrix}
+0\\
+0\\
+0\\
+1
+\end{pmatrix}
+\times K'[R|{\bf t}]
+\begin{bmatrix}
+K^{-1}\\
+{\bf 0}^\top
+\end{bmatrix}\x\\
+&=&
+[K'{\bf t}]_\times K'\,R\,K^{-1}\x,
+\end{array}
+\end{equation*}
+onde teremos uma nova definicao para a matriz fundamental 
+\begin{equation}\label{eq.definicao-F}
+F=[K'{\bf t}]_\times K'\,R\,K^{-1}.
+\end{equation}
+Essa definicao para $F$ eh importante para falarmos sobre a matriz {\it essencial}.
+
+\subsubsection{A Matriz Essencial $E$.}
+Historicamente, a matriz essencial foi introduzida antes da matriz fundamental e pode ser pensada como um caso particular da matriz fundamental, onde no caso da matriz essencial os efeitos da matriz de calibracao $K$ foram removidos. Considere uma camera $P=K\,[R|{\bf t}]$ onde conhecemos sua matriz de calibracao. Podemos inverter a matriz $K$ e aplica-la na camera de modo que a projecao se torne $P=[R|{\bf t}]$, chamada {\it camera normalizada}. Aplicando essa projecao a um ponto no espaco 3D $\X$ temos 
+\begin{equation*}
+\hat{\x}=P\,\X=[R|{\bf t}]\,\X
+\end{equation*}
+onde o ponto $\hat{\x}$ eh dito estar em {\it coordenadas  normalizadas}. Um par de cameras normalizadas 
+\begin{equation*}
+P=[I|{\bf 0}]\qquad\text{e}\qquad P=[R|{\bf t}]
+\end{equation*}
+tem a matriz {\it essencial} como matriz correspondente que reune todas as caractristicas relativas a geometria epipolar para essas duas cameras. Usando a derivacao da matriz fundamental na equacao \ref{eq.definicao-F}, podemos definir a matriz essencial aplicando $K$ e $K'^{-1}$,
+\begin{equation*}
+E=[{\bf t}]_\times R.
+\end{equation*}
+
+
+
 
 
 \subsection{Notação Usada por Fabbri}
