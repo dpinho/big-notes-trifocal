@@ -554,7 +554,7 @@ A projeção da IAC $\omega$ na cônica $B$, usando o epipolo $\e$ como centro d
 
 \begin{proof}
 
-Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangente à IAC intersecta a cônica $B$ em um ponto ${\bf p}$, conforme a figura \ref{omega-B}. Como ${\bf p}\in B$ e $B$ tem a forma definida na subseção \ref{sec.forma-canonica-B}, temos que ${\bf p}$ pode ser parametrizado por ${\bf p}=(1,\lambda,\lambda^2)$, conforme a subseção \ref{sec.repre-canonica-parametrica}. Desta forma, precisamos mostrar que ${\bf p}\in (\omega\diamond B)\,\e$, ou seja, $[(\omega\diamond B)\,\e]^\top {\bf p}=0$ onde $\e=(1,\theta,\theta^2)$. A reta $\lightrgb$ pode ser definida pelos pontos $\e$ e ${\bf p}$ como $\lightrgb=\e\times {\bf p}$ e, fazendo as substituições vem
+Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangente à IAC intersecta a cônica $B$ em um ponto ${\bf q}$, conforme a figura \ref{omega-B}. Como ${\bf q}\in B$ e $B$ tem a forma definida na subseção \ref{sec.forma-canonica-B}, temos que ${\bf q}$ pode ser parametrizado por ${\bf q}=(1,\lambda,\lambda^2)$, conforme a subseção \ref{sec.repre-canonica-parametrica}. Desta forma, precisamos mostrar que ${\bf q}\in (\omega\diamond B)\,\e$, ou seja, $[(\omega\diamond B)\,\e]^\top {\bf q}=0$ onde $\e=(1,\theta,\theta^2)$. A reta $\lightrgb$ pode ser definida pelos pontos $\e$ e ${\bf q}$ como $\lightrgb=\e\times {\bf q}$ e, fazendo as substituições vem
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -599,7 +599,7 @@ Usando a definição de $(\omega\diamond B)$ em \ref{eq.omega-diamond-B}, a para
 2\,c_{22}&-4\,c_{12}&2\,c_{11}
 \end{bmatrix},
 \end{equation*}
-e a relação $[(\omega\diamond B)\,\e]^\top {\bf p}=\e^\top (\omega\diamond B)\,{\bf p}=0$ se torna
+e a relação $[(\omega\diamond B)\,\e]^\top {\bf q}=\e^\top (\omega\diamond B)\,{\bf q}=0$ se torna
 
 \begin{equation*}
 \begin{pmatrix}
@@ -637,7 +637,7 @@ Dado que os epipolos $\e$ e $\e'$ são co-cônicos com quatro pontos na imagem, 
 \end{teorema}
 
 \begin{proof}
-Pela subseção \ref{sec.demonstracao-teo-4}, a reta tangente à $\omega'$ intersecta $B$ nos mesmos pontos adicionais, onde um deles foi denotado por ${\bf p}$. Como os pontos são co-cônicos podemos usar a forma canônica de $B$ e a parametrização canônica para $\e'$. O desenvolvimento é análogo ao da subseção \ref{sec.teorema-5}.
+Pela subseção \ref{sec.demonstracao-teo-4}, a reta tangente à $\omega'$ intersecta $B$ nos mesmos pontos adicionais, onde um deles foi denotado por ${\bf q}$. Como os pontos são co-cônicos podemos usar a forma canônica de $B$ e a parametrização canônica para $\e'$. O desenvolvimento é análogo ao da subseção \ref{sec.teorema-5}.
 \end{proof}
 
 \subsection{O teorema 7.}
@@ -692,7 +692,7 @@ O esquema para o próximo teorema está representado na figura \ref{inter-B-C} e
 Os epipolos estão ralacionados por 
 
 \begin{equation}\label{eq.equiv-reta-polar-sem-B}
-(\omega'\cdot B)\,\e'\sim (\omega\cdot B)\,\e
+(\omega'\cdot B)\,\e'\sim (\omega\cdot B)\,\e\sim{\bf p}
 \end{equation}
 o que implica numa função de sétimo grau 
 
@@ -720,7 +720,7 @@ Pela subseção \ref{sec.teorema-6} $(\omega\diamond B)\,\e\sim(\omega'\diamond 
 \end{array}
 \end{equation*}  
 Como $\e \in C$ e $\e\in B$, então $\e$ está na interseção entre as duas cônicas.
-\end{proof}
+
 
 \begin{figure}[!htb]
 \centering
@@ -729,11 +729,35 @@ Como $\e \in C$ e $\e\in B$, então $\e$ está na interseção entre as duas cô
 \label{inter-B-C}
 \end{figure}
 
-No caso em que $|(\omega'\cdot B)|=0$       \\\\
+No caso em que $|(\omega'\cdot B)|=0$, devemos observar que, para cameras e pontos em posicoes gerais (que excluem degeneracoes por serem casos raros), nao ha motivos para que $(\omega\cdot B)$ e $(\omega'\cdot B)$ se degenerem ao mesmo tempo. Assim, sendo $|(\omega'\cdot B)|=0$ podemos reescrever as equacoes \ref{eq.map-7-grau} e \ref{eq.definicao-conica-C} nas formas
+
+\begin{equation*}
+\e\sim (\omega\cdot B)^*(\omega'\cdot B)\,\e'\quad\text{e}\quad C_1 \equiv (\omega' \cdot B)^\top (\omega \cdot B)^{*\top}\,B\,(\omega \cdot B)^*\,(\omega' \cdot B).
+\end{equation*}     
+Analogamente a deducao anterior, $\e'\in C_1$ e a intersecao de $B$ e $C_1$ vai gerar quatro solucoes distintas para $\e'$.
+ 
+ Podemos perceber, pela equacao \ref{eq.map-7-grau}, a relacao polo-polar entre o ponto ${\bf p}\sim (\omega'\cdot B)\,\e'$ e a reta $\lightrgb$ dada por $\lightrgb=B\,(\omega'\cdot B)\,\e'$ ou $\lightrgb=B\,{\bf p}$. Assim, se ${\e'}\in B$ eh uma das quatro solucoes, existe uma outra solucao para ${\e'}$ que vai gerar o mesmo ${\bf p}$, que vai ser a outra intersecao da reta polar $\lightrgb$ com a conica $B$. Desta forma, as solucoes para ${\e'}$ se agrupam em dois pares. Analogamente, as duas solucoes para ${\e}$ sao aquelas usando ${\bf p}\sim (\omega\cdot B)\,\e$ e, considerando novamente a conica 
+\begin{equation*}
+C \equiv (\omega \cdot B)^\top\,(\omega' \cdot B)^{*\,\top}\,B\,(\omega' \cdot B)^*(\omega \cdot B)
+\end{equation*}                                      
+temos que 
+\begin{equation*}
+\e^\top (\omega \cdot B)^\top\,(\omega' \cdot B)^{*\,\top}\,B\,(\omega' \cdot B)^*(\omega \cdot B)\e=0,
+\end{equation*}                                                pois
+\begin{equation*}
+\begin{array}{rcl}
+(\omega' \cdot B)^*(\omega \cdot B)\e&\sim &(\omega' \cdot B)^*{\bf p}\\
+&\sim &(\omega' \cdot B)^*(\omega'\cdot B)\,\e'\\
+&=&|(\omega' \cdot B)|\,I\,\e'\\
+&=&0\,I\,\e'\\
+&=&{\bf 0}.
+\end{array}
+\end{equation*}
+Assim, mesmo sendo $(\omega' \cdot B)$ degenerada temos que $\e\in C$.                                   
+\end{proof}
 
 
-
-
+\subsection{O teorema 8}
 
 
 
