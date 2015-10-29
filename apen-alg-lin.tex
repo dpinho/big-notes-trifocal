@@ -21,7 +21,7 @@ onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qua
 Sabemos que o produto vetorial entre um vetor e ele mesmo é sempre o vetor nulo, portanto o vetor ${\bf v}$ é o vetor nulo à direita e à esquerda de $[{\bf v}]_\times$. Desta forma, esta matriz anti-simétrica será sempre definida por seu vetor nulo.  
 
 
-\subsection{O Método das Potências para Autovalores.}\label{sec.potencias-autovalores}
+\subsection{O Método das Potências para Autovalores}\label{sec.potencias-autovalores}
 Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v_k}$ e determinar o autovetor ${\bf v_{k+1}}$ em cada iteração fazendo
 
 \begin{equation*}
@@ -37,15 +37,15 @@ e aplicando o produto escalar na equação
 \begin{equation*}
 \begin{array}{rcl}
 A\,{\bf v}&=&\lambda\,{\bf v}\\
-A\,({\bf v}\cdot{\bf v})&=&\lambda\,({\bf v}\cdot{\bf v})\\
-\lambda&=&\frac{A\,({\bf v}\cdot{\bf v})}{{\bf v}\cdot{\bf v}}.
+(A\,{\bf v})\cdot{\bf v}&=&\lambda\,({\bf v}\cdot{\bf v})\\
+\lambda&=&\frac{(A\,{\bf v})\cdot{\bf v}}{{\bf v}\cdot{\bf v}}.
 \end{array}
 \end{equation*}
 
-Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma dos vetores ou dividindo o vetor pela maior de suas componentes. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v_k}\end{Vmatrix}$ a cada iteração. 
+Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma do vetor ou dividindo o vetor pela maior de suas componentes em cada iteração. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v_k}\end{Vmatrix}$ a cada iteração. 
 
 
-Se a matriz não possui um único valor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um determinado $s$, de uma matriz
+Se a matriz não possui um único autovalor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um determinado $s$, de uma matriz
 
 \begin{equation*}
 A'=(A-s\,I)^{-1}
@@ -55,9 +55,9 @@ onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor
 \begin{equation*}
 \lambda=\frac{1}{\lambda'}+s
 \end{equation*} 
-onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$ ,como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
+onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$, como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
 
-\subsection{A Decomposição SVD.}\label{sec.SVD}
+\subsection{A Decomposição SVD}\label{sec.SVD}
 Uma das formas de se obter a decomposição em valores singulares de uma matriz $A$ é aplicando a decomposição em autovalores na matriz  $A^\top A$. Assim, queremos determinar a decomposição
 
 \begin{equation*}
@@ -73,7 +73,7 @@ A^\top A&=&V\,D\,U^\top U\,D\,V^\top\\
 \end{equation*}
 onde $V\,D^2 V^{-1}$ é uma decomposição em autovalores.
 
-Desta forma, aplicando a decomposição em autovalores na matriz $A^\top A$, conseguimos diretamente a matriz $V^\top$ da decomposicao SVD, e basta extrair a raiz quadrada de $D$ para obtermos os valores singulares. Com uma simples inversão de matrizes podemos obter a matriz $U$:
+Desta forma, aplicando a decomposição em autovalores na matriz $A^\top A$, conseguimos diretamente a matriz $V^\top$ da decomposicao SVD, e basta extrair a raiz quadrada de $D$ para obtermos os valores singulares. Com uma inversão de matrizes podemos obter a matriz $U$:
 
 \begin{equation*}
 \begin{array}{rcll}
@@ -123,3 +123,5 @@ P^+P&=&V\,D^+U^\top\,U\,D\,V^\top\\
 \end{equation*}
 
 Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$. Na subseção \ref{sec.potencias-autovalores} é apresentado um método para obtenção dos autovalores.
+
+
