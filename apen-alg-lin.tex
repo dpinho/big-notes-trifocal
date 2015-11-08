@@ -20,6 +20,38 @@ onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qua
 
 Sabemos que o produto vetorial entre um vetor e ele mesmo é sempre o vetor nulo, portanto o vetor ${\bf v}$ é o vetor nulo à direita e à esquerda de $[{\bf v}]_\times$. Desta forma, esta matriz anti-simétrica será sempre definida por seu vetor nulo.  
 
+Observe ainda, que uma matriz anti-simétrica qualquer $M$ satisfaz a relação ${\bf v}^\top M\,{\bf v}=0.$ Pois,
+\begin{equation*}
+\begin{array}{rcl}
+{\bf v}^\top M\,{\bf v}
+&=&
+\begin{pmatrix}
+v_1&v_2&v_3
+\end{pmatrix}
+\begin{bmatrix}
+0&m_{12}&m_{13}\\
+-m_{12}&0&m_{23}\\
+-m_{13}&-m_{23}&0
+\end{bmatrix}
+\begin{pmatrix}
+v_1\\
+v_2\\
+v_3
+\end{pmatrix}\\
+&=&
+\begin{pmatrix}
+-v_2 m_{12}-v_3 m_{13}&v_1 m_{12}-v_3 m_{23}&v_1 m_{13}+v_2 m_{23}
+\end{pmatrix}
+\begin{pmatrix}
+v_1\\
+v_2\\
+v_3
+\end{pmatrix}\\
+&=&
+-v_1 v_2 m_{12}-v_1 v_3 m_{13}+v_1 v_2 m_{12}-v_2 v_3 m_{23}+v_1 v_3 m_{13}+v_2 v_3 m_{23}\\
+&=&0.
+\end{array}
+\end{equation*}
 
 \subsection{O Método das Potências para Autovalores}\label{sec.potencias-autovalores}
 Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v_k}$ e determinar o autovetor ${\bf v_{k+1}}$ em cada iteração fazendo

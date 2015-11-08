@@ -1623,10 +1623,41 @@ F=[K'{\bf t}]_\times K'\,R\,K^{-1}.
 \end{equation}
 Essa definição para $F$ é importante para falarmos sobre a matriz {\it essencial}.
 
-\subsubsection{Configuração canônica das câmeras}
+\subsubsection{Propriedades da matriz fundamental}\label{sec.propriedades-F}
+A partir da função $\x\rightarrow\lightrgb'$ dada pela relação $\lightrgb'=F\,\x$, podemos derivar a propriedade mais básica da matriz fundamental.
+Observe que se $\x'\in\lightrgb'\Rightarrow\x'^\top\lightrgb'=0$, e temos
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'&=&F\,\x\\
+\x'^\top\lightrgb'&=&\x'^\top F\,\x\\
+0&=&\x'^\top F\,\x.
+\end{array}
+\end{equation*}
+A relação acima é denominda {\it condição de correspondência}, pois pontos que a satisfazem devem ser  coplanares e tal relação se mostra uma ferramenta para a determinação da matriz fundamental a partir dos pontos correspondentes $\x\leftrightarrow\x'$. Observe que essa forma de determinar $F$ não requer o conhecimento das câmeras $P$ e $P'$. 
+
+Se $F$ é a matriz para as câmeras $(P,P')$ então $F^\top$ é a matriz para $(P',P)$, pois basta aplicar a transposição em 
+\begin{equation*}
+\begin{array}{rcl}
+\x'^\top F\,\x&=&0\\
+\x^\top F^\top\x'&=&0,\quad\text{onde}\quad F^\top\x'=\lightrgb.
+\end{array}
+\end{equation*}
+
+Os epipolos $\e$ e $\e'$ são os espaços nulos à direita e à esquerda de $F$, respectivamente. Vimos que $\e'\in\lightrgb'\Rightarrow\e'^\top\lightrgb'=0$, e $\lightrgb'=F\,\x$ para todo ponto $\x\in\lightrgb$ (exceto $\e$), daí
+\begin{equation*}
+\begin{array}{rcl}
+\lightrgb'&=&F\,\x\\
+\e'^\top\lightrgb'&=&\e'^\top F\,\x\\
+0&=&\e'^\top F\,\x,\quad\text{para todo}\,\,\x\\
+{\bf 0}^\top&=&\e'^\top F.
+\end{array}
+\end{equation*} 
+A dedução é análoga para $F\,\e={\bf 0}$.
+
+\subsubsection{Configuração canônica das câmeras}\label{sec.cameras-canonicas}
 Podemos perceber que a relação $\lightrgb'=F\,\x$ é uma relação projetiva, desde que envolve apenas relacionamentos projetivos entre os objetos geométricos, como interseção de retas e planos, e no desenvolvimento algébrico envolve apenas a projeção realizada pela câmera entre pontos no mundo e pontos na imagem. Com isso, a relação depende apenas das coordenadas projetivas da imagem, ou seja, é projetivamente invariante. Assim, dadas transformações projetivas das imagens $\hat{\x}=H\,\x$ e $\hat{\x'}=H'\x'$ podemos deduzir a correspondente relação $\hat{\lightrgb'}=\hat{F}\hat{\x}$ com $\hat{F}=H'^{-\top}F\,H^{-1}$. Analogamente, $F$ depende somente das propriedades projetivas das câmeras $P$ e $P'$, já que as imagens são geradas pela ação dessas duas câmeras. As câmeras dependem tanto do sistema de coordenadas das imagens como do sistema de coordenadas do mundo, mas a matriz fundamental é inalterável por uma transformação projetiva do espaço 3D. 
 
-Observe que se $H_{4\times4}$ é uma transformação projetiva do espaço 3D, então as relações de projeção pode ser escrita como
+Observe que se $H_{4\times4}$ é uma transformação projetiva do espaço 3D, então as relações de projeção podem ser escritas como
 \begin{equation*}
 \begin{array}{rcl}
 \x&=&P\,\X\\
@@ -1637,7 +1668,7 @@ Observe que se $H_{4\times4}$ é uma transformação projetiva do espaço 3D, en
 \x'&=&P'H\,H^{-1}\X
 \end{array}.
 \end{equation*} 
-Se $\x\leftrightarrow\x'$ é uma correspondência para o par de câmeras $(P,P')$ em relação ao ponto $\X$, então essas imagens também são correspondentes para o par de câmeras $(P\,H,P'H)$ em relação ao ponto $H^{-1}\X$. Como a matriz fundamental depende apenas das coordenadas das imagens, temos que a matriz fundamental para $(P,P')$ será a mesma para $(P\,H,P'H)$. Ou seja, um par de câmeras unicamente define uma matriz fundamental, mas uma matriz fundamental é consistente com vários pares de câmeras.
+Se $\x\leftrightarrow\x'$ é uma correspondência para o par de câmeras $(P,P')$ em relação ao ponto $\X$, então essas imagens também são correspondentes para o par de câmeras $(P\,H,P'H)$ em relação ao ponto $H^{-1}\X$. Como a matriz fundamental depende apenas das coordenadas das imagens (\ref{sec.propriedades-F}), temos que a matriz fundamental para $(P,P')$ será a mesma para $(P\,H,P'H)$. Ou seja, um par de câmeras unicamente define uma matriz fundamental, mas uma matriz fundamental é consistente com vários pares de câmeras.
 
 Já que temos vários pares de câmeras consistentes com a mesma matriz fundamental, podemos escolher um par de câmeras, através de uma transformação projetiva, de forma que algumas futuras abordagens e deduções sejam facilitadas sem prejuízo das características projetivas. Dadas câmeras calibradas $\hat{P}$ e $\hat{P'}$ podemos acrescentar uma linha em $\hat{P}$ de forma que se torne uma matriz $4\times4$ invertível denotada por $\hat{P}^*$. Aplicando a inversa de $\hat{P}^*$ em $\hat{P}$ e $\hat{P}'$ temos que
 \begin{equation*}
@@ -1655,6 +1686,94 @@ As câmeras $P$ e $P'$ definidas acima estão em sua forma {\it canônica}. Obse
 F=[{\bf m}]_\times M.
 \end{equation*}
 
+
+\subsubsection{Extraindo as câmeras canônicas a partir de $F$}
+Nesta seção será apresentada uma das formas de se obter as matrizes das câmeras para um sistema com duas visões. Como vimos na subseção \ref{sec.cameras-canonicas}, é possível aplicar uma transformação projetiva de forma a se obter o par de câmeras canônicas para um sistema bifocal, e assim facilitar o algebrismo e a computação sem prejuízo das características projetivas do sistema. Desta forma, dada a matriz $F$ computada através da codição de correspondência, vammos mostrar como extrair o par de câmeras em sua forma canônica.
+
+Primeiramente, observe pelo apêndice \ref{sec.anti-simetrica} o caso $3\times3$ em que uma matriz $M$ é anti-simétrica se satisfaz a condição ${\bf v}^\top M\,{\bf v}=0$. Considerando a matriz $P'^\top F\,P$, a mesma será anti-simétrica se $\X^\top P'^\top F\,P\,\X=0$. Mas $\x=P\,\X$ e $\x'^\top=\X^\top P'^\top$, e substituindo temos que $\x'^\top F\,\x=0$. Pela subseção \ref{sec.propriedades-F}, essa condição de correspondência mostra que $F$ é a matriz fundamental consistente com o par de câmeras $(P,P')$ desde que $P'^\top F\,P$ seja anti-simétrica.
+
+Agora, tomando a configuração canônica $P=[I|{\bf 0}]$ e $P'=[SF\,|\e']$, onde $S$ é uma matriz anti-simétrica e $\e'$ é o epipolo que satisfaz $\e'^\top F={\bf 0}^\top$ (subseção \ref{sec.propriedades-F}), temos que $P'^\top F\,P$ é anti-simétrica, pois
+\begin{equation*}
+P'^\top F\,P=[SF\,|\e']^\top F\,[I|{\bf 0}]=
+\begin{bmatrix}
+F^\top S^\top F&{\bf 0}\\
+\e'^\top F&0
+\end{bmatrix}=
+\begin{bmatrix}
+F^\top S^\top F&{\bf 0}\\
+{\bf 0}^\top&0
+\end{bmatrix}.
+\end{equation*}
+Assim, dada $F$ temos que um par de câmeras consistente é simplesmente $P=[I|{\bf 0}]$ e $P'=[SF\,|\e']$. Repare que a escolha da matriz $S$ é arbitrária e a matriz $P'$ deve ter posto 3 para ser uma câmera válida. Isso não é problema pois segundo (citar  Luong and Vieville [Luong-96] ) uma boa escolha é $S=[\e']_\times$ pois $\e'^\top\e'\neq0$. Veja que espaço coluna gerado pelo produto vetorial de $\e'$ por cada coluna de $F$ é perpendicular a $\e'$. Como $F$ tem posto 2, sabemos que esse espaço é representado por um plano, e portanto $[\e']_\times F$ também tem posto 2. Como  $\e'$ não pertence ao plano, então $[[\e']_\times F\,|\e']$ tem posto 3. Finalmente, o par de cameras canonicas podem ser obtidas tomando 
+\begin{equation}\label{eq.cameras-dada-F}
+P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[[\e']_\times F\,|\e'].
+\end{equation}
+
+\subsubsection{Ambiguidade projetiva das câmeras dada $F$}\label{sec.ambi-cameras-dada-F}
+
+De uma mesma matriz fundamental podemos extrair dieferentes pares de câmeras consistentes com a mesma geometria epipolar, em contraste com o fato de, dado um par de câmeras, a matriz fundamental ser única. Esses pares de câmeras extraídas de uma $F$ diferem apenas por uma transformação projetiva.
+
+Inicialmente, podemos aplicar uma transformação projetiva e trabalhar com a forma canônica das câmeras $P=\tilde{P}=[I|{\bf 0}]$, $P'=[A|{\bf a}]$ e $\tilde{P}'=[\tilde{A}|\tilde{{\bf a}}]$. Evocando o resultado em \ref{sec.cameras-canonicas} sabemos que a matriz fundamental pode ser obtida fazendo 
+$F=[{\bf a}]_{\times} A=[\tilde{{\bf a}}]_{\times} \tilde{A}$. Como $[{\bf a}]_{\times}$ e $[\tilde{{\bf a}}]_{\times}$ são anti-simétricas temos que
+\begin{equation*}
+{\bf a}^\top F={\bf a}^\top [{\bf a}]_{\times} A={\bf 0}^\top\quad\text{e}\quad\tilde{{\bf a}}^\top F=\tilde{{\bf a}}^\top [\tilde{{\bf a}}]_{\times} \tilde{A}={\bf 0}^\top,
+\end{equation*}
+e como $F$ tem posto 2 e não pode ser invertida, temos que ${\bf a}^\top$ e ${\tilde{{\bf a}}^\top}$ sao iguais a menos da escala, portanto
+\begin{equation}\label{eq.dedu-ambiguidade-P-1}
+{\tilde{{\bf a}}^\top}=k\,{\bf a}^\top.
+\end{equation}
+
+Considerando $[{\bf a}]_{\times} A=[\tilde{{\bf a}}]_{\times} \tilde{A}$ e substituindo \ref{eq.dedu-ambiguidade-P-1} temos
+\begin{equation*}
+\begin{array}{rcl}
+[{\bf a}]_{\times} A&=&[\tilde{{\bf a}}]_{\times} \tilde{A}=k\,[{\bf a}]_{\times} \tilde{A}\\
+0_{3\times3}&=&k\,[{\bf a}]_{\times} \tilde{A}-[{\bf a}]_{\times} A\\
+0_{3\times3}&=&[{\bf a}]_{\times}(k\,\tilde{A}-A).
+\end{array}
+\end{equation*}
+Já que ${\bf a}$ é um vetor nulo à direita de $[{\bf a}]_{\times}$ podemos tomar, para um vetor ${\bf v}$ qualquer,
+\begin{equation}\label{eq.dedu-ambiguidade-P-2}
+k\,\tilde{A}-A={\bf a}{\bf v}^\top\quad\text{e dai}\quad \tilde{A}=\frac{A+{\bf a}{\bf v}^\top}{k}. 
+\end{equation}
+
+Substituindo as equações \ref{eq.dedu-ambiguidade-P-1} e \ref{eq.dedu-ambiguidade-P-2} na câmera $\tilde{P}'$ temos que 
+\begin{equation}\label{eq.camera-geral}
+P'=[A|{\bf a}]\quad\text{e}\quad \tilde{P}'=[k^{-1}(A+{\bf a}{\bf v}^\top)|k\,{\bf a}],
+\end{equation}
+e vamos usar a homografia
+\begin{equation*}
+H=
+\begin{bmatrix}
+k^{-1}I&{\bf 0}\\
+k^{-1}{\bf v}^\top&k
+\end{bmatrix}
+\end{equation*}
+para mostrar que as câmeras estão projetivamente relacionadas.
+\begin{equation*}
+PH=[I|{\bf 0}]
+\begin{bmatrix}
+k^{-1}I&{\bf 0}\\
+k^{-1}{\bf v}^\top&k
+\end{bmatrix}
+=
+k^{-1}[I|{\bf 0}]=k^{-1}\tilde{P},\quad\text{e}
+\end{equation*}
+\begin{equation*}
+P'H=[A|{\bf a}]
+\begin{bmatrix}
+k^{-1}I&{\bf 0}\\
+k^{-1}{\bf v}^\top&k
+\end{bmatrix}
+=
+[k^{-1}(A+{\bf a}{\bf v}^\top)|k\,{\bf a}]
+=[\tilde{A}|\tilde{{\bf a}}]=\tilde{P}'.
+\end{equation*}
+
+Juntando a extração das câmeras dada em \ref{eq.cameras-dada-F} com a equação geral para câmeras dada em \ref{eq.camera-geral} temos a fórmula geral para câmeras canônicas dada a matriz fundamental
+\begin{equation*}
+P=[I|{\bf 0}]\quad\text{e}\quad P'=[[\e']_\times F+\e'{\bf v}^\top |\lambda\,\e'],
+\end{equation*} 
+para um vetor ${\bf v}$ qualquer  e um escalar $\lambda\neq0$.
 
 \subsubsection{A matriz Essencial $E$}
 Historicamente, a matriz essencial foi introduzida antes da matriz fundamental e pode ser pensada como um caso particular da matriz fundamental, onde no caso da matriz essencial os efeitos da matriz de calibração $K$ foram removidos. Considere uma câmera $P=K\,[R|{\bf t}]$ onde conhecemos sua matriz de calibração. Podemos inverter a matriz $K$ e aplicá-la na câmera de modo que a projeção se torne $P=[R|{\bf t}]$, chamada {\it câmera normalizada}. Aplicando essa projeção a um ponto no espaço 3D $\X$ temos 
