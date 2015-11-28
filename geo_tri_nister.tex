@@ -1,6 +1,6 @@
 \section{Geometria Trifocal: detalhamento da abordagem de Nistér e Schaffalitzky.}
 
-Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondência. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, resgatam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera em relação à primeira. Utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes para o nosso propósito. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, os quais as demonstrações não se encontram no artigo.
+Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, resgatam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera em relação à primeira. Utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, os quais as demonstrações não se encontram no artigo.
 
 \begin{figure}[!htb]
 \centering
@@ -257,7 +257,7 @@ Observe que, como conjunto, as tangentes não vêm em qualquer ordem particular,
 De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Vejamos como isso pode ser feito.
 
 \subsubsection{Corregistro de pontos pertencentes a diferentes planos de imagem}\label{sec.corregistro-pontos}
-Suponha a existência de pontos correspondêcia em dois planos de imagem relacionados por uma transformação projetiva $\x'=H\,\x$, onde $\x\in {\mathbb{P}^2}$ e $\x'\in {\mathbb{P'}^2}$. Nosso objetivo é fazer o corregistro de pontos da segunda imagem no sistema de coordenadas da primeira imagem, mas também poderíamos fazer o corregistro dos pontos das duas imagens para um terceiro plano projetivo qualquer. Fazendo as seguintes mudanças de coordenadas projetivas
+Suponha a existência de pontos correspondência em dois planos de imagem relacionados por uma transformação projetiva $\x'=H\,\x$, onde $\x\in {\mathbb{P}^2}$ e $\x'\in {\mathbb{P'}^2}$. Nosso objetivo é fazer o corregistro de pontos da segunda imagem no sistema de coordenadas da primeira imagem, mas também poderíamos fazer o corregistro dos pontos das duas imagens para um terceiro plano projetivo qualquer. Fazendo as seguintes mudanças de coordenadas projetivas
 
 \begin{equation}\label{eq.igualando-coordenadas}
 \begin{array}{rcl}
@@ -312,7 +312,7 @@ As restrições de calibração são equivalentes à condição de que duas reta
 Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes intersectam $B$ no mesmo ponto. 
 
 \begin{proof}
-Na subseção \ref{sec.teorema-2}, vimos que as duas retas tangentes à conica $\omega$ estão projetivamente relacionadas com as duas tangentes à cônica $\omega'$. Pelo teorema de Steiner, na subseção \ref{sec.teorema-3}, o ponto de interseção entre duas retas correspondentes, em dois feixes homograficamente relacionados, descrevem uma cônica. Assim, as retas tangentes à cônica $\omega$ se intersectam às retas tangentes à cônica $\omega'$ em dois pontos adicionais sobre a cônica $B$. 
+Na subseção \ref{sec.teorema-2}, vimos que as duas retas tangentes à conica $\omega$ estão projetivamente relacionadas com as duas tangentes à cônica $\omega'$. Pelo teorema de Steiner, o ponto de interseção entre duas retas correspondentes, em dois feixes homograficamente relacionados, descrevem uma cônica. Assim, as retas tangentes à cônica $\omega$ se intersectam às retas tangentes à cônica $\omega'$ em dois pontos adicionais sobre a cônica $B$. 
 \end{proof}
 
 Isto é, as projeções de ${\bf \omega}$ e ${\bf \omega'}$ em $B$, através dos respectivos epipolos, devem coincidir. Essa construção geométrica pode ser visualizada na figura \ref{omega-B} e será a fundação para o resto da abordagem. 
@@ -448,7 +448,7 @@ l_1&l_2&l_3
 \end{equation*} 
 
 \begin{equation*}
-\lightrgb^\top\x_1=
+\lightrgb^\top\x_3=
 \begin{pmatrix}
 l_1&l_2&l_3
 \end{pmatrix}
@@ -564,7 +564,7 @@ Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangen
 \end{equation*}
 ignorando o fator de escala $(\lambda-\theta)$.
 
-Pela restrição Kruppa (subseção \ref{sec.teorema-2}), $\lightrgb$ é tangente a conica $\omega$, e temos que a reta satisfaz a relação definida na subseção \ref{sec.conica-dual}, $\lightrgb^\top\omega^*\lightrgb=0$. Parametrizando $\omega^*$ por $[c_{ij}]$ temos que a relação $\lightrgb^\top\omega^*\lightrgb=0$ se torna
+Como $\lightrgb$ é tangente à cônica $\omega$, temos que a reta satisfaz a relação definida na subseção \ref{sec.conica-dual}, $\lightrgb^\top\omega^*\lightrgb=0$. Parametrizando $\omega^*$ por $[c_{ij}]$ temos que a relação $\lightrgb^\top\omega^*\lightrgb=0$ se torna
 
 \begin{equation*}
 \begin{pmatrix}
@@ -657,20 +657,20 @@ Segundo (citar rueda e rosado), dadas duas cônicas $B_1$ e $B_2$ pertencentes a
 B=\lambda\,B_1+\mu\,B_2\quad\text{onde}\quad\x\in\mathbb{P}^2.
 \end{equation}
 
-Observe que as cônicas $B_1$ e $B_2$ também pertencem ao feixe, onde basta tomarmos os valores $\lambda=1$ e $\mu=0$ e vice-versa para verificarmos tal fato. Assim, quisquer duas cônicas pertencentes ao feixe podem ser escolhidas como uma base para a representação do feixe. Resolvendo o sistema de equações
+Observe que as cônicas $B_1$ e $B_2$ também pertencem ao feixe, onde basta tomarmos os valores $\lambda=1$ e $\mu=0$ e vice-versa para verificarmos tal fato. Assim, quaisquer duas cônicas pertencentes ao feixe podem ser escolhidas como uma base para a representação do feixe. Resolvendo o sistema de equações
 
 \begin{empheq}[left=\empheqlbrace]{align*}
 \x^\top B_1\x&=0\\
 \x^\top B_2\x&=0
 \end{empheq}
-temos vários casos para as soluções mas trataremos aqui somente do caso com quatro soluções distintas, já que \citep{2503343} pressupõe que sejam fornecidos quatro pontos em posições gerais no plano da imagem, os quais definem o feixe de cônicas.
+temos vários casos para as soluções mas trataremos aqui somente do caso com quatro soluções distintas, já que \citep{2503343} pressupõe que sejam fornecidos quatro pontos em posições gerais no plano da imagem, os quais são utilizados na definição do feixe de cônicas.
 
 Chamamos de {\it pontos base} de um feixe de cônicas, os pontos que são comuns a todas as cônicas do feixe, isto é, eles são os pontos de interseção das duas cônicas $B_1$ e $B_2$ que são a base do feixe. Assim, o feixe de cônicas fica definido pelos quatro pontos de interseção dessas duas cônicas.
 
 Como os quatro pontos $\x_i$ que definem o feixe são todos diferentes, temos que o feixe contém exatamente três cônicas degeneradas que são constituídas por pares de retas. Definindo as retas por dois pontos temos um total de combinações de $C_{4,2}=6$ retas dadas por
 
 \begin{equation*}
-\lightrgb_k=\x_i\times\x_j\quad\text{com}\quad k=1,...,6,\,\,i=1,2,3,\,\,j=2,3,4,\quad\text{e}\quad i\neq j.
+\lightrgb_k=\x_i\times\x_j\quad\text{com}\quad k=1,...,6,\,\,i=1,2,3,\,\,j=2,3,4,\quad\text{e}\quad i<j.
 \end{equation*}
 Pela subseção \ref{sec.conicas-degeneradas}, cada cônica degenerada do feixe pode ser expressa como
 
@@ -714,7 +714,7 @@ Pela subseção \ref{sec.teorema-6} $(\omega\diamond B)\,\e\sim(\omega'\diamond 
 \begin{array}{rcl}
 0&=&\e'^\top B\,\e'\\
 &=&((\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e})^\top B\,(\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e}\\
-&=&\e^\top (\omega \cdot B)^\top (\omega' \cdot B)^{*\top}B\,(\omega' \cdot B)^*\,(\omega \cdot B)\,\e \quad \text{substituindo} \,\,\ref{eq.definicao-conica-C}\\
+&=&\e^\top (\omega \cdot B)^\top (\omega' \cdot B)^{*\top}B\,(\omega' \cdot B)^*\,(\omega \cdot B)\,\e\\
 &=&\e^\top C\,\e.
 \end{array}
 \end{equation*}  
@@ -816,7 +816,7 @@ Na figura \ref{plot-C} podemos visualizar dois exemplos de curvas. À esquerda, 
 Dados três pontos correspondentes e o epipolo $\e$
 em uma imagem, as restrições de projeção e calibração possibilitam quatro soluções para o epipolo $\e'$ na outra imagem.
 \end{teorema}
-A demonstração desse teorema é construtiva e se trata de um algoritmo fornecido no apêndice do artigo. Cabe ressaltar que temos quatro possibilidades para o epipolo $\e$ obtido como interseção da cônica $B$ com a curva de $10^{\underline{o}}$ grau $G$. E para cada um deles, temos quatro possibilidades para o epipolo $\e'$ de acordo com o algoritmo publicado no apêndice do artigo. Ou seja, como necessitamos dos pares de epipolos para obter a matriz esencial $E$, teremos um total de 16 possibilidades para $E$ para cada cônica $B$ do feixe de cônicas passando pelos quatro pontos na imagem dados inicialmente. 
+A demonstração desse teorema é construtiva e se trata de um algoritmo fornecido no apêndice do artigo. Temos quatro possibilidades para o epipolo $\e$ obtido como interseção da cônica $B$ com a curva de $10^{\underline{o}}$ grau $G$. E para cada um deles, temos quatro possibilidades para o epipolo $\e'$ de acordo com o algoritmo publicado no apêndice do artigo. Ou seja, como necessitamos dos pares de epipolos para obter a matriz esencial $E$, teremos um total de 16 possibilidades para $E$ para cada cônica $B$ do feixe de cônicas passando pelos quatro pontos na imagem dados inicialmente. 
 
 
 \subsection{Teoremas 13 a 17}
@@ -909,7 +909,7 @@ onde $\omega'=H^{-\top}\omega\,H^{-1}$ (como qualquer cônica se transforma) de 
 
 \subsection{Incluindo a terceira imagem}
 
-As novidades do artigo se encontram na abordagem da reconstrução 3D para duas imagens e a aplicação a seguir segue o modelo padrão de projetar as reconstruções na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas com as câmeras calibradas), podemos escolher duas dessas imagens para traçarmos a curva de décimo grau. Como vimos, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{eq.map-7-grau}. Com os epipolos encontramos a homografia da reta epipolar  e daí, a matriz essencial relativa às duas imagens. Em seguida, podemos extrair as câmeras e usá-las para reconstrução dos pontos 3D a partir da triangulação usando duas imagens. Três pontos 3D juntamente com suas projeções (já conhecidas) são suficientes para determinar a câmera da terceira imagem, e podemos usar o quarto ponto para ser projetado na terceira imagem e comparar o resultado com o dado já obtido para refinar o resultado. Ou seja, o procedimento consiste em minimizar um erro na imagem. Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, o valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmera da terceria imagem e dezesseis reprojeções, todas essas reprojeções definem uma complexidade enorme de curvas na terceira imagem. Na figura \ref{curvas-f(theta)} é dada uma ideia da dificuldade extrema do problema envolvendo três imagens e quatro pontos. 
+As novidades do artigo se encontram na abordagem da reconstrução 3D para duas imagens e a aplicação a seguir segue o modelo padrão de projetar as reconstruções na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas com as câmeras calibradas), podemos escolher duas dessas imagens para traçarmos a curva de décimo grau. Como vimos, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{eq.map-7-grau}. Com os epipolos encontramos a homografia da reta epipolar  e daí, a matriz essencial relativa às duas imagens. Em seguida, podemos extrair as câmeras e usá-las para reconstrução dos pontos 3D a partir da triangulação usando duas imagens. Três pontos 3D juntamente com suas projeções (já conhecidas) são suficientes para determinar a câmera da terceira imagem, e podemos usar o quarto ponto para ser projetado na terceira imagem e comparar a projeção com o dado já obtido para refinar o resultado. Ou seja, o procedimento consiste em minimizar um erro na imagem. Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, o valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmera da terceria imagem e dezesseis reprojeções, todas essas reprojeções definem uma complexidade enorme de curvas na terceira imagem. Na figura \ref{curvas-f(theta)} é dada uma ideia da dificuldade extrema do problema envolvendo três imagens e quatro pontos. 
 
 \begin{figure}[!htb]
 \centering

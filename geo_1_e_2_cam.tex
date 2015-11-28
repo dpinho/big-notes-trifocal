@@ -1,18 +1,18 @@
-\section{Geometria de Uma e Duas Câmeras}
+\section{Geometria de uma e duas câmeras}
 Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em \cite{Hartley2004}, por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
 
-\subsection{O Espaço Projetivo em Duas Dimensões}\label{sec.espaco-P2}
+\subsection{O espaço projetivo em duas dimensões}\label{sec.espaco-P2}
 
 
-\subsubsection{A Reta}\label{sec.reta}
+\subsubsection{A reta}\label{sec.reta}
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}-\{0\}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
+Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}-\{0\}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano projetivo é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
 
-\subsubsection{O Ponto}\label{sec.ponto}
+\subsubsection{O ponto}\label{sec.ponto}
 
 
-Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores que se referem a pontos serão representados pelo símbolo em negrito $\x$, que sempre indicará um vetor coluna. Desse jeito, $\x=(x,y)^\top$. Sabemos também que um ponto $(x,y)^\top$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial, escrevendo $\x$ com uma terceira coordenada igual a 1:
+Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores em coordenadas homogêneas que se referem a pontos serão representados pelo símbolo em negrito $\x$, configurando a terceira componente como 1. Desse jeito, $\x=(x,y,1)^\top$. Sabemos também que um ponto $(x,y)$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial:
 
 \begin{equation*}
 (x,y,1)^\top 
@@ -46,7 +46,7 @@ Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três
  = 0.
 \end{equation*}
 
-Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas $(k\,x,k\,y,k)^\top \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y)^\top \in \mathbb{R}^2$, e podemos resgatar nossa representaçao original aplicando o procedimento $(x/k,y/k)^\top$, pois $k \ne 0$.
+Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogêneas $(k\,x,k\,y,k)^\top \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y) \in \mathbb{R}^2$, e podemos resgatar nossa representação original aplicando o procedimento $(x/k,y/k)^\top$, pois $k \ne 0$.
 
 \begin{figure}[!htb]
 \centering
@@ -55,25 +55,25 @@ Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogeneas
 \label{plano_P2}
 \end{figure}
 
-Podemos pensar no espaço projetivo como um conjunto de retas passando pela origem do $\mathbb{R}^3$, onde cada reta representa um único ponto, que é a interseção desse reta com o plano $\mathbb{P}^2$. Desta mesma forma, retas em $\mathbb{P}^2$ são formadas por planos. Na figura \ref{plano_P2}, podemos observar como a interseção da reta com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+Geometricamente, podemos pensar no plano projetivo como um conjunto de retas passando pela origem do $\mathbb{R}^3$, onde cada reta representa um único ponto, que é a interseção dessa reta com o plano $\mathbb{P}^2$. Analogamente, retas em $\mathbb{P}^2$ são formadas pela interseção de $\mathbb{P}^2$ com planos em $\mathbb{R}^3$. Na figura \ref{plano_P2}, observamos como a interseção da reta com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
 
 
-Para determinar um ponto precisamos determinar os valores das duas primeiras coordenadas do vetor homogêneo que representa esse ponto, pode ser tomada como escala. Assim, dizemos que um ponto tem dois graus de liberdade.
+Como a representação de um ponto ou uma reta por vetores em coordenadas homogêneas não é alterada por um escalar,  para determinarmos um ponto ou uma reta precisamos apenas de duas componentes do vetor, pois a terceira componente pode ser configurada como escala. Assim, dizemos que um ponto ou uma reta tem dois graus de liberdade.
 \\
 
-\subsubsection{Retas determinadas por dois pontos e a interseção de duas retas.}
+\subsubsection{Retas determinadas por dois pontos e a interseção de duas retas}
 
 A representação de retas em coordenadas homogêneas nos permite calcular a interseção de duas retas usando o produto vetorial. Sabemos que o produto vetorial de dois vetores, digamos $\lightrgb\times\lightrgb'$ em $R^3$ resulta num terceiro vetor que é ortogonal ao plano definido pelos vetores $\lightrgb$ e $\lightrgb'$. Em particular, esse terceiro vetor $\lightrgb\times\lightrgb'$ será ortogonal a qualquer dos vetores $\lightrgb$ e $\lightrgb'$, assim seu produto escalar é zero:
 
 \begin{equation*}
 \lightrgb\cdot(\lightrgb\times\lightrgb')=\lightrgb'\cdot(\lightrgb\times\lightrgb')=0.
 \end{equation*}
-O produto escalar também pode ser representado por multiplicação matricial, assim
+O produto escalar também pode ser representado por multiplicação matricial,
 
 \begin{equation}\label{eq.pro-vet}
 \lightrgb^\top(\lightrgb\times\lightrgb')=\lightrgb'^\top(\lightrgb\times\lightrgb')=0,
 \end{equation}
-mas sendo $\x$ o ponto de interseção entre as duas retas temos que
+e sendo $\x$ o ponto de interseção entre as duas retas temos que
 
 \begin{equation}\label{eq.pro-vet-2}
 \lightrgb^\top\x=\lightrgb'^\top\x=0
@@ -92,7 +92,7 @@ Com argumento análogo podemos constatar que dois pontos definem uma reta atrav�
 \end{equation*}\\
 
 
-\noindent {\bf Pontos Ideais e a Reta no Infinito.}
+\noindent {\bf Pontos ideais e a reta no infinito.}
 
 Duas retas paralelas no espaço Euclidiano tem equações
 
@@ -118,7 +118,7 @@ e se tentarmos encontrar as coordenadas não homogêneas do ponto de interseçã
 \begin{equation*}
 \left(\frac{b}{0},\frac{-a}{0}\right)^\top,
 \end{equation*}
-o que não faz sentido matematicamente mas sugere que o ponto tem coordenadas que tendem ao infinito. Vetores homogêneos $(x,y,z)^\top$ com $z\neq0$ correspondem a pontos finitos em $R^2$ e, se $z=0$, os pontos são conhecidos como \textit{pontos ideais} ou \textit{pontos no infinito} em geometria projetiva.
+o que não faz sentido matematicamente mas sugere que o ponto tem coordenadas que tendem ao infinito. Vetores homogêneos $(x,y,z)^\top$ com $z\neq0$ correspondem a pontos finitos em $R^2$ e, se $z=0$, os pontos são conhecidos como \textit{pontos ideais} ou \textit{pontos no infinito} no plano projetivo.
 
 Se tomarmos um ponto no infinito genericamente $\x=(x,y,0)^\top$ percebemos que ele pertence a uma determinada reta $\lightrgb_\infty=(0,0,1)^\top$, pois
 
@@ -133,18 +133,14 @@ y\\
 \end{equation*} 
 e tal reta é conhecida como \textit{reta no infinto}. Assim, no plano projetivo temos que retas paralelas se encontram em ponto no infinito e o conjunto de pontos no infinito constituem a reta no infinito.
 
-Um fato interessante sobre pontos no infinito é que eles constituem as direções das retas no plano projetivo $\mathbb{P}^2$. Observe que a interseção de uma reta qualquer $\lightrgb=(a,b,c)^\top$ com a reta no infinito $\lightrgb_\infty=(0,0,1)^\top$,
+Um fato interessante sobre pontos no infinito é que eles são as direções das retas no plano projetivo $\mathbb{P}^2$. Um feixe de retas paralelas, que se intersectam num mesmo ponto no infinito, têm a mesma direção. Observe que a interseção de uma reta qualquer $\lightrgb=(a,b,c)^\top$ com a reta no infinito $\lightrgb_\infty=(0,0,1)^\top$,
 
 \begin{equation*}
 [\lightrgb]_\times \lightrgb_\infty=(b,-a,0),
 \end{equation*}
-(a notação $[\lightrgb]_\times$ está definida no apêndice \ref{sec.anti-simetrica}) é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
+(a notação $[\lightrgb]_\times$ está definida no apêndice \ref{sec.anti-simetrica}) é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a,0)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
 
-
-
-
-
-\subsubsection{A Cônica.}\label{sec.definicao-conica}
+\subsubsection{A cônica}\label{sec.definicao-conica}
 
 
 Em Geometria Euclidiana, as cônicas são de três tipos principais: elipse, hipérbole e parábola. São definidas, algebricamente, por uma equação do segundo grau em duas variáveis, considerando coordenadas não homogêneas:
@@ -153,8 +149,7 @@ Em Geometria Euclidiana, as cônicas são de três tipos principais: elipse, hip
 a\,x^2+b\,x\,y+c\,y^2+d\,x+e\,y+f=0.
 \end{equation*}
 
-Sabemos que um ponto pertence à cônica se ele é solução da equação acima, a qual pode ser representada utilizando multiplicação matricial e vetores em coordenadas homogêneas, com a terceira coordenada configurada como 1:
-
+Sabemos que um ponto pertence à cônica se ele é solução da equação acima, a qual pode ser representada utilizando multiplicação matricial e vetores em coordenadas homogêneas,
 \begin{equation*}
 (x,y,1) 
  \begin{bmatrix}
@@ -195,7 +190,7 @@ Novamente em notação matricial:
  \x^\top C\,\x = 0.
 \end{equation*}
 
-Já que um ponto pertence à cônica se, e somente se, satisfaz a última equação, temos que $C$ fica definida como a matriz que representa uma cônica no espaço projetivo $\mathbb{P}^2$.
+Já que um ponto pertence à cônica se, e somente se, satisfaz a última equação, temos que $C$ fica definida como a matriz homogênea que representa uma cônica no plano projetivo $\mathbb{P}^2$,
 
 \begin{equation*}
 C =  \begin{bmatrix}
@@ -207,14 +202,14 @@ C =  \begin{bmatrix}
 
 Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade, pois podemos por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. Portanto, são necessários cinco pontos para que a mesma fique determinada.  \\
 
-\subsubsection{Retas tangentes à cônicas.} 
+\subsubsection{Retas tangentes a cônicas} 
 
 Uma reta tangente a uma cônica num ponto $\x$ qualquer tem a simples forma
 
 \begin{equation*}
 \lightrgb=C\x.
 \end{equation*}
-De fato, se a reta $\lightrgb$ passa por um ponto $\x$ temos que $\x^\top\lightrgb=0$, e se esse ponto $\x$ pertence à cônica $C$ então $\x^\top C\,\x=0$. Se $\x$ é o único ponto de interseção da reta com a cônica, comparando as duas relações  temos que $\lightrgb=C\x$ é a tangente procurada. Agora vamos mostrar que se a reta passa por mais um ponto na cônica, então toda a reta pertence à cônica e não é uma tangente.
+De fato, se a reta $\lightrgb$ passa por um ponto $\x$ temos que $\x^\top\lightrgb=0$, e se esse ponto $\x$ pertence à cônica $C$ então $\x^\top C\,\x=0$. Se $\x$ é o único ponto de interseção da reta com a cônica, comparando as duas relações  temos que $\lightrgb=C\x$ é a tangente procurada. Agora vamos ver que se a reta passa por mais um ponto na cônica, então toda a reta pertence à cônica e não é uma tangente.
 Se a reta passa também por um outro ponto $\y$ na cônica, temos que $\y^\top C\,\y=0$ e $\lightrgb^\top\y=0$. Mas como $\lightrgb=C\x$ e considerando que $C$ é simétrica, temos
 
 \begin{equation*}
@@ -227,7 +222,7 @@ Agora considerando todos os pontos em $\lightrgb=(\x+\alpha\y)$ parametrizados p
 \end{equation*}
 já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x$ e $\y$ está em $C$, que neste caso é dita ser uma cônica degenerada.\\
 
-\subsubsection{Cônica Dual ou de reta.}\label{sec.conica-dual} 
+\subsubsection{Cônica dual ou reta}\label{sec.conica-dual} 
 
 A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
 
@@ -240,7 +235,7 @@ C^{-1}\lightrgb)\\
 &=&0.
 \end{array}
 \end{equation*}
-Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^\top C^*\,\lightrgb=0$ indica que as retas $\lightrgb_i$ são tangentes à cônica $C$, e por isso $C^*$ cônica é conhecida como cônica envelope, como podemos visualizar na figura \ref{fig.conica-envelope}.
+Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^\top C^*\,\lightrgb=0$ indica que as retas $\lightrgb_i$ são tangentes à cônica $C$, e por isso $C^*$ é conhecida como cônica envelope, como podemos visualizar na figura \ref{fig.conica-envelope}.
 
 \begin{figure}[!htb]
 \centering
@@ -249,14 +244,14 @@ Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^
 \label{fig.conica-envelope}
 \end{figure}
 
-\subsubsection{Cônicas degeneradas.}\label{sec.conicas-degeneradas}
+\subsubsection{Cônicas degeneradas}\label{sec.conicas-degeneradas}
 
-Acontece quando a matriz não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
+Acontece quando a matriz que representa a cônica não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
 
 \begin{equation*}
 C=\lightrgb\,{\bf m}^\top+{\bf m}\,\lightrgb^\top
 \end{equation*}
-é uma cônica ponto composta por duas retas $\lightrgb$ e ${\bf m}$. Assim, se um ponto $\x\in\lightrgb$ então $\lightrgb^\top\x=0$ e esse ponto deve satisfazer $\x^\top C\,\x=0$. Portanto
+é uma cônica ponto composta por duas retas $\lightrgb$ e ${\bf m}$. Assim, se um ponto $\x\in\lightrgb$ então $\lightrgb^\top\x=0$ e esse ponto deve satisfazer $\x^\top C\,\x=0$. De fato,
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -277,7 +272,7 @@ De forma análoga à argumentação anterior podemos demosntrar que $C^*$ define
 \lightrgb^\top\,C^*\lightrgb=0.
 \end{equation*}
 
-\subsubsection{A Relação Polo-Polar.}\label{sec.polo-polar}
+\subsubsection{A relação polo-polar.}\label{sec.polo-polar}
 
 Vimos anteriormente que uma reta $\lightrgb$ é tangente a uma cônica num ponto $\x$ se 
 
@@ -325,7 +320,7 @@ e quaisquer dois pontos que satisfazem a relação $\y^\top C\,\x=0$ são chamad
 %Existe uma relacao de conjugacao para retas, digamos ${\bf l}$ e ${\bf m}$: ${\bf l}^\top C^*{\bf m}=0$.
 
 
-\subsubsection{Transformação Projetiva em $\mathbb{P}^2$}\label{sec.trans-proj-H}
+\subsubsection{Transformação projetiva em $\mathbb{P}^2$}\label{sec.trans-proj-H}
 
 A tranformação projetiva também conhecida como projetividade, colineação ou homografia,  é uma função (invertível) que transforma pontos no plano $\mathbb{P}^2$ para pontos no plano $\mathbb{P}^2$ preservando a colinearidade desses pontos. Mais formalmente, uma função $h:\mathbb{P}^2\rightarrow\mathbb{P}^2$ é uma transformação projetiva se, e somente se, existe uma matriz $H_{3\times3}$ onde para cada ponto $\x\in\mathbb{P}^2$ temos que $h(\x)=H\,\x$. De fato, dados três pontos $\x_1$, $\x_2$ e $\x_3$ na mesma reta $\lightrgb$, temos que $\lightrgb^\top\x_i=0$ para $i=1,2 \,\,\,\text{e}\,\,\, 3$. Seja dada ainda $H_{3\times3}$ uma matriz invertível.
 
@@ -343,12 +338,12 @@ vemos que todos os pontos $\x'_i$ pertencem à reta $\lightrgb'$, pois
 &=&\lightrgb^\top\x_i=0
 \end{array}
 \end{equation*}
-preservando assim, a colinearidade dos pontos. A implicação contrária é demasiadamente grande. A argumentação mostra que qualquer transformação linear aplicada a coordenadas homogêneas é uma transformação projetiva em $\mathbb{P}^2$, ou seja, a transformação projetiva é simplesmente uma transformação linear em $\mathbb{R}^3$. Podemos ver que o efeito da matriz $H$ não é alterado pela multiplicação por um escalar diferente de zero na equação
+preservando assim, a colinearidade dos pontos. A implicação direta é demasiadamente grande. A argumentação mostra que qualquer transformação linear aplicada a coordenadas homogêneas é uma transformação projetiva em $\mathbb{P}^2$, ou seja, a transformação projetiva é simplesmente uma transformação linear em $\mathbb{R}^3$. Podemos ver que o efeito da matriz $H$ não é alterado pela multiplicação por um escalar diferente de zero na equação
 
 \begin{equation*}
 \x'=H\,\x,
 \end{equation*}
-pois os pontos permanecem colineares após a transformação, alterando apenas a escala. Assim, a matriz $H$ é chamada homogênea, e apenas a razão entre os seus elementos é significante, ou seja, são nove elementos mas oito graus de liberdade. Os pontos $\x\leftrightarrow\x'$ são chamados {\it pontos correspondentes}.\\
+pois os pontos permanecem colineares após a transformação, alterando apenas a escala. Assim, a matriz $H$ é homogênea, e apenas a razão entre os seus elementos é significante, ou seja, são nove elementos mas oito graus de liberdade. Os pontos $\x\leftrightarrow\x'$ são chamados {\it pontos correspondentes}.\\
 
 \noindent {\bf Transformação de retas.}
 
@@ -356,7 +351,7 @@ Na argumentação anterior vimos que a reta $\lightrgb'$ foi definida na forma $
 
 \noindent {\bf Transformação de cônicas.}
 
-Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x$ na equação matricial de uma cônica $\x^\top C\,\x=0$:
+Invertendo a função $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x$ na equação matricial de uma cônica $\x^\top C\,\x=0$ temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -368,8 +363,8 @@ Invertendo o mapeamento $\x'=H\,\x$ temos que $\x=H^{-1}\x'$, e substituindo $\x
 onde $\x'^\top C'\x'=0$ é a equação matricial da cônica depois de aplicada a transformação projetiva, com $C'=H^{-\top}C\,H^{-1}$ sendo a regra para a transformação de cônicas.
 
 
-\subsubsection{A geometria projetiva de uma dimensão.}\label{sec.geometria-1D}
-Vamos abrir um parênteses no espaço ${\mathbb{P}^2}$ para falar rapidamente sobre o espaço ${\mathbb{P}}$. A reta projetiva tem muita similaridade com o plano projetivo, pois pontos na reta são representados em coordenadas homogêneas (vetores com duas componentes) e são projetivamente transformados de acordo com uma homografia $H_{2\times2}$. Na reta projetiva ${\mathbb{P}}$ os pontos têm as seguintes denotação e transformação projetiva: 
+\subsubsection{A geometria projetiva de uma dimensão}\label{sec.geometria-1D}
+Vamos abrir um parênteses no plano ${\mathbb{P}^2}$ para falar rapidamente sobre a {\it reta projetiva} ${\mathbb{P}}$. A reta projetiva tem muita similaridade com o plano projetivo, pois pontos na reta são representados em coordenadas homogêneas (vetores com duas componentes) e são projetivamente transformados de acordo com uma homografia $H_{2\times2}$. Na reta projetiva ${\mathbb{P}}$ os pontos têm as seguintes notação e transformação projetiva: 
 
 \begin{equation}\label{eq.ponto-homografia-em-P}
 \overline{\x}=
@@ -408,7 +403,7 @@ x_{i2}&x_{j2}
 \end{bmatrix}.
 \end{equation*}
 
-Vamos mostrar que a razão cruzada é uma invariante sob transformação projetiva, ou seja, dada uma homografia como a equação \ref{eq.ponto-homografia-em-P} temos que 
+Vamos verificar que a razão cruzada é uma invariante sob transformação projetiva, ou seja, dada uma homografia como a equação \ref{eq.ponto-homografia-em-P} temos que 
 
 \begin{equation}\label{eq.invariante-cross}
 \text{cross}(\overline{\x}'_1,\overline{\x}'_2,\overline{\x}'_3,\overline{\x}'_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4).
@@ -460,16 +455,17 @@ Assim,
 
 
 \subsubsection*{Retas concorrentes.}
-Quatro retas concorrentes em um único ponto têm geometria em ${\mathbb{P}}$ dual com quatro pontos colineares, assim a razão cruzada entre essas retas também é uma invariante sob projetividade. Conforme a figura \ref{fig.razao-cruzada}, o valor da razão cruzada entre as quatro retas é dado pelos pontos de interseção de uma quinta reta transversal a essas quatro, ou seja:
+Vimos que pontos e retas têm representações similares em ${\mathbb{P}^2}$ usando vetores homogêneos com três componentes. Daí, fazendo as devidas alterações, todo teorema relacionado a pontos são válidos também para retas, e dizemos que existe a {\it dualidade} entre pontos e retas no plano ${\mathbb{P}^2}$. Analogamente,  
+quatro retas concorrentes em um único ponto têm geometria em ${\mathbb{P}}$ dual com quatro pontos colineares, assim a razão cruzada entre essas retas também é uma invariante sob projetividade. Conforme a figura \ref{fig.razao-cruzada}, o valor da razão cruzada entre as quatro retas é dado pelos pontos de interseção de uma quinta reta transversal a essas quatro, ou seja
 
 \begin{equation*}
-\text{cross}(\lightrgb_1,\lightrgb_2,\lightrgb_3,\lightrgb_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4)
+\text{cross}(\lightrgb_1,\lightrgb_2,\lightrgb_3,\lightrgb_4)=\text{cross}(\overline{\x}_1,\overline{\x}_2,\overline{\x}_3,\overline{\x}_4).
 \end{equation*}
 Tal asserção é devida ao teorema de \textit{Pappus} conforme \citep{springer64}. 
 
 
 
-\subsubsection{Subgrupo de transformações projetivas.}\label{sec.hierarquia-transformacoes}
+\subsubsection{Subgrupo de transformações projetivas}\label{sec.hierarquia-transformacoes}
 
 As transformações projetivas se dividem em subgrupos de transformações com características mais específicas. Esses subgrupos são as \textit{isometrias}, \textit{similaridades}, \textit{afinidades} e a própria \textit{transformação projetiva}. Cada subgrupo mantém \textit{invariante} algumas propriedades do objeto ao qual a transformação está sendo aplicada. Por exemplo, a distância entre dois pontos num quadrado se mantém a mesma após a aplicação de uma transformação isométrica (translação, rotação e possível reflexão), mas pode variar após a aplicação de uma transformação de similaridade, a qual pode gerar um quadrado maior ou menor que o original. Portanto, distância entre dois pontos é uma invariante sob isometria mas não é sob similaridade.
 
@@ -492,7 +488,7 @@ R&{\bf t}\\
 {\bf 0}^\top&1
 \end{bmatrix}.
 \end{equation*}
-Sendo $R_{2\times2}$ uma matriz de rotação, ${\bf t}$ um vetor com duas componentes e ${\bf 0}=(0,0)^\top$ um vetor nulo. Essa transformação tem três graus de liberdade, um para o ângulo de rotação e dois para o vetor de translação. Assim, são necessários no mínimo dois pontos correspondentes para determinarmos a matriz da transformação Euclidiana. As invariantes são distância entre dois pontos, ângulo entre duas retas e área. 
+Sendo $R_{2\times2}$ uma matriz de rotação, ${\bf t}$ um vetor com duas componentes e ${\bf 0}=(0,0)^\top$ um vetor nulo, essa transformação tem três graus de liberdade, um para o ângulo de rotação em $R$ e dois para o vetor de translação. Assim, são necessários no mínimo dois pontos correspondentes $\x_i\leftrightarrow\x'_i$ para determinarmos a matriz da transformação Euclidiana. As invariantes são distância entre dois pontos, ângulo entre duas retas e área. 
 
 \subsubsection*{Tranformação de similaridade.}
 A transformação de similaridade é denotada por $H_S$ e é representada pela matriz 
@@ -530,7 +526,7 @@ A transformação afim, ou afinidade, é uma transformação linear seguida de u
 \subfloat[]{\includegraphics[scale=.35]{losango-2}}
 \,
 \subfloat[]{\includegraphics[scale=.35]{losango-3}}
-\caption{$({\tt a})\,$\textit{Um quadrado como exemplo.}$\,({\tt b})\,$\textit{Aplicação da rotação $R(50^\circ)$.}$\,({\tt c})\,$\textit{Aplicação de $D$ com $\lambda_1=0,5$ e $\lambda_2=1,1$.}$\,({\tt d})\,$\textit{Aplicação da rotação $R(-50^\circ)$.}$\,({\tt d})\,$\textit{Aplicação da rotação final $R(-70^\circ)$.}}
+\caption{$({\tt a})\,$\textit{Um quadrado como exemplo.}$\,({\tt b})\,$\textit{Aplicação da rotação $R(50^\circ)$.}$\,({\tt c})\,$\textit{Aplicação de $D$ com $\lambda_1=0,5$ e $\lambda_2=1,1$.}$\,({\tt d})\,$\textit{Aplicação da rotação $R(-50^\circ)$.}$\,({\tt e})\,$\textit{Aplicação da rotação final $R(-70^\circ)$.}}
 \label{fig.angulos-afinidades}
 \end{figure}
 
@@ -571,7 +567,7 @@ A&{\bf t}\\
 {\bf v}^\top&v
 \end{bmatrix},
 \end{equation*}
-onde ${\bf v}=(v_1,v_2)$. Como a matriz é $3\times3$ temos nove variáveis a serem determinadas, mas que se reduzem a oito tomando uma das variáveis para escala. Assim, precisamos de quatro pontos com suas correspondências para determinarmos os oito parâmetros da matriz. Além de manter a colinearidade dos pontos, uma invariante fundamental na transformação projetiva é a razão cruzada entre quatro pontos colineares, ou seja, a razão das razões de segmentos contidos numa mesma reta. Na figura \ref{fig.transformacoes-2D} podemos ver um resumo das características geométricas preservadas (em um quadrado, por exemplo) por cada subgrupo de transformação.   
+onde ${\bf v}=(v_1,v_2)$. Como a matriz é $3\times3$ temos nove variáveis a serem determinadas, mas que se reduzem a oito tomando uma das variáveis para escala. Assim, precisamos de quatro pontos correspondêntes para determinarmos os oito parâmetros da matriz. Além de manter a colinearidade dos pontos, uma invariante fundamental na transformação projetiva é a razão cruzada entre quatro pontos colineares, ou seja, a razão das razões de segmentos contidos numa mesma reta. Na figura \ref{fig.transformacoes-2D} podemos ver um resumo das características geométricas preservadas (em um quadrado, por exemplo) por cada subgrupo de transformação.   
 
 \begin{figure}[!htb]
 \centering
@@ -586,13 +582,13 @@ onde ${\bf v}=(v_1,v_2)$. Como a matriz é $3\times3$ temos nove variáveis a se
 \label{fig.transformacoes-2D}
 \end{figure}
 
-\subsection{O Espaço Projetivo em Três Dimensões}\label{sec.espaco-P3}
+\subsection{O espaço projetivo em três dimensões}\label{sec.espaco-P3}
 
 
-\subsubsection{O Ponto} 
+\subsubsection{O ponto} 
 
 
-Analogamente à representação de um ponto no espaço $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^\top$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^\top \in \mathbb{R}^3$. Portanto esse vetor continua tendo três graus de liberdade. Para realizar tal mudança basta tomar 
+Analogamente à representação de um ponto no plano $\mathbb{P}^2$, um ponto no espaço $\mathbb{P}^3$ é repesentado através de coordenadas homogêneas, acrescentando-se uma quarta coordenada ao vetor que representa esse ponto. Desta forma, $\X = (X_1,X_2,X_3,X_4)^\top$ e $X_4 \ne 0$, onde $\X$ é a representação em coordenadas homogêneas do ponto $(X,Y,Z)^\top \in \mathbb{R}^3$, e portanto um ponto nesse espaço tem três graus de liberdade. Para realizar tal mudança basta tomar 
 
 \begin{equation*}
 X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
@@ -600,7 +596,7 @@ X=X_1/X_4 \,\, ,\, Y=X_2/X_4 \,\,\, \text{e} \,\,\, Z=X_3/X_4.
 
  
 
-\subsubsection{ O Plano}
+\subsubsection{O plano}
 
 Temos que a representação algébrica de um plano $\bpi$ no espaço $\mathbb{R}^3$ é dada pela equação
 
@@ -609,7 +605,7 @@ Temos que a representação algébrica de um plano $\bpi$ no espaço $\mathbb{R}
 \end{equation*}
 onde $\pi_i$ são os coeficientes da equação.
 
-Um ponto em $\mathbb{R}^3$ pertence ao plano se, e somente se, satifaz a equação acima que na forma matricial usando a representação do ponto em coordenadas homogêneas fica:
+Um ponto em $\mathbb{R}^3$ pertence ao plano se, e somente se, satifaz a equação acima que na forma matricial usando a representação do ponto em coordenadas homogêneas fica
 
 \begin{equation*}
   (\pi_1,\pi_2,\pi_3,\pi_4)^\top
@@ -626,7 +622,7 @@ Fazendo as substituições
 X=X_1/X_4 \,\, , \,\, Y=X_2/X_4 \,\,\,\, \text{e} \,\,\,\, Z=X_3/X_4 ,
 \end{equation*}
 
-generalizamos a representação do ponto e a equação se torna:
+generalizamos a representação do ponto e a equação se torna
 
 \begin{equation*}
 \begin{array}{ccc}
@@ -649,12 +645,12 @@ Obs: As três primeiras coordenadas do vetor que representa o plano corresponde 
 \\
 
 
-\subsubsection{A Reta}
+\subsubsection{A reta}
 
 Uma reta pode ser definida passando por dois pontos. Em $\mathbb{P}^2$, como os dois pontos estão no mesmo plano, uma reta passando por esses dois pontos tem apenas dois graus de liberdade, conforme visto anteriormente. Mas em $\mathbb{P}^3$, como os dois pontos podem estar em planos diferentes, temos que uma reta apresenta quatro graus de liberdade, dois graus para cada ponto. Assim, uma reta deveria ser representada por um vetor com cinco coordenadas em $\mathbb{P}^3$, mas vetores desse tipo não podem ser usados, facilmente, em expressões matemáticas que envolvem vetores com quatro coordenadas representando pontos e planos. Portanto é necessário encontrar uma outra representação, e uma das formas mais simples é definir a reta através de dois pontos não coincidentes. Outras representações de uma reta no espaço projetivo $\mathbb{P}^3$, diferentes da apresentada aqui, podem ser encontradas em \cite{Hartley2004}.
 
 
-Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^\top \,\,\,\text{e} \,\,\, {\bf B}^\top$ em linha:
+Uma reta ${\bf L}$ passando por dois pontos ${\bf A} \,\,\, \text{e} \,\,\, {\bf B}$ é representada pelo espaço linha gerado pela matriz $W$ composta pelos pontos ${\bf A}^\top \,\,\,\text{e} \,\,\, {\bf B}^\top$ em linha,
 
 \begin{center}
 $
@@ -670,7 +666,7 @@ $
 onde o espaço gerado por $W^\top$ é o conjunto de pontos do tipo $a\,{\bf A} + b\,{\bf B}$ pertencentes à reta ${\bf L}$ procurada. \\
 
 
-\subsubsection{A Quádrica}
+\subsubsection{A quádrica}
 
 
 Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ é definida pela equação
@@ -696,7 +692,7 @@ $
 
 Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
 
-\subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$.}\label{sec.trans-pontos-planos-P3}
+\subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$}\label{sec.trans-pontos-planos-P3}
 
 A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga àquela argumentada na subseção \ref{sec.trans-proj-H} para pontos e retas em $\mathbb{P}^2$, pois assim como os pontos têm uma relação dual com retas em $\mathbb{P}^2$, os pontos também têm uma relação dual com planos em $\mathbb{P}^3$ e, como vimos, ambos têm a mesma representação em vetores homogêneos com quatro componentes. Assim, sob uma tranformação projetiva de pontos $\X'=H_{4\times4}\X$ temos que planos se transformam de acordo com
 
@@ -712,7 +708,7 @@ A transformação de pontos e planos em $\mathbb{P}^3$ é inteiramente análoga 
 
 \subsubsection{Direções e o plano no infinito.}\label{sec.direcoes-plano-infinito}
 
-O plano no infinito é denotado por $\bpi_\infty$, tem a forma canônica $\bpi_\infty=(0,0,0,1)^\top$ e é composto por pontos no infinito $D=(X_1,X_2,X_3,0)^\top$ que são as direções das retas contidas no espaço. No espaço projetivo $\mathbb{P}^2$ duas retas paralelas se encontram num ponto no infinito, e analogamente, em  $\mathbb{P}^3$ dois planos paralelos se encontram numa reta que está contida no plano no infinito, e também, uma reta é paralela a outra reta (ou a um plano) se o ponto de interseção está no $\bpi_\infty$. O plano no infinito é invariável sob uma transformação afim.
+O plano no infinito é denotado por $\bpi_\infty$, tem a forma canônica $\bpi_\infty=(0,0,0,1)^\top$ e é composto por pontos no infinito $D=(X_1,X_2,X_3,0)^\top$ que são as direções das retas contidas no espaço. No plano projetivo $\mathbb{P}^2$ duas retas paralelas se encontram num ponto no infinito, e analogamente, em  $\mathbb{P}^3$ dois planos paralelos se encontram numa reta que está contida no plano no infinito, e também, uma reta é paralela a outra reta (ou a um plano) se o ponto de interseção está no $\bpi_\infty$. O plano no infinito é invariável sob uma transformação afim.
 
 De acordo com a subseção \ref{sec.trans-pontos-planos-P3} temos que a transformação projetiva de planos no espaço  $\mathbb{P}^3$ se dá pela fórmula $\bpi'=H^{-\top}\bpi$, assim podemos verificar porque um plano no infinito é invariante sob a tranformação afim. Conforme a subseção \ref{sec.hierarquia-transformacoes} vimos que a transformação afim é dada por 
 
@@ -771,7 +767,7 @@ onde as componentes de $\X$ obedecem às restrições
 \begin{equation*}
 X_1^2+X_2^2+X_3^2=0\qquad\text{e}\qquad\,X_4=0.
 \end{equation*}
-De acordo com essas restrições e com esse sistema de coordenadas, e para satisfazer a equação matrical da cônica, temos que $\Omega_\infty=I_{3\times3}$, pois
+De acordo com essas restrições e com esse sistema de coordenadas, e para satisfazer a equação matrical da cônica, podemos definir $\Omega_\infty=I_{3\times3}$, pois
 
 \begin{equation*}
 X_1^2+X_2^2+X_3^2=0\Leftrightarrow(X_1,X_2,X_3)\,I\,(X_1,X_2,X_3)^\top=0.
@@ -863,7 +859,7 @@ k
 \end{equation}
 onde, ${\bf v}$ representa a reta de interseção do plano $\bpi$ com o plano no infinito $\bpi_\infty$. De acordo com as subseções \ref{sec.conica-dual} e \ref{sec.con-absoluta}, a reta ${\bf v}$ que pertence ao plano no infinito, é tangente à cônica absoluta se, e somente se, ${\bf v}^\top I\,{\bf v}=0$, o que está de acordo com a equação \ref{eq.envelope-quadrica}. Portanto, o envelope de ${\tt Q}^*_\infty$ é composto pelos planos que são tangentes à $\Omega_\infty$. 
 
-Para constatar que ${\bf v}$ é a reta de interseção de $\bpi$ com $\bpi_\infty$, considere o sistema abaixo onde um ponto $\X$ pertence a esses dois planos. Esse ponto pertence a cada um dos planos se
+Para constatar que ${\bf v}$ é a reta de interseção de $\bpi$ com $\bpi_\infty$, considere o sistema abaixo onde um ponto $\X$ pertence a esses dois planos. Esse ponto pertence a cada um dos planos se satisfaz o sistema
 
 \begin{empheq}[left=\empheqlbrace]{align*}
 \begin{pmatrix}
@@ -895,14 +891,14 @@ X_2\\
 X_3
 \end{pmatrix}=0.
 \end{equation*}
-A última equação representa a equação de pertinência de um ponto a uma reta num plano conforme as subseções \ref{sec.reta} e \ref{sec.ponto}. 
+A última equação representa a equação de pertinência de um ponto a uma reta contida num plano conforme as subseções \ref{sec.reta} e \ref{sec.ponto}. 
 
 
-\subsection{A Câmera P}
+\subsection{A câmera P}
 
-A câmera é um dispositivo que transforma um cenário 3D referenciado por um sistema de coordenadas do mundo em uma imagem 2D no sistema de coordenadas da câmera. Matematicamente, a \textit{câmera} é modelada como uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmera, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
+A câmera é um dispositivo que transforma um cenário 3D referenciado por um sistema de coordenadas do mundo em uma imagem 2D no sistema de coordenadas da câmera. Algebricamente, a \textit{câmera} é modelada como uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz $P_{3\times4}$ com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmeras, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
 \\
-Esse tipo de câmera é uma composição de três mudanças de coordenadas, representada por uma matriz $P$ que pode ser decomposta em:
+Esse tipo de câmera é uma composição de três mudanças de coordenadas, onde a matriz $P$ pode ser decomposta em:
 
 \begin{equation*}
 P = K \, [I|{\bf 0}]
@@ -912,7 +908,7 @@ R&{\bf t}\\
 \end{bmatrix}
 = K\,[R|{\bf t}],
 \end{equation*}
-onde 
+tais que 
 
 \begin{itemize}
 \item a matriz $\begin{bmatrix}
@@ -925,30 +921,7 @@ contendo os parâmetros extrínsecos transforma os pontos em coordenadas 3D no m
 \end{itemize}
 Mais a frente vamos abordar cada um desses tópicos com mais detalhes.
 
-Para fazermos a construção da câmera, consideramos (a princípio) o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Assim, o plano da imagem é definido como $(x,y,f)^\top$ mas seu sistema de coordenadas é medido em pixels e é centralizado no canto inferior esquerdo da imagem. Por \textit{coordenadas normalizadas da imagem} nos referimos aos pontos $(x,y)^\top$ expressos como $(x,y,1)^\top$, (considerando que a câmera tenha distância focal unitária) no plano da imagem com relação ao sistema de coordenadas da câmera. O \textit{plano detector} fica em $(x,y,-f)^\top$. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersecta o plano da imagem. Assim, ignorando a última componente do vetor (em coordenadas homogêneas) que representa o ponto na imagem, temos o mapeamento:
-
-\begin{equation*}
-\X = 
-\begin{pmatrix}
-X\\
-Y\\
-Z
-\end{pmatrix}
-\rightarrow 
-\x = 
-\begin{pmatrix}
-\displaystyle{\frac{f\,X}{Z}}\\
-\displaystyle{\frac{f\,Y}{Z}}\\
-\displaystyle{f}
-\end{pmatrix}
-\rightarrow
-\begin{pmatrix}
-\displaystyle{\frac{f\,X}{Z}}\\
-\displaystyle{\frac{f\,Y}{Z}}\\
-\end{pmatrix}
-\end{equation*}
-
-O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}, o qual pode ser pensado como a projeção do centro da câmera no plano da imagem.
+Para fazermos a construção da câmera, consideramos (a princípio) o \textit{centro de projeção}, ou \textit{centro da câmera}, como a origem do espaço tridimensional Euclidiano, com o \textit{plano da imagem} ou \textit{plano focal} sendo $Z = f$, onde $f$ é a \textit{distancia focal} entre o plano da imagem e o centro de projeção. Assim, o plano da imagem é definido como $(x,y,f)^\top$ mas seu sistema de coordenadas é medido em pixels e é centralizado no canto inferior esquerdo da imagem. Por \textit{coordenadas normalizadas da imagem} nos referimos aos pontos $(x,y)^\top$ expressos como $(x,y,1)^\top$, (considerando que a câmera tenha distância focal unitária) no plano da imagem com relação ao sistema de coordenadas da câmera. O \textit{plano detector} fica em $(x,y,-f)^\top$. Como podemos obeservar na figura \ref{camera}, um ponto $\X$ no espaço 3D é mapeado a um ponto $\x$ no plano da imagem por uma reta que liga $\X$ ao centro de projeção, e intersecta o plano da imagem. O plano que passa pelo centro da câmera e é paralelo ao plano da imagem é chamado \textit{plano principal}, o plano $xy$ na figura \ref{camera}. O \textit{eixo principal} passa pelo centro da câmera e é perpendicular ao plano da imagem, onde a interseção desse eixo com o plano da imagem forma o \textit{ponto principal}, o qual pode ser pensado como a projeção do centro da câmera no plano da imagem.
 
 
 \begin{figure}[!htb]
@@ -1039,7 +1012,7 @@ $
 a relação de projeção assume a forma
 
 
-\begin{equation}
+\begin{equation}\label{eq.camera-incompleta}
 \x=K\,[I|{\bf 0}]\,\X_{\textit{cam}},
 \end{equation}
 onde $K$ é denominada matriz de calibração da câmera, a qual resume os parâmetros internos da mesma, e $\X_{\textit{cam}}$ enfatiza que o ponto 3D está escrito no sistema de coordenadas da câmera.
@@ -1089,7 +1062,7 @@ Considerando o sistema de coordenadas do mundo, denotaremos um ponto nesse siste
 \begin{center}
 $
 \begin{array}{ccc}
-\overline{\X}_{\textit{cam}}=
+\X_{\textit{cam}}=
 &
 \begin{bmatrix}
 R&-R\,\overline{\bf C}\\
@@ -1129,7 +1102,7 @@ e a relação acima fica:
 \begin{center}
 $
 \begin{array}{ccc}
-\overline{\X}_{\textit{cam}}=
+\X_{\textit{cam}}=
 &
 \begin{bmatrix}
 a&b&c&t_1\\
@@ -1148,7 +1121,7 @@ Z\\
 $
 \end{center}
 
-Substituindo $\overline{\X}_{\textit{cam}}$ em (1), obtemos
+Substituindo $\X_{\textit{cam}}$ em \ref{eq.camera-incompleta}, obtemos
 
 \begin{center}
 $
@@ -1222,7 +1195,7 @@ Acabamos de incluir todos os parâmetros na matriz $P=K\,[R|{\bf t}]$, para o ma
 
 \subsubsection{A matriz de calibração K}
 
-A intenção nesta seção é mostrar qual é a natureza de cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para o plano da imagem na câmera.
+A intenção nesta seção é mostrar qual é a natureza de cada um dos parâmetros internos da matriz de calibração. Para isso, vamos resolver o problema de transferir um ponto qualquer no espaço para o plano da imagem na câmera, encontrado em \citep{tese-fabbri}.
 
 Dado um ponto 3D $p^w = (x^w,y^w,z^w)^\top$ em coordenadas do mundo e sendo $(\uu,\vv)$ as coordenadas do ponto na imagem da câmera, quais os valores de $(\uu,\vv)$?
 
@@ -1279,7 +1252,7 @@ Isolando as variáveis do sistema de coordenadas com ângulo genérico temos:
 \uu &= \tilde \uu - \tilde \vv \cot\theta \\
 \vv &= \tilde \vv \,\csc\, \theta
 \end{empheq}
-os quais fornece
+os quais fornecem
 \begin{empheq}[left=\empheqlbrace]{align*}\label{eq:projection:explicit}
 \uu &= \overbrace{s_\uu f}^{\alpha_\uu}\frac{x}{z} + \overbrace{(-\cot\theta\, s_\vv
 f)}^{\sigma_\theta} \frac{y}{z} + \overbrace{t_{\tilde \uu} - \cot\theta\, t_{\tilde \vv}}^{\uu_0}\\
@@ -1287,13 +1260,13 @@ f)}^{\sigma_\theta} \frac{y}{z} + \overbrace{t_{\tilde \uu} - \cot\theta\, t_{\t
 \vv &= \underbrace{s_\vv f\,\csc\,\theta}_{\alpha_\vv} \frac{y}{z}+
 \underbrace{\csc\,\theta\, t_{\tilde \vv}}_{\vv_0}
 \end{empheq}
-Assim, a transformação de um ponto expresso nas coordenadas da câmera para a imagem é feita usando cinco parâmetros da matriz de calibração $K$
+Assim, a transformação de um ponto expresso nas coordenadas da câmera para a imagem é feita usando cinco parâmetros da matriz de calibração
 \begin{equation*}
 K = \begin{bmatrix}
 \alpha_\uu & \sigma & \uu_o\\
 0 &\alpha_\vv &  \vv_o\\
 0 & 0 &  1
-\end{bmatrix},
+\end{bmatrix}.
 \end{equation*}
 
 
@@ -1326,7 +1299,7 @@ Nesta subseção iremos verificar como se dá a projeção aplicada por uma câm
 
 
 \subsubsection{Ação projetiva de $P$ em planos}
-A equação de projeção $\x=P\,\X$ é uma transformação de um ponto em coordenadas 3D no sistema de coordenadas do mundo para pontos 2D no sistema de coordenadas do plano da imagem na câmera e, por conta das características invariantes sob transformação projetiva, temos a liberdade para escolher o sistema de coordenadas do mundo. Assim, suponha que tal sistema de coordenadas seja posicionado de forma que o plano $xy$ corresponda ao plano $\bpi$, conforme ilustrado na figura \ref{fig.projecao-planos-retas}. Desta forma, pontos no espaço que pertencam ao plano $\bpi$ terão a componente $X_3=0$, e a ação de uma câmera $P$ nesses pontos é dada por
+A equação de projeção $\x=P\,\X$ é uma transformação de um ponto em coordenadas 3D no sistema de coordenadas do mundo para pontos 2D no sistema de coordenadas do plano da imagem na câmera e, por conta das características invariantes sob transformação projetiva, temos a liberdade para escolher o sistema de coordenadas do mundo. Assim, suponha que tal sistema de coordenadas seja posicionado de forma que o plano $xy$ corresponda ao plano $\bpi$, conforme ilustrado na figura \ref{fig.projecao-planos-retas}. Desta forma, pontos no espaço que pertençam ao plano $\bpi$ terão a componente $X_3=0$, e a ação de uma câmera $P$ nesses pontos é dada por
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -1360,12 +1333,12 @@ onde ${\bf p_i}$ são as colunas da matriz $P$. Assim, a transformação de um p
 \subfloat[]{\includegraphics[scale=.5]{projecao-planos}}
 \quad
 \subfloat[]{\includegraphics[scale=.5]{projecao-retas}}
-\caption{({\tt a})\textit{Transformcao projetiva de plano a plano induzida pela camera $P$.}\,\,({\tt b})\textit{Plano $\bpi$ retroprojetado por uma reta $\lightrgb$ no plano da imagem atraves camera $P$.}}
+\caption{({\tt a})\textit{Transformcao projetiva de plano a plano induzida pela camera $P$.}\,\,({\tt b})\textit{Plano $\bpi$ retroprojetado por uma reta $\lightrgb$ no plano da imagem através da camera $P$.}}
 \label{fig.projecao-planos-retas}
 \end{figure}
 
 \subsubsection{A ação projetiva de $P$ em retas}\label{sec.proj.retas}
-Geometricamente, como podemos ver na figura \ref{fig.projecao-planos-retas}, uma reta ${\bf L}$ no espaco 3D junto com o centro $\C$ da câmera definem um plano. A interseção desse plano com o plano da imagem é uma reta $\lightrgb$, que é a imagem da reta ${\bf L}$ no espaço. Algebricamente, considere uma reta ${\bf L}$ parametrizada por $\lambda$ passando pelos pontos ${\bf A}$ e ${\bf B}$, onde cada ponto nessa reta é dado por $\X(\lambda)={\bf A}+(\lambda)\,{\bf B}$. Considere ainda, ${\bf a}$ e ${\bf b}$ sendo as imagens dos pontos ${\bf A}$ e ${\bf B}$ sob a ação da câmera $P$. Aplicando a projeção da câmera $P$ aos pontos da reta ${\bf L}$ temos
+Geometricamente, como podemos ver na figura \ref{fig.projecao-planos-retas}, uma reta ${\bf L}$ no espaço 3D junto com o centro $\C$ da câmera definem um plano. A interseção desse plano com o plano da imagem é uma reta $\lightrgb$, que é a imagem da reta ${\bf L}$ no espaço. Algebricamente, considere uma reta ${\bf L}$ parametrizada por $\lambda$ passando pelos pontos ${\bf A}$ e ${\bf B}$, onde cada ponto nessa reta é dado por $\X(\lambda)={\bf A}+(\lambda)\,{\bf B}$. Considere ainda, ${\bf a}$ e ${\bf b}$ sendo as imagens dos pontos ${\bf A}$ e ${\bf B}$ sob a ação da câmera $P$. Aplicando a projeção da câmera $P$ aos pontos da reta ${\bf L}$ temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -1422,17 +1395,17 @@ Seja $\lightrgb$ as retas tangentes à conica $C$ na imagem (contorno aparente),
 \end{equation*}
 onde tomamos $C^*=P\,{\tt Q}^*P^\top$, a imagem da quádrica sob a projeção $P$.
 
-\subsection{A Geometria Bifocal}
+\subsection{A geometria bifocal}
 
-\subsubsection{A Geometria Epipolar}
+\subsubsection{A geometria epipolar}
 
-Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, aqui denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, a construção desse cenário é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Ou seja, existem as matrizes que promovem a ação de cada câmera onde $\x=P\,\X$ e $\x'=P'\,\X$, e quando isso acontece dizemos que os pontos são {\it pontos correspondentes}, e denotamos por $\x\leftrightarrow\x'$ (já definidos anteriormente). Podemos observar que $\x$ e $\x'$ retroprojetam duas retas definidas por $\C$ e $\C'$, onde esses retas pertencem a $\bpi$ e se intersectam em $\X$. Essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pela reta definida por $\x$ e $\C$. A interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão da reta retroprojetada por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epipolar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano de imagem da segunda câmera. 
+Considere um cenário com um ponto $\X$ no espaço 3D e dois planos que contêm as imagens $\x$ e $\x'$ desse ponto $\X$. Considere ainda um plano $\bpi$ que contém esse ponto $\X$ e os dois centros de projeção (ou centro da câmera) das duas câmeras, denotados por $\C$ e $\C'$. A geometria epipolar se constitui nas relações existentes entre as interseções desse plano $\bpi$ com os dois planos das imagens observado na figura \ref{fig.geo-epipolar}. Sendo $\x$ a imagem 2D de $\X$ no primeiro plano de imagem, a construção desse cenário é motivada pela busca de $\x'$, também 2D, que seja correspondente a $\x$, onde $\x'$ é a imagem de $\X$ no segundo plano de imagem. Ou seja, existem as matrizes que promovem a ação de cada câmera onde $\x=P\,\X$ e $\x'=P'\,\X$, e quando isso acontece dizemos que os pontos são {\it pontos correspondentes}, e denotamos por $\x\leftrightarrow\x'$ (já definidos anteriormente). Podemos observar que $\x$ e $\x'$ retroprojetam duas retas definidas por $\C$ e $\C'$, onde esses retas pertencem a $\bpi$ e se intersectam em $\X$. Essa propriedade é essencial para nos auxiliar a definir as correspondências entre os pontos nas duas imagens. A \textit{reta base} é a reta que passa pelo centro de cada câmera $\C$ e $\C'$. O plano $\bpi$ fica determinado pela reta base e pela reta definida por $\x$ e $\C$. A interseção de $\bpi$ com o segundo plano de imagem define uma reta chamada \textit{reta epipolar}, que é a imagem na segunda visão da reta retroprojetada por $\x$. Ou seja, dadas duas imagens de uma cena, para cada ponto numa imagem vai existir uma reta epipolar correspondente na outra imagem. Pela construção, sabemos que $\x'\in\bpi$ e pertence ao plano da segunda imagem, portanto $\x'$ pertence à reta epipolar que será denotada por $\lightrgb'$. Assim, nossa busca pela correspondência de $\x$ se restringirá a uma busca numa reta e não a uma busca em todo o plano de imagem da segunda câmera. 
 
 \begin{equation*}
 \x\rightarrow\lightrgb'
 \end{equation*}
 
-A imagem do centro de projeção da primeira câmera na segunda visão é denominada \textit{epipolo} e denotada por $\e$. Analogamente, a imagem de $\C'$ na primeira visão também é chamada epipolo e é denotada por $\e'$.
+A imagem do centro de projeção da primeira câmera na segunda visão é denominada \textit{epipolo} e denotada por $\e'$. Analogamente, a imagem de $\C'$ na primeira visão também é chamada epipolo e é denotada por $\e$.
 O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas visões temos vários planos epipolares definidos por um único parâmetro, e que formam o feixe de planos girando em torno da reta base.
 
 \begin{figure}[!htb]
@@ -1444,14 +1417,14 @@ O plano $\bpi$ é denominado \textit{plano epipolar} e num sistema com duas vis�
 
 \subsubsection{A homografia induzida por um plano}\label{sec.homografia}
 
-Considere um plano $\bpi$ no espaco 3D com coordenadas expressas em um referencial no mundo, com duas câmeras, mas que não passa pelo centro de nenhuma das duas câmeras. Portanto esse plano não é o plano epipolar e é dito estar em posicões gerais. Assim, vamos determinar uma homografia definida em função desse plano $\bpi$.\\
+Considere um plano $\bpi$ no espaço 3D com coordenadas expressas em um referencial no mundo, com duas câmeras, mas que não passa pelo centro de nenhuma das duas câmeras. Portanto esse plano não é um plano epipolar e é dito estar em posicões gerais. Assim, vamos determinar uma homografia definida em função desse plano $\bpi$.\\
 
 Dadas as duas matrizes de projeção canônicas
 
 \begin{equation*}
 P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}],
 \end{equation*}
-(repare que as câmeras não são calibradas e a origem do sistema cartesiano do mundo coincide com o centro da primeira câmera) um plano $\bpi=({\bf v},1)^\top$, e um ponto $\X\in\bpi$, então a homografia induzida por $\bpi$ é
+(as câmeras não são calibradas pois não possuem a matriz $K$ e a origem do sistema cartesiano do mundo coincide com o centro da primeira câmera) um plano $\bpi=({\bf v},1)^\top$, e um ponto $\X\in\bpi$, então a homografia induzida por $\bpi$ é
 
 \begin{equation*}
 \x'=H\,\x,\qquad\text{onde}\qquad H=R-{\bf t}\,{\bf v}^\top.
@@ -1522,24 +1495,24 @@ Portanto
 \end{equation*}
 
 
-\subsubsection{A matriz Fundamental $F$}\label{sec.matriz-F}
+\subsubsection{A matriz fundamental $F$}\label{sec.matriz-F}
 
 A \textit{matriz fundamental} reúne todas as informações da geometria epipolar, é a representação algébrica dessa geometria espacial com duas câmeras e, por isso, também é conhecida como \textit{tensor bifocal}. 
 
 Geometricamente, a matriz fundamental pode ser obtida através do mapeamento de $\x$ na primeira imagem a um ponto $\x'$ na segunda imagem utilizando um plano $\bpi$ qualquer no espaço. Após esse mapeamento, identificamos a reta epipolar definida pelos pontos $\x'$ e $\e'$. Assim, considere um plano $\bpi$ que não passe pelos centros das câmeras, pois desse jeito uma reta retroprojetada por $\x$ deve intersectar o plano $\bpi$ em algum ponto $\X$. Usando a transferência através do plano $\bpi$, o ponto $\X$ deve ser projetado a um ponto $\x'$ na segunda imagem e, como $\X$ pertence à reta retroprojetada por $\x$, o ponto $\x'$ deverá pertencer à reta epipolar $\lightrgb'$, já que $\lightrgb'$ é a imagem na segunda câmera da reta retroprojetada por $\x$ conforme a figura \ref{fig.geo-epipolar}. Assim, pela subseção \ref{sec.homografia} existe uma homografia 2D $H$ em função de $\bpi$ onde cada ponto $\x_i$ é mapeado a um ponto $\x_i'$, 
 
 \begin{equation}\label{eq.homo-plano}
-\x'= H_{\bpi} \,\x.
+\x'_i= H_{\bpi} \,\x_i.
 \end{equation}
 Tais pontos são ditos projetivamente equivalentes, já que são projetivamente equivalentes a um mesmo ponto $\X_i$ no plano $\bpi$. Obtido o ponto $\x'$, a reta epipolar passando por $\x'$ e $\e'$ pode ser calculada fazendo 
 
 \begin{equation}\label{eq.reta-epi-pro-vet}
 \begin{array}{rcl}
 \lightrgb'&=&\e'\times\x'\\
-&=&[\e']_\times\x'
+&=&[\e']_\times\x'.
 \end{array}
 \end{equation}
-($[\e']_\times$ está definida na subseção \ref{sec.anti-simetrica}). Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
+Substituindo \ref{eq.homo-plano} em \ref{eq.reta-epi-pro-vet} temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -1551,12 +1524,12 @@ Tais pontos são ditos projetivamente equivalentes, já que são projetivamente 
 onde definimos $F=[\e']_\times H_{\bpi}$ é a matriz fundamental. Como $[\e']_\times$ é uma matriz anti-simétrica $3\times3$ obtida de um vetor, então  $[\e']_\times$ tem posto $2$ e como $H_{\bpi}$ obtida de um plano tem posto $3$, temos que a matriz fundamental tem posto $2$. $F$ é o mapeamento de um plano projetivo a um feixe de retas epipolares.
 
 
-Algebricamente, a matriz fundamental pode ser determinada a partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa a reta retroprojetada por $\x$. Assim, dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaco 3D que são mapeados nesse ponto $\x$, e este raio de luz (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a esta reta, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ definida na subseção \ref{sec.pseudo-P}. O ponto $P^+\x$ pertence à reta retroprojetada por $\x$ pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
+Algebricamente, a matriz fundamental pode ser determinada a partir das matrizes das duas câmeras $P$ e $P'$. Vamos primeiramente definir a equação que representa a reta retroprojetada por $\x$. Dado um ponto $\x$ na imagem, precisamos determinar o conjunto de pontos no espaço 3D que são mapeados nesse ponto $\x$, e este raio de luz (modelado por uma reta) será definido pela junção de dois de seus pontos. E conhecemos dois pontos pertencentes a esta reta, $\C$ é o centro da câmera tal que $P\,\C=0$, e o ponto $P^+\x$ onde $P^+$ é a pseudo-inversa de $P$ definida na subseção \ref{sec.pseudo-P}. O ponto $P^+\x$ pertence à reta retroprojetada por $\x$ pois aplicando-lhe a projeção efetuada pela câmera temos o próprio ponto $\x$ como retorno:
 
 \begin{equation*}
 P^+\x \rightarrow P\,P^+\x=I\,\x=\x.
 \end{equation*}
-Portanto, podemos formar a reta pela junção dos pontos $\C$ e $P^+\x$
+Portanto, podemos formar a reta pela junção dos pontos $\C$ e $P^+\x$, parametrizada por $\lambda$
 
 \begin{equation*}
 \X(\lambda)=P^+\x+\lambda\,\C.
@@ -1588,7 +1561,7 @@ definindo $F=[\e']_\times P'P^+$. Essa relação para $F$ é a mesma fórmula de
 Em problemas de reconstrução 3D podemos considerar a posição da primeira câmera como a origem do sistema de coordenadas do mundo, assim a matriz $P$, sua pseudo-inversa e a matriz da segunda câmera são, respectivamente 
 
 \begin{equation*}
-P=K\,[I|0],\qquad
+P=K\,[I|{\bf 0}],\qquad
 P^+=
 \begin{bmatrix}
 K^{-1}\\
@@ -1655,7 +1628,7 @@ Os epipolos $\e$ e $\e'$ são os espaços nulos à direita e à esquerda de $F$,
 A dedução é análoga para $F\,\e={\bf 0}$.
 
 \subsubsection{Configuração canônica das câmeras}\label{sec.cameras-canonicas}
-Podemos perceber que a relação $\lightrgb'=F\,\x$ é uma relação projetiva, desde que envolve apenas relacionamentos projetivos entre os objetos geométricos, como interseção de retas e planos, e no desenvolvimento algébrico envolve apenas a projeção realizada pela câmera entre pontos no mundo e pontos na imagem. Com isso, a relação depende apenas das coordenadas projetivas da imagem, ou seja, é projetivamente invariante. Assim, dadas transformações projetivas das imagens $\hat{\x}=H\,\x$ e $\hat{\x'}=H'\x'$ podemos deduzir a correspondente relação $\hat{\lightrgb'}=\hat{F}\hat{\x}$ com $\hat{F}=H'^{-\top}F\,H^{-1}$. Analogamente, $F$ depende somente das propriedades projetivas das câmeras $P$ e $P'$, já que as imagens são geradas pela ação dessas duas câmeras. As câmeras dependem tanto do sistema de coordenadas das imagens como do sistema de coordenadas do mundo, mas a matriz fundamental é inalterável por uma transformação projetiva do espaço 3D. 
+A relação $\lightrgb'=F\,\x$ é uma relação projetiva, desde que envolve apenas relacionamentos projetivos entre os objetos geométricos, como interseção de retas e planos, e no desenvolvimento algébrico envolve apenas a projeção realizada pela câmera entre pontos no mundo e pontos na imagem. Com isso, a relação depende apenas das coordenadas projetivas da imagem, ou seja, é projetivamente invariante. Assim, dadas transformações projetivas das imagens $\hat{\x}=H\,\x$ e $\hat{\x'}=H'\x'$ podemos deduzir a correspondente relação $\hat{\lightrgb'}=\hat{F}\hat{\x}$ com $\hat{F}=H'^{-\top}F\,H^{-1}$. Analogamente, $F$ depende somente das propriedades projetivas das câmeras $P$ e $P'$, já que as imagens são geradas pela ação dessas duas câmeras. As câmeras dependem tanto do sistema de coordenadas das imagens como do sistema de coordenadas do mundo, mas a matriz fundamental é inalterável por uma transformação projetiva do espaço 3D. 
 
 Observe que se $H_{4\times4}$ é uma transformação projetiva do espaço 3D, então as relações de projeção podem ser escritas como
 \begin{equation*}
@@ -1688,7 +1661,7 @@ F=[{\bf m}]_\times M.
 
 
 \subsubsection{Extraindo as câmeras canônicas a partir de $F$}
-Nesta seção será apresentada uma das formas de se obter as matrizes das câmeras para um sistema com duas visões. Como vimos na subseção \ref{sec.cameras-canonicas}, é possível aplicar uma transformação projetiva de forma a se obter o par de câmeras canônicas para um sistema bifocal, e assim facilitar o algebrismo e a computação sem prejuízo das características projetivas do sistema. Desta forma, dada a matriz $F$ computada através da codição de correspondência, vammos mostrar como extrair o par de câmeras em sua forma canônica.
+Nesta seção será apresentada uma das formas de se obter as matrizes das câmeras para um sistema com duas visões. Como vimos na subseção \ref{sec.cameras-canonicas}, é possível aplicar uma transformação projetiva de forma a se obter o par de câmeras canônicas para um sistema bifocal, e assim facilitar o algebrismo e a computação sem prejuízo das características projetivas do sistema. Desta forma, dada a matriz $F$ computada através da codição de correspondência, vamos mostrar como extrair o par de câmeras em sua forma canônica.
 
 Primeiramente, observe pelo apêndice \ref{sec.anti-simetrica} o caso $3\times3$ em que uma matriz $M$ é anti-simétrica se satisfaz a condição ${\bf v}^\top M\,{\bf v}=0$. Considerando a matriz $P'^\top F\,P$, a mesma será anti-simétrica se $\X^\top P'^\top F\,P\,\X=0$. Mas $\x=P\,\X$ e $\x'^\top=\X^\top P'^\top$, e substituindo temos que $\x'^\top F\,\x=0$. Pela subseção \ref{sec.propriedades-F}, essa condição de correspondência mostra que $F$ é a matriz fundamental consistente com o par de câmeras $(P,P')$ desde que $P'^\top F\,P$ seja anti-simétrica.
 
@@ -1704,21 +1677,21 @@ F^\top S^\top F&{\bf 0}\\
 {\bf 0}^\top&0
 \end{bmatrix}.
 \end{equation*}
-Assim, dada $F$ temos que um par de câmeras consistente é simplesmente $P=[I|{\bf 0}]$ e $P'=[SF\,|\e']$. Repare que a escolha da matriz $S$ é arbitrária e a matriz $P'$ deve ter posto 3 para ser uma câmera válida. Isso não é problema pois segundo (citar  Luong and Vieville [Luong-96] ) uma boa escolha é $S=[\e']_\times$ pois $\e'^\top\e'\neq0$. Veja que espaço coluna gerado pelo produto vetorial de $\e'$ por cada coluna de $F$ é perpendicular a $\e'$. Como $F$ tem posto 2, sabemos que esse espaço é representado por um plano, e portanto $[\e']_\times F$ também tem posto 2. Como  $\e'$ não pertence ao plano, então $[[\e']_\times F\,|\e']$ tem posto 3. Finalmente, o par de cameras canonicas podem ser obtidas tomando 
+Assim, dada $F$ temos que um par de câmeras consistente é simplesmente $P=[I|{\bf 0}]$ e $P'=[SF\,|\e']$. Repare que a escolha da matriz $S$ é arbitrária mas com a exigência de que a matriz $P'$ deve ter posto 3 para ser uma câmera válida. Isso não é problema pois segundo \citep{luong} uma boa escolha é $S=[\e']_\times$ pois $\e'$ não pertence ao espaço gerado pelas colunas de $[\e']_\times F$. Finalmente, o par de câmeras canônicas pode ser obtido tomando 
 \begin{equation}\label{eq.cameras-dada-F}
 P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[[\e']_\times F\,|\e'].
 \end{equation}
 
 \subsubsection{Ambiguidade projetiva das câmeras dada $F$}\label{sec.ambi-cameras-dada-F}
 
-De uma mesma matriz fundamental podemos extrair dieferentes pares de câmeras consistentes com a mesma geometria epipolar, em contraste com o fato de, dado um par de câmeras, a matriz fundamental ser única. Esses pares de câmeras extraídas de uma $F$ diferem apenas por uma transformação projetiva.
+De uma matriz fundamental podemos extrair diferentes pares de câmeras consistentes com a mesma geometria epipolar, em contraste com o fato de, dado um par de câmeras, a matriz fundamental ser única. Esses pares de câmeras extraídas de $F$ diferem apenas por uma transformação projetiva.
 
 Inicialmente, podemos aplicar uma transformação projetiva e trabalhar com a forma canônica das câmeras $P=\tilde{P}=[I|{\bf 0}]$, $P'=[A|{\bf a}]$ e $\tilde{P}'=[\tilde{A}|\tilde{{\bf a}}]$. Evocando o resultado em \ref{sec.cameras-canonicas} sabemos que a matriz fundamental pode ser obtida fazendo 
 $F=[{\bf a}]_{\times} A=[\tilde{{\bf a}}]_{\times} \tilde{A}$. Como $[{\bf a}]_{\times}$ e $[\tilde{{\bf a}}]_{\times}$ são anti-simétricas temos que
 \begin{equation*}
 {\bf a}^\top F={\bf a}^\top [{\bf a}]_{\times} A={\bf 0}^\top\quad\text{e}\quad\tilde{{\bf a}}^\top F=\tilde{{\bf a}}^\top [\tilde{{\bf a}}]_{\times} \tilde{A}={\bf 0}^\top,
 \end{equation*}
-e como $F$ tem posto 2 e não pode ser invertida, temos que ${\bf a}^\top$ e ${\tilde{{\bf a}}^\top}$ sao iguais a menos da escala, portanto
+e como $F$ tem posto 2 e não pode ser invertida, temos que ${\bf a}^\top$ e ${\tilde{{\bf a}}^\top}$ são iguais a menos de escala, portanto
 \begin{equation}\label{eq.dedu-ambiguidade-P-1}
 {\tilde{{\bf a}}^\top}=k\,{\bf a}^\top.
 \end{equation}
@@ -1733,7 +1706,7 @@ Considerando $[{\bf a}]_{\times} A=[\tilde{{\bf a}}]_{\times} \tilde{A}$ e subst
 \end{equation*}
 Já que ${\bf a}$ é um vetor nulo à direita de $[{\bf a}]_{\times}$ podemos tomar, para um vetor ${\bf v}$ qualquer,
 \begin{equation}\label{eq.dedu-ambiguidade-P-2}
-k\,\tilde{A}-A={\bf a}{\bf v}^\top\quad\text{e dai}\quad \tilde{A}=\frac{A+{\bf a}{\bf v}^\top}{k}. 
+k\,\tilde{A}-A={\bf a}{\bf v}^\top\quad\text{e daí}\quad \tilde{A}=\frac{A+{\bf a}{\bf v}^\top}{k}. 
 \end{equation}
 
 Substituindo as equações \ref{eq.dedu-ambiguidade-P-1} e \ref{eq.dedu-ambiguidade-P-2} na câmera $\tilde{P}'$ temos que 
@@ -1775,24 +1748,174 @@ P=[I|{\bf 0}]\quad\text{e}\quad P'=[[\e']_\times F+\e'{\bf v}^\top |\lambda\,\e'
 \end{equation*} 
 para um vetor ${\bf v}$ qualquer  e um escalar $\lambda\neq0$.
 
-\subsubsection{A matriz Essencial $E$}
-Historicamente, a matriz essencial foi introduzida antes da matriz fundamental e pode ser pensada como um caso particular da matriz fundamental, onde no caso da matriz essencial os efeitos da matriz de calibração $K$ foram removidos. Considere uma câmera $P=K\,[R|{\bf t}]$ onde conhecemos sua matriz de calibração. Podemos inverter a matriz $K$ e aplicá-la na câmera de modo que a projeção se torne $P=[R|{\bf t}]$, chamada {\it câmera normalizada}. Aplicando essa projeção a um ponto no espaço 3D $\X$ temos 
+\subsubsection{A matriz essencial $E$}
+Historicamente, a matriz essencial foi introduzida antes da matriz fundamental e pode ser pensada como um caso particular da matriz fundamental, onde os efeitos da matriz de calibração $K$ foram removidos da câmera $P$. Considere uma câmera $P=K\,[R|{\bf t}]$ onde conhecemos sua matriz de calibração. Podemos inverter a matriz $K$ e aplicá-la na câmera de modo que a projeção se torne $P=[R|{\bf t}]$, chamada {\it câmera normalizada}. Aplicando essa projeção a um ponto no espaço 3D $\X$ temos 
 \begin{equation*}
 \hat{\x}=P\,\X=[R|{\bf t}]\,\X
 \end{equation*}
 onde o ponto $\hat{\x}$ é dito estar em {\it coordenadas  normalizadas}. Um par de câmeras normalizadas 
 \begin{equation*}
-P=[I|{\bf 0}]\qquad\text{e}\qquad P=[R|{\bf t}]
+P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}]
 \end{equation*}
 tem a matriz {\it essencial} como matriz correspondente que reúne todas as características relativas à geometria epipolar para essas duas câmeras. Usando a derivação da matriz fundamental na equação \ref{eq.definicao-F}, podemos definir a matriz essencial aplicando $K$ e $K'^{-1}$,
 \begin{equation*}
 E=[{\bf t}]_\times R.
 \end{equation*}
 
+\section{Reconstrução de uma câmera $P$: detalhamento da abordagem de \citep{bib:kuang}.}\label{sec.astrom}
+Uma câmera pode ser fatorada em $P=K[R|{\bf t}]$, e o artigo \citep{bib:kuang} trata da determinação dos parâmetros externos $R$ e ${\bf t}$, considerando que são conhecidos quase todos os parâmetros internos da matriz $K$, menos a distância focal $f$. Assim, o artigo busca determinar sete parâmetros no total, três na matriz de rotação $R$, três no vetor de translação ${\bf t}$ e um na matriz de calibração. Alguns trabalhos anteriores já resolveram problemas de determinação desses sete parâmetros mas todos eles usaram somente correspondência entre pontos 3D e pontos 2D, $\X\leftrightarrow\x$, e as principais contribuições de \citep{bib:kuang} são o uso de correspondências entre outras entidades geométricas como retas e pontos-tangentes, e a apresentação de um procedimento para resolução de sistemas de equações polinomiais utilizando as Bases de Gr\"obner e a Matriz de Ação. Como já vimos, os parâmetros externos $R$ e ${\bf t}$ tem a finalidade de trazer um ponto 3D escrito no sistema de coordenadas do mundo para o sistema de coordenadas da câmera, e na figura \ref{fig.camera-astrom} podemos observar a ação de $[R|{\bf t}]$ bem como a correspondência entre entidades geométricas.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=.8]{camera-astrom}
+\caption{{\it A matriz $[R|{\bf t}]$ transforma um ponto 3D em coordenadas do mundo para as coordenadas da câmera. A matriz $K$ projeta reta e pontos no plano da imagem através do centro de projeção $C$.}}
+\label{fig.camera-astrom}
+\end{figure}
+
+\subsection{Formulação do problema}
+
+O artigo utiliza o modelo {\it pinhole} de câmera para aplicar a projeção de um ponto $\X$ em 3D em sua imagem $\x$ em 2D dada pela equação de projeção
+\begin{equation}\label{eq.projecao}
+\lambda\,\x=P\,\X,
+\end{equation}
+onde a matriz $P_{3\times4}$ pode ser fatorada conforme descrito acima, e $\lambda$ é um fator de escala descrito na subseção \ref{sec.ponto}. 
+
+Para obter estabilidade numérica e uma configuração prática da câmera, geralmente se assume que o plano da imagem tem o ponto principal centrado na origem, pixels quadrados e eixos perpendiculares ({\it skew} zero). Como a única incógnita na matriz de calibração é a distância focal, a mesma pode ser descrita como
+\begin{equation}\label{eq.astrom-K}
+K=
+\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&0&w
+\end{bmatrix},
+\end{equation}
+onde $w=\frac{1}{f}$.
+
+\subsubsection{Quantidade de equações}
+
+Cada objeto geométrico nos fornece uma quantidade de equações para determinarmos os parâmetros de $P$, e vamos analisar de que forma esses objetos providenciam as equações. Na figura \ref{fig.astrom-objetos-geo} podemos visualizar um exemplo de cada uma das entidades geométricas.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{astrom-objetos-geo}
+\caption{{\it Objetos utilizados para gerar equações na determinação dos parâmetros de $P$.}}
+\label{fig.astrom-objetos-geo}
+\end{figure}
+
+\subsubsection*{Equações obtidas usando pontos}
+
+Dado um ponto 3D $\X$ e sua respectiva imagem em 2D $\x=(x,y,1)^\top$, a equação de projeção $\lambda\,\x=P\,\X$ nos fornece três equações. Mas, pela subseção \ref{sec.ponto}, um ponto 2D tem apenas dois graus de liberdade apesar de suas três componentes, então dessas três equações apenas duas são linearmente independentes. Para eliminarmos o fator de escala $\lambda$ aplicamos o produto vetorial em ambos os lados da equação de projeção:
+\begin{equation}\label{eq.astrom-pontos}
+\begin{array}{rcl}
+\lambda\,\x&=&P\,\X\\
+\lambda\,[\x]_\times\x&=&[\x]_\times P\,\X\\
+{\bf 0}&=&[\x]_\times P\,\X.
+\end{array}
+\end{equation}
+
+\subsubsection*{Equações obtidas usando retas} 
+
+Uma reta 3D ${\bf L}$ pode ser representada usando um ponto $\X$ e uma direção ${\bf D}$, na forma ${\bf L}=\X+k\,{\bf D}$. Dadas a reta ${\bf L}$ e sua imagem $\lightrgb$ obtemos duas equações usando os dois pontos $\X$ e ${\bf D}$. Um ponto $\x$ pertence a uma reta $\lightrgb$ se $\lightrgb^\top\x=0$, e substituindo essa relação na equação de projeção \ref{eq.projecao} temos
+\begin{equation}\label{eq.astrom-retas}
+\begin{array}{rcll}
+\lightrgb^\top P\,\X&=&0&\text{se}\,\,\,k=0\\
+\lightrgb^\top P(\X+k\,{\bf D})&=&0&\text{se}\,\,\,k\neq0.
+\end{array}
+\end{equation}  
+
+\subsubsection*{Equações obtidas usando pontos-tangentes}
+
+É possível obter mais três equações se conhecemos o ponto $\X$, uma direção ${\bf D}$ através $\X$ bem como suas respectivas imagens $\x$ e ${\bf d}$. Com a correspondência $\X\leftrightarrow\x$ podemos usar a relação \ref{eq.astrom-pontos} e conseguir duas equações. Para a terceira equação, usamos a reta definida pelos pontos na imagem, $\lightrgb=\x\times{\bf d}$, juntamente com as relações em \ref{eq.astrom-retas}, pois tomando a diferença entre as relações em \ref{eq.astrom-retas} e usando a reta $\lightrgb$ temos
+\begin{equation}\label{eq.astrom-direcao}
+\lightrgb^\top P\,{\bf D}=0.
+\end{equation}  
+
+Note que essas três equações são obtidas usando um ponto-tangente com uma direção apenas. Se usarmos ponto-tangente com mais direções, conseguimos uma equação a mais para cada direção, pois para cada ${\bf D}_i$ das $n$ direções, teremos $\lightrgb_i=\x\times{\bf d}_i$ e podemos formular as equações
+\begin{equation}
+[\x]_\times P\,\X={\bf 0}\quad\text{e}\quad\lightrgb_i^\top P\,{\bf D}_i=0\quad\text{para}\,\,i=1,...,n.
+\end{equation}
+
+Na tabela abaixo podemos verificar um resumo da quantidade de equações conseguidas para correspondências entre cada objeto geométrico.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+ponto & reta & ponto com 1 tangente & ponto com 2 tangentes \\ 
+\hline 
+2 & 2 & 3 & 4 \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+\subsubsection{Casos úteis}
+
+Com as quantidades de equações fornecidas por cada correspondência podemos formar várias combinações entre pontos, retas e ponto-tangentes para obtermos as sete equações necessárias para calcular os sete graus de liberdade de $P$. Vamos ver dois exemplos de problema mínimo.
+\begin{itemize}
+\item {\bf Dois pontos e um ponto-tangente (P2T1)}: com essa combinação temos três pontos e uma direção passando por um dos pontos, então podemos formar seis equações usando a relação \ref{eq.astrom-pontos} e mais uma equação usando a relação \ref{eq.astrom-direcao}. 
+
+\item {\bf Um ponto-tangente com uma direção mais um ponto-tangente com duas direções (T1T2)}: temos uma reta passando por um dos pontos e duas retas passando pelo outro ponto, então podemos formar quatro equações usando \ref{eq.astrom-pontos} e mais três equações usando \ref{eq.astrom-direcao}.
+\end{itemize} 
+
+Podemos formar outros problemas mínimos conforme os apresentados aqui e vamos mostrar agora um caso supra-restringido, onde temos mais equações do que incógnitas a determinar.
+\begin{itemize}
+\item {\bf Quatro retas (P4L)}: Dadas quatro correspondências entre retas temos oito equações usando as relações \ref{eq.astrom-retas}. Como precisamos de sete equações podemos usar uma delas para verificar a solução dada pelas demais.
+\end{itemize}
+
+\subsubsection{Parametrização de $P$.}
+
+A matriz de rotação da câmera é parametrizada com quaternions, pois desse modo produz sistemas de equações polinomiais relativamente fáceis de serem resolvidos. Utilizando quaternions, a matriz de rotação é dada por
+\begin{equation*}
+R=
+\begin{bmatrix}
+a^2+b^2-c^2-d^2&2bc-2ad&2ac+2bd\\
+2ad+2bc&a^2-b^2+c^2-d^2&2cd-2ab\\
+2bd-2ac&2ab+2cd&a^2-b^2-c^2+d^2
+\end{bmatrix}
+\end{equation*}
+
+Se tratando de uma representação em coordenadas homogêneas podemos usar uma das variáveis para fixar a escala, assim tomando $a=1$ reduzimos o número de variáveis e facilitamos a solução do sistema de equações polinomiais.
+
+O vetor de translação é parametrizado normalmente como ${\bf t}=(t_x,t_y,t_z)^\top$ e a matriz $[R|{\bf t}]$ se torna
+\begin{equation*}
+[R|{\bf t}]=
+\begin{bmatrix}
+a^2+b^2-c^2-d^2&2bc-2ad&2ac+2bd&t_x\\
+2ad+2bc&a^2-b^2+c^2-d^2&2cd-2ab&t_y\\
+2bd-2ac&2ab+2cd&a^2-b^2-c^2+d^2&t_z
+\end{bmatrix}
+\end{equation*}
+
+Para completar a matriz $P$ basta aplicar, à esquerda de $[R|{\bf t}]$ a matriz de calibração $K$ conforme \ref{eq.astrom-K}.
+\begin{equation*}
+\begin{array}{rcl}
+P&=&K\,[R|{\bf t}]\\\\
+&=&
+\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&0&w
+\end{bmatrix}
+\begin{bmatrix}
+a^2+b^2-c^2-d^2&2bc-2ad&2ac+2bd&t_x\\
+2ad+2bc&a^2-b^2+c^2-d^2&2cd-2ab&t_y\\
+2bd-2ac&2ab+2cd&a^2-b^2-c^2+d^2&t_z
+\end{bmatrix}\\\\
+&=&
+\begin{bmatrix}
+a^2+b^2-c^2-d^2&2bc-2ad&2ac+2bd&t_x\\
+2ad+2bc&a^2-b^2+c^2-d^2&2cd-2ab&t_y\\
+w\,(2bd-2ac)&w\,(2ab+2cd)&w\,(a^2-b^2-c^2+d^2)&w\,t_z
+\end{bmatrix}
+\end{array}
+\end{equation*} 
+
+Substituindo $t'_z=w\,t_z$, temos que determinar as sete variáveis $\{b,c,d,t_x,t_y,t'_z,w\}$. Mas observe que as variáveis $\{t_x,t_y,t'_z\}$ são todas lineares usando as relações \ref{eq.astrom-pontos}, \ref{eq.astrom-retas} e \ref{eq.astrom-direcao}, e portanto podem ser eliminadas do sistemas de equações restando apenas as quatro variáveis $\{b,c,d,w\}$. Depois de determinadas essas quatro variáveis, o vetor de translação pode ser recuperado por substituição. 
+
+\subsection{Sistema de equações polinomiais}
+
+Para resolver os sistemas de equações polinomiais decorrentes do emprego dos casos úteis na determinação de $P$, \citep{bib:kuang} utiliza metodos baseados em Geometria Algébrica. Primeiramente, utilizando a ferramenta {\it Macaulay2} em \citep{macaulay2}, é verificada a existência de 20 soluções para o caso mínimo (P2T1). Para sistemas com pouca quantidade de variáveis, usar apenas o método das Bases de Gr\"obner pode ser rápido e numericamente estável, mas aqui é empregado o método exposto em \citep{byrod}, que consiste basicamente em extrair a Base Linear a partir das Bases de Gr\"obner e empregar a Matriz de Ação, da qual as soluções podem ser obtidas pela decomposição em autovalores. No apêndice \ref{sec.geo-algebrica} é fornecido um resumo sobre a teoria básica de Geometria Algébrica, bem como exemplos da utilização do método das Bases de Gr\"obner e da Matriz de Ação para resolver sistemas.
 
 
-
-
+\section{Outros trabalhos anteriores}
 \subsection{Notação Usada por Fabbri}
 
 Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Na tabela \ref{tab_not} temos um resumo da notação encontrada em \cite{Fabbri:Kimia:IJCV2015}, artigo o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Essa nova notação é muito útil para a aplicação da projeção, já que para projetar um ponto na imagem fazemos a divisão de todas as três coordenadas desse ponto pela terceira coordenada. Outra ajuda acontece nas diferenciações, na obtenção das equações diferenciais e algébricas envolvidas no uso da geometria diferencial para abordar problemas do tipo. Nas abordagens feitas por hartley, usa-se correspondência de pontos e retas, basicamente, o que é feito pela maioria dos pesquisadores em visão computacional, e fica ruim para trabalhar com tangentes por conta dessa abordagem mais matricial. Com a notação apresentada aqui, as equações são explícitas e proporciona o emprego das tangentes.
@@ -1915,140 +2038,4 @@ $\alpha_\uu$ e $\alpha_\vv$ são calculados dividindo-se a distância focal $f$ 
 \end{equation*}
 
 
-
-\subsection{Pesquisas Anteriores para Determinação de Câmera usando uma Imagem}
-
- O problema da determinação da pose de uma câmera  tem sido estudado extensivamente pela comunidade da área de visão computacional. Vamos citar alguns exemplos da determinação da pose de uma câmera.
-
-\subsubsection{Usando três Pontos}
-O caso mínimo da determinação de uma pose usando três pontos foi estudado por \cite{fischler}, e em seus estudos foi relatado o seguinte problema: 
-
-``Dado um grupo de $m$ pontos de referência, cujas coordenadas 3D são conhecidas em um certo sistema de coordenadas, e dada uma imagem de um subconjunto desses $ m $ pontos de referência, determinar a localização (no sistema de coordenadas desses pontos de referência) do ponto onde a imagem foi registrada."
-
-Assume-se que se conhece a correspondência entre os pontos de referência e os respectivos pontos na imagem, são conhecidos o ponto principal e o comprimento da distância focal para facilitar o cálculo dos ângulos entre pontos de referência a partir do centro da câmera, e por fim, assume-se que a câmera está localizada fora e ``acima" da região convexa formada pelos pontos de referência.
-Desta forma, calculando as três distância entre o centro da câmera e  três pontos de referência (chamadas de ``pernas"), é possível determinar a posição da câmera bem como a orientação do plano da imagem. Nota-se que esses três pontos de referência formam um triângulo e, juntamente com o  centro da câmera, forma-se um tetraedro. Para calcular essas três ``pernas" pode-se aplicar a lei dos cossenos e formar um sistema com três equações. Em seguida, [10] explicita uma solução algébrica para o sistema bem como uma solução iterativa, calcula o centro da câmera e a orientação do plano da imagem.
-
-Muitas outras formulações para problemas desse tipo foram comparadas e revisadas por \cite{haralick}. 
-
-\subsubsection{Usando três Linhas}
- Para correspondência usando linha foi encontrada uma solução mínima usando três linhas e suas correspondências por \cite{chen}, como se segue:
-
-Neste artigo não é determinada a pose de uma câmera, mas sim feita uma exposição para detrminação da localização de objetos em geral, com relação a um detrminiado sistema de coordendas. Sendo $\mathbf{m_i} $ a direção de uma linha $\mathbf{L_i} $ e $\mathbf{n_i} $ o vetor unitário normal a um plano $\mathbf{F_i} $. Além disso, $\mathbf{p_i} $ é a posição de um ponto na linha $\mathbf{L_i} $ e $\mathbf{d_i} $ é a distância entre $\mathbf{F_i} $ e a origem do sistema de coordenadas. O problema pode ser matematicamente formulado:
-Dados $\mathbf{m_i} $,$\mathbf{n_i} $,$\mathbf{p_i} $,$\mathbf{d_i} $, determinar $ R $ e $ \mathbf{t} $ de maneira que 
-\begin{equation*}
-{\bf n}_i^{T}\,R\,{\bf m}_i = 0 \qquad {\bf n}_i^T\,(R\,{\bf p}_i+{\bf t}) = {\bf d}_i
-\end{equation*}
-
-As equações significam que, para uma matriz de rotação, o vetor linha rotacionado é perpendicular ao vetor normal. E, para um vetor de translação, o ponto transladado perntencerá ao plano. Mais ainda, toda a linha que contém esse ponto estará contida no plano. Como são necessárias seis restrições para a matriz de rotação e o vetor de translação, precisa-se de pelo menos três pares de correspondência para resolver o problema, pois cada par nos fornece duas equações.
-
-A solução dada por \cite{chen} é chamada solução canônica e consiste basicamente em calcular a matriz de rotação usando a primeira relação, definindo essa matriz com uma multiplicação de outras três matriz de rotação, onde cada uma produz uma rotação em torno de um eixo, os quais formam entre si uma base perpendicular. A primeira relação gera um sistema com duas equações onde é dada uma solução numérica. As entradas do vetor de translação são lineares na segunda relação, e são calculadas após o cálculo da matriz de rotação, usando um sistema com três equações.
-
-Outro desenvolvimento envolvendo linhas pode ser encontrado em \cite{dhome}.
-
-\subsubsection{Usando Combinação de Pontos e Linhas}
-Recentemente, um caso mínimo usando combinação de pontos e linhas foi publicado \cite{ramalingam}. Na correspondência entre pontos, usa-se o fato de que os pontos  ${\bf X}$ 3D na cena, ${\bf x}$ 2D na imagem e ${\bf C}$ o centro da câmera, estão alinhados. Esses pontos são empilhados numa matriz $3\times4$, onde cada submatriz $3\times3$ terá determinante zero por conta da linearidade dos pontos. As entradas do ponto 2D imagem nessa matriz são colocadas em função da matriz de rotação $R$ e do vetor de translação ${\bf t}$, retirados da equação de projeção $\lambda\,{\bf x}={\bf P}\,{\bf X}$.
-
-\begin{center}
-$\begin{bmatrix}
-C_1 & X_1 & R_{1,1}\,X_1\,+\,R_{1,2}\,X_2\,+\,R_{1,3}\,X_3\,+\,t_1 \\ 
-C_2 & X_2 & R_{2,1}\,X_1\,+\,R_{2,2}\,X_2\,+\,R_{2,3}\,X_3\,+\,t_2 \\ 
-C_3 & X_3 & R_{3,1}\,X_1\,+\,R_{3,2}\,X_2\,+\,R_{3,3}\,X_3\,+\,t_3 \\ 
-1 & 1 & 1
-\end{bmatrix} $
-\end{center}
-
-Apesar do cálculo de quatro derterminantes na matriz acima, temos apenas duas restrições já que nem todas as equações são L.I.
-
-Uma abordagem similar é construída para as correspondências entre linhas. Uma linha na cena possui pontos extremos ${\bf X}_1$ e ${\bf X}_2$, a linha correspondente na imagem possui extremos ${\bf x}_1$ e ${\bf x}_2$. Esses quatro pontos saõ coplanares juntamente com o centro ${\bf C}$ da câmera e, por isso, o determinante da matriz abaixo deve ser zero.
-
-\begin{center}
-$\begin{bmatrix}
-C_x & X_{1,x} & X_{2,x} & R_{1,1}\,X_{1,x}\,+\,R_{1,2}\,X_{1,y}\,+\,R_{1,3}\,X_{1,z}\,+\,t_1 \\ 
-C_y & X_{1,y} & X_{2,y} & R_{2,1}\,X_{2,x}\,+\,R_{2,2}\,X_{2,y}\,+\,R_{2,3}\,X_{2,z}\,+\,t_2 \\ 
-C_z & X_{1,z} & X_{2,z} & R_{3,1}\,X_{3,x}\,+\,R_{3,2}\,X_{3,y}\,+\,R_{3,3}\,X_{3,z}\,+\,t_3 \\ 
-1 & 1 & 1 & 1
-\end{bmatrix} $
-\end{center}
-
-O determinante dessa matriz fornece uma restrição usando a imagem ${\bf x}_1$, mas consegue-se outra restrição com o determinante de uma matriz similar usando a imagem ${\bf x}_2$. Assim, combinando duas linhas e um ponto ou dois pontos e uma linha, obtém-se as seis restrições necessárias. Com uma mudança de coordenadas que satisfaz algumas condições, ficam determinados os pontos na imagem, na cena e o centro da câmera. Além disso, o sistema de equações fica reduzido a um polinômino de grau 4 a 8, bem menor que o original (antes da mudança de coordenadas) que era 64. Outro estudo bastante interessante usando combinações de pontos, linhas e tagentes  pode ser encontrado em \cite{bib:kuang}. Nesse estudo, observa-se ainda a aplicação de técnicas recentes de resolução de sistemas de equações polinomiais multivariadas, baseadas em geometria algébrica. 
-
-\subsubsection{Usando quatro Pontos não Coplanares}
-A generalização para casos não planares, o caso mínimo usando quatro pontos 2D-3D foi primeiramente resolvido por \cite{triggs}. A ideia basica é determinar a pose e a distancia focal usando quatro correspondencias e tomando a matriz de calibraçao com os valores padronizados:
-
-\begin{center}
-$\begin{array}{cc}
-K =  & \begin{bmatrix}
- 0 & 0 & 0 \\ 
- 0 & 1 & 0 \\ 
- 0 & 0 & 1/f
-\end{bmatrix} 
-\end{array}$
-\end{center}
-
-O primeiro passo é parecido com o algoritmo DLT onde dado um ponto 3D e sua imagem $\lambda\,{\bf x} = P\,{\bf X}$, elimina-se a profundidade $\lambda$ com o produto cruzado ${\bf x}\times P\,{\bf X} = {\bf 0}$ e escolhe-se duas restrições em $P$. Transformando ${\bf x}$ numa matriz de \textit{Householder}, as restrições podem ser reunidas numa matriz $2\,n\times 12$, e no caso do uso de quatro pontos teremos uma matriz $8\times 12$ que tem posto $8$ e deixa $4$ espaços nulos. $P$ pode ser descrita como:
-
-\begin{center}
-$P = P(\mu)\equiv\sum_{i=1}^d{\mu_i\,P_i} $,
-\end{center}
-
-onde $P_i$ são as matrizes $3\times 4$ correspondentes a cada vetor base do espaço nulo, os quais são calculados numericamente através da decomposição SVD.
-
-Sendo a decomposição $P\simeq K\,R(I| -{\bf t})$, a matriz quádrica absoluta e sua imagem
-
-\begin{center}$
-\begin{array}{cc}
-\begin{array}{cc}
-\Omega \equiv  & \begin{bmatrix}
-1 & 0 & 0 & 0 \\ 
-0 & 1 & 0 & 0 \\ 
-0 & 0 & 1 & 0 \\ 
-0 & 0 & 0 & 0
-\end{bmatrix} 
-\end{array} 
- & \text{e} \quad \omega \equiv P\,\Omega P^{T} \simeq KK^{T} \text{, respectivamente.}
-\end{array}$ 
-\end{center}
-
-Assim pode-se converter as restrições em $K$ naquelas das candidatas $P(\mu)$ ou nas imagens $\omega$:
-
-\begin{center}
-$\omega  = \omega (\mu) \equiv P(\mu)\,\Omega P(\mu)^T$
-\end{center}  
-
-Como $K = diag((f,f,1)$ então $K\,K^T = diag(f^2,f^2,1)$ e, consequentemente, 
-\begin{center}
-$\omega _{1,1} = \omega_{2,2}$ \quad e \quad $\omega_{1,2} = \omega_{1,3} = \omega_{2,3} = 0$
-\end{center}
-
-Assim temos um sistema de equações quadráticas nas quatro variáveis $\mu_i$ que tem pelo menos uma solução. Pode-se usar a decomposição SVD para obter os $\mu_i$, sustituí-los em $P(\mu)$ para obter $P$, em seguida fazer a decomposição de $P$ para obter pose e calibração. A matriz resultante é grande, $80\times 56$ mas ainda sim é tratável.
-
-
- Outros autores como \cite{bujnak} resoveram para um caso mínimo de quatro pontos para câmeras sem conheciemnto da distância focal e distorção radial.
-
-\subsubsection{Usando Pontos-Tangentes}
-Em \cite{Fabbri:Giblin:Kimia:ECCV12} uma solução é dada usando um problema mínimo de dois pontos-tangentes,$\lbrace ({\bf X}_1^w,{\bf T}_1^w),({\bf X}_2^w,{\bf T}_2^w)\rbrace$, e suas respectivas imagens $\lbrace ({\bf x}_1,{\bf t}_1),({\bf x}_2,{\bf t}_2)\rbrace$. No artigo é demonstrado que a solução pode ser obtida resolvendo um sistema com duas equações:
-
-\begin{center}
-$\begin{cases}
-{\bf x}_1^T\,{\bf x}_1\,\rho_1^2 - 2\,{\bf x}_1^T\,{\bf x}_2\,\rho_1\,\rho_2 + {\bf x}_2^T\,{\bf x}_2\,\rho_2^2 = ||{\bf X}_1^w - {\bf X}_2^w||\\
-Q(\rho_1,\rho_2) = 0,
-\end{cases}$
-\end{center}
-
-onde $\rho$ é a profundidade em ${\bf x} = \rho\,{\bf X}$, $Q$ é um polinômio de grau 8, e a pose da câmera $R, {\bf \tau}$ relativa ao sistema de coordenadas do mundo é definida por ${\bf X} = R\,{\bf X}^w  + \tau$. 
-
-Fazendo-se umas substituições e isolando $R\, \text{e}\, \tau$ temos:
-
-\begin{center}
-$\begin{cases}
-R = [({\bf X}_1^w - {\bf X}_2^w)\,{\bf T}_1^w\,{\bf T}_2^w]^{-1} \cdot [\rho_1\,{\bf x}_1 - \rho_2\,{\bf x}_2\,\rho_1\,\frac{g_1}{G_1}\,{\bf t}_1 + \frac{\rho_1'}{G_1}\,{\bf x}_1\,\rho_2\,\frac{g_2}{G_2}\,{\bf t}_2 + \frac{\rho_2'}{G_2}\,{\bf x_2}]\\
-\tau = \rho_1\,{\bf x}_1 - R\,{\bf X}_1^w.
-\end{cases}$
-\end{center}
-
-Em material suplementar estão disponíveis expressões para $\frac{g_1}{G_1}, \frac{g_2}{G_2}\text{(razão das velocidades)}, \rho_1 \,\text{e}\, \rho_2$. 
-
-
-\subsection{Resumo dos Resultados Fabbri}
-Projeção e reconstrução 3D com o uso de tangentes.
 

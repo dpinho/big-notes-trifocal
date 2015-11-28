@@ -1,7 +1,7 @@
-\section{Alguns Conceitos e Definicoes em Algebra Linear}
+\section{Alguns conceitos e definições em álgebra linear}
 Esta seção do apêndice se destina a apresentar algumas ferramentas da álgebra linear necessárias ao entendimento de algumas seções da dissertação, funcionando como complementação dessas seções.
 
-\subsection{A Matriz Anti-Simétrica $[{\bf v}]_\times$}\label{sec.anti-simetrica}
+\subsection{A matriz anti-simétrica $[{\bf v}]_\times$}\label{sec.anti-simetrica}
 Dado um vetor ${\bf v}=(v_1,v_2,v_3)^\top$, é possível construir uma matriz anti-simétrica com as componentes de ${\bf v}$ na forma
 
 \begin{equation*}
@@ -53,11 +53,11 @@ v_3
 \end{array}
 \end{equation*}
 
-\subsection{O Método das Potências para Autovalores}\label{sec.potencias-autovalores}
-Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v_k}$ e determinar o autovetor ${\bf v_{k+1}}$ em cada iteração fazendo
+\subsection{O método das potências para autovalores}\label{sec.potencias-autovalores}
+Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v}_k$ e determinar o autovetor ${\bf v}_{k+1}$ em cada iteração fazendo
 
 \begin{equation*}
-{\bf v_{k+1}}=A\,{\bf v_k},
+{\bf v}_{k+1}=A\,{\bf v}_k,
 \end{equation*}
 onde aproximamos um autovetor relativo a $\lambda$ quando $k\rightarrow \infty$. Encontrada a aproximação para o autovetor podemos determinar o autovalor dominante correspondente aplicando o \textit{quociente de Rayleigh}, pois sendo ${\bf v}$ o autovetor relativo a $\lambda$ temos
 
@@ -74,10 +74,10 @@ A\,{\bf v}&=&\lambda\,{\bf v}\\
 \end{array}
 \end{equation*}
 
-Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma do vetor ou dividindo o vetor pela maior de suas componentes em cada iteração. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v_k}\end{Vmatrix}$ a cada iteração. 
+Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma do vetor ou dividindo o vetor pela maior de suas componentes em cada iteração. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v}_k\end{Vmatrix}$ a cada iteração. 
 
 
-Se a matriz não possui um único autovalor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um determinado $s$, de uma matriz
+Se a matriz não possui um único autovalor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um $s$ arbitrário, de uma matriz
 
 \begin{equation*}
 A'=(A-s\,I)^{-1}
@@ -89,7 +89,7 @@ onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor
 \end{equation*} 
 onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$, como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
 
-\subsection{A Decomposição SVD}\label{sec.SVD}
+\subsection{A decomposição SVD}\label{sec.SVD}
 Uma das formas de se obter a decomposição em valores singulares de uma matriz $A$ é aplicando a decomposição em autovalores na matriz  $A^\top A$. Assim, queremos determinar a decomposição
 
 \begin{equation*}
@@ -105,7 +105,7 @@ A^\top A&=&V\,D\,U^\top U\,D\,V^\top\\
 \end{equation*}
 onde $V\,D^2 V^{-1}$ é uma decomposição em autovalores.
 
-Desta forma, aplicando a decomposição em autovalores na matriz $A^\top A$, conseguimos diretamente a matriz $V^\top$ da decomposicao SVD, e basta extrair a raiz quadrada de $D$ para obtermos os valores singulares. Com uma inversão de matrizes podemos obter a matriz $U$:
+Desta forma, aplicando a decomposição em autovalores na matriz $A^\top A$, conseguimos diretamente a matriz $V^\top$ da decomposição SVD, e basta extrair a raiz quadrada das componentes da diagonal de $D$ para obtermos os valores singulares. Com uma inversão de matrizes podemos obter a matriz $U$:
 
 \begin{equation*}
 \begin{array}{rcll}
@@ -117,7 +117,7 @@ U&=&A\,V^{-\top}D^{-1}.
 
 Não são todos os problemas que envolvem a decomposição SVD que necessitam que sejam calculadas todas a matrizes. Existem problemas onde não é necessário o cálculo da matriz $U$ por exemplo. Então a complexidade computacional vai depender também daquilo que é necessário ao problema.
 
-\subsection{A Pseudo-Inversa de $P$}\label{sec.pseudo-P}
+\subsection{A pseudo-inversa de $P$}\label{sec.pseudo-P}
 Primeiramente precisamos definir a inversa de uma matriz quadrada diagonal. Sendo $D$ essa matriz, sua inversa será
 
 \begin{empheq}{align*}
@@ -130,7 +130,7 @@ D_{ii}^+=
 \end{empheq}
 
 
-A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando linhas de zeros até que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linhas de zeros ela será singular. Assim, aplicamos a decomposição SVD (subseção \ref{sec.SVD}) e em seguida definimos a pseudo-inversa.
+A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando uma linha de zeros para que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linha de zeros ela será singular. Assim, aplicamos a decomposição SVD (subseção \ref{sec.SVD}) e em seguida definimos a pseudo-inversa.
 
 \begin{equation*}
 P=U\,D\,V^\top
