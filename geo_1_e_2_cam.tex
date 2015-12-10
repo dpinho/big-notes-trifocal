@@ -1,5 +1,4 @@
-\section{Geometria de uma e duas câmeras}
-Nesta seção, faremos uma breve introdução aos conceitos básicos de Geometria Projetiva e usaremos a notação contida em \cite{Hartley2004}, por ser o tipo de notação mais difundido entre pesquisas de visão computacional. Para uma abordagem mais profunda do assunto o leitor pode pesquisar o referido autor.  
+\section{Geometria de uma e duas câmeras}\label{sec.geo-1-2-cam}
 
 \subsection{O espaço projetivo em duas dimensões}\label{sec.espaco-P2}
 
@@ -63,7 +62,7 @@ Como a representação de um ponto ou uma reta por vetores em coordenadas homog�
 
 \subsubsection{Retas determinadas por dois pontos e a interseção de duas retas}
 
-A representação de retas em coordenadas homogêneas nos permite calcular a interseção de duas retas usando o produto vetorial. Sabemos que o produto vetorial de dois vetores, digamos $\lightrgb\times\lightrgb'$ em $R^3$ resulta num terceiro vetor que é ortogonal ao plano definido pelos vetores $\lightrgb$ e $\lightrgb'$. Em particular, esse terceiro vetor $\lightrgb\times\lightrgb'$ será ortogonal a qualquer dos vetores $\lightrgb$ e $\lightrgb'$, assim seu produto escalar é zero:
+A representação de retas em coordenadas homogêneas nos permite calcular a interseção de duas retas usando o produto vetorial. Sabemos que o produto vetorial de dois vetores, digamos $\lightrgb\times\lightrgb'$ em $R^3$ resulta num terceiro vetor que é ortogonal ao plano definido pelos vetores $\lightrgb$ e $\lightrgb'$. Em particular, esse terceiro vetor $\lightrgb\times\lightrgb'$ será ortogonal a qualquer dos vetores $\lightrgb$ e $\lightrgb'$, assim seu produto escalar é zero
 
 \begin{equation*}
 \lightrgb\cdot(\lightrgb\times\lightrgb')=\lightrgb'\cdot(\lightrgb\times\lightrgb')=0.
@@ -73,12 +72,12 @@ O produto escalar também pode ser representado por multiplicação matricial,
 \begin{equation}\label{eq.pro-vet}
 \lightrgb^\top(\lightrgb\times\lightrgb')=\lightrgb'^\top(\lightrgb\times\lightrgb')=0,
 \end{equation}
-e sendo $\x$ o ponto de interseção entre as duas retas temos que
+e sendo $\x$ o ponto de interseção entre as duas retas temos
 
 \begin{equation}\label{eq.pro-vet-2}
 \lightrgb^\top\x=\lightrgb'^\top\x=0
 \end{equation}
-o que, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2}, nos sugere que
+onde, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2}, nos sugere que
 
 \begin{equation*}
 \x=\lightrgb\times\lightrgb'.
@@ -1333,7 +1332,7 @@ onde ${\bf p_i}$ são as colunas da matriz $P$. Assim, a transformação de um p
 \subfloat[]{\includegraphics[scale=.5]{projecao-planos}}
 \quad
 \subfloat[]{\includegraphics[scale=.5]{projecao-retas}}
-\caption{({\tt a})\textit{Transformcao projetiva de plano a plano induzida pela camera $P$.}\,\,({\tt b})\textit{Plano $\bpi$ retroprojetado por uma reta $\lightrgb$ no plano da imagem através da camera $P$.}}
+\caption{({\tt a})\textit{Transformação projetiva de plano a plano induzida pela câmera $P$.}\,\,({\tt b})\textit{Plano $\bpi$ retroprojetado por uma reta $\lightrgb$ no plano da imagem através da câmera $P$.}}
 \label{fig.projecao-planos-retas}
 \end{figure}
 
@@ -1357,7 +1356,7 @@ Geometricamente, a retroprojeção de retas é o conjunto de pontos no espaço p
 Um cone é uma quádrica degenerada, representada por uma matriz $4\times4$ que não tem posto completo, e é denotada por ${\tt Q}_{co}$.
 
 \subsubsection*{Retroprojeção de cônicas.}
-Uma cônica retroprojeta um cone ${\tt Q}_{co}$ que, neste caso, tem o vértice coincidindo com o centro da câmera, onde esse vértice é o vetor nulo da matriz $4\times4$ que representa o cone. Uma cônica retorpojeta um cone de acordo com 
+Uma cônica retroprojeta um cone ${\tt Q}_{co}$ que, neste caso, tem o vértice coincidindo com o centro da câmera, onde esse vértice é o vetor nulo da matriz $4\times4$ que representa o cone. Uma cônica retroprojeta um cone de acordo com 
 
 \begin{equation*}
 {\tt Q}_{co}=P^\top C\,P
@@ -1368,13 +1367,13 @@ pois, um ponto $\X$ no espaço é projetado na imagem na forma $\x=P\,\X$, e $\x
 Para tratarmos desse assunto, primeiramente precisamos definir alguns conceitos.
 
 \subsubsection*{Contorno gerador e contorno aparente.}
-Na formação da imagem de uma superfície, os raios de luz passando pelo centro da câmera são tangentes à essa superficie em 3D. O contorno dessa superfície nesses pontos de tangência é transformado num contorno no plano da imagem conforme a figura \ref{fig.cont-gerador-aparente}. O contorno da superfície é denominado \textit{contorno gerador} e denotado por ${\bf G}$, o contorno formado na imagem é chamado \textit{contorno aparente} e denotado por ${\bf g}$. Vale ressaltar que o contorno gerador depende das posições do centro da câmera e da própria superfície, e não depende do plano da imagem.  
+Na formação da imagem de uma superfície, os raios de luz passando pelo centro da câmera são tangentes à essa superficie em 3D. O contorno dessa superfície nesses pontos de tangência é transformado num contorno no plano da imagem conforme a figura \ref{fig.cont-gerador-aparente}. O contorno da superfície é denominado \textit{contorno gerador} e denotado por ${\bf \Gamma}$, o contorno formado na imagem é chamado \textit{contorno aparente} e denotado por ${\bf \gamma}$. Vale ressaltar que o contorno gerador depende das posições do centro da câmera e da própria superfície, e não depende do plano da imagem.  
 
 \begin{figure}[htb!]
 \centering
 \subfloat[]{\includegraphics[scale=.94]{contorno-gerador-aparente}}
 \subfloat[]{\includegraphics[scale=.94]{superficie-lisa}}
-\caption{\textit{$({\tt a})\,$O contorno aparente é a imagem do contorno gerador, onde essa imagem fica definida pelas retas através do centro da câmera que são tangentes aos pontos no contorno gerador.$\,\,({\tt b})\,$ Uma quádrica tangenciada por um cone que é o formado pelo conjunto de retas passando pelo centro da câmera, onde tais retas são tangentes ao contorno gerador $G$. }}
+\caption{\textit{$({\tt a})\,$O contorno aparente é a imagem do contorno gerador, onde essa imagem fica definida pelas retas através do centro da câmera que são tangentes aos pontos no contorno gerador.$\,\,({\tt b})\,$ Uma quádrica tangenciada por um cone que é o formado pelo conjunto de retas passando pelo centro da câmera, onde tais retas são tangentes ao contorno gerador ${\bf \Gamma}$. }}
 \label{fig.cont-gerador-aparente}
 \end{figure}
 
@@ -1628,7 +1627,7 @@ Os epipolos $\e$ e $\e'$ são os espaços nulos à direita e à esquerda de $F$,
 A dedução é análoga para $F\,\e={\bf 0}$.
 
 \subsubsection{Configuração canônica das câmeras}\label{sec.cameras-canonicas}
-A relação $\lightrgb'=F\,\x$ é uma relação projetiva, desde que envolve apenas relacionamentos projetivos entre os objetos geométricos, como interseção de retas e planos, e no desenvolvimento algébrico envolve apenas a projeção realizada pela câmera entre pontos no mundo e pontos na imagem. Com isso, a relação depende apenas das coordenadas projetivas da imagem, ou seja, é projetivamente invariante. Assim, dadas transformações projetivas das imagens $\hat{\x}=H\,\x$ e $\hat{\x'}=H'\x'$ podemos deduzir a correspondente relação $\hat{\lightrgb'}=\hat{F}\hat{\x}$ com $\hat{F}=H'^{-\top}F\,H^{-1}$. Analogamente, $F$ depende somente das propriedades projetivas das câmeras $P$ e $P'$, já que as imagens são geradas pela ação dessas duas câmeras. As câmeras dependem tanto do sistema de coordenadas das imagens como do sistema de coordenadas do mundo, mas a matriz fundamental é inalterável por uma transformação projetiva do espaço 3D. 
+A relação $\lightrgb'=F\,\x$ é uma relação projetiva, desde que envolve apenas relacionamentos projetivos entre os objetos geométricos, como interseção de retas e planos, e no desenvolvimento algébrico envolve apenas a projeção realizada pela câmera entre pontos no mundo e pontos na imagem. Com isso, a relação depende apenas das coordenadas projetivas da imagem, ou seja, é projetivamente invariante. Assim, dadas transformações projetivas das imagens $\hat{\x}=H\,\x$ e $\hat{\x}'=H'\x'$ podemos deduzir a correspondente relação $\hat{\lightrgb}'=\hat{F}\hat{\x}$ com $\hat{F}=H'^{-\top}F\,H^{-1}$. Analogamente, $F$ depende somente das propriedades projetivas das câmeras $P$ e $P'$, já que as imagens são geradas pela ação dessas duas câmeras. As câmeras dependem tanto do sistema de coordenadas das imagens como do sistema de coordenadas do mundo, mas a matriz fundamental é inalterável por uma transformação projetiva do espaço 3D. 
 
 Observe que se $H_{4\times4}$ é uma transformação projetiva do espaço 3D, então as relações de projeção podem ser escritas como
 \begin{equation*}
@@ -1699,7 +1698,7 @@ e como $F$ tem posto 2 e não pode ser invertida, temos que ${\bf a}^\top$ e ${\
 Considerando $[{\bf a}]_{\times} A=[\tilde{{\bf a}}]_{\times} \tilde{A}$ e substituindo \ref{eq.dedu-ambiguidade-P-1} temos
 \begin{equation*}
 \begin{array}{rcl}
-[{\bf a}]_{\times} A&=&[\tilde{{\bf a}}]_{\times} \tilde{A}=k\,[{\bf a}]_{\times} \tilde{A}\\
+[{\bf a}]_{\times} A&=&k\,[{\bf a}]_{\times} \tilde{A}\\
 0_{3\times3}&=&k\,[{\bf a}]_{\times} \tilde{A}-[{\bf a}]_{\times} A\\
 0_{3\times3}&=&[{\bf a}]_{\times}(k\,\tilde{A}-A).
 \end{array}
@@ -1757,7 +1756,7 @@ onde o ponto $\hat{\x}$ é dito estar em {\it coordenadas  normalizadas}. Um par
 \begin{equation*}
 P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}]
 \end{equation*}
-tem a matriz {\it essencial} como matriz correspondente que reúne todas as características relativas à geometria epipolar para essas duas câmeras. Usando a derivação da matriz fundamental na equação \ref{eq.definicao-F}, podemos definir a matriz essencial aplicando $K$ e $K'^{-1}$,
+tem a matriz {\it essencial} como matriz correspondente que reúne todas as características relativas à geometria epipolar para essas duas câmeras. Usando a derivação da matriz fundamental na equação \ref{eq.definicao-F}, podemos definir a matriz essencial
 \begin{equation*}
 E=[{\bf t}]_\times R.
 \end{equation*}
@@ -1914,128 +1913,6 @@ Substituindo $t'_z=w\,t_z$, temos que determinar as sete variáveis $\{b,c,d,t_x
 
 Para resolver os sistemas de equações polinomiais decorrentes do emprego dos casos úteis na determinação de $P$, \citep{bib:kuang} utiliza metodos baseados em Geometria Algébrica. Primeiramente, utilizando a ferramenta {\it Macaulay2} em \citep{macaulay2}, é verificada a existência de 20 soluções para o caso mínimo (P2T1). Para sistemas com pouca quantidade de variáveis, usar apenas o método das Bases de Gr\"obner pode ser rápido e numericamente estável, mas aqui é empregado o método exposto em \citep{byrod}, que consiste basicamente em extrair a Base Linear a partir das Bases de Gr\"obner e empregar a Matriz de Ação, da qual as soluções podem ser obtidas pela decomposição em autovalores. No apêndice \ref{sec.geo-algebrica} é fornecido um resumo sobre a teoria básica de Geometria Algébrica, bem como exemplos da utilização do método das Bases de Gr\"obner e da Matriz de Ação para resolver sistemas.
 
-
-\section{Outros trabalhos anteriores}
-\subsection{Notação Usada por Fabbri}
-
-Na seção anterior expusemos um tipo de notação bastante difundida na área de visão computacional mas que, por usar letras do nosso alfabeto, pode ocasionar alguma confusão ou mal entendido. Sendo assim, faz-se necessária a inclusão de uma nova notação que evite alguma ambiguidade e que favoreça a lucidez. Na tabela \ref{tab_not} temos um resumo da notação encontrada em \cite{Fabbri:Kimia:IJCV2015}, artigo o qual o leitor poderá consultar caso necessite de outras notações que não constam aqui. Essa nova notação é muito útil para a aplicação da projeção, já que para projetar um ponto na imagem fazemos a divisão de todas as três coordenadas desse ponto pela terceira coordenada. Outra ajuda acontece nas diferenciações, na obtenção das equações diferenciais e algébricas envolvidas no uso da geometria diferencial para abordar problemas do tipo. Nas abordagens feitas por hartley, usa-se correspondência de pontos e retas, basicamente, o que é feito pela maioria dos pesquisadores em visão computacional, e fica ruim para trabalhar com tangentes por conta dessa abordagem mais matricial. Com a notação apresentada aqui, as equações são explícitas e proporciona o emprego das tangentes.
-
-\begin{table}[!h]
-\begin{center}
-\begin{tabular}{|c|l|}
-\hline
-Símbolos&Descrição\\\hline\hline
-$\Gama^w$&Ponto 3D no sistema de coordenadas do mundo.\\\hline
-$\Gama$&Ponto 3D no sistema de coordenadas da câmera.\\\hline
-$\rot$&Matriz de rotação: coordenadas do mundo para a câmera.\\\hline
-$\transl$&Vetor de translação.\\\hline
-$\mathcal K$&Matriz de calibração: modelo basico (\textit{pinhole}).\\\hline
-$\mathcal K_{im}$&Matriz de calibração: coordenadas do plano medidas em pixels.\\\hline
-$\bc$&O centro da câmera.\\\hline
-$\depth$&Profundidade do ponto imagem.\\\hline
-$\gama$&Ponto 2D em coordenadas normalizadas.\\\hline
-&Imagem da tangente a uma curva.\\\hline
-$\T$&Tangente a uma curva no espaço: coordenadas da câmera.\\\hline
-$\T^w$&Tangente a uma curva no espaço: coordenadas do mundo\\\hline
-$K$&Curvatura.\\\hline
-$G$&Velocidade de parametrizaçao.\\\hline
-$\N^w$&Vetor normal.\\\hline
-$\e_1$, $\e_2$, $\e_3$&Base de vetores do sistema de coordenadas da câmera.\\\hline
-$\e_1^w$, $\e_2^w$, $\e_3^w$&Base de vetores do sistema de coordenadas do mundo.\\\hline
-\end{tabular}
-\end{center}
-\caption{Notação.}
-\label{tab_not}
-\end{table}
-
-Dada uma curva no espaço 3D conforme a figura \ref{curva_3D}, podemos fazer a representação de seus pontos nas coordenadas da câmera em função da representação dos mesmos pontos nas coordenadas do mundo de acordo com a relação:
-
-\begin{figure}[!htb]
-\centering
-\includegraphics[scale=.8]{curva}
-\caption{\textit{Cruva no espaço 3D e sua respectiva imagem 2D. Observe a representação de um mesmo ponto nas coordenadas do mundo e nas coordenadas da câmera.}}
-\label{curva_3D}
-\end{figure}
-
-
-\begin{equation}\label{eq:coord:transf:RT}
-\Gama = \rot (\Gama^w - \bc) \qquad \text{ou} \qquad \Gama = \rot\Gama^w + \transl,
-\end{equation}
-onde $\transl = -\rot\bc$ são as coordenadas da origem do espaço 3D expressas no sistema de coordenadas da câmera, e $\rot$ é a matriz de rotação.
-
-A projeção de um ponto 3D $\Gama = [x,\, y,\, z]^\top$ no plano da imagem $z=1$ é o ponto $\gama = [\uu,\,\vv,\,1]^\top$ e esses pontos estão relacionados por:
-
-\begin{equation}\label{eq:projection}[x,\, y,\, z]^\top =
-[\depth\uu,\,\depth\vv,\,\depth]^\top \,\,\,\,\text{ou, compactamente,}\,\,\,\,  \Gama =
-\depth\gama,
-\end{equation}
-onde $\depth$ é a profundidade extraída da terceira coordenada do vetor que representa o ponto 3D escrito nas coordenadas da câmera, $\depth = z = \e_3^\top\Gama$, e $\e_3^\top = [0,0,1]^\top$.
-
-Substituindo $\depth$ em \ref{eq:projection} e isolando $\gama$, temos
-
-\begin{align}
-\gama &= \frac{\Gama}{\f^\top\Gama}.
-\label{eq:projection:isolated:gamma}
-\end{align}
-e assim observamos que pontos na imagem são sempre tratados como um vetor 3D com $z=1$. 
-
-Denotendo por $\gama^{(i)}$ a $i^{th}$ derivada de $\gama$ em relação a um parâmetro qualquer, sendo $i$ um número natural, podemos verificar que
-
-\begin{equation*}
-\f^\top\gama^{(i)} = 0 \qquad \text{e} \qquad \f^\top\Gama^{(i)} = \depth^{(i)}.
-\end{equation*}
-
-Mais especificamente, calculando as derivadas primeira e segunda de $\depth$ obtemos
-
-\begin{equation}\label{eq:depth:derivs}
-\depth =
-\e_3^\top\Gama,\qquad \depth' = G\e_3^\top\T,\qquad \depth'' = G'\e_3^\top\T +
-G^2K\e_3^\top\N
-\end{equation}
-onde $G$ é a velocidade de parametrização, $\T^w$ é a tangente à curva no ponto $\Gama^{w}$ no espaço 3D, $K$ é a curvatura, e $\N^w$ é o vetor normal, cada qual com as seguintes definições:
-
-\begin{equation}\label{eq:definicoes}
-G  = \|\Gama^{w'}\|,\qquad \T^w = \frac{\Gama^{w'}}{G}, \qquad K  = \frac{\|\T^{w'}\|}{G} \qquad \text{e} \qquad \N^w = \frac{\T^{w'}}{\|\T^{w'}\|}.
-\end{equation}
-
-As definições da tangente e do vetor normal em \ref{eq:definicoes} foram dadas no sistema de coordenadas do mundo, enquanto em \ref{eq:depth:derivs} os mesmos são dados no sistema de coordenadas da câmera. Como visto anteriormente, para fazer a conversão basta aplicar 
-
-\begin{equation*}
-\T = \rot\T^w \qquad \text{e} \qquad \N = \rot\N^w,
-\end{equation*}
-e é interessante notar que para pontos perto/longe da curva temos $\depth' = 0$, $\e_3^\top\T = 0$.
-
-
-Lembramos que a matriz de calibração para o modelo básico \textit{pinhole} é
-
-\begin{center}
-$
-\begin{array}{cc}
-\mathcal K = & \begin{bmatrix}
-               f& &p_x\\
-                &f&p_y\\
-                & &1
-               \end{bmatrix}, 
-\end{array}
-$
-\end{center}
-mas na prática, pontos na imagem são descritos em pixels, $\gama_{im} = [x_{im},\, y_{im},\, 1]^\top$ após a aplicação da matriz de calibração com os parâmetros internos 
-
-\begin{equation}\label{eq:intrinsic:parameter:transf}
-\gama_{im} = \mathcal K_{im}\gama,
-\ \ \ \ \ \
-\mathcal K_{im} = \begin{bmatrix}
-\alpha_\uu & \sigma & \uu_o\\
-0 &\alpha_\vv &  \vv_o\\
-0 & 0 &  1
-\end{bmatrix},
-\end{equation}
-onde $\uu_o$ e $\vv_o$ são as coordenadas do ponto principal na imagem, $\sigma$ define a inclinação entre os eixos cartesianos no plano da imagem (se $\sigma=0$ os eixos são perpendiculares), e
-$\alpha_\uu$ e $\alpha_\vv$ são calculados dividindo-se a distância focal $f$ pela largura e altura do pixel medidas em unidades do mundo, respectivamente. Sendo $m_x$ e $m_y$ a largura e altura do pixel temos:
-
-\begin{equation*}
-\uu_o = \frac{p_x}{m_x}, \qquad \vv_o = \frac{p_y}{m_y}, \qquad \alpha_\uu = \frac{f}{m_x}, \qquad \alpha_\vv = \frac{f}{m_y}.
-\end{equation*}
 
 
 

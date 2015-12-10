@@ -1,4 +1,4 @@
-\section{Geometria trifocal}
+\section{Geometria trifocal}\label{sec.geo-tri}
 Assim como num sistema com duas imagens, podemos extrair informações sobre o cenário em 3D através da correspondência entre pontos, retas, tangentes e seguimentos de curvas com três  ou mais imagens. No entanto, grande parte das pesquisas em visão computacional não têm utilizado a geometria trifocal em problemas de reconstrução 3D e transferência de pontos de uma imagem para outra. Menor ainda é a utilização da Geometria Diferencial para abordar esses problemas. Um dos nossos objetivos é fazer um levantamento das características e conceitos encontrados num sistema trifocal em comparação com a geometria epipolar, e relatar alguns dos benefícios conseguidos através da inclusão de uma terceira imagem.
 
 \subsection{O Problema}
@@ -78,14 +78,14 @@ B^\top\lightrgb''\\
 \end{pmatrix}
 \end{array}.
 \end{equation*}
-Como estamos supondo que essas três retas são imagens de uma única reta no espaço, temos que esses três planos devem se intersectar em ${\bf L}$, e essa restrição geométrica pode ser expressa algebricamente pelo fato de que a matriz formada pelos vetores dos três planos $M=[\pi \,\,\pi'\,\,\pi'']$ deve ter posto 2. Pois, um ponto $\X\in{\bf L}$ pode ser escrito como combinação linear de outros dois pontos pertencentes a ${\bf L}$ que sejam linearmente independentes, digamos $\X=\lambda_1\X_1+\lambda_2\X_2$, com $\lambda_i$ escalares. Como $\X$ pertence a cada um dos planos, temos que $\bpi^\top\X=0$, $\bpi'^\top\X=0$ e $\bpi''^\top\X=0$, e daí $M^\top\X={\bf 0}$. Desde que $\X=\lambda_1\X_1+\lambda_2\X_2$, temos que o núcleo de $M^\top$ tem dimensão 2, ou seja, das quatro variáveis (ou colunas) de $M^\top$ temos duas variáveis livres. Como o número de variáveis livres é o total de variáveis menos o posto, necessariamente o posto deve ser 2.
+Como estamos supondo que essas três retas são imagens de uma única reta no espaço, temos que esses três planos devem se intersectar em ${\bf L}$, e essa restrição geométrica pode ser expressa algebricamente pelo fato de que a matriz formada pelos vetores dos três planos $M=[\pi \,\,\pi'\,\,\pi'']$ deve ter posto dois. Pois, um ponto $\X\in{\bf L}$ pode ser escrito como combinação linear de outros dois pontos pertencentes a ${\bf L}$ que sejam linearmente independentes, digamos $\X=\lambda_1\X_1+\lambda_2\X_2$, com $\lambda_i$ escalares. Como $\X$ pertence a cada um dos planos, temos que $\bpi^\top\X=0$, $\bpi'^\top\X=0$ e $\bpi''^\top\X=0$, e daí $M^\top\X={\bf 0}$. Encarando $M^\top$ como um operador linear, desde que $\X=\lambda_1\X_1+\lambda_2\X_2$, temos que o núcleo de $M^\top$ tem dimensão dois, e como $M^\top$ tem quatro colunas o domínio tem dimensão quatro. Pelo teorema do núcleo e imagem de uma transformação linear, a dimensão do domínio é a soma da dimensão do núcleo com a dimensão da imagem, e daí a dimensão da imagem é dois. A dimensão da imagem é o posto do operador linear $M^\top$, que é igual ao posto de $M$. 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{abord-geo-tri}
 \caption{{\it O desenvolvimento algébrico do tensor trifocal realizado a partir das três imagens de uma reta no espaço 3D.}}
 \label{fig.abord-geo-tri}
 \end{figure}
-Considerando $\alpha$, $\beta$ e $k$ escalares, o posto 2 de $M^\top$ pode ser interpretado com uma dependência linear entre suas colunas de $M$, e como
+Considerando $\alpha$, $\beta$ e $k$ escalares, o posto dois de $M$ pode ser interpretado com uma dependência linear entre suas colunas, e como
 \begin{equation*}
 M=
 \begin{bmatrix}
@@ -259,7 +259,14 @@ Considere novamente que se deseja, dada a correspondência entre pontos nas duas
 deduzida na subseção \ref{sec.rela-incidi-tri}
 para computar diretamente $\x''$. Devemos apenas ter um pouco de cuidado na escoha da reta $\lightrgb'$, pois no caso de ser a reta epipolar correspondente a $\x$ temos, pela subseção \ref{sec.rela-reta-epipolar-tri}, que $(\sum_{i=1}^3 x^i\mbox{T}_i^\top)\,\lightrgb'={\bf 0}$, e o ponto $\x''$ não pode ser determinado. Uma das formas de resolver o problema seria escolher duas ou três retas passando por $\x'$, computar o ponto $\x''$ e escolher aquele que apresenta a maior norma. Outra opção, caso tenha extraído a matriz fundamental $F_{21}$ para as câmeras 1 e 2, é calcular a reta epipolar $\lightrgb'_{\e}=F_{21}\x$ e escolher $\lightrgb'$ que seja perpendicular a $\lightrgb'_{\e}$, ou seja, $\lightrgb'^\top\lightrgb'_{\e}=0$. 
 
-Considere, pela figura \ref{fig.trifocal-frente}, o caso onde o ponto $\X$ está alojado na reta base definida por $\C$ e $\C'$. Nessa posição, a imagem de $\X$ na câmera 2 é o epipolo $\e_{21}=\x'$. Para escolha de qualquer reta que passe por $\x'$ para aplicarmos a relação \ref{eq.ponto-reta-ponto-isolada}, estaremos escolhendo uma reta epipolar, e como vimos anteriormente, não poderemos definir a posição do ponto $\x''$. Tal reta base é o único lugar do plano trifocal que não permite que o ponto $\x''$ seja calculado usando o tensor trifocal, em contraste com a transferência epipolar que se degenera para qualquer ${\X}$ no plano trifocal. No caso onde os centros das câmeras estão alinhados, não poderemos determinar a posição de $\x''$ caso $\X$ esteja em quaisquer das três retas base, já que assim essas três retas são uma reta só. Lembramos que a transferência epipolar falha para centros de projeção alinhados qualquer que seja a posição de $\X$.  
+Considere, pela figura \ref{fig.trifocal-frente}, o caso onde o ponto $\X$ está alojado na reta base definida por $\C$ e $\C'$. Nessa posição, a imagem de $\X$ na câmera 2 é o epipolo $\e_{21}=\x'$. Para escolha de qualquer reta que passe por $\x'$ para aplicarmos a relação \ref{eq.ponto-reta-ponto-isolada}, estaremos escolhendo uma reta epipolar, e como vimos anteriormente, não poderemos definir a posição do ponto $\x''$. Tal reta base é o único lugar que $\X$ pode se alojar no plano trifocal que não permite que o ponto $\x''$ seja calculado usando o tensor trifocal, em contraste com a transferência epipolar que se degenera para qualquer $\X$ no plano trifocal. Observe pela figura \ref{fig.X-plano-trifocal} que, desde que a reta ${\bf L}$ não pertença ao plano trifocal, não há motivos para a degeneração da transferência usando o tensor trifocal à medida que variamos a posição de $\X$ em ${\bf L}$. 
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{X-plano-trifocal}
+\caption{{\it Desde de que ${\bf L}$ não pertença ao plano trifocal, não há motivos para degenerações à medida que variamos $\X$ em ${\bf L}$.}}
+\label{fig.X-plano-trifocal}
+\end{figure}
+No caso onde os centros das câmeras estão alinhados, não poderemos determinar a posição de $\x''$ caso $\X$ esteja em quaisquer das três retas base, já que assim essas três retas são uma reta só. Lembramos que a transferência epipolar falha para centros de projeção alinhados qualquer que seja a posição de $\X$.  
 
 \subsubsection{Transferência de retas}
 Podemos realizar a transferência de retas utilizando a relação
@@ -349,7 +356,7 @@ Como o fator de escala é irrelevante, podemos escolher $\e'$ de forma que $\e'^
 \begin{equation*}
 {\bf b}_i=(\e''\e''^\top -I)\mbox{T}_i^\top\e'.
 \end{equation*}
-Agora podemos definir a câmera 3 considerando as características projetivas da câmera 2,
+Agora podemos definir a câmera 3 considerando as características projetivas das câmeras 1 e 2,
 \begin{equation*}
 P''=[(\e''\e''^\top -I)[\mbox{T}_1^\top\e',\mbox{T}_2^\top\e',\mbox{T}_3^\top\e']|\e''],
 \end{equation*}
