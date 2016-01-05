@@ -1198,13 +1198,13 @@ A intenção nesta seção é mostrar qual é a natureza de cada um dos parâmet
 
 Dado um ponto 3D $p^w = (x^w,y^w,z^w)^\top$ em coordenadas do mundo e sendo $(\uu,\vv)$ as coordenadas do ponto na imagem da câmera, quais os valores de $(\uu,\vv)$?
 
-Primeiramente, vamos transformar o ponto em coordenadas do mundo para as coordenadas da câmera $p = (x,y,z)^\top$:
+Primeiramente, vamos transformar o ponto em coordenadas do mundo para as coordenadas da câmera, $p = (x,y,z)^\top$ e
 \begin{align*}
 p = R p^w + T
 \end{align*}
 onde $R$ e $T$ são parâmetros extrínsecos.
 
-Agora, vamos projetar o ponto para o plano imagem normalizada usando similaridade de triângulos:
+Agora, vamos projetar o ponto para o plano imagem normalizada usando similaridade de triângulos
 \begin{empheq}[left=\empheqlbrace]{align*}\label{eq:normalized:coords}
 \tilde x = \frac{x}{z}\\
 \tilde y = \frac{y}{z}
