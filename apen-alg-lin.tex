@@ -1,7 +1,7 @@
 \section{Alguns conceitos e definições em álgebra linear}\label{sec.Apen-A}
 Esta seção do apêndice se destina a apresentar algumas ferramentas da álgebra linear necessárias ao entendimento de algumas seções da dissertação, funcionando como complementação dessas seções.
 
-\subsection{A matriz anti-simétrica $[{\bf v}]_\times$}\label{sec.anti-simetrica}
+\subsection*{A matriz anti-simétrica $[{\bf v}]_\times$}
 Dado um vetor ${\bf v}=(v_1,v_2,v_3)^\top$, é possível construir uma matriz anti-simétrica com as componentes de ${\bf v}$ na forma
 
 \begin{equation*}
@@ -53,7 +53,7 @@ v_3
 \end{array}
 \end{equation*}
 
-\subsection{O método das potências para autovalores}\label{sec.potencias-autovalores}
+\subsection*{O método das potências para autovalores}
 Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v}_k$ e determinar o autovetor ${\bf v}_{k+1}$ em cada iteração fazendo
 
 \begin{equation*}
@@ -89,7 +89,7 @@ onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor
 \end{equation*} 
 onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$, como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
 
-\subsection{A decomposição SVD}\label{sec.SVD}
+\subsection*{A decomposição SVD}
 Uma das formas de se obter a decomposição em valores singulares de uma matriz $A$ é aplicando a decomposição em autovalores na matriz  $A^\top A$. Assim, queremos determinar a decomposição
 
 \begin{equation*}
@@ -117,7 +117,7 @@ U&=&A\,V^{-\top}D^{-1}.
 
 Não são todos os problemas que envolvem a decomposição SVD que necessitam que sejam calculadas todas a matrizes. Existem problemas onde não é necessário o cálculo da matriz $U$ por exemplo. Então a complexidade computacional vai depender também daquilo que é necessário ao problema.
 
-\subsection{A pseudo-inversa de $P$}\label{sec.pseudo-P}
+\subsection*{A pseudo-inversa de $P$}
 Primeiramente precisamos definir a inversa de uma matriz quadrada diagonal. Sendo $D$ essa matriz, sua inversa será
 
 \begin{empheq}{align*}
@@ -130,7 +130,7 @@ D_{ii}^+=
 \end{empheq}
 
 
-A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando uma linha de zeros para que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linha de zeros ela será singular. Assim, aplicamos a decomposição SVD (subseção \ref{sec.SVD}) e em seguida definimos a pseudo-inversa.
+A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando uma linha de zeros para que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linha de zeros ela será singular. Assim, aplicamos a decomposição SVD e em seguida definimos a pseudo-inversa.
 
 \begin{equation*}
 P=U\,D\,V^\top
@@ -154,6 +154,6 @@ P^+P&=&V\,D^+U^\top\,U\,D\,V^\top\\
 \end{array}
 \end{equation*}
 
-Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$. Na subseção \ref{sec.potencias-autovalores} é apresentado um método para obtenção dos autovalores.
+Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$. Foi apresentado anteriormente um método para obtenção dos autovalores.
 
 

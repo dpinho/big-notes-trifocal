@@ -1,8 +1,8 @@
-\section{Geometria Algébrica}\label{sec.geo-algebrica}
+\section{Alguns conceitos e definições em geometria algébrica}\label{sec.geo-algebrica}
 
 Esta seção se destina a apresentar um resumo das definições básicas em Geometria Algébrica, bem como alguns conceitos e definições mais avançados necessários ao entendimento do procedimento de solução de sistemas de equações polinomiais. Para acessar um detalhamento maior da teoria juntamente com as demonstrações dos teoremas, o leitor pode consultar os livros \citep{cox-using} e \citep{cox-ideals}.
 
-\subsection{Definições básicas}
+\subsection*{Definições básicas}
 
 A Geometria Algébrica tem como objetivo principal de estudos as variedades algébricas, os objetos geométricos
 formados pelos pontos que são soluções de uma equação polinomial. Para realizar esse
@@ -29,7 +29,7 @@ onde
 
 A soma e o produto de dois polinômios também são polinômios, mas um polinômio $f$ divide um polinômio $g$ apenas se existe um polinômio $h$ onde $g=f\,h$. Assim, entre polinômios ficam satisfeitos os axiomas de adição e multiplicação em um corpo, mas não a existência de um inverso multiplicativo, pois por exemplo, $f=\frac{1}{x}$ não é um polinômio. Os elementos que obedecem essa estrutura formam um {\it anel comutativo}, com estudos feitos com base na {\it álgebra comutativa}, e por isso o conjunto $k[x_1,...,x_n]$ é chamado {\it anel de polinômios}.
 
-\subsection{Ideal e variedade}
+\subsection*{Ideal e variedade}
 Um espaço $n$-dimensional num corpo $k$ é definido como
 \begin{equation*}
 k^n=\{(a_1,...,a_n)\,/\, a_1,...,a_n\in k\},
@@ -83,7 +83,7 @@ Por exemplo, temos a seguir um ideal formado por bases diferentes (podemos verif
 \end{equation}
 Observe que todos os polinômios de um ideal terão o mesmo conjunto variedade gerado pelos polinômios da base. Observe ainda, que a base de um ideal pode ser pensada como um sistema de equações polinômiais, e que para encontrarmos o conjunto solução do sistema (variedade) podemos converter a base dada numa base mais simples conforme a relação \ref{eq.variedades}. Mais a frente veremos que é exatamente esse o procedimento realizado pelas bases de Gr\"obner.
 
-\subsection{As bases de Gr\"obner}
+\subsection*{As bases de Gr\"obner}
 
 Para sabermos se um polinômio $f$ pertence a um ideal devemos dividir $f$ pelas bases do ideal e verificar se o resto é zero, pois assim $f$ pode ser escrito como combinação dos polinômios da base. Na divisão de polinômios de uma variável o resto é único, mas para polinômios de mais de uma variável, tanto o resto como os quocientes podem variar dependendo da ordem dos divisores e da ordenação de monômios escolhida ({\it lexicográfica, lexicográfica graduada e lexicográfica graduada reversa}). Para detalhes sobre divisão de polinômios de várias variáveis consultar \citep{cox-ideals}. 
 
@@ -107,7 +107,7 @@ x^5y=(x^3+xy)(x^2y-y^2)+(0)(x^4y^2-y^2)+xy^3.
 \end{equation*}
 Para verificarmos se uma base é uma base de Gr\"obner utilizamos o {\it critério de Buchberger}, e caso não seja, toda base de um ideal pode ser convertida numa base de Gr\"obner utilizando o {\it algoritmo de Buchberger}. 
 
-\subsection{Resolvendo sistemas com as bases de Gr\"obner}
+\subsection*{Resolvendo sistemas com as bases de Gr\"obner}
 
 Considere o sistema
 \begin{empheq}[left=\empheqlbrace]{align*}
@@ -132,7 +132,7 @@ z^4+\frac{1}{2}z^2&=\frac{1}{4}.
 
 Note que a última equação do sistema depende apenas de uma variável, que pode ser obtida através de um método numérico. O {\it teorema da eliminação} garante que, definida uma ordenação de monômios, as variáveis de um sistema são eliminadas de acordo com a precedência dessa ordem. Depois de calculada a primeira variável, por retro-substituição podemos determinar o valor das variáveis restantes, onde tal retro-substituição é garantida, sob determinadas condições, pelo {\it teorema da extensão}. Alguns softwares de computação algébrica (como Maple V e Release 5) possuem pacotes para computação das bases de Gr\"obner. O procedimento apresentado aqui para solução de sistemas possui algumas deficiências que serão comparadas com o procedimento a seguir no final do apêndice.
 
-\subsection{Álgebra de um espaço dimensional finito}
+\subsection*{Álgebra de um espaço dimensional finito}
 
 Na divisão de um polinômio $f\in k[x_1,...,x_n]$ por uma base de Gr\"obner $G$ obtemos a expansão
 \begin{equation*}
@@ -161,7 +161,7 @@ onde os cinco monômios são uma base do espaço vetorial para a álgebra $A={\m
 
 A base linear $B$ tem dimensão finita e sempre terá desde que sejam satisfeitas as condições do {\it teorema da finitude}, o qual a principal condição é de que sendo $G$ uma base de Gr\"obner para um ideal $I \subset k[x_1,...,x_n]$, então para cada $1\le i\le n$, existe um $m_i\ge 0$ tal que $x_i^{m_i}$ é o termo líder de algum $g\in G$. Ou seja, considerando a base $G$ em \ref{eq.base-G}, se por exemplo $y^{m_y}$ não pertencesse ao conjunto dos termos líderes para algum $m_y$, não teríamos um expoente que pudesse restringir $y$ a pertencer à base $B$, e esta seria infinita.
 
-\subsection{Resolvendo sistemas com autovalores e autovetores}
+\subsection*{Resolvendo sistemas com autovalores e autovetores}
 
 A ideia principal é explorar a estrutura de $A=k[x_1,...,x_n]/I$ para estimar o valor de alguma funcão $f$ nos valores de $V$. Observe que nossa tarefa é encontrar os valores de $x_i\in (x_1,...,x_n)$ onde $(x_1,...,x_n)\in V$, assim podemos tomar a função $f=x_i$, pois estimar o valor para $f$ cumprirá a tarefa de encontrar os valores de cada componente do vetor solução.
 
