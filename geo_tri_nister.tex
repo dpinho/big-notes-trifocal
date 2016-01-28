@@ -1,4 +1,4 @@
-\section{Geometria Trifocal: detalhamento da abordagem de Nistér e Schaffalitzky.}\label{sec.nister}
+\section{Geometria Trifocal Calibrada: desenvolvimento da abordagem de Nistér e Schaffalitzky.}\label{sec.nister}
 
 Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, resgatam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera consistente com a estrutura 3D definida pelas duas primeiras câmeras. Utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, os quais as demonstrações não se encontram no artigo.
 
@@ -9,7 +9,7 @@ Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abord
 \label{retas-epipolares}
 \end{figure}
 
-\subsection{O teorema 1}\label{sec.homografia-reta-epipolar} 
+\subsection{O teorema 1: homografia da reta epipolar}\label{sec.homografia-reta-epipolar} 
 
 
 Uma das primeiras afirmações do artigo é que as retas epipolares numa  imagem estão homograficamente relacionadas com as retas epipolares na segunda imagem. Dados $n$ correspondências de pontos em duas imagens, o teorema trata da \textit{restrição epipolar} \citep{faugeras93three}. Ou seja, temos uma homografia 1D que relaciona o feixe de retas através ${\bf e}$ com o feixe de retas através ${\bf e'}$ chamada \textit{homografia da reta epipolar}. Podemos visualizar essa situação na figura \ref{retas-epipolares}.
@@ -188,7 +188,7 @@ Esta é uma cônica definida por retas e é a imagem da quádrica dual absoluta 
 \end{equation*}
 conforme a subseção \ref{sec.proj-quadricas}.\\
 
-\subsection{O teorema 2}\label{sec.teorema-2}
+\subsection{O teorema 2: restrição Kruppa}\label{sec.teorema-2}
 
 A correspondência entre retas tangentes às duas cônicas ${\bf \omega}$ e ${\bf \omega'}$ é conhecida como a restrição \textit{Kruppa}. Na figura \ref{epipolar-kruppa} podemos observar as restrições epipolar e Kruppa simultaneamente.
 
@@ -276,7 +276,7 @@ H\,\overline{\x}'&=&H\,\overline{\x}&\Rightarrow\\
 \end{equation*}
 Cabe ressaltar que as mudanças de coordenadas em \ref{eq.igualando-coordenadas} não altera nosso desenvolvimento, já que aqui nos interessa propriedades que são invariantes sob transformações projetivas, como tangências, interseções e raz\~ao cruzada. Portanto, onde foi utilizada a matriz identidade poderia ter sido usada qualquer outra homografia no caso de transferência dos pontos para um terceiro plano qualquer. A homografia $H$ é determinada a partir dos quatro pontos correspondentes supostos inicialmente pelo artigo.
 
-\subsection{O teorema 3}\label{sec.teorema-3}
+\subsection{O teorema 3: pontos e epipolos co-cônicos}\label{sec.teorema-3}
 
 Aplicando as mudanças de coordenadas descritas na subsec\~ao \ref{sec.corregistro-pontos} nos quatro pontos e nos epipolos, temos que $\x=\x'$ e todos os seis pontos em questão estarão expressos no mesmo sistema de coordenadas, no mesmo plano de imagem. Observe a figura \ref{pontos-conconicos}.
 
@@ -300,7 +300,7 @@ Esta cônica $B=B(\e)$ será bastante importante durante a abordagem pois, se os
 \label{pontos-conconicos}
 \end{figure}
 
-\subsection{O teorema 4}\label{sec.demonstracao-teo-4}
+\subsection{O teorema 4: interseção das tangentes}\label{sec.demonstracao-teo-4}
 
 Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes intersectam $B$ no mesmo ponto. 
 
@@ -321,7 +321,7 @@ Isto é, as projeções de ${\bf \omega}$ e ${\bf \omega'}$ em $B$, através dos
 \label{omega-B}
 \end{figure}
 
-\subsection{O teorema 5}\label{sec.teorema-5}
+\subsection{O teorema 5: projeção de $\omega$ em $B$}\label{sec.teorema-5}
 
  A demonstração do próximo teorema é dada em \cite{2503343}, mas vamos incluir alguns detalhes e posteriormente dar uma demonstração extendida. Acompanhando pela figura \ref{omega-B}, podemos pensar na representação da projeção de  ${\bf \omega}$ e ${\bf \omega'}$ em $B$ como a reta que liga os dois pontos de interseção das tangentes com $B$, pois tal fato vai resolver o problema de que as tangentes não têm ordenação específica. Essa reta que liga os dois pontos de interseção, de acordo com a projeção de ${\bf \omega}$ através do epipolo ${\bf e}$ é representada por $({\bf \omega}\diamond B)\,{\bf e}$.
 
@@ -532,7 +532,7 @@ Assim, todo ponto pertencente à cônica $B$ terá a forma $(\theta^2,\theta,1)^
 Após a apresentação dos conceitos necessários, vamos estabelecer o teorema e demonstrá-lo.
 
 \begin{teorema}
-A projeção da IAC $\omega$ na cônica $B$, usando o epipolo $\e$ como centro de projeção, é dada pelo ponto de interseção entre a reta $(\omega\diamond B)\,\e$ e $B$, onde a cônica $(\omega\diamond B)$ é definida como
+A projeção da IAC $\omega$ na cônica $B$, usando o epipolo $\e$ como centro de projeção, é dada pelos pontos de interseção entre a reta $(\omega\diamond B)\,\e$ e $B$, onde a cônica $(\omega\diamond B)$ é definida como
 
 \begin{equation}\label{eq.conica-diamond}
 (\omega \diamond B)\equiv 2\,B\,\omega^*B - tr(\omega^*\,B)\,B.
@@ -617,17 +617,17 @@ A equação \ref{eq.expandida-omega-dual} é igual à equação \ref{eq.expandid
 Repare que o desenvolvimento é análogo para o segundo ponto de interseção da tangente à $\omega$ com $B$.
 
 
-\subsection{O teorema 6}\label{sec.teorema-6}
+\subsection{O teorema 6: projeção de $\omega'$ em $B$}\label{sec.teorema-6}
 
 \begin{teorema}
 Dado que os epipolos $\e$ e $\e'$ são co-cônicos com quatro pontos na imagem, a restrição Kruppa é equivalente à restricao de que as retas $(\omega\diamond B)\,\e$ e $(\omega'\diamond B)\,\e'$ coincidem.
 \end{teorema}
 
 \begin{proof}
-Pela subseção \ref{sec.demonstracao-teo-4}, a reta tangente à $\omega'$ intersecta $B$ nos mesmos pontos adicionais, onde um deles foi denotado por ${\bf q}$. Como os pontos são co-cônicos podemos usar a forma canônica de $B$ e a parametrização canônica para $\e'$. O desenvolvimento é análogo ao da subseção \ref{sec.teorema-5}.
+Pela subseção \ref{sec.demonstracao-teo-4}, as retas tangentes à $\omega'$ intersectam $B$ nos mesmos pontos adicionais, onde um deles foi denotado por ${\bf q}$. Como os pontos são co-cônicos podemos usar a forma canônica de $B$ e a parametrização canônica para $\e'$. O desenvolvimento é análogo ao da subseção \ref{sec.teorema-5}.
 \end{proof}
 
-\subsection{O teorema 7}
+\subsection{O teorema 7: a função que relaciona os epipolos}
 
 
 Primeiramente note que $(\omega \diamond B) = B\,(\omega \cdot B)$ se definirmos a homografia
@@ -756,7 +756,7 @@ B(\e)=(\e^\top B_2\e)\,B_1-(\e^\top B_1\e)\,B_2,
 onde $B$ está sendo expressa em termos de $\e$, usando as cônicas $B_1$ e $B_2$ como base do feixe. Repare que os escalares $\e^\top B_2\e$ e $\e^\top B_1\e$ são sempre diferentes de zero pois, dados os quatro pontos $\x_i$ na imagem, a cônica $B$ fica unicamente determinada pelo quinto ponto $\e$, e portanto $\e\notin B_1$ e $\e\notin B_2$.
 
 
-\subsection{O teorema 8}
+\subsection{O teorema 8: a curva $C$}
 Como a cônica $B$ está sendo expressa em termos de $\e$, para qualquer escolha de $\e$ teremos que $\e^\top B\,\e=0$, mas esse não é o caso para a curva $C$ definida na subseção \ref{sec.teorema-7}, e assim temos o próximo teorema.
 
 \begin{teorema} 
@@ -767,10 +767,10 @@ Um epipolo hipotético $\e$ que define uma cônica $B$ satisfaz a equação de $
 se, e somente se, satisfaz as restrições de projetividade e calibração.
 \end{teorema}
 \begin{proof}
-Esse teorema é uma consequência do teorema na subseção \ref{sec.teorema-7} onde vimos que os epipolos estão na interseção da cônica $B$ com a curva $C$, e portanto devem satisfazer a equação \ref{eq.dezesseis}. O teorema da subseção \ref{sec.teorema-7} é dependente da restrição de calibração na subseção \ref{sec.demonstracao-teo-4} e da restrição de projeção na subseção \ref{sec.teorema-5}. 
+Esse teorema é uma consequência do teorema na subseção \ref{sec.teorema-7} onde vimos que os epipolos estão na interseção da cônica $B$ com a curva $C$, e portanto devem satisfazer à equação \ref{eq.dezesseis}. O teorema da subseção \ref{sec.teorema-7} é dependente da restrição de calibração na subseção \ref{sec.demonstracao-teo-4} e da restrição de projeção na subseção \ref{sec.teorema-5}. 
 \end{proof}
 
-\subsection{Teoremas 9 a 20}
+\subsection{Teoremas 9 a 20: a curva $G$ e suas propriedades}
 
 \subsection*{Teoremas 9,\,10 e 11}
 Esses teoremas têm demonstração completa no artigo e não necessitam de consulta em bibliografia extra, apesar de conterem bastante desenvolvimento algébrico. A utilidade deles se resume em verificar que os possíveis epipolos pertencem à curva de equação $\e^\top C\,\e=0$ mesmo no caso onde $B(\e)$ é uma cônica degenerada, ou seja, a equação $\e^\top C\,\e=0$ contém $|B|$ como fator.   Nesse caso, os epipolos pertencem às seis retas que passam pelos quatro pontos $\x_i$ na imagem. Em seguida, é demonstrado como o fator $|B|$ pode ser eliminado da equação de $16^{\underline{o}}$ grau $\e^\top C\,\e=0$ para se chegar numa equação de $10^{\underline{o}}$ grau definida por
@@ -833,7 +833,7 @@ Na figura \ref{curva-10} observamos alguns exemplos de curvas de décimo grau co
 
 Os teoremas 19 e 20 fornecem mais propriedades da curva de grau dez. O teorema 19 é uma versão mais completa do teorema 7 que se aplica mesmo quando a cônica $B$, definida em \ref{eq.B-combinacao-B1-B2}, é degenerada.
 
-\subsection{Teoremas 21 a 25}
+\subsection{Teoremas 21 a 25: orientação e convergência}
 
 Esses teoremas tratam das restrições de orientação, para duas câmeras, e se resumem em dois fatos que podem ser visualizados na figura \ref{fig.quatro-essencial}. Primeiro, a {\it restrição de orientação epipolar}, onde as duas semirretas retroprojetadas por pontos correspondentes nas imagens devem estar no mesmo semiplano do plano epipolar (já que a reta base divide o plano epipolar em dois semiplanos). Ou seja, os pontos correspondentes devem estar alojados no mesmo semiplano. Segundo, a {\it restrição de convergência}, onde essas duas semirretas devem convergir para um ponto comum no espaço projetivo 3D.  
 

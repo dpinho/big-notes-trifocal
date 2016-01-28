@@ -1,17 +1,19 @@
+\newpage
 \section{Geometria de uma e duas câmeras}\label{sec.geo-1-2-cam}
 
 \subsection{O espaço projetivo em duas dimensões}\label{sec.espaco-P2}
 
+Para a compreensão mínima das técnicas mais importantes investigadas nessa dissertação, faz-se necessária a revisão condensada de um arcabouço notacional e conceitual que está disperso na literatura.
 
 \subsubsection{A reta}\label{sec.reta}
 
 
-Sabemos que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $(a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Portanto $\lightrgb = (a,b,c)^\top$. Note que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k \in \mathbb{R}-\{0\}$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores (chamados paralelos na Álgebra Linear) que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano projetivo é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
+Sabe-se que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $\lightrgb = (a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Nota-se que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k\neq 0$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano projetivo é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
 
 \subsubsection{O ponto}\label{sec.ponto}
 
 
-Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores em coordenadas homogêneas que se referem a pontos serão representados pelo símbolo em negrito $\x$, configurando a terceira componente como 1. Desse jeito, $\x=(x,y,1)^\top$. Sabemos também que um ponto $(x,y)$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, e podemos realizar essa verificação utilizando multiplicação matricial:
+Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares ordenados do tipo $(x,y)$, e assim cada ponto pode ser identificado como um vetor $(x,y)^\top$. Os vetores em coordenadas homogêneas que se referem a pontos serão representados pelo símbolo em negrito $\x$, configurando uma terceira dimensão cuja coordenada é 1. Desse jeito, $\x=(x,y,1)^\top$. Sabemos também que um ponto $(x,y)$ pertence a uma reta $(a,b,c)^\top$ se, e somente se, $a\,x+b\,y+c=0$, ou, matricialmente:
 
 \begin{equation*}
 (x,y,1)^\top 
@@ -25,7 +27,7 @@ Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares o
  \qquad \x ^\top\lightrgb = 0.
 \end{equation*}
 
-Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três coordenadas. Observe que para $k \in \mathbb{R} - \{0\}$, temos:
+Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três coordenadas. Observe que para $k\neq 0$, temos:
 
 \begin{equation*}
 (k\,x,k\,y,k)^\top 
@@ -54,10 +56,10 @@ Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogênea
 \label{plano_P2}
 \end{figure}
 
-Geometricamente, podemos pensar no plano projetivo como um conjunto de retas passando pela origem do $\mathbb{R}^3$, onde cada reta representa um único ponto, que é a interseção dessa reta com o plano $\mathbb{P}^2$. Analogamente, retas em $\mathbb{P}^2$ são formadas pela interseção de $\mathbb{P}^2$ com planos em $\mathbb{R}^3$. Na figura \ref{plano_P2}, observamos como a interseção da reta com o plano define um ponto, assim como a interseção de dois planos definem uma reta.
+Geometricamente, podemos pensar no plano projetivo como um conjunto de retas passando pela origem do $\mathbb{R}^3$, onde cada reta representa um único ponto, que é a interseção dessa reta com o plano $\mathbb{P}^2$. Analogamente, retas em $\mathbb{P}^2$ são formadas pela interseção de $\mathbb{P}^2$ com planos em $\mathbb{R}^3$. Na figura \ref{plano_P2}, observamos como a interseção da reta com o plano define um ponto, assim como a interseção de dois planos definem uma reta, com a vantagem de se incluir na representação o ponto ideal $(x,y,0)^\top$ e a reta no infinito que serão definidos mais adiante.
 
 
-Como a representação de um ponto ou uma reta por vetores em coordenadas homogêneas não é alterada por um escalar,  para determinarmos um ponto ou uma reta precisamos apenas de duas componentes do vetor, pois a terceira componente pode ser configurada como escala. Assim, dizemos que um ponto ou uma reta tem dois graus de liberdade.
+Como a representação de um ponto ou uma reta por vetores em coordenadas homogêneas não é alterada pela multiplicação por um escalar,  para determinarmos um ponto ou uma reta precisamos apenas de duas componentes do vetor, pois a terceira componente pode ser configurada como escala. Assim, dizemos que um ponto ou uma reta tem dois graus de liberdade.
 \\
 
 \subsubsection*{Retas determinadas por dois pontos e a interseção de duas retas}
@@ -77,7 +79,7 @@ e sendo $\x$ o ponto de interseção entre as duas retas temos
 \begin{equation}\label{eq.pro-vet-2}
 \lightrgb^\top\x=\lightrgb'^\top\x=0
 \end{equation}
-onde, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2}, nos sugere que
+onde, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2},
 
 \begin{equation*}
 \x=\lightrgb\times\lightrgb'.
@@ -93,7 +95,7 @@ Com argumento análogo podemos constatar que dois pontos definem uma reta atrav�
 
 \noindent {\bf Pontos ideais e a reta no infinito.}
 
-Duas retas paralelas no espaço Euclidiano tem equações
+Duas retas paralelas no espaço Euclidiano têm equações
 
 \begin{equation*}
 a\,x+b\,y+c=0\qquad\text{e}\qquad a\,x+b\,y+c'=0
@@ -132,12 +134,12 @@ y\\
 \end{equation*} 
 e tal reta é conhecida como \textit{reta no infinto}. Assim, no plano projetivo temos que retas paralelas se encontram em ponto no infinito e o conjunto de pontos no infinito constituem a reta no infinito.
 
-Um fato interessante sobre pontos no infinito é que eles são as direções das retas no plano projetivo $\mathbb{P}^2$. Um feixe de retas paralelas, que se intersectam num mesmo ponto no infinito, têm a mesma direção. Observe que a interseção de uma reta qualquer $\lightrgb=(a,b,c)^\top$ com a reta no infinito $\lightrgb_\infty=(0,0,1)^\top$,
+Um fato interessante sobre pontos no infinito é que eles são as direções das retas no plano projetivo $\mathbb{P}^2$. Um feixe de retas paralelas, que se intersectam num mesmo ponto no infinito, têm a mesma direção. Observa-se que a interseção de uma reta qualquer $\lightrgb=(a,b,c)^\top$ com a reta no infinito $\lightrgb_\infty=(0,0,1)^\top$,
 
 \begin{equation*}
-[\lightrgb]_\times \lightrgb_\infty=(b,-a,0),
+\lightrgb\times \lightrgb_\infty=(b,-a,0),
 \end{equation*}
-(a notação $[\lightrgb]_\times$ está definida no apêndice \ref{sec.Apen-A}) é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a,0)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
+é um vetor que, em coordenadas não homogêneas $(b,-a)$, é ortogonal ao vetor $(a,b)$, que é o vetor normal à reta dada $\lightrgb=(a,b,c)^\top$. Assim $(b,-a)$ constitui-se a direção da reta $\lightrgb$, e como a reta no infinito contém todos os pontos do tipo $(b,-a,0)$, dizemos que a reta no infinito é o conjunto de direções das retas no plano projetivo $\mathbb{P}^2$.\\
 
 \subsubsection{A cônica}\label{sec.definicao-conica}
 
@@ -147,7 +149,6 @@ Em Geometria Euclidiana, as cônicas são de três tipos principais: elipse, hip
 \begin{equation*}
 a\,x^2+b\,x\,y+c\,y^2+d\,x+e\,y+f=0.
 \end{equation*}
-
 Sabemos que um ponto pertence à cônica se ele é solução da equação acima, a qual pode ser representada utilizando multiplicação matricial e vetores em coordenadas homogêneas,
 \begin{equation*}
 (x,y,1) 
@@ -164,13 +165,11 @@ y\\
  = 0.
 \end{equation*}
 
-Podemos generalizar essas coordenadas homogêneas fazendo as substituições $x = x_{1}/x_{3}$ e $y = x_{2}/x_{3}$, e nossa equação da cônica fica:
-
+Podemos generalizar essas coordenadas homogêneas multiplicando-se por um fator $x_3$ e definindo $x_1=x_3\,x$ e $x_2=x_3\,y$, e a equação fica
 \begin{equation*}
 a\,x_1^2+b\,x_1\,x_2+c\,x_2^2+d\,x_1\,x_3+e\,x_2\,x_3+f\,x_3^2=0.
 \end{equation*}
-
-Novamente em notação matricial:
+Novamente, em notação matricial:
 
 \begin{equation*}
 (x_1,x_2,x_3) 
@@ -203,12 +202,12 @@ Percebemos que as cônicas são representadas por matrizes $3\times3$ simétrica
 
 \subsubsection*{Retas tangentes a cônicas} 
 
-Uma reta tangente a uma cônica num ponto $\x$ qualquer tem a simples forma
+Um conceito utilizado mais à frente nas investigações da calibração e estimação da pose relativa de câmeras é o de cônicas e seu envelope de retas tangentes. Uma reta tangente a uma cônica num ponto $\x$ qualquer tem a simples forma
 
 \begin{equation*}
 \lightrgb=C\x.
 \end{equation*}
-De fato, se a reta $\lightrgb$ passa por um ponto $\x$ temos que $\x^\top\lightrgb=0$, e se esse ponto $\x$ pertence à cônica $C$ então $\x^\top C\,\x=0$. Se $\x$ é o único ponto de interseção da reta com a cônica, comparando as duas relações  temos que $\lightrgb=C\x$ é a tangente procurada. Agora vamos ver que se a reta passa por mais um ponto na cônica, então toda a reta pertence à cônica e não é uma tangente.
+De fato, se a reta $\lightrgb$ passa por um ponto $\x$ temos que $\x^\top\lightrgb=0$, e se esse ponto $\x$ pertence à cônica $C$ então $\x^\top C\,\x=0$. Se $\x$ é o único ponto de interseção da reta com a cônica, comparando as duas relações  temos que $\lightrgb=C\x$ é a tangente procurada. Agora veremos que se a reta passa por mais um ponto na cônica, então toda a reta pertence à cônica e não é uma tangente.
 Se a reta passa também por um outro ponto $\y$ na cônica, temos que $\y^\top C\,\y=0$ e $\lightrgb^\top\y=0$. Mas como $\lightrgb=C\x$ e considerando que $C$ é simétrica, temos
 
 \begin{equation*}
@@ -223,7 +222,7 @@ já que cada uma das parcelas é zero. Assim toda a reta $\lightrgb$ ligando $\x
 
 \subsubsection{Cônica dual ou reta}\label{sec.conica-dual} 
 
-A cônica definida por $\x^\top C\,\x=0$ é chamada cônica ponto já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
+A cônica definida por $\x^\top C\,\x=0$ é chamada cônica de pontos já que é definida por uma equação que envolve pontos. Mas como pontos e retas têm a mesma representação por vetores de três componentes no plano projetivo $\mathbb{P}^2$, podemos também definir uma cônica por retas, chamada cônica dual ou de retas denotada por $C^*$, onde $\lightrgb^\top C^*\,\lightrgb=0$. Tal notação indica que $C^*$ é a matriz adjunta de $C$ e, sendo $C$ simétrica e não singular, $C^*=C^{-1}$. Com efeito, sendo $\lightrgb$ tangente à cônica $C$ temos $\lightrgb=C\,\x$, e sendo $C$ não singular temos que o ponto de tangência é $\x=C^{-1}\lightrgb$. Como $\x\in C$ temos que $\x^\top C\,\x=0$, assim
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -239,13 +238,13 @@ Lembrando que $C^{-\top}=C^{-1}$ pois $C$ é simétrica. A relação $\lightrgb^
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{conica-envelope}
-\caption{\textit{A cônica $C^*$ é o envelope de todas as retas $\lightrgb_i$ que satisfazem $\lightrgb^\top C^*\,\lightrgb=0$.}}
+\caption{\textit{A cônica $C$ é o envelope de todas as retas $\lightrgb_i$ que satisfazem $\lightrgb^\top C^*\,\lightrgb=0$.}}
 \label{fig.conica-envelope}
 \end{figure}
 
 \subsubsection{Cônicas degeneradas}\label{sec.conicas-degeneradas}
 
-Acontece quando a matriz que representa a cônica não tem posto completo, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
+Quando a matriz que representa a cônica não tem posto completo ocorrem cônicas degeneradas, daí a cônica será duas retas caso a matriz tenha posto $2$ ou uma reta repetida caso a matriz tenha posto $1$. A seguir dois exemplos de cônicas degeneradas, uma cônica ponto e uma cônica dual. A cônica 
 
 \begin{equation*}
 C=\lightrgb\,{\bf m}^\top+{\bf m}\,\lightrgb^\top
@@ -271,7 +270,7 @@ De forma análoga à argumentação anterior podemos demosntrar que $C^*$ define
 \lightrgb^\top\,C^*\lightrgb=0.
 \end{equation*}
 
-\subsubsection{A relação polo-polar.}\label{sec.polo-polar}
+\subsubsection{A relação polo-polar}\label{sec.polo-polar}
 
 Vimos anteriormente que uma reta $\lightrgb$ é tangente a uma cônica num ponto $\x$ se 
 
@@ -280,8 +279,8 @@ Vimos anteriormente que uma reta $\lightrgb$ é tangente a uma cônica num ponto
 \end{equation*}
 Mas se o ponto $\x$ não pertence à cônica $C$ então temos uma relação denominada \textit{polo-polar}, onde a reta $\lightrgb$ é chamada reta \textit{polar} de $\x$, e $\x$ é chamado o \textit{polo} da reta $\lightrgb$, conforme a ilustração na figura \ref{fig.polo-polar}.
 
-A reta polar $\lightrgb=C\,\x$ intersecta a cônica 
-$C$ em dois pontos $\y_1$ e $\y_2$, e as retas tangentes à cônica $C$ nesses dois pontos se intersectam em $\x$. Pois, considere o ponto $\y_1 \in C$ e a reta tangente a esse ponto ${\bf m}=C\,\y_1$. Essa tangente contém o ponto $\x$ se 
+A reta polar $\lightrgb=C\,\x$ intercepta a cônica 
+$C$ em dois pontos $\y_1$ e $\y_2$, e as retas tangentes à cônica $C$ nesses dois pontos se interceptam em $\x$. De fato, considere o ponto $\y_1 \in C$ e a reta tangente a esse ponto ${\bf m}=C\,\y_1$. Essa tangente contém o ponto $\x$ se 
 
 \begin{equation*}
 \x^\top{\bf m}=0\qquad\text{ou}\qquad\x^\top C\,\y_1=0,
@@ -291,7 +290,7 @@ e, usando a simetria da cônica $C$ e aplicando a transposição em $\x^\top C$,
 \begin{equation*}
 \x^\top C\,\y_1=(C\,\x)^\top\y_1=0,
 \end{equation*}
-mostando que o ponto $\y_1$ pertence à reta $\lightrgb=C\,\x$. Assim, a reta $\lightrgb$ intersecta a cônica $C$ no ponto $\y_1$, no qual a tangente à $C$ contém o ponto $\x$. Observe que se o ponto $\x$ se aproxima da cônica $C$, os dois pontos $\y_1$ e $\y_2$ vão se aproximando um do outro, e quando ponto $\x$ pertence à conica $C$ a reta polar se torna a reta tangente. O argumento é análogo para $\y_2$.\\
+mostando que o ponto $\y_1$ pertence à reta $\lightrgb=C\,\x$. Assim, a reta $\lightrgb$ intercepta a cônica $C$ no ponto $\y_1$, no qual a tangente a $C$ contém o ponto $\x$. Observa-se que se o ponto $\x$ se aproxima da cônica $C$, os dois pontos $\y_1$ e $\y_2$ vão se aproximando um do outro, e quando ponto $\x$ pertence à conica $C$ a reta polar se torna a reta tangente. O argumento é análogo para $\y_2$.\\
 
 
 \begin{figure}[!htb]
@@ -1761,7 +1760,7 @@ tem a matriz {\it essencial} como matriz correspondente que reúne todas as cara
 E=[{\bf t}]_\times R.
 \end{equation*}
 
-\section{Reconstrução de uma câmera $P$: detalhamento da abordagem de \citep{bib:kuang}.}\label{sec.astrom}
+\section{Reconstrução de uma câmera $P$: desenvolvimento da abordagem de \citep{bib:kuang}.}\label{sec.astrom}
 Uma câmera pode ser fatorada em $P=K[R|{\bf t}]$, e o artigo \citep{bib:kuang} trata da determinação dos parâmetros externos $R$ e ${\bf t}$, considerando que são conhecidos quase todos os parâmetros internos da matriz $K$, menos a distância focal $f$. Assim, o artigo busca determinar sete parâmetros no total, três na matriz de rotação $R$, três no vetor de translação ${\bf t}$ e um na matriz de calibração. Alguns trabalhos anteriores já resolveram problemas de determinação desses sete parâmetros mas todos eles usaram somente correspondência entre pontos 3D e pontos 2D, $\X\leftrightarrow\x$, e as principais contribuições de \citep{bib:kuang} são o uso de correspondências entre outras entidades geométricas como retas e pontos-tangentes, e a apresentação de um procedimento para resolução de sistemas de equações polinomiais utilizando as Bases de Gr\"obner e a Matriz de Ação. Como já vimos, os parâmetros externos $R$ e ${\bf t}$ tem a finalidade de trazer um ponto 3D escrito no sistema de coordenadas do mundo para o sistema de coordenadas da câmera, e na figura \ref{fig.camera-astrom} podemos observar a ação de $[R|{\bf t}]$ bem como a correspondência entre entidades geométricas.
 
 \begin{figure}[!htb]
