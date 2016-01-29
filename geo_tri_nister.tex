@@ -1,6 +1,9 @@
-\section{Geometria Trifocal Calibrada: desenvolvimento da abordagem de Nistér e Schaffalitzky.}\label{sec.nister}
+\newpage
+\section{Geometria Trifocal Calibrada: Nistér e Schaffalitzky}\label{sec.nister}
 
-Para abordar um problema trifocal, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação (supondo qua a calibração já seja conhecida) da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. Eles demonstram que os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, resgatam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera consistente com a estrutura 3D definida pelas duas primeiras câmeras. Utilizam essa teoria para desenvolver o que chamaram de solução mais eficiente para época (2006), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, os quais as demonstrações não se encontram no artigo.
+Para abordar um problema trifocal no caso onde $K$ é conhecida, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. 
+
+Eles demonstram que, dados os pontos corrrespondentes, os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, estimam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera consistente com a estrutura 3D definida pelas duas primeiras câmeras. Utilizam essa teoria para desenvolver o que é ainda a solução mais eficiente para o problema (até onde pudemos averiguar), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, as quais não se encontram no artigo.
 
 \begin{figure}[!htb]
 \centering
@@ -44,8 +47,6 @@ assim, $\lightrgb$ está relacionada a $\lightrgb'$ através da equação
 \begin{equation*}
 \lightrgb'=F\,[{\bf m}]_\times\,\lightrgb.
 \end{equation*}
-
-
 Uma boa escolha para ${\bf m}$ é a reta $\e$, já que
 
 \begin{equation*}
@@ -66,7 +67,7 @@ O argumento é análogo para o mapeamento da segunda imagem para a primeira,
 \end{proof}
 
 
-\subsubsection{A homografia da reta epipolar} 
+\subsubsection{Nova abordagem para a homografia da reta epipolar} 
 
 
 Outra forma de pensar sobre essa homografia é realizando uma translação de forma que os epipolos estejam na origem do plano de cada imagem, e com as retas epipolares passando pelo epipolo, cada reta pode ser parametrizada através do ângulo que ela forma com o eixo das abscissas, denominados $\alpha_1$ e $\alpha_2$ na primeira e segunda imagens respectivamente.
@@ -100,7 +101,6 @@ O problema é que a equação \ref{eq.homo-reta-epi} não está definida para re
 \begin{equation}\label{eq.tan.alpha1-2}
 x=tan\,\alpha_1=\frac{sen\,\alpha_1 }{cos\,\alpha_1} \qquad \text{e} \qquad y=tan\,\alpha_2=\frac{sen\,\alpha_2}{cos\,\alpha_2}.
 \end{equation} 
-
 Desta forma, substituindo \ref{eq.tan.alpha1-2} em \ref{eq.hiperbole} e multiplicando por $cos\,\alpha_1\,cos\,\alpha_2$ temos
 
 \begin{equation*}
@@ -113,7 +113,6 @@ a\,sen\,\alpha_1\,sen\,\alpha_2+b\,sen\,\alpha_1\,cos\,\alpha_2+c\,cos\,\alpha_1
 \caption{\textit{Plano da imagem centrado em ${\bf e}$ com a reta epipolar parametrizada por $\alpha_1$.}}
 \label{fig.reta-epipolar}
 \end{figure}
-
 Com essa conversão, deixamos de parametrizar as retas epipolares pelo eixo das tangentes e passamos a parametrizar pelo círculo trigonométrico. Aqui temos um argumento para contagem dos graus de liberdade para fixarmos a relação entre retas epipolares, pois devemos determinar os dois epipolos (duas variáveis cada totalizando quatro graus de liberdade), e mais a matriz que representa a homografia (quatro variáveis mas apenas três graus de liberdade utilizando uma variável para fixar a escala). Portanto, precisamos de no mínimo sete restrições para determinarmos a relação entre duas imagens na geometria epipolar. 
 
 Na nossa abordagem, consideramos o círculo trigonométrico com raio $1$ mas, segundo \cite{Fabbri:Kimia:CVPR10}, podemos estipular raios arbitrários $r_1$ e $r_2$ em cada uma das imagens que ajuda a garantir estabilidade numérica para a determinação dos coeficientes. Assim, obtemos a equação:
@@ -164,7 +163,7 @@ Portanto temos a relação
 \x=H\,{\bf d}
 \end{equation*}
 onde $H=K\,R$. Como a cônica absoluta $\Omega_\infty$ está contida no plano no infinito (contém pontos no infinito), ela pode ser projetada sob a homografia $H$ para computarmos sua imagem.
-Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de acordo com $C\rightarrow H^{-\top} C\,H^{-1}$, conforme a subseção \ref{sec.trans-proj-H}. De acordo com a subseção \ref{sec.con-absoluta} $C=\Omega_\infty =I$, daí temos
+Sob uma homografia de ponto $\x\rightarrow H\,\x$, uma cônica se transforama de acordo com $C\rightarrow H^{-\top} C\,H^{-1}$, conforme a subseção \ref{sec.trans-proj-H}. De acordo com a subseção \ref{sec.con-absoluta}, $C=\Omega_\infty =I$, daí temos
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -186,7 +185,7 @@ Esta é uma cônica definida por retas e é a imagem da quádrica dual absoluta 
 \begin{equation*}
 \omega^*=P\,{\tt Q^*_\infty}P^\top,
 \end{equation*}
-conforme a subseção \ref{sec.proj-quadricas}.\\
+conforme a subseção \ref{sec.proj-quadricas}. Nota-se que tais objetos geométricos são apenas artifícios para se trabalhar com a informada matriz $K$.
 
 \subsection{O teorema 2: restrição Kruppa}\label{sec.teorema-2}
 
@@ -207,13 +206,10 @@ As duas tangentes à IAC $\omega$ passando pelo epipolo $\e$ estão relacionadas
 
 \begin{proof}
  Sendo ${\bf \omega}^*$ e ${{\bf \omega}^*}'$ as respectivas cônicas duais (DIAC), considere um plano passando pelo centro das duas câmeras e tangenciando essa cônica $\Omega_\infty$ no espaço. Por construção, esse plano vai projetar uma reta epipolar em cada imagem onde cada reta será tangente às imagens ${\bf \omega}$ e ${\bf \omega'}$ da cônica $\Omega_\infty$, observado na figura \ref{geometria-kruppa}. E suponha ainda que $\lightrgb_1$ e $\lightrgb_2$ sejam as retas tangentes à cônica ${\bf \omega}$ na primeira imagem conforme a figura \ref{epipolar-kruppa}. Com essas duas retas tangentes podemos construir uma cônica degenerada $D$ (posto $2$) na forma  
-
 \begin{equation}\label{eq.def.con.deg}
 D=[\e]_\times\,{\bf \omega}^*\,[\e]_\times. 
 \end{equation}
-
 Para mostrar que $D$ é uma cônica (ponto) temos que verificar que é válida a relação $\y_1^\top D\,\y_1=0$, onde $\y_1\in\lightrgb_1$.
-
 \begin{equation*}
 \begin{array}{rcll}
 \y_1^\top\,D\,\y_1&=&\y_1^\top [\e]_\times\,{\bf \omega}^*\,[\e]_\times\,\y_1&\\
@@ -223,14 +219,12 @@ Para mostrar que $D$ é uma cônica (ponto) temos que verificar que é válida a
 \end{array}
 \end{equation*}
 onde a última passagem segue do fato de ${\bf \omega}^*$ ser dual. Observe que usamos $[\e]^\top_\times\,\y_1=[\e]_\times\,\y_1$ quando na verdade $[\e]^\top_\times=-[\e]_\times$, mas aqui a diferença de escala é irrelevante. 
-
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=.9]{geometria-kruppa}
 \caption{\textit{Um plano epipolar tangenciando uma cônica no espaco 3D projeta retas epipolares que tangenciam as cônicas nos planos das imagens}.}
 \label{geometria-kruppa}
 \end{figure}
-
 Observamos que o desenvolvimento anterior é análogo para $\lightrgb_2$.
 
 Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'\,[\e']_\times$ e se transforma de acordo com a regra $D'=H_\infty^{-\top}D\,H_\infty^{-1}$ na subseção \ref{sec.trans-proj-H}. O símbolo $\infty$ se deve ao fato de que a homografia foi deduzida de maneria similar àquela da subseção  \ref{sec.homografia}, apenas com a diferença de ter sido com base no plano no infinito. Assim:
@@ -247,7 +241,7 @@ Na segunda imagem, analogamente à primeira, $D'=[\e']_\times\,{{\bf \omega}^*}'
 Como $\omega^*$ é uma cônica envelope, formada pelas retas que são tangentes à $\omega$, temos que essas tangentes estão projetivamente relacionadas, em conjunto, pela equação \ref{eq.kruppa}. Como as tangentes passam pelos epipolos, são retas epipolares e o teorema segue.
 
 \end{proof}
-Observe que, como conjunto, as tangentes não vêm em qualquer ordem particular, pois a relação não explicita uma mapeamento individual entre as retas, há apenas a relação entre produtos simétricos. Mas veremos na subseção \ref{sec.teorema-5} que esse fato não causará problemas.
+Observa-se que, como conjunto, as tangentes não vêm em qualquer ordem particular, pois a relação não explicita uma mapeamento individual entre as retas, há apenas a relação entre produtos simétricos. Mas veremos na subseção \ref{sec.teorema-5} que esse fato não causará problemas.
 
 
 
@@ -256,7 +250,7 @@ Observe que, como conjunto, as tangentes não vêm em qualquer ordem particular,
 De acordo com \cite{kneebone}, podemos escolher as coordenadas projetivas de forma que os quatro pontos tenham as mesmas coordenadas em cada imagem. Ou seja, podemos assumir que ${\bf x}_i = {\bf x'}_i$ pensando nos dois planos de imagem como registrados no mesmo sistema de coordenadas. Vejamos como isso pode ser feito.
 
 \subsubsection{Corregistro de pontos pertencentes a diferentes planos de imagem}\label{sec.corregistro-pontos}
-Suponha a existência de pontos correspondência em dois planos de imagem relacionados por uma transformação projetiva $\x'=H\,\x$, onde $\x\in {\mathbb{P}^2}$ e $\x'\in {\mathbb{P'}^2}$. Nosso objetivo é fazer o corregistro de pontos da segunda imagem no sistema de coordenadas da primeira imagem, mas também poderíamos fazer o corregistro dos pontos das duas imagens para um terceiro plano projetivo qualquer. Fazendo as seguintes mudanças de coordenadas projetivas
+Suponha a existência de pontos correspondêntes em dois planos de imagem relacionados por uma transformação projetiva $\x'=H\,\x$, onde $\x\in {\mathbb{P}^2}$ e $\x'\in {\mathbb{P'}^2}$. Nosso objetivo é fazer o corregistro de pontos da segunda imagem no sistema de coordenadas da primeira imagem, mas também poderíamos fazer o corregistro dos pontos das duas imagens para um terceiro plano projetivo qualquer. Fazendo as seguintes mudanças de coordenadas projetivas
 
 \begin{equation}\label{eq.igualando-coordenadas}
 \begin{array}{rcl}
@@ -285,10 +279,10 @@ Os epipolos $\e$, $\e'$ e os quatro pontos $\x_i$ na imagem devem pertencer a um
 \end{teorema}
 
 \begin{proof}
-Pela subseção \ref{sec.definicao-conica}, uma cônica fica determinada por cinco pontos, como temos quatro pontos na imagem vamos deixar a cônica $B$ na dependência de $\e$ (o quinto ponto necessário). Analogamente, o epipolo $\e'$ também define uma cônica com os quatro pontos na imagem, digamos $B'$. Pela subsec\~ao \ref{sec.homografia-reta-epipolar}, existe a homografia da reta epipolar que relaciona as quatro retas do feixe passando por $\e$ com as quatro retas do feixe passando por $\e'$. Pelo teorema de Steiner, \citep{kneebone}, se dois feixes de retas passando por $\e$ e $\e'$ estão homograficamente relacionados, o ponto de interseção entre retas correspondentes desses feixes descreve uma cônica que passa por $\e$ e $\e'$. Portanto $B=B'$ e todos os seis pontos em questão são co-cônicos.
+Pela subseção \ref{sec.definicao-conica}, uma cônica fica determinada por cinco pontos, como temos quatro pontos na imagem vamos deixar a cônica $B$ na dependência de $\e$ (o quinto ponto necessário). Analogamente, o epipolo $\e'$ também define uma cônica com os quatro pontos na imagem, digamos $B'$. Pela subsec\~ao \ref{sec.homografia-reta-epipolar}, existe a homografia da reta epipolar que relaciona as quatro retas do feixe passando por $\e$ com as quatro retas do feixe passando por $\e'$. Fazendo o corregistro dos pontos e pelo teorema de Steiner, \citep{kneebone}, se dois feixes de retas passando por $\e$ e $\e'$ estão homograficamente relacionados, o ponto de interseção entre retas correspondentes desses feixes descreve uma cônica que passa por $\e$ e $\e'$. Portanto $B=B'$ e todos os seis pontos em questão são co-cônicos.
 
 
-Reciprocamente, pelo teorema de Chasles em \citep{kneebone}, se quatro pontos $\x_i$ numa cônica formam um feixe de retas concorrentes em um quinto ponto $\e\in B$, a razão cruzada entre as quatro retas não depende da posição de $\e$. Assim, a razão cruzada  do feixe concorrente em $\e$ é igual a do feixe concorrente em $\e'$. Pela subseção \ref{sec.geometria-1D}, a razão cruzada num feixe de retas é igual a razão cruzada entre os quatro pontos de interseção de uma reta qualquer com o feixe. Pelo corolário ainda na subseção \ref{sec.geometria-1D}, dois conjuntos de quatro pontos colineares têm a mesma razão cruzada se, e somente se, correspondem sob uma homografia.  Pela dualidade da representação entre pontos e retas, temos a homografia entre retas epipolares.  
+Reciprocamente, pelo teorema de Chasles em \citep{kneebone}, se quatro pontos $\x_i \in B$ formam um feixe de retas concorrentes em um quinto ponto $\e\in B$, a razão cruzada entre as quatro retas não depende da posição de $\e$. Assim, a razão cruzada  do feixe concorrente em $\e$ é igual a do feixe concorrente em $\e'$. Pela subseção \ref{sec.geometria-1D}, a razão cruzada num feixe de retas é igual a razão cruzada entre os quatro pontos de interseção de uma reta qualquer com o feixe. Pelo corolário ainda na subseção \ref{sec.geometria-1D}, dois conjuntos de quatro pontos colineares têm a mesma razão cruzada se, e somente se, correspondem sob uma homografia.  Pela dualidade da representação entre pontos e retas, temos a homografia entre retas epipolares.  
 \end{proof}
 
 Esta cônica $B=B(\e)$ será bastante importante durante a abordagem pois, se os dois epipolos são co-cônicos com os quatro pontos na imagem, figura \ref{pontos-conconicos}, existe uma \textit{única} homografia de reta epipolar que faz a relação das retas através ${\bf e}$ com as retas através ${\bf e'}$. 
@@ -302,14 +296,14 @@ Esta cônica $B=B(\e)$ será bastante importante durante a abordagem pois, se os
 
 \subsection{O teorema 4: interseção das tangentes}\label{sec.demonstracao-teo-4}
 
-Note que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes intersectam $B$ no mesmo ponto. 
+Nota-se que podemos parametrizar o feixe de retas passando por ${\bf e'}$ (ou ${\bf e}$) por pontos pertencentes à cônica $B$, pois retas correspondentes nos dois feixes interceptam $B$ no mesmo ponto. 
 
 \begin{teorema}
-As restrições de calibração são equivalentes à condição de que duas retas tangentes a $\omega$ que passam por $\e$ intersectam a cônica $B$ nos mesmos dois pontos adicionais que as duas retas tangentes a $\omega'$ passando por $\e'$.
+As restrições de calibração são equivalentes à condição de que duas retas tangentes a\, $\omega$ que passam por $\e$ intersectam a cônica $B$ nos mesmos dois pontos adicionais que as duas retas tangentes a $\omega'$ passando por $\e'$.
 \end{teorema}
 
 \begin{proof}
-Na subseção \ref{sec.teorema-2}, vimos que as duas retas tangentes à conica $\omega$ estão projetivamente relacionadas com as duas tangentes à cônica $\omega'$. Pelo teorema de Steiner, o ponto de interseção entre duas retas correspondentes, em dois feixes homograficamente relacionados, descrevem uma cônica. Assim, as retas tangentes à cônica $\omega$ se intersectam às retas tangentes à cônica $\omega'$ em dois pontos adicionais sobre a cônica $B$. 
+Na subseção \ref{sec.teorema-2}, vimos que as duas retas tangentes à conica $\omega$ estão projetivamente relacionadas com as duas tangentes à cônica $\omega'$. Pelo teorema de Steiner, o ponto de interseção entre duas retas correspondentes, em dois feixes homograficamente relacionados, descrevem uma cônica. Assim, as retas tangentes à cônica $\omega$ se interceptam às retas tangentes à cônica $\omega'$ em dois pontos adicionais sobre a cônica $B$. 
 \end{proof}
 
 Isto é, as projeções de ${\bf \omega}$ e ${\bf \omega'}$ em $B$, através dos respectivos epipolos, devem coincidir. Essa construção geométrica pode ser visualizada na figura \ref{omega-B} e será a fundação para o resto da abordagem. 
@@ -346,7 +340,7 @@ e efetuar as multiplicações constantes na equação \ref{eq.conica-diamond}. L
 
 \subsubsection{Representação canônica de uma cônica}\label{sec.forma-canonica-B}
 
-Como vimos na subseção \ref{sec.espaco-P2}, o plano projetivo $\mathbb{P}^2$ tem seus pontos representados por vetores homogêneos com três componentes. Da Álgebra Linear sabemos que o espaço $\mathbb{R}^3$ também tem seus pontos representados por vetores com três componentes. Portanto, existe uma analogia entre as representações mesmo que no plano projetivo a relação entre vetores e pontos não seja biunívoca como em $\mathbb{R}^3$. Da mesma forma que podemos escolher a base canônica para representar vetores em $\mathbb{R}^3$, fazendo a devida transformação projetiva do sistema de coordeandas, podemos escolher uma base para representação do plano projetivo com a inclusão de um \textit{vetor unitário} ${\bf u}=(1,1,1)^\top$. Assim, cada ponto em $\mathbb{P}^2$ pode ser representado em termos da base \{$\x_1=(1,0,0)^\top,\x_2=(0,1,0)^\top,\x_3=(0,0,1)^\top,{\bf u}=(1,1,1)^\top$\} onde os três primeiros vetores são chamados {\it pontos de referência}. Para detalhes ver teorema 1 no apêndice  de \citep{kneebone}.
+Como vimos na subseção \ref{sec.espaco-P2}, o plano projetivo $\mathbb{P}^2$ tem seus pontos representados por vetores homogêneos com três componentes. Da Álgebra Linear sabemos que o espaço $\mathbb{R}^3$ também tem seus pontos representados por vetores com três componentes. Portanto, existe uma analogia entre as representações mesmo que no plano projetivo a relação entre vetores e pontos não seja biunívoca como em $\mathbb{R}^3$. Da mesma forma que podemos escolher a base canônica para representar vetores em $\mathbb{R}^3$, fazendo a devida transformação projetiva do sistema de coordenadas, podemos escolher uma base para representação do plano projetivo com a inclusão de um \textit{vetor unitário} ${\bf u}=(1,1,1)^\top$. Assim, cada ponto em $\mathbb{P}^2$ pode ser representado em termos da base \{$\x_1=(1,0,0)^\top,\x_2=(0,1,0)^\top,\x_3=(0,0,1)^\top,{\bf u}=(1,1,1)^\top$\} onde os três primeiros vetores são chamados {\it pontos de referência}. Para detalhes ver teorema 1 no apêndice  de \citep{kneebone}.
 
 Os pontos de referência, que são linearmente independentes, formam os vértices de um triângulo chamado \textit{triângulo de referência}, com o ponto unitário no interior do triângulo. Esse triângulo vai servir como uma base para a representação do plano projetivo, conforme a figura \ref{fig.triangulo-referencia}. Por exemplo, representando um ponto qualquer por $\x=(x,y,z)^\top$ e uma reta qualquer por $\lightrgb=(a,b,c)^\top$ a reta determinada pelos pontos $\x_1$ e ${\bf u}$ tem equação $z-y=0$.
 
@@ -357,7 +351,7 @@ Os pontos de referência, que são linearmente independentes, formam os vértice
 \label{fig.triangulo-referencia}
 \end{figure}
 
-Pois, se $\x_1\in\lightrgb$ e ${\bf u}\in\lightrgb$ então
+De fato, se $\x_1\in\lightrgb$ e ${\bf u}\in\lightrgb$ então
 
 \begin{equation}\label{eq.exemplo-tri-referencia}
 \lightrgb^\top{\bf u}=0\Rightarrow a+b+c=0\qquad\text{e}\qquad\lightrgb^\top\x_1=0\Rightarrow a=0.\qquad\text{Assim,}\quad b=-c.
@@ -373,7 +367,7 @@ e usando as relações em \ref{eq.exemplo-tri-referencia} temos que
 \begin{equation*}
 -c\,y+c\,z=0\Rightarrow z-y=0,
 \end{equation*}
-já que $c\neq 0$ pois do contrário $\lightrgb$ representaria um ponto no infinito.
+já que $c\neq 0$ pois do contrário $\lightrgb=(0,0,0)^\top$ e não representaria reta alguma, conforme a subseção \ref{sec.reta}. 
 
 Existem algumas formas padronizadas pelas quais a representação da cônica $B$ pode ser simplificada através da escolha conveniente de uma estrutura de referência. Uma dessas escolhas é tomar o triângulo de referência como tendo dois de seus lados tangentes à cônica, e o terceiro lado como reta polar em relação ao seu vértice oposto, e escolher um ponto  da cônica como ponto unitário. Ver figura \ref{fig.conica-tri-referencia}.
 
@@ -407,7 +401,6 @@ ou através da equação
 \begin{equation*}
 a\,x^2+b\,x\,y+d\,y^2+c\,x\,z+e\,y\,z+f\,z^2=0.
 \end{equation*}
-
 Supondo que a cônica passe pelos pontos $\x_1=(1,0,0)^\top$ e $\x_3=(0,0,1)^\top$ temos que
 
 \begin{equation*}
@@ -418,7 +411,6 @@ daí a equação da cônica será
 \begin{equation}\label{eq.reducao-parcial-conica}
 d\,y^2+b\,x\,y+c\,x\,z+e\,y\,z=0.
 \end{equation}
-
 Consirede a reta $\lightrgb=(l_1,l_2,l_3)^\top$ que passa pelos pontos $\x_1$ e $\x_3$,
 
 \begin{equation*}
@@ -449,7 +441,6 @@ l_1&l_2&l_3
 \Rightarrow l_3=0,
 \end{equation*} 
 e portanto $\lightrgb=(0,l_2,0)^\top$.
-
 Observando que $\lightrgb$ está numa relação polo-polar com o ponto $\x_2$, pela subseção \ref{sec.polo-polar} temos que $B\,\x_2=\lightrgb$, daí
 
 \begin{equation*}
@@ -477,13 +468,11 @@ l_2\\
 \end{pmatrix},
 \end{equation*}
 e teremos $b=e=0$ e $d=l_2$.
-
-Assim a equação \ref{eq.reducao-parcial-conica} toma a forma
+E como $l_2 \neq 0$ a equação \ref{eq.reducao-parcial-conica} toma a forma
 
 \begin{equation}\label{eq.reducao-parcial2-conica}
 l_2\,y^2+c\,x\,z=0,\quad\text{ou}\quad y^2=k\,x\,z\quad\text{com}\quad k=-\frac{c}{l_2}.
 \end{equation}
-
 A cônica $B$ passa também pelo ponto unitário ${\bf u}=(1,1,1)^\top$, assim substituindo na equação \ref{eq.reducao-parcial2-conica} temos que $k=1$, e a equação da cônica se reduz finalmente a 
 
 \begin{equation}\label{eq.reducao-total-conica}
@@ -529,7 +518,7 @@ Assim, todo ponto pertencente à cônica $B$ terá a forma $(\theta^2,\theta,1)^
 
 \subsubsection{Demonstração do teorema}
 
-Após a apresentação dos conceitos necessários, vamos estabelecer o teorema e demonstrá-lo.
+Após a apresentação dos conceitos necessários, vamos estabelecer o teorema e demonstrá-lo em detalhes.
 
 \begin{teorema}
 A projeção da IAC $\omega$ na cônica $B$, usando o epipolo $\e$ como centro de projeção, é dada pelos pontos de interseção entre a reta $(\omega\diamond B)\,\e$ e $B$, onde a cônica $(\omega\diamond B)$ é definida como
@@ -541,7 +530,7 @@ A projeção da IAC $\omega$ na cônica $B$, usando o epipolo $\e$ como centro d
 
 \begin{proof}
 
-Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangente à IAC intersecta a cônica $B$ em um ponto ${\bf q}$, conforme a figura \ref{omega-B}. Como ${\bf q}\in B$ e $B$ tem a forma definida na subseção \ref{sec.forma-canonica-B}, temos que ${\bf q}$ pode ser parametrizado por ${\bf q}=(1,\lambda,\lambda^2)^\top$, conforme a subseção \ref{sec.repre-canonica-parametrica}. Desta forma, precisamos mostrar que ${\bf q}\in (\omega\diamond B)\,\e$, ou seja, $[(\omega\diamond B)\,\e]^\top {\bf q}=0$ onde $\e=(1,\theta,\theta^2)^\top$. A reta $\lightrgb$ pode ser definida pelos pontos $\e$ e ${\bf q}$ como $\lightrgb=\e\times {\bf q}$ e, fazendo as substituições, vem
+Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangente à IAC intercepta a cônica $B$ em um ponto ${\bf q}$, conforme a figura \ref{omega-B}. Como ${\bf q}\in B$ e $B$ tem a forma definida na subseção \ref{sec.forma-canonica-B}, temos que ${\bf q}$ pode ser parametrizado por ${\bf q}=(1,\lambda,\lambda^2)^\top$, conforme a subseção \ref{sec.repre-canonica-parametrica}. Desta forma, precisamos mostrar que ${\bf q}\in (\omega\diamond B)\,\e$, ou seja, $[(\omega\diamond B)\,\e]^\top {\bf q}=0$ onde $\e=(1,\theta,\theta^2)^\top$. A reta $\lightrgb$ pode ser definida pelos pontos $\e$ e ${\bf q}$ como $\lightrgb=\e\times {\bf q}$ e, fazendo as substituições, vem
 
 \begin{equation*}
 \begin{array}{rcl}
@@ -551,7 +540,6 @@ Pela subseção \ref{sec.demonstracao-teo-4}, a reta epipolar $\lightrgb$ tangen
 \end{array}
 \end{equation*}
 ignorando o fator de escala $(\lambda-\theta)$.
-
 Como $\lightrgb$ é tangente à cônica $\omega$, temos que a reta satisfaz a relação definida na subseção \ref{sec.conica-dual}, $\lightrgb^\top\omega^*\lightrgb=0$. Parametrizando $\omega^*$ por $[c_{ij}]$ temos que a relação $\lightrgb^\top\omega^*\lightrgb=0$ se torna
 
 \begin{equation*}
@@ -571,11 +559,9 @@ c_{13}&c_{23}&c_{33}
 =0,
 \end{equation*}  
 que é equivalente à equação
-
 \begin{equation}\label{eq.expandida-omega-dual}
 \theta^2\lambda^2 c_{11}+(-2\,\theta^2\,\lambda-2\,\theta\lambda^2)\,c_{12}+2\,\theta\lambda\,c_{13}+(\theta+\lambda)^2\,c_{22}+(-2\,\theta-2\,\lambda)\,c_{23}+c_{33}=0.
 \end{equation} 
-
 Usando a definição de $(\omega\diamond B)$ em \ref{eq.conica-diamond}, a parametrização de $\omega^*$ por $[c_{ij}]$ e a forma canônica de $B$ (subseção \ref{sec.repre-canonica-parametrica}), temos que
 
 \begin{equation*}
@@ -605,16 +591,13 @@ e a relação $[(\omega\diamond B)\,\e]^\top {\bf q}=\e^\top (\omega\diamond B)\
 =0,
 \end{equation*}
 que é equivalente à equação
-
 \begin{equation}\label{eq.expandida-omega-diamond}
 \theta^2\lambda^2 c_{11}+(-2\,\theta^2\,\lambda-2\,\theta\lambda^2)\,c_{12}+2\,\theta\lambda\,c_{13}+(\theta+\lambda)^2\,c_{22}+(-2\,\theta-2\,\lambda)\,c_{23}+c_{33}=0,
 \end{equation}
-a menos do fator de escala 2.
-
-A equação \ref{eq.expandida-omega-dual} é igual à equação \ref{eq.expandida-omega-diamond}, e como 
+a menos do fator de escala 2. A equação \ref{eq.expandida-omega-dual} é igual à equação \ref{eq.expandida-omega-diamond}, e como 
 \ref{eq.expandida-omega-dual} é uma relação válida, também é a equação \ref{eq.expandida-omega-diamond}. O teorema segue.
 \end{proof}
-Repare que o desenvolvimento é análogo para o segundo ponto de interseção da tangente à $\omega$ com $B$.
+O desenvolvimento é análogo para o ponto de interseção das demais tangentes com $B$.
 
 
 \subsection{O teorema 6: projeção de $\omega'$ em $B$}\label{sec.teorema-6}
@@ -630,17 +613,16 @@ Pela subseção \ref{sec.demonstracao-teo-4}, as retas tangentes à $\omega'$ in
 \subsection{O teorema 7: a função que relaciona os epipolos}
 
 
-Primeiramente note que $(\omega \diamond B) = B\,(\omega \cdot B)$ se definirmos a homografia
+Primeiramente nota-se que $(\omega \diamond B) = B\,(\omega \cdot B)$ se definirmos a homografia
 
 \begin{equation}
 (\omega \cdot B) \equiv 2\,\omega^*\,B - tr(\omega^*\,B)\,I,
 \end{equation}
-onde está sendo ``cancelado" $B$ na definição de $(\omega \diamond B)$. Antes de passarmos ao teorema vamos fazer um esclarecimento sobre alguns conceitos. 
+onde $B$ está sendo ``cancelado" na definição de $(\omega \diamond B)$. Antes de passarmos ao teorema vamos fazer um esclarecimento sobre alguns conceitos. 
 
 \subsubsection{Feixe de cônicas}\label{sec.feixe-conicas}
 
 Dadas duas cônicas $B_1$ e $B_2$ pertencentes a $\mathbb{P}^2$, cujo a forma quadrática é definida por $\x^\top B_1\x=0$ e $\x^\top B_2\x=0$, chamamos de \textit{feixe de cônicas} a família de cônicas definidas por
-
 \begin{equation}\label{eq.B-combinacao-B1-B2}
 B=\lambda\,B_1+\mu\,B_2\quad\text{onde}\quad\x\in\mathbb{P}^2.
 \end{equation}
@@ -656,7 +638,6 @@ temos vários casos para as soluções mas trataremos aqui somente do caso com q
 Chamamos de {\it pontos base} de um feixe de cônicas, os pontos que são comuns a todas as cônicas do feixe, isto é, eles são os pontos de interseção das duas cônicas $B_1$ e $B_2$ que são a base do feixe. Assim, o feixe de cônicas fica definido pelos quatro pontos de interseção dessas duas cônicas.
 
 Como os quatro pontos $\x_i$ que definem o feixe são todos diferentes, temos que o feixe contém exatamente três cônicas degeneradas que são constituídas por pares de retas. Definindo as retas por dois pontos temos um total de combinações de $C_{4,2}=6$ retas dadas por
-
 \begin{equation*}
 \lightrgb_k=\x_i\times\x_j\quad\text{com}\quad k=1,...,6,\,\,i=1,2,3,\,\,j=2,3,4,\quad\text{e}\quad i<j.
 \end{equation*}
@@ -669,7 +650,7 @@ B_2&=&\lightrgb_3\lightrgb_4^\top+\lightrgb_4\lightrgb_3^\top\\
 B_3&=&\lightrgb_5\lightrgb_6^\top+\lightrgb_6\lightrgb_5^\top.
 \end{array}
 \end{equation}
-Observe que com seis retas temos uma total de combinações de $C_{6,2}=15$ cônicas, no entanto duas retas escolhidas devem passar pelos quatro pontos base, ou seja, duas retas não podem compartilhar um mesmo ponto base. Portanto temos apenas três cônicas degeneradas, as quais são normalmente usadas como base do feixe de cônicas por serem mais facilmente obtidas.
+Observa-se que com seis retas temos um total de combinações de $C_{6,2}=15$ cônicas, no entanto duas retas escolhidas devem passar pelos quatro pontos base, ou seja, duas retas não podem compartilhar um mesmo ponto base. Portanto temos apenas três cônicas degeneradas, as quais são normalmente usadas como base do feixe de cônicas por serem mais facilmente obtidas.
  
 \subsubsection{Estabelecimento e demonstração do teorema}\label{sec.teorema-7}
 
@@ -686,7 +667,6 @@ o que implica numa função de sétimo grau
 \begin{equation}\label{eq.map-7-grau}
 {\bf e} \rightarrow {\bf e'} \sim (\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e}.
 \end{equation}
-
 A restrição Kruppa disponibiliza quatro soluções para o epipolo ${\bf e}$ na cônica $B$, e as soluções são as interseções  de $B$ com a curva 
 
 \begin{equation}\label{eq.definicao-conica-C}
@@ -721,9 +701,7 @@ No caso em que $|(\omega'\cdot B)|=0$, devemos observar que, para câmeras e pon
 \begin{equation*}
 \e\sim (\omega\cdot B)^*(\omega'\cdot B)\,\e'\quad\text{e}\quad C_1 \equiv (\omega' \cdot B)^\top (\omega \cdot B)^{*\top}\,B\,(\omega \cdot B)^*\,(\omega' \cdot B).
 \end{equation*}     
-Analogamente à dedução anterior, $\e'\in C_1$ e a interseção de $B$ e $C_1$ vai gerar quatro soluções distintas para $\e'$.
- 
- Podemos perceber, pela equação \ref{eq.map-7-grau}, a relação polo-polar entre o ponto ${\bf p}\sim (\omega'\cdot B)\,\e'$ e a reta $\lightrgb$ dada por $\lightrgb=B\,(\omega'\cdot B)\,\e'$ ou $\lightrgb=B\,{\bf p}$.
+Analogamente à dedução anterior, $\e'\in C_1$ e a interseção de $B$ e $C_1$ vai gerar quatro soluções distintas para $\e'$. Podemos perceber, pela equação \ref{eq.map-7-grau}, a relação polo-polar entre o ponto ${\bf p}\sim (\omega'\cdot B)\,\e'$ e a reta $\lightrgb$ dada por $\lightrgb=B\,(\omega'\cdot B)\,\e'$ ou $\lightrgb=B\,{\bf p}$.
  % Assim, se ${\e'}\in B$ é uma das quatro soluções, existe uma outra solução para ${\e'}$ que vai gerar o mesmo ${\bf p}$, que vai ser a outra interseção da reta polar $\lightrgb$ com a cônica $B$. Desta forma, as soluções para ${\e'}$ se agrupam em dois pares.
  
  
@@ -749,7 +727,6 @@ Assim, mesmo sendo $(\omega' \cdot B)$ degenerada temos que $\e\in C$.
 \end{proof}
 
 Pela subseção \ref{sec.feixe-conicas}, temos que quaisquer duas cônicas de um feixe de côncias podem ser usadas como base do feixe, assim a cônica $B(\e)$ pode ser expressa na forma
-
 \begin{equation*}
 B(\e)=(\e^\top B_2\e)\,B_1-(\e^\top B_1\e)\,B_2,
 \end{equation*} 
@@ -796,7 +773,7 @@ Na figura \ref{plot-C} podemos visualizar dois exemplos de curvas. À esquerda, 
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=.4]{plotagem-C}
+\includegraphics[scale=.6]{plotagem-C}
 \caption{\textit{Podemos observar, à direita, a curva dos possíveis epipolos definida pela equação de décimo grau. À esquerda, a mesma curva com as seis retas, antes de removido o fator $|B|$ da equação de décimo-sexto grau.}}
 \label{plot-C}
 \end{figure}
@@ -806,7 +783,7 @@ Na figura \ref{plot-C} podemos visualizar dois exemplos de curvas. À esquerda, 
 Dados três pontos correspondentes e o epipolo $\e$
 em uma imagem, as restrições de projeção e calibração possibilitam quatro soluções para o epipolo $\e'$ na outra imagem.
 \end{teorema}
-A demonstração desse teorema é construtiva e se trata de um algoritmo fornecido no apêndice do artigo. Temos quatro possibilidades para o epipolo $\e$ obtido como interseção da cônica $B$ com a curva de $10^{\underline{o}}$ grau $G$. E para cada um deles, temos quatro possibilidades para o epipolo $\e'$ de acordo com o algoritmo publicado no apêndice do artigo. Ou seja, como necessitamos dos pares de epipolos para obter a matriz esencial $E$, teremos um total de 16 possibilidades para $E$ para cada cônica $B$ do feixe de cônicas passando pelos quatro pontos na imagem dados inicialmente. 
+A demonstração desse teorema é construtiva e se trata de um algoritmo fornecido no apêndice A do artigo. Temos quatro possibilidades para o epipolo $\e$ obtido como interseção da cônica $B$ com a curva de $10^{\underline{o}}$ grau $G$. E para cada um deles, temos  mais quatro possibilidades para o epipolo $\e'$ de acordo com o algoritmo B publicado no apêndice do artigo. Ou seja, como necessitamos dos pares de epipolos para obter a matriz esencial $E$, teremos um total de 16 possibilidades para $E$ para cada cônica $B$ do feixe de cônicas passando pelos quatro pontos na imagem dados inicialmente. 
 
 
 \subsection*{Teoremas 13 a 17}
@@ -824,7 +801,7 @@ Na figura \ref{curva-10} observamos alguns exemplos de curvas de décimo grau co
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=.4]{ex-curva-10}
+\includegraphics[scale=.5]{ex-curva-10}
 \caption{\textit{Quatro exemplos de curvas de décimo grau definidas pela equação \ref{dez}, juntamente com seus respectivos epipolos.}}
 \label{curva-10}
 \end{figure}
@@ -863,7 +840,7 @@ O vetor ${\bf d}$ é a direção da reta retroprojetada por $\x$ e pode ser obti
 \includegraphics[scale=.8]{angulo-dois-pontos}
 \caption{{\it O ângulo $\theta$ formado pelas retas retroprojetadas pelos pontos $\x_i$ e $\e$ através do centro de projeção ${\bf C}_1$ da primeira câmera. O procedimento é análogo para $\x'_i$ e $\e'$ na segunda câmera.}}
 \end{figure}
-Sabemos da Álgebra Linear que, dados dois vetores ${\bf d}_1$ e ${\bf d}_2$, a desigualdade de Cauchy-Schuarz é dada pela relação 
+Sabemos da álgebra linear que, dados dois vetores ${\bf d}_1$ e ${\bf d}_2$, a desigualdade de Cauchy-Schuarz é dada pela relação 
 \begin{equation*}
 |\left\langle{\bf d}_1,{\bf d}_2\right\rangle|\leq\left\|{\bf d}_1\right\|\left\|{\bf d}_2\right\|\quad\text{ou}\quad -1\leq\frac{\left\langle{\bf d}_1,{\bf d}_2\right\rangle}{\left\|{\bf d}_1\right\|\left\|{\bf d}_2\right\|}\leq 1,
 \end{equation*}
@@ -878,13 +855,12 @@ com os vetores ${\bf d}_1=K^{-1}\x$ e ${\bf d}_2=K^{-1}\e$. Aplicando a substitu
 \begin{equation}\label{eq.cos-theta}
 \cos\theta=\frac{\x^\top K^{-\top} K^{-1}\e}{\sqrt{\x^\top K^{-\top} K^{-1}\x}\sqrt{\e^\top K^{-\top} K^{-1}\e}}.
 \end{equation}
-Como \citep{2503343} supõe que a câmera é calibrada, ou seja, conhecemos a matriz $K$, podemos determinar o ângulo entre duas retas retroprojetadas por pontos no plano da imagem. Por isso, uma câmera calibrada é chamada {\it sensor de direção}.
+Como \citep{2503343} supõem que a câmera é calibrada, ou seja, conhecemos a matriz $K$, podemos determinar o ângulo entre duas retas retroprojetadas por pontos no plano da imagem. Por isso, uma câmera calibrada é chamada {\it sensor de direção}.
 
-Observe que, pela subseção \ref{sec.omega-calibracao}, podemos determinar a imagem da cônica absoluta IAC a partir da matriz de calibração, e a equação \ref{eq.cos-theta} se torna
+Observa-se que, pela subseção \ref{sec.omega-calibracao}, podemos determinar a imagem da cônica absoluta IAC a partir da matriz de calibração, e a equação \ref{eq.cos-theta} se torna
 \begin{equation}\label{eq.cos-omega}
 \cos\theta=\frac{\x^\top\omega\,\e}{\sqrt{\x^\top\omega\,\x}\sqrt{\e^\top\omega\,\e}}.
 \end{equation} 
-
 O desenvolvimento é análogo para $\x'_i$ e $\e'$ escritos em outro sistema de coordenadas, pois a equação \ref{eq.cos-omega} é projetivamente invariante. De fato, considerando uma transformação projetiva $H$ onde, pela subseção \ref{sec.trans-proj-H},  $\x'=H\,\x$, a equação \ref{eq.cos-omega} fica
 \begin{equation*}
 \cos\theta=\frac{(H^{-1}\x')^\top\omega\,H^{-1}\e'}{\sqrt{(H^{-1}\x')^\top\omega\,H^{-1}\x'}\sqrt{(H^{-1}\e')^\top\omega\,H^{-1}\e'}}
@@ -899,11 +875,29 @@ onde $\omega'=H^{-\top}\omega\,H^{-1}$ (como qualquer cônica se transforma) de 
 
 \subsection{Incluindo a terceira imagem}
 
-As novidades do artigo se encontram na abordagem da reconstrução 3D para duas imagens e a aplicação a seguir segue o modelo padrão de projetar as reconstruções na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas com as câmeras calibradas), podemos escolher duas dessas imagens para traçarmos a curva de décimo grau. Como vimos, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{eq.map-7-grau}. Com os epipolos encontramos a homografia da reta epipolar  e daí, a matriz essencial relativa às duas imagens. Em seguida, podemos extrair as câmeras e usá-las para reconstrução dos pontos 3D a partir da triangulação usando duas imagens. Três pontos 3D juntamente com suas projeções (já conhecidas) são suficientes para determinar a câmera da terceira imagem, e podemos usar o quarto ponto para ser projetado na terceira imagem e comparar a projeção com o dado já obtido para refinar o resultado. Ou seja, o procedimento consiste em minimizar um erro na imagem. Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, o valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmera da terceria imagem e dezesseis reprojeções, todas essas reprojeções definem uma complexidade enorme de curvas na terceira imagem. Na figura \ref{curvas-f(theta)} é dada uma ideia da dificuldade extrema do problema envolvendo três imagens e quatro pontos. 
+As novidades do artigo se encontram na abordagem da reconstrução 3D para duas imagens e o procedimento seguinte segue o modelo padrão de projetar as reconstruções dos quatro pontos 3D na terceira imagem e minimizar o erro em relação aos dados já disponíveis. Assim, dados quatro pontos numa imagem e suas respectivas correspondências em outras duas imagens (todas com as câmeras calibradas), podemos escolher duas dessas imagens para traçarmos a curva de décimo grau. 
+
+Com os quatro pontos correspondentes $x\leftrightarrow x'$ podemos determinar os oito graus de liberdade de uma homografia $H$ que é usada para corregistrar os dois planos de imagens num único plano. Os pontos co-registrados juntamente com os epipolos formam uma cônica que fica na dependência de $\e$ que pode ser parametrizado por $\theta$, $\e=(1,\theta,\theta^2)^\top$. Para cada estimativa de $\theta$ teremos uma cônica 
+\begin{equation*}
+B(e)=(\e^\top B_2\e)\,B_1-(\e^\top B_1\e)\,B_2,
+\end{equation*}
+onde as cônicas $B_1$ e $B_2$ são duas cônicas quaisquer usadas para parametrizar o feixe de cônicas ao qual pertencem. Podemos usar os quatro pontos da imagem para determinar $B_1$ e $B_2$ que nesse caso serão degeneradas. As cônicas $\omega$ e $\omega'$ são obtidas usando
+\begin{equation*}
+\omega=K^{-\top}K^{-1}\quad\text{e}\quad\omega'=K'^{-\top}K'^{-1},
+\end{equation*}
+as quais são necessárias para obter, junto com a cônica $B$, a função que relaciona os epipolos
+\begin{equation*}
+{\bf e'} \sim (\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e}.
+\end{equation*}
+As cônicas $B$, $\omega$ e $\omega^*$ são utilizadas para calcular a curva $G$ conforme a relação \ref{conica-G}. Os quatro possíveis epipolos $\e$ são calculados como a interseção da curvas $B$ e $G$ conforme o algoritmo exposto no apêndice A do artigo, mas também podemos usar as bases de Gr\"obner e a matriz de Ação para resolver numericamente tal sistema.
+
+Como vimos, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{eq.map-7-grau} e com o algoritmo no apêndice B do artigo, o qual fornece quatro soluções para $\e'$. Com os epipolos determinamos a homografia da reta epipolar (subseção \ref{sec.homografia-reta-epipolar}) e daí, a matriz essencial relativa às duas imagens (subseção \ref{sec.ambi-cameras-dada-F}). Em seguida, podemos extrair as câmeras e usá-las para reconstrução dos pontos 3D a partir da triangulação usando duas imagens. Três pontos 3D juntamente com suas projeções na terceira imagem (já conhecidas) são suficientes para determinar a terceira câmera, e podemos usar o quarto ponto para ser projetado na terceira imagem e comparar a projeção com o dado já obtido para refinar o resultado. Ou seja, o procedimento de determinar a terceira câmera consiste em minimizar um erro na imagem. Na subseção \ref{sec.astrom} são citados mais alguns trabalhos que permitem realizar essa tarefa.
+
+Como o problema é supra restringido por um grau de liberdade, com os ruídos das correspondências, os valores encontrados para a reprojeção do quarto ponto não coincidirá com o dado observado mesmo que usada a correta solução. Como para cada $\theta$ escolhido teremos dezesseis configurações de câmeras e dezesseis reprojeções, todas essas reprojeções definem uma complexidade enorme de curvas. Na figura \ref{curvas-f(theta)} é dada uma ideia da dificuldade extrema do problema envolvendo três imagens e quatro pontos. 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=.52]{varias-curvas-f-theta}
-\caption{\textit{A reprojeção do feixe de cônicas na terceira imagem e do quarto ponto reconstruído nos dá uma ideia da dificuldade do problema de três imagens com quatro pontos.}}
+\caption{\textit{A reprojeção do feixe de curvas na terceira imagem e do quarto ponto reconstruído nos dá uma ideia da dificuldade do problema de três imagens com quatro pontos.}}
 \label{curvas-f(theta)}
 \end{figure}

@@ -1,3 +1,4 @@
+\newpage
 \section{Alguns conceitos e definições de álgebra linear}\label{sec.Apen-A}
 Esta seção do apêndice se destina a apresentar algumas ferramentas da álgebra linear necessárias ao entendimento de algumas seções da dissertação, funcionando como complementação dessas seções.
 
@@ -12,7 +13,7 @@ v_3&0&-v_1\\
 -v_2&v_1&0
 \end{bmatrix},
 \end{equation*}
-onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qualquer ${\bf u}$ e ${\bf v}$. 
+onde a notação $[{\bf v}]_\times$ indica uma relação com o produto vetorial entre um vetor qualquer ${\bf u}$ e ${\bf v}$. 
 
 \begin{equation*}
 {\bf v} \times {\bf u} = [{\bf v}]_\times {\bf u} = ({\bf v}^\top [{\bf u}]_\times)^\top
@@ -20,7 +21,7 @@ onde a notação $[{\bf v}]_\times$ indica o produto vetorial entre um vetor qua
 
 Sabemos que o produto vetorial entre um vetor e ele mesmo é sempre o vetor nulo, portanto o vetor ${\bf v}$ é o vetor nulo à direita e à esquerda de $[{\bf v}]_\times$. Desta forma, esta matriz anti-simétrica será sempre definida por seu vetor nulo.  
 
-Observe ainda, que uma matriz anti-simétrica qualquer $M$ satisfaz a relação ${\bf v}^\top M\,{\bf v}=0.$ Pois,
+Observe, ainda, que uma matriz anti-simétrica qualquer $M$ satisfaz a relação ${\bf v}^\top M\,{\bf v}=0.$ Pois,
 \begin{equation*}
 \begin{array}{rcl}
 {\bf v}^\top M\,{\bf v}
@@ -53,41 +54,41 @@ v_3
 \end{array}
 \end{equation*}
 
-\subsection*{O método das potências para autovalores}
-Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v}_k$ e determinar o autovetor ${\bf v}_{k+1}$ em cada iteração fazendo
-
-\begin{equation*}
-{\bf v}_{k+1}=A\,{\bf v}_k,
-\end{equation*}
-onde aproximamos um autovetor relativo a $\lambda$ quando $k\rightarrow \infty$. Encontrada a aproximação para o autovetor podemos determinar o autovalor dominante correspondente aplicando o \textit{quociente de Rayleigh}, pois sendo ${\bf v}$ o autovetor relativo a $\lambda$ temos
-
-\begin{equation*}
-A\,{\bf v}=\lambda\,{\bf v},
-\end{equation*}
-e aplicando o produto escalar na equação
-
-\begin{equation*}
-\begin{array}{rcl}
-A\,{\bf v}&=&\lambda\,{\bf v}\\
-(A\,{\bf v})\cdot{\bf v}&=&\lambda\,({\bf v}\cdot{\bf v})\\
-\lambda&=&\frac{(A\,{\bf v})\cdot{\bf v}}{{\bf v}\cdot{\bf v}}.
-\end{array}
-\end{equation*}
-
-Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma do vetor ou dividindo o vetor pela maior de suas componentes em cada iteração. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v}_k\end{Vmatrix}$ a cada iteração. 
-
-
-Se a matriz não possui um único autovalor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um $s$ arbitrário, de uma matriz
-
-\begin{equation*}
-A'=(A-s\,I)^{-1}
-\end{equation*}
-onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor dominante. Sendo $\lambda'$ o autovalor dominante de $A'$, o autovalor dominante de $A$ é dado por
-
-\begin{equation*}
-\lambda=\frac{1}{\lambda'}+s
-\end{equation*} 
-onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$, como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
+%\subsection*{O método das potências para autovalores}
+%Segundo \citep{cox-using}, o método das potências é baseado no fato de que uma matriz $A$ possui um único autovalor dominante, ou seja, um autovalor $\lambda$ que satisfaz $\begin{Vmatrix}\lambda\end{Vmatrix} > \begin{Vmatrix}\mu\end{Vmatrix}$ para todos os outros autovalores $\mu$ de $A$. Basta aplicar uma alteração no método caso a matriz não tenha um autovalor dominante. O método é iterativo e consiste em estipular uma estimativa inicial para o autovetor ${\bf v}_k$ e determinar o autovetor ${\bf v}_{k+1}$ em cada iteração fazendo
+%
+%\begin{equation*}
+%{\bf v}_{k+1}=A\,{\bf v}_k,
+%\end{equation*}
+%onde aproximamos um autovetor relativo a $\lambda$ quando $k\rightarrow \infty$. Encontrada a aproximação para o autovetor podemos determinar o autovalor dominante correspondente aplicando o \textit{quociente de Rayleigh}, pois sendo ${\bf v}$ o autovetor relativo a $\lambda$ temos
+%
+%\begin{equation*}
+%A\,{\bf v}=\lambda\,{\bf v},
+%\end{equation*}
+%e aplicando o produto escalar na equação
+%
+%\begin{equation*}
+%\begin{array}{rcl}
+%A\,{\bf v}&=&\lambda\,{\bf v}\\
+%(A\,{\bf v})\cdot{\bf v}&=&\lambda\,({\bf v}\cdot{\bf v})\\
+%\lambda&=&\frac{(A\,{\bf v})\cdot{\bf v}}{{\bf v}\cdot{\bf v}}.
+%\end{array}
+%\end{equation*}
+%
+%Para evitar problemas de overflow/underflow podemos alterar a escala do vetor, calculando a norma do vetor ou dividindo o vetor pela maior de suas componentes em cada iteração. Sempre que dividirmos o vetor pela maior de suas componentes todas as componentes vão se manter entre $-1$ e $1$. Optando pela norma basta computar $\begin{Vmatrix}A\,{\bf v}_k\end{Vmatrix}$ a cada iteração. 
+%
+%
+%Se a matriz não possui um único autovalor dominante o método pode não convergir, ou podemos precisar determinar os demais autovalores. Nesses casos, devemos fazer uma modificação na matriz de forma a garantir a convergência. O procedimento consiste em calcular o autovalor mais próximo de um $s$ arbitrário, de uma matriz
+%
+%\begin{equation*}
+%A'=(A-s\,I)^{-1}
+%\end{equation*}
+%onde para quase todas as escolhas de $s$ a matriz $A'$ terá um único autovalor dominante. Sendo $\lambda'$ o autovalor dominante de $A'$, o autovalor dominante de $A$ é dado por
+%
+%\begin{equation*}
+%\lambda=\frac{1}{\lambda'}+s
+%\end{equation*} 
+%onde $\lambda$ será o autovalor mais próximo de $s$. Este procedimento permite procurar por todos os autovalores de uma matriz, dada uma boa estimativa para $s$, como se desejaria fazer utilizando o método de Newton-Raphson para o polinômio característico, o qual não é muito utilizado na prática.
 
 \subsection*{A decomposição SVD}
 Uma das formas de se obter a decomposição em valores singulares de uma matriz $A$ é aplicando a decomposição em autovalores na matriz  $A^\top A$. Assim, queremos determinar a decomposição
@@ -130,12 +131,12 @@ D_{ii}^+=
 \end{empheq}
 
 
-A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando uma linha de zeros para que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com linha de zeros ela será singular. Assim, aplicamos a decomposição SVD e em seguida definimos a pseudo-inversa.
+A matriz $P_{3\times4}$ tem menor quantidade de linhas do que colunas, e nesse caso devemos extender a matriz $P$ acrescentando uma linha de zeros para que a mesma se torne uma matriz quadrada. Não poderemos inverter tal matriz quadrada pois com uma linha de zeros ela será singular. Assim, aplicamos a decomposição SVD e em seguida definimos a pseudo-inversa. Se
 
 \begin{equation*}
 P=U\,D\,V^\top
 \end{equation*}
-é a decomposição SVD e podemos definir a pseudo-inversa como
+é a decomposição SVD, podemos definir a pseudo-inversa como
 
 \begin{equation*}
 P^+=V\,D^+U^\top.
@@ -154,6 +155,6 @@ P^+P&=&V\,D^+U^\top\,U\,D\,V^\top\\
 \end{array}
 \end{equation*}
 
-Uma das maneiras de ralizar a decomposição SVD é aplciando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$. Foi apresentado anteriormente um método para obtenção dos autovalores.
+Uma das maneiras de realizar a decomposição SVD é aplicando a decomposição em autovalores, a qual fornece a matriz $V$ e fornece quase diretamente os valores singulares. Em seguida, fica relativamente fácil obter a matriz $U$.
 
 

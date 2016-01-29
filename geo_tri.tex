@@ -2,14 +2,23 @@
 \section{Geometria trifocal}\label{sec.geo-tri}
 Assim como num sistema com duas imagens, podemos extrair informações sobre o cenário em 3D através da correspondência entre pontos, retas, tangentes e segmentos de curvas com três  ou mais imagens. No entanto, grande parte das pesquisas em visão computacional não tem utilizado a geometria trifocal em problemas de reconstrução 3D e transferência de pontos de uma imagem para outra. Menor ainda é a utilização da geometria diferencial para abordar esses problemas para curvas gerais, tais como cristas de ondas. Um dos nossos objetivos é fazer um levantamento das características e conceitos encontrados num sistema trifocal em comparação com a geometria epipolar, e relatar alguns dos benefícios conseguidos através da inclusão de uma terceira imagem.
 
+\begin{figure}[htb!]
+\centering
+\subfloat{\includegraphics[scale=.67]{plataforma-1}}
+\quad
+\subfloat{\includegraphics[scale=.67]{plat-2}}
+\quad
+\subfloat{\includegraphics[scale=.67]{plat-3}}
+\caption{{\it Três imagens da plataforma petrolífera espanhola Casablanca. Exemplo de três pontos correspondentes em vermelho representando um vértice da figura formada pelo heliporto.}}
+\end{figure}
+
 \subsection{O Problema}
-Considere um cenário em 3D com três imagens em 2D desse cenário. Nessas três imagens, temos as correspondências entre pontos, onde esses pontos correpondentes $\x\leftrightarrow\x'\leftrightarrow\x''$ (dois sinais de apóstrofo indicam o objeto pertencente à terceira câmera) previamente conhecidos, são três imagens de um mesmo ponto desconhecido $\X$ em 3D. O desafio da reconstrução 3D é determinar, a partir das correspondências nas imagens, as matrizes das câmeras $P$, $P'$ e $P''$ que realizam as projeções $\x=P\,\X$, $\x'=P'\X$ e $\x''=P''\X$ em cada imagem, bem como a determinação do ponto $\X$. Nesse trabalho será dada prioridade para determinação das matrizes das câmeras por ser um dos maiores problemas atuais em visão computacional. 
+Considere um cenário em 3D com três imagens em 2D desse cenário conforme a figura \ref{fig.trifocal-frente}, onde podemos visualizar as três imagens $\x$, $\x'$ e $\x''$ de um ponto 3D $\X$ (dois sinais de apóstrofo indicam o objeto pertencente à terceira câmera) e os pontos correpondentes $\x\leftrightarrow\x'\leftrightarrow\x''$ são previamente conhecidos. O desafio da reconstrução 3D é determinar, a partir das correspondências nas imagens, as matrizes das câmeras $P$, $P'$ e $P''$ que realizam as projeções $\x=P\,\X$, $\x'=P'\X$ e $\x''=P''\X$ em cada imagem, bem como a determinação do ponto $\X$. Nesse trabalho está sendo dada prioridade à determinação das matrizes das câmeras, por ser um dos maiores problemas atuais em visão computacional e que torna-se primordial no caso de curvas \citep{tese-fabbri}.
 
-É mais comum a utilização da geometria epipolar para problemas de reconstrução 3D, fazendo a extração das câmeras usando a geometria epipolar e aplicando um algoritmo para determinação do ponto 3D a partir da triangulação $(\x,\x',\X)$. Mas quando aumentamos para três a quantidade de imagens, aumenta-se também as possibilidades de degenerações (que depende  da posição do ponto 3D $\X$) se continuarmos utilizando as ferramentas da geometria epipolar. Mostraremos que alguns casos de degenerações podem ser removidos usando a teoria da geometria trifocal.
-Vamos aplicar o procedimento contido em \citep{Faugeras} que consiste em utilizar a matriz fundamental e a geometria epipolar num problema de transferência de pontos num sistema trifocal, avaliar as deficiências dessa abordagem e em seguida mostrar como a geometria trifocal pode erradicar algumas dessas deficiências. 
+É mais comum a utilização da geometria epipolar bifocal para problemas de reconstrução 3D, fazendo a extração das câmeras usando a geometria epipolar e aplicando um algoritmo para determinação do ponto 3D a partir da triangulação $(\x,\x',\X)$. Mas quando aumentamos para três a quantidade de imagens, aumentam-se também as possibilidades de degenerações (que depende  da posição do ponto 3D $\X$) se continuarmos utilizando as ferramentas da geometria epipolar a cada par de imagens. Mostraremos que alguns casos de degenerações podem ser removidos usando a teoria da geometria trifocal.
 
-Considere a figura \ref{fig.trifocal-frente} onde podemos visualizar as três imagens $\x$, $\x'$ e $\x''$ de um ponto 3D $\X$. 
 
+Vamos aplicar o procedimento contido em \citep{Faugeras} que consiste em utilizar a geometria epipolar bifocal num problema de transferência de pontos num sistema trifocal, avaliar as deficiências dessa abordagem e em seguida mostrar como a geometria trifocal pode erradicar algumas dessas deficiências. 
 \begin{figure}
 \centering
 \includegraphics[scale=.8]{trifocal-frente-frente}
@@ -20,7 +29,7 @@ Considere a figura \ref{fig.trifocal-frente} onde podemos visualizar as três im
 O plano definido pelos pontos $\C, \C' \,\,\text{e}\,\, \X$ forma o plano epipolar para as câmeras 1 e 2. Analogamente, temos o plano epipolar para as câmeras 1 e 3 e para as câmeras 2 e 3. A interseção de cada plano epipolar com os planos das imagens geram as retas epipolares. Por exemplo, a reta  epipolar $\lightrgb''_1$ definida pelos pontos $\e_{31}$ e $\x''$ na terceira imagem, é a reta epipolar com relação ao ponto $\x$ na primeira imagem. Ou seja, $\lightrgb''_1$ é a imagem, na câmera 3, da reta retroprojetada por $\x$ através do centro de projeção $\C$ na câmera 1. Essa reta é definida por $\lightrgb''_1=F_{31}\,\x$ ou $\lightrgb''_1=\e_{31}\times\x''$, onde $F_{ij}$ é a matriz fundamental para as câmeras $i$ e $j$ tomando como base a câmera $j$. O plano formado pelos centros de projeção $\C, \C' \,\,\text{e}\,\, \C''$ é chamado {\it plano trifocal} e as interseções desse plano com os planos das imagens geram as {\it retas trifocais} denotadas por ${\bf t}_i$.
 
 \subsection{Transferência epipolar}\label{sec.trans-epipolar}
-Supondo que temos os pontos correspondentes $\x\leftrightarrow\x'$ para as câmeras 1 e 2, bem como as matrizes fundamentais para os três planos epipolares da figura \ref{fig.trifocal-frente}, $F_{21}$, $F_{31}$ e $F_{32}$, desejamos determinar as coordenadas do ponto $\x''$ no plano de imagem da câmera 3. Como vimos, os pontos $\x$, $\x'$ e $\x''$ são imagens de um mesmo ponto 3D $\X$, e por isso $\x''$ é um ponto correspondente ao ponto $\x$ e, portanto, $\x''\in\lightrgb''_1$, onde $\lightrgb''_1=F_{31}\x$ é a reta epipolar para as câmeras 1 e 3. Por um argumento similar, constatamos que $\x''$ é correspondente ao ponto $\x'$ e por isso $\x''\in\lightrgb''_2=F_{32}\x'$. Como temos os pontos e as matrizes fundamentais podemos calcular as retas epipolares na terceira imagem. O ponto $\x''$ será calculado como a interseção entre essas duas retas:
+Supondo que temos os pontos correspondentes $\x\leftrightarrow\x'$ para as câmeras 1 e 2, bem como as matrizes fundamentais para os três planos epipolares da figura \ref{fig.trifocal-frente}, $F_{21}$, $F_{31}$ e $F_{32}$, desejamos determinar as coordenadas do ponto $\x''$ no plano de imagem da câmera 3. Como vimos, os pontos $\x$, $\x'$ e $\x''$ são imagens de um mesmo ponto 3D $\X$, e por isso $\x''$ é um ponto correspondente ao ponto $\x$ e, portanto, $\x''\in\lightrgb''_1$, onde $\lightrgb''_1=F_{31}\x$ é a reta epipolar para as câmeras 1 e 3. Por um argumento similar, constatamos que $\x''$ é correspondente ao ponto $\x'$ e por isso $\x''\in\lightrgb''_2=F_{32}\x'$. Como temos os pontos e as matrizes fundamentais, podemos calcular as retas epipolares na terceira imagem. O ponto $\x''$ será calculado como a interseção entre essas duas retas:
 \begin{equation}
 \begin{array}{rcl}
 \x''&=&\lightrgb''_1\times\lightrgb''_2\\
@@ -29,11 +38,11 @@ Supondo que temos os pontos correspondentes $\x\leftrightarrow\x'$ para as câme
 \end{equation}
 Esse metodo é chamado de {\it transferência epipolar} e não podemos determinar $\x''$ nos seguintes casos:
 \begin{itemize}
-\item acompanhando ainda pela figura \ref{fig.trifocal-frente}, observe que se o ponto 3D $\X$ pertence à reta base definida por $\C$ e $\C''$, então a projeção desse ponto pela câmera 1 será $\x=P\,\X=\e_{13}$, já que $\X$ está alinhado com $\C''$ e $\e_{13}=P\,\C''$. Sendo $\x=\e_{13}$ temos que, pela subseção \ref{sec.propriedades-F} $F_{31}\e_{13}={\bf 0}$, e a reta epipolar $\lightrgb''_1={\bf 0}$. Geometricamente, não podemos determinar um plano epipolar para as câmeras 1 e 3;
+\item acompanhando ainda pela figura \ref{fig.trifocal-frente}, observa-se que se o ponto 3D $\X$ pertence à reta base definida por $\C$ e $\C''$, então a projeção desse ponto pela câmera 1 será $\x=P\,\X=\e_{13}$, já que $\X$ está alinhado com $\C''$ e $\e_{13}=P\,\C''$. Sendo $\x=\e_{13}$ temos que, pela subseção \ref{sec.propriedades-F} $F_{31}\e_{13}={\bf 0}$, e a reta epipolar $\lightrgb''_1={\bf 0}$. Geometricamente, não podemos determinar um plano epipolar para as câmeras 1 e 3;
 \item analogamente ao caso anterior, se $\X$ pertence à reta base definida por $\C'$ e $\C''$, não podemos definir o plano epipolar para as câmeras 2 e 3;\\
 \end{itemize}
 
-Já que o ponto procurado $\x''$ é calculado como interseção das duas retas epipolares $\lightrgb''_1$ e $\lightrgb''_2$, o procedimento de tranferência falha em mais dois casos quando essas retas são iguais.
+Já que o ponto procurado $\x''$ é calculado como interseção das duas retas epipolares $\lightrgb''_1$ e $\lightrgb''_2$, o procedimento de tranferência falha em mais dois casos quando essas retas são iguais ou muito próximas.
 
 \begin{itemize}
 \item repare que se os centros de projeção não estão alinhados então os epipolos $\e_{31}$ e $\e_{32}$ são diferentes. As retas epipolares $\lightrgb''_1$ e $\lightrgb''_2$ são iguais se $\e_{31}\in\lightrgb''_2$ e $\e_{32}\in\lightrgb''_1$. Geometricamente, isso significa que o ponto $\X$ está alojado no plano trifocal e $\x''\in{\bf t}_3$.
@@ -47,12 +56,12 @@ Mostramos a determinação do ponto $\x''$ especificamente, mas esse desenvolvim
 
 \subsection{O tensor trifocal e as relações de incidência}\label{sec.tensor-tri-rela-inci}
 
-Para a derivação do tensor trifocal usaremos a correspondência entre retas $\lightrgb\leftrightarrow\lightrgb'\leftrightarrow\lightrgb''$ ao longo de três imagens, onde todas essas retas são imagens de uma mesma reta $\bf L$ no espaço 3D, pois esse é o procedimento padrão desenvolvido originalmente por 
+Para a derivação do tensor trifocal usaremos a correspondência entre retas $\lightrgb\leftrightarrow\lightrgb'\leftrightarrow\lightrgb''$ ao longo de três imagens, onde todas essas retas são imagens de uma mesma reta $\bf L$ no espaço 3D. Esse é o procedimento padrão desenvolvido originalmente por 
 \citep{original-trifocal-retas} e reproduzido, por exemplo, por  \citep{Faugeras} e \citep{forsyth}. A abordagem algébrica aqui utilizada pode ser encontrada em \citep{Hartley2004}.
 
-Suponha, portanto, que temos três imagens em 2D $\lightrgb$, $\lightrgb'$ e $\lightrgb''$  de uma reta ${\bf L}$ em 3D, conforme a figura \ref{fig.abord-geo-tri}. Pela subseção \ref{sec.proj.retas}, essas três retas nas imagens retroprojetam planos que, pela própria construção, devem se intersectar em ${\bf L}$. Esta imposição geométrica gera uma restrição algébrica para as três retas correspondentes, já que em geral três planos no espaço não se intersectam numa única reta. Pela subseção \ref{sec.cameras-canonicas}, através de uma transformação projetiva podemos utilizar o conjunto de matrizes canônicas para as câmeras $P=[I|{\bf 0}]$, $P'=[A|{\bf a}_4]$ e $P''=[B|{\bf b}_4]$, onde $A$ e $B$ são matrizes $3\times3$ e os vetores ${\bf a}_i$ e ${\bf b}_i$ representam a $i$-ésima coluna das câmeras $P'$ e $P''$ respectivamente, para $i=1,2,3 \,\,\text{e}\,\, 4$.
+Suponha que temos três imagens em 2D $\lightrgb$, $\lightrgb'$ e $\lightrgb''$  de uma reta ${\bf L}$ em 3D, conforme a figura \ref{fig.abord-geo-tri}. Pela subseção \ref{sec.proj.retas}, essas três retas nas imagens retroprojetam planos que, pela própria construção, devem se interceptar em ${\bf L}$. Esta imposição geométrica gera uma restrição algébrica para as três retas correspondentes, já que em geral três planos no espaço não se interceptam numa única reta. Pela subseção \ref{sec.cameras-canonicas}, através de uma transformação projetiva podemos utilizar o conjunto de matrizes canônicas para as câmeras $P=[I|{\bf 0}]$, $P'=[A|{\bf a}_4]$ e $P''=[B|{\bf b}_4]$, onde $A$ e $B$ são matrizes $3\times3$ e os vetores ${\bf a}_i$ e ${\bf b}_i$ representam a $i$-ésima coluna das câmeras $P'$ e $P''$ respectivamente, para $i=1,2,3 \,\,\text{e}\,\, 4$.
 
-Observe que tomando $P=[I|{\bf 0}]$ estamos considerando o centro da câmera 1 como a origem de coordenadas do espaço 3D, e assim as coordenadas do centro da câmera 1 é $\C=(0,0,0,1)^\top$. Os epipolos na segunda e terceira imagens em relação à câmera 1 são, respectivamente, dados pela projeção $\e'=P'\C$ e $\e''=P''\C$, e assim temos que $\e'={\bf a}_4$ e $\e''={\bf b}_4$ (já que não vamos mais nos referir aos demais epipolos de um sistema trifocal, usaremos a notação simplificada $\e'$ e $\e''$). Como retas retroprojetam planos, esses planos são dados, de acordo com a subseção \ref{sec.proj.retas}, por
+Observa-se que tomando $P=[I|{\bf 0}]$ estamos considerando o centro da câmera 1 como a origem de coordenadas do espaço 3D, e assim as coordenadas do centro da câmera 1 são $\C=(0,0,0,1)^\top$. Os epipolos na segunda e terceira imagens em relação à câmera 1 são, respectivamente, dados pela projeção $\e'=P'\C$ e $\e''=P''\C$, e assim temos que $\e'={\bf a}_4$ e $\e''={\bf b}_4$ (já que não vamos mais nos referir aos demais epipolos de um sistema trifocal, usaremos a notação simplificada $\e'$ e $\e''$). Como retas retroprojetam planos, esses planos são dados, de acordo com a subseção \ref{sec.proj.retas}, por
 \begin{equation*}
 \begin{array}{rcl}
 \pi&=&P^\top\lightrgb\\
@@ -79,7 +88,9 @@ B^\top\lightrgb''\\
 \end{pmatrix}
 \end{array}.
 \end{equation*}
-Como estamos supondo que essas três retas são imagens de uma única reta no espaço, temos que esses três planos devem se intersectar em ${\bf L}$, e essa restrição geométrica pode ser expressa algebricamente pelo fato de que a matriz formada pelos vetores dos três planos $M=[\pi \,\,\pi'\,\,\pi'']$ deve ter posto dois. Pois, um ponto $\X\in{\bf L}$ pode ser escrito como combinação linear de outros dois pontos pertencentes a ${\bf L}$ que sejam linearmente independentes, digamos $\X=\lambda_1\X_1+\lambda_2\X_2$, com $\lambda_i$ escalares. Como $\X$ pertence a cada um dos planos, temos que $\bpi^\top\X=0$, $\bpi'^\top\X=0$ e $\bpi''^\top\X=0$, e daí $M^\top\X={\bf 0}$. Encarando $M^\top$ como um operador linear, desde que $\X=\lambda_1\X_1+\lambda_2\X_2$, temos que o núcleo de $M^\top$ tem dimensão dois, e como $M^\top$ tem quatro colunas o domínio tem dimensão quatro. Pelo teorema do núcleo e imagem de uma transformação linear, a dimensão do domínio é a soma da dimensão do núcleo com a dimensão da imagem, e daí a dimensão da imagem é dois. A dimensão da imagem é o posto do operador linear $M^\top$, que é igual ao posto de $M$. 
+Como estamos supondo que essas três retas são imagens de uma única reta no espaço, temos que esses três planos devem se interceptar em ${\bf L}$, e essa restrição geométrica pode ser expressa algebricamente pelo fato de que a matriz formada pelos vetores dos três planos $M=[\pi \,\,\pi'\,\,\pi'']$ deve ter posto dois. De fato, um ponto $\X\in{\bf L}$ pode ser escrito como combinação linear de outros dois pontos pertencentes a ${\bf L}$ que sejam linearmente independentes, digamos $\X=\lambda_1\X_1+\lambda_2\X_2$, com $\lambda_i$ escalares. Como $\X$ pertence a cada um dos planos, temos que $\bpi^\top\X=0$, $\bpi'^\top\X=0$ e $\bpi''^\top\X=0$, e daí $M^\top\X={\bf 0}$. Encarando $M^\top$ como um operador linear, desde que $\X=\lambda_1\X_1+\lambda_2\X_2$, temos que o núcleo de $M^\top$ tem dimensão dois, e como $M^\top$ tem quatro colunas o domínio tem dimensão quatro. 
+
+Pelo teorema do núcleo e imagem de uma transformação linear, a dimensão do domínio é a soma da dimensão do núcleo com a dimensão da imagem, e daí a dimensão da imagem é dois. A dimensão da imagem é o posto do operador linear $M^\top$, que é igual ao posto de $M$. 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{abord-geo-tri}
@@ -182,7 +193,7 @@ onde tomamos ${\bf h}_i=\mbox{T}_i^\top\lightrgb'$.
 A homografia deduzida acima (denotada por $H_{13}$) representa a transformação de um ponto da primeira imagem para a terceira através de uma reta na segunda imagem, $\x''=H_{13}\x$. Analogamente, podemos deduzir a homografia da primeira imagem para a segunda através de uma reta na terceira imagem, $\x'=H_{12}\x$.
 
 \subsubsection{Relações de incidência entre pontos e retas}\label{sec.rela-incidi-tri}
-Uma das relações de incidência já foi deduzida anteriormente, chamada reta-reta-reta, e agora vamos deduzir mais quatro relações. Supondo ainda $\lightrgb$, $\lightrgb'$ e $\lightrgb''$ três imagens de uma reta ${\bf L}$, sabemos que um ponto $\x$ pertence à uma reta $\lightrgb$ na câmera 1 se $\x^\top\lightrgb=0$, onde a multiplicação matricial pode ser escrita sob a notação de somatório como $\sum_{i=1}^{3}x^il_i=0$. A equação \ref{eq.tres-retas} pode ser dada como $\lightrgb'^\top \mbox{T}_i\lightrgb''
+Uma das relações de incidência já foi deduzida anteriormente, chamada reta-reta-reta, e agora vamos deduzir mais quatro relações. Supondo ainda $\lightrgb$, $\lightrgb'$ e $\lightrgb''$ três imagens de uma reta ${\bf L}$, sabemos que um ponto $\x$ pertence à uma reta $\lightrgb$ na câmera 1 se $\x^\top\lightrgb=0$, onde a multiplicação matricial pode ser escrita sob a notação de somatório como $\sum_{i=1}^{3}x^il_i=0$. O índice contravariante em $x$ é uma conveção para facilitar o algebrismo na notação padrão de tensor trifocal. Essa convensão se deve ao fato de que o tensor trifocal possui três índices e não apenas dois como ocorre com as matrizes. A equação \ref{eq.tres-retas} pode ser dada como $\lightrgb'^\top \mbox{T}_i\lightrgb''
 =l_i$ para $i=1,2,3$, e usando o somatório temos que
 \begin{equation*}
 \begin{array}{rcl}
@@ -207,7 +218,7 @@ x_1\mbox{T}_1^\top\lightrgb'+x_2\mbox{T}_2^\top\lightrgb'+x_3\mbox{T}_3^\top\lig
 &=&(\sum_{i=1}^3 x^i\mbox{T}_i^\top)\,\lightrgb'
 \end{array}
 \end{equation*}
-Como estamos expressando os vetores em coordenadas homogêneas, essas equações são invariáveis para a aplicação de um fator de escala. De qualquer maneira, podemos eliminar o problema das diferenças de escala aplicando a transposição seguida do produto vetorial à direita em ambos os lados da equação
+Como estamos expressando os vetores em coordenadas homogêneas, essas equações são invariantes para a aplicação de um fator de escala. De qualquer maneira, podemos eliminar o problema das diferenças de escala aplicando a transposição seguida do produto vetorial à direita em ambos os lados da equação
 \begin{equation}\label{eq.ponto-reta-ponto}
 \begin{array}{rcl}
 \x''&=&(\sum_{i=1}^3 x^i\mbox{T}_i^\top)\,\lightrgb'\\
@@ -223,14 +234,14 @@ Observe que a reta $\lightrgb'$ na relação \ref{eq.ponto-reta-ponto} pode ser 
 \begin{equation*}
 \y'^\top[\x']_\times(\sum_{i=1}^3 x^i\mbox{T}_i)[\x'']_\times={\bf 0}^\top,
 \end{equation*}
-mas observe que tal relação é válida para qualquer reta $\lightrgb'$ que seja imagem de ${\bf L}$, e portanto não depende da escolha do ponto $\y'$ que pode ser descartado. A relação ponto-ponto-ponto é
+mas observa-se que tal relação é válida para qualquer reta $\lightrgb'$ que seja imagem de ${\bf L}$, e portanto não depende da escolha do ponto $\y'$ que pode ser descartado. A relação ponto-ponto-ponto é
 \begin{equation*}
 [\x']_\times(\sum_{i=1}^3 x^i\mbox{T}_i)[\x'']_\times=0_{3\times3}.
 \end{equation*}
 Cabe resaltar que apenas satisfazer qualquer das relações de incidência não garante a incidência no espaço 3D, ou seja, o tensor trifocal obtido pode não ter consistência com a geometria trifocal de abordagem do problema.
 
 \subsubsection{Relação de incidência para retas epipolares}\label{sec.rela-reta-epipolar-tri}
-Suponha que os planos retroprojetados por $\lightrgb$ e $\lightrgb'$ sejam coincidentes e que o ponto 3D $\X$ pertença a esse plano denotado por $\bpi'$, de acordo com a figura \ref{fig.plano-epipolar-tri}. Neste caso, $\bpi'$ é o plano epipolar para as câmeras 1 e 2, e a reta retroprojetada por $\x$, imagem de $\X\in{\bf L}$, está inteiramente contida em $\bpi'$. Como dois planos não coincidentes sempre definem uma reta, o plano retroprojetado por $\lightrgb''$ intersecta o plano $\bpi'$ em ${\bf L}$. Já que a reta retroprojetada por $\x$ está inteiramente contida em $\bpi'$, essa reta deverá intersectar a reta ${\bf L}$ no ponto $\X$. Desta forma, pela subseção \ref{sec.rela-incidi-tri}, temos a correspondência $\x\leftrightarrow\lightrgb'\leftrightarrow\lightrgb''$ que satisfaz a relação
+Suponha que os planos retroprojetados por $\lightrgb$ e $\lightrgb'$ sejam coincidentes e que o ponto 3D $\X$ pertença a esse plano denotado por $\bpi'$, de acordo com a figura \ref{fig.plano-epipolar-tri}. Neste caso, $\bpi'$ é o plano epipolar para as câmeras 1 e 2, e a reta retroprojetada por $\x$, imagem de $\X\in{\bf L}$, está inteiramente contida em $\bpi'$. Como dois planos não coincidentes sempre definem uma reta, o plano retroprojetado por $\lightrgb''$ intercepta o plano $\bpi'$ em ${\bf L}$. Já que a reta retroprojetada por $\x$ está inteiramente contida em $\bpi'$, essa reta deverá interceptar a reta ${\bf L}$ no ponto $\X$. Desta forma, pela subseção \ref{sec.rela-incidi-tri}, temos a correspondência $\x\leftrightarrow\lightrgb'\leftrightarrow\lightrgb''$ que satisfaz a relação
 \begin{equation*}
 \lightrgb'^\top(\sum_{i=1}^3 x^i\mbox{T}_i)\lightrgb''=0.
 \end{equation*}
@@ -296,7 +307,7 @@ que dá uma maneira explícita de calcularmos a reta na primeira imagem dadas as
 \end{pmatrix}.\\
 \end{array}
 \end{equation*}
-O sistema fornece três equações, sendo duas independentes, para determinar os dois graus de liberdade da reta procurada. Outra vantagem no uso de tensor trifocal é que retas não podem ser determinadas usando apenas matrizes fundamentais.
+O sistema fornece três equações, sendo duas independentes, para determinar os dois graus de liberdade da reta procurada. Outra vantagem no uso de tensor trifocal é que retas explícitas não podem ser determinadas usando apenas matrizes fundamentais.
 
 Repare, pela figura \ref{fig.plano-epipolar-tri}, que se as retas $\lightrgb$ e $\lightrgb'$ retroprojetam o mesmo plano, então não teremos uma única reta definida em 3D que possa ser projetada na terceira imagem, e essas duas retas são retas epipolares correspondentes. Similarmente, não podemos determinar a reta na segunda imagem caso as retas na primeira e terceira imagens sejam retas epipolares correspondentes. Em posições gerais, não há motivo para a geometria epipolar entre as câmeras 1 e 2, e câmeras 1 e 3 serem iguais, ou seja, os dois tipos de transferência não se degeneram simultaneamente com frequência. No entanto, assim como pontos na tranferência epipolar, não é possível aplicar a transferência através do tensor trifocal se a reta 3D estiver contida no plano trifocal. 
 
