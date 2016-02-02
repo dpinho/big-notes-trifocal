@@ -8,7 +8,7 @@ Para a compreensão mínima das técnicas mais importantes investigadas nessa di
 \subsubsection{A reta}\label{sec.reta}
 
 
-Sabe-se que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a,b,c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $\lightrgb = (a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Nota-se que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k\neq 0$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano projetivo é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
+Sabe-se que uma reta no plano $\mathbb{R}^{2}$ pode ser representada pela equação $a\,x+b\,y+c=0$, onde a reta fica perfeitamente determinada pelos valores das constantes $a$, $b$ e $c$. Desta forma, podemos representar retas através de vetores, e assim a reta $a\,x+b\,y+c=0$ seria representada por $\lightrgb = (a,b,c)^\top \in \mathbb{R}^{3}$, utilizando o símbolo em negrito $\lightrgb$ para indicar tal vetor escrito em coluna, por padrão. Nota-se que a relação entre uma dada reta e o seu respectivo vetor não é biunívoca, pois o vetor $k\,(a,b,c)^\top$, tal que $k\neq 0$, representa a reta $k\,a\,x+k\,b\,y+k\,c=0$ que é a mesma reta $a\,x+b\,y+c=0$. Temos, então, infinitos vetores que representam uma mesma reta e formam uma {\it classe de equivalência}, onde essa classe pode ser representada por qualquer um de seus vetores. Os vetores de uma classe de equivalência, definida pela multiplicação por um escalar, são conhecidos como vetores {\it homogêneos}. O conjunto de classes de equivalência de vetores em $\mathbb{R}^{3} - (0,0,0)^\top$ forma o {\it Espaço Projetivo} $\mathbb{P}^{2}$. O vetor $(0,0,0)^\top$ foi excluído por não representar reta alguma. Após essas considerações, dizemos que uma reta no plano projetivo é representada pelo vetor $(a,b,c)^\top$ em {\it coordenadas homogêneas}.\\
 
 \subsubsection{O ponto}\label{sec.ponto}
 
@@ -742,7 +742,7 @@ A^{-\top}&{\bf 0}\\
 \bpi_\infty.
 \end{array}
 \end{equation*}
-Existem outros planos que podem ser invariáveis sob uma transformação afim menos específica, mas só o plano no infinito é invariante em uma transformação afim geral. Cabe resaltar que $\bpi_\infty$ é invariável apenas quando a transformação é aplicada ao conjunto, e não a pontos isolados pertencentes a esse plano.
+Existem outros planos que podem ser invariantes sob uma transformação afim menos específica, mas só o plano no infinito é invariante em uma transformação afim geral. Cabe resaltar que $\bpi_\infty$ é invariável apenas quando a transformação é aplicada ao conjunto, e não a pontos isolados pertencentes a esse plano.
 
 
 \subsubsection{A cônica absoluta}\label{sec.con-absoluta}
@@ -881,7 +881,7 @@ X_3
 A última equação representa a equação de pertinência de um ponto a uma reta contida num plano conforme as subseções \ref{sec.reta} e \ref{sec.ponto}. 
 
 
-\subsection{A câmera P}
+\subsection{A câmera $P$}
 
 A câmera é um dispositivo que transforma um cenário 3D referenciado por um sistema de coordenadas do mundo em uma imagem 2D no sistema de coordenadas da câmera. Algebricamente, a \textit{câmera} é modelada como uma transformação linear entre um ponto 3D no espaço e um ponto 2D no plano da imagem, representada por uma matriz $P_{3\times4}$ com algumas propriedades que realizam o mapeamento entre os pontos. Existem vários tipos de câmeras, mas para tratar das características básicas vamos utilizar o modelo buraco de alfinete, do inglês \textit{pinhole}.
 \\
