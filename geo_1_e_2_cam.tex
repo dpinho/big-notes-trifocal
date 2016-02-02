@@ -657,21 +657,22 @@ Similarmente à cônica em $\mathbb{P}^2$, uma quádrica $Q$ em $\mathbb{P}^3$ �
 \end{equation*}
 onde $Q$ é uma matriz simétrica $4\times4$ com nove graus de liberdade.
 
-\begin{figure}[!htb]
-\qquad\qquad
-$
-\begin{array}{cc}
-\includegraphics[scale=.9]{paraboloide}
-&
-\includegraphics[scale=0.7]{hiperboloide_1_folha}
-\end{array}
-$
-\caption{\textit{Parabolóide à esquerda e hiperbolóide de uma folha à direita.}}
-\label{quadricas}
-\end{figure}
+%\begin{figure}[!htb]
+%\qquad\qquad
+%$
+%\begin{array}{cc}
+%\includegraphics[scale=.9]{paraboloide}
+%&
+%\includegraphics[scale=0.7]{hiperboloide_1_folha}
+%\end{array}
+%$
+%\caption{\textit{Parabolóide à esquerda e hiperbolóide de uma folha à direita.}}
+%\label{quadricas}
+%\end{figure}
 
 
-Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
+Mais detalhes sobre a dedução da definição de uma quádrica podem ser encontrados em \cite{Hartley2004}.
+%, bem como outros exemplos além daqueles observados na figura \ref{quadricas}.\\
 
 \subsubsection{A transformação de pontos e planos em $\mathbb{P}^3$}\label{sec.trans-pontos-planos-P3}
 
@@ -1716,7 +1717,7 @@ E=[{\bf t}]_\times R.
 
 O problema da determinação da pose de uma câmera tem sido estudado extensivamente pela comunidade da área de visão computacional. Por exemplo, o caso mínimo da determinação da pose de uma câmera usando três pontos foi estudado por inicialmente \citep{fischler} e outras formulações para problemas mínimos desse tipo foram comparadas e revisadas por \citep{haralick}. Usando retas, foi desenvolvida uma solução mínima com três retas e suas correspondências por \citep{chen}, e outro desenvolvimento envolvendo retas pode ser encontrado em \citep{dhome}. Recentemente, um caso mínimo usando combinação de pontos e retas foi publicado por \citep{ramalingam}. E mais recentemente ainda, visando aplicação em correspondência entre curvas \citep{Fabbri:Giblin:Kimia:ECCV12} desenvolveram uma solução mínima usando dois pontos-tangentes.
 
-Uma câmera pode ser fatorada em $P=K[R|{\bf t}]$, e o artigo \citep{bib:kuang} trata da determinação dos parâmetros externos $R$ e ${\bf t}$, considerando que são conhecidos quase todos os parâmetros internos da matriz $K$, menos a distância focal $f$. Assim, o artigo busca determinar sete parâmetros no total, três na matriz de rotação $R$, três no vetor de translação ${\bf t}$ e um na matriz de calibração. Alguns trabalhos anteriores já resolveram problemas de determinação desses sete parâmetros mas todos eles usaram somente correspondência entre pontos 3D e pontos 2D, $\X\leftrightarrow\x$, e as principais contribuições do artigo são o uso de correspondências entre outras entidades geométricas como retas e pontos-tangentes, e a apresentação de um procedimento para resolução de sistemas de equações polinomiais utilizando as bases de Gr\"obner e a matriz de Ação. 
+Uma câmera pode ser fatorada em $P=K[R|{\bf t}]$, e o artigo \citep{bib:kuang} trata da determinação dos parâmetros externos $R$ e ${\bf t}$, considerando que são conhecidos quase todos os parâmetros internos da matriz $K$, menos a distância focal $f$. Assim, o artigo busca determinar sete parâmetros no total, três na matriz de rotação $R$, três no vetor de translação ${\bf t}$ e um na matriz de calibração. Alguns trabalhos anteriores já resolveram problemas de determinação desses sete parâmetros mas todos eles usaram somente correspondência entre pontos 3D e pontos 2D, $\X\leftrightarrow\x$, e as principais contribuições do artigo são o uso de correspondências entre outras entidades geométricas como retas e pontos-tangentes, e a apresentação de um procedimento para resolução de sistemas de equações polinomiais utilizando as bases de Gr\"obner e a matriz de ação. Temos interesse nessa tecnologia computacional para o trabalho futuro de auto-calibração trifocal usando curvas e superfícies. 
 
 Como já vimos, os parâmetros externos $R$ e ${\bf t}$ tem a finalidade de trazer um ponto 3D escrito no sistema de coordenadas do mundo para o sistema de coordenadas da câmera, e na figura \ref{fig.camera-astrom} podemos observar a ação de $[R|{\bf t}]$ bem como a correspondência entre entidades geométricas.
 
@@ -1864,7 +1865,7 @@ Substituindo $t'_z=w\,t_z$, temos que determinar as sete variáveis $\{b,c,d,t_x
 
 \subsection{Sistema de equações polinomiais}
 
-Para resolver computacionalmente os sistemas de equações polinomiais decorrentes do emprego dos casos úteis na determinação de $P$, \citep{bib:kuang} utiliza metodos baseados em geometria algébrica. Primeiramente, utilizando a ferramenta {\it Macaulay2} \citep{macaulay2}, é verificada a existência de 20 soluções para o caso mínimo (P2T1). Para sistemas com pouca quantidade de variáveis, usar apenas o método das bases de Gr\"obner pode ser rápido e numericamente estável, mas aqui é empregado o método exposto em \citep{byrod}, que consiste basicamente em extrair a base linear a partir das bases de Gr\"obner e empregar a matriz de Ação, da qual as soluções podem ser obtidas pela decomposição em autovalores. No apêndice \ref{sec.geo-algebrica} é fornecido um resumo sobre a teoria básica de geometria algébrica, bem como exemplos da utilização do método das bases de Gr\"obner e da matriz de Ação para resolver sistemas computacionalmente.
+Para resolver computacionalmente os sistemas de equações polinomiais decorrentes do emprego dos casos úteis na determinação de $P$, \citep{bib:kuang} utiliza metodos baseados em geometria algébrica. Primeiramente, utilizando a ferramenta {\it Macaulay2} \citep{macaulay2}, é verificada a existência de 20 soluções para o caso mínimo (P2T1). Para sistemas com pouca quantidade de variáveis, usar apenas o método das bases de Gr\"obner pode ser rápido e numericamente estável, mas aqui é empregado o método exposto em \citep{byrod}, que consiste basicamente em extrair a base linear a partir das bases de Gr\"obner e empregar a matriz de ação, da qual as soluções podem ser obtidas pela decomposição em autovalores. No apêndice \ref{sec.geo-algebrica} é fornecido um resumo sobre a teoria básica de geometria algébrica, bem como exemplos da utilização do método das bases de Gr\"obner e da matriz de ação para resolver sistemas computacionalmente.
 
 
 
