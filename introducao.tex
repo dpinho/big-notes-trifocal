@@ -39,6 +39,13 @@ Novos avanços em reconstrução 3D vêm sendo realizados constantemente como ob
 \label{fig.drawing}
 \end{figure}
 
+%\begin{figure}[!htb]
+%\centering
+%\includegraphics[scale=1.1]{drawing2}
+%\caption{{\it A abordagem proposta transforma um conjunto de imagens calibradas no desenho 3D na forma de um gráfico consistindo de segmentos de curvas 3D que se ligam nas junções.}}
+%\label{fig.drawing}
+%\end{figure}
+
 A maioria dos métodos de reconstrução não utilizam geometria diferencial de curvas, mas se baseiam em correlacionar pontos de interesse através das imagens e produzem uma desorganizada nuvem de pontos em 3D, figura \ref{fig.medusa}. Tais métodos obtêm sucesso em ambientes controlados, com cenas em larga escala e imagens ricas em textura, mas não podem ser aplicados em configurações gerais. Não podem reconstruir superfícies suaves e homogêneas nem suas fronteiras devido a esparsidade de pontos de interesse, como também não podem reconstruir regiões que se alteram drasticamente com a mudança de luz ambiente. Exemplos de imagens sujeitas a essas limitações são dados na figura \ref{fig.carro-objeto-curvo}.
 \begin{figure}[!htb]
 \centering
@@ -48,7 +55,7 @@ A maioria dos métodos de reconstrução não utilizam geometria diferencial de 
 \caption{{\it Exemplos de objetos que não podem ser reconstruídos através da abordagem tradicional usando pontos de interesse e a geometria epipolar.}}
 \label{fig.carro-objeto-curvo}
 \end{figure}  
-Daí são utilizadas outras técnicas de melhoramento dos resultados, como a Interpolação de Pontos e Texturização, mas que não fornecem um resultado plenamente satisfatório. Podemos ver as fases desse processo em um exemplo no conjunto de imagens na figura\ref{fig.medusa}.
+Daí são utilizadas outras técnicas de melhoramento dos resultados, como a Interpolação de Pontos e Texturização, mas que não fornecem um resultado plenamente satisfatório. Podemos ver as fases desse processo em um exemplo no conjunto de imagens na figura \ref{fig.medusa}.
 
 Portanto, ainda é necessário que se continuem as pesquisas em visão computacional, e o presente trabalho tem a finalidade de, primeiramente, detalhar as abordagens de artigos recentes na busca de novas combinações de ferramentas matemáticas que possam melhorar as atuais abordagens e atenuar o esforço computacional. Segundo, a verificação dos benefícios obtidos com o uso da geometria trifocal em transferência de pontos e reconstrução 3D em comparação com a geometria epipolar (mais usada atualmente), tudo com o objetivo de auxiliar na construção de uma nova abordagem usando geometria diferencial multifocal em condições realísticas.
 
