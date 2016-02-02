@@ -1,9 +1,9 @@
 \newpage
 \section{Geometria Trifocal Calibrada: Nistér e Schaffalitzky}\label{sec.nister}
 
-Para abordar um problema trifocal no caso onde $K$ é conhecida, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. 
+Para determinar as poses de três câmeras num problema trifocal, a partir de três imagens com quatro pontos correspondentes em cada imagem, no caso onde $K$ é conhecida, primeiro \cite{2503343} desenvolvem uma abordagem num sistema bifocal para determinação da rotação e da translação da segunda câmera em relação à primeira, utilizando duas imagens com quatro pontos correspondentes. 
 
-Eles demonstram que, dados os pontos corrrespondentes, os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, estimam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, resgatam a terceira câmera consistente com a estrutura 3D definida pelas duas primeiras câmeras. Utilizam essa teoria para desenvolver o que é ainda a solução mais eficiente para o problema (até onde pudemos averiguar), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, as quais não se encontram no artigo.
+Eles demonstram que, dados os pontos corrrespondentes, os epipolos de cada imagem estão restritos a se alojarem numa curva de grau 10, a chamada curva décica, bem como desenvolvem um método para a obtenção dessa curva. De posse dos epipolos, definem a geometria epipolar, estimam a segunda câmera em relação à primeira e fazem a reconstrução 3D dos quatro pontos. Com os pontos em 3D e a terceira imagem, estimam a terceira câmera consistente com a estrutura 3D definida pelas duas primeiras câmeras. Utilizam essa teoria para desenvolver o que é ainda a solução mais eficiente para o problema (até onde pudemos averiguar), o notório desafio de estabelecer as poses das câmeras num sistema com três imagens e quatro pontos. O artigo possui vários teoremas e alguns deles são interessantes em termos de pesquisas em geometria projetiva. Por isso, vamos reproduzir o enunciado dos teoremas e abriremos subseções explicando conceitos e definições que são importantes ao entendimento dos teoremas. Depois de realizadas essas explicações será fornecida a demonstração de alguns teoremas, as quais não se encontram no artigo.
 
 \begin{figure}[!htb]
 \centering
@@ -22,13 +22,13 @@ As $n$ retas passando pelos pontos $\e$ e $\x_i$ na primeira imagem estão homog
 \end{teorema}
 
 \begin{proof}
-Segundo \cite{Hartley2004}, o feixe de retas epipolares em cada imagem estão perspectivamente relacionados através do centro de projeção $Q$ na reta base, conforme a figura \ref{fig.retas-epi-hartley}.
+Segundo \cite{Hartley2004}, o feixe de retas epipolares em cada imagem estão perspectivamente relacionados através do centro de projeção $Q$ na reta base, conforme a figura \ref{fig.homo-reta-epipo}.
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=1]{retas-epipolares-hartley}
-\caption{\textit{Retas epipolares com perspectiva centrada em $Q$ na reta base.}}
-\label{fig.retas-epi-hartley}
+\includegraphics[scale=.6]{reta-epipo-2}
+\caption{{\it Retas epipolares relacionadas por uma homografia e com perspectiva centrada em {\bf Q}}.}
+\label{fig.homo-reta-epipo}
 \end{figure}
 
 
