@@ -141,7 +141,7 @@ r_2\,sen\,\alpha_2
 
 Uma ferramenta algébrica bastante utilizada nessa abordagem de \citep{2503343} é a imagem da cônica absoluta (IAC em inglês) denotada por ${\bf \omega}$. Como a abordagem assume que as câmeras são calibradas, vamos mostrar que é possível obter a IAC em função da matriz de calibração da câmera, $K$.
 
-\subsubsection{A matriz de calibração, a imagem da cônica absoluta e a imagem da cônica dual absoluta}\label{sec.omega-calibracao}
+\subsubsection{Calibração e a imagem da cônica absoluta}\label{sec.omega-calibracao}
 
  Inicialmente, vamos determinar a homografia que faz o mapeamento do plano no infinito $\bpi_\infty$ para o plano da imagem na câmera. Se $\X_\infty\in\bpi_\infty$ então pode ser escrito na forma
 
@@ -889,7 +889,7 @@ as quais são necessárias para obter, junto com a cônica $B$, a função que r
 \begin{equation*}
 {\bf e'} \sim (\omega' \cdot B)^*\,(\omega \cdot B)\,{\bf e}.
 \end{equation*}
-As cônicas $B$, $\omega$ e $\omega^*$ são utilizadas para calcular a curva $G$ conforme a relação \ref{conica-G}. Os quatro possíveis epipolos $\e$ são calculados como a interseção da curvas $B$ e $G$ conforme o algoritmo exposto no apêndice A do artigo, mas também podemos usar as bases de Gr\"obner e a matriz de Ação para resolver numericamente tal sistema.
+As cônicas $B$, $\omega$ e $\omega^*$ são utilizadas para calcular a curva $G$ conforme a relação \ref{conica-G}. Os quatro possíveis epipolos $\e$ são calculados como a interseção da curvas $B$ e $G$ conforme o algoritmo exposto no apêndice A do artigo, mas também podemos usar as bases de Gr\"obner e a matriz de ação para resolver numericamente tal sistema.
 
 Como vimos, temos quatro soluções para   ${\bf e}$ e cada solução pode ser usada para calcular ${\bf e'}$ na segunda imagem de acordo com a equação \ref{eq.map-7-grau} e com o algoritmo no apêndice B do artigo, o qual fornece quatro soluções para $\e'$. Com os epipolos determinamos a homografia da reta epipolar (subseção \ref{sec.homografia-reta-epipolar}) e daí, a matriz essencial relativa às duas imagens (subseção \ref{sec.ambi-cameras-dada-F}). Em seguida, podemos extrair as câmeras e usá-las para reconstrução dos pontos 3D a partir da triangulação usando duas imagens. Três pontos 3D juntamente com suas projeções na terceira imagem (já conhecidas) são suficientes para determinar a terceira câmera, e podemos usar o quarto ponto para ser projetado na terceira imagem e comparar a projeção com o dado já obtido para refinar o resultado. Ou seja, o procedimento de determinar a terceira câmera consiste em minimizar um erro na imagem. Na subseção \ref{sec.astrom} são citados mais alguns trabalhos que permitem realizar essa tarefa.
 
