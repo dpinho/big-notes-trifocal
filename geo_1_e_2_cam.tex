@@ -26,7 +26,6 @@ Sabemos que em $\mathbb{R}^{2}$ os pontos são representados através de pares o
  \text{ou} 
  \qquad \x ^\top\lightrgb = 0.
 \end{equation*}
-
 Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três coordenadas. Observe que para $k\neq 0$, temos:
 
 \begin{equation*}
@@ -46,7 +45,6 @@ Ou seja, temos um ponto de $\mathbb{R}^{2}$ representado como um vetor com três
  \end{pmatrix} 
  = 0.
 \end{equation*}
-
 Portanto,  variando $k$, podemos considerar os vetores em coordenadas homogêneas $(k\,x,k\,y,k)^\top \in \mathbb{P}^2$, como representantes do mesmo ponto $(x,y) \in \mathbb{R}^2$, e podemos resgatar nossa representação original aplicando o procedimento $(x/k,y/k)^\top$, pois $k \ne 0$.
 
 \begin{figure}[!htb]
@@ -84,8 +82,6 @@ onde, comparando \ref{eq.pro-vet} e \ref{eq.pro-vet-2},
 \begin{equation*}
 \x=\lightrgb\times\lightrgb'.
 \end{equation*}
-
-
 Com argumento análogo podemos constatar que dois pontos definem uma reta através do produto vetorial entre eles, pois basta verificar que dois pontos $\x$ e $\x'$ pertencem a reta definida por
 
 \begin{equation*}
@@ -164,7 +160,6 @@ y\\
 \end{pmatrix}
  = 0.
 \end{equation*}
-
 Podemos generalizar essas coordenadas homogêneas multiplicando-se por um fator $x_3$ e definindo $x_1=x_3\,x$ e $x_2=x_3\,y$, e a equação fica
 \begin{equation*}
 a\,x_1^2+b\,x_1\,x_2+c\,x_2^2+d\,x_1\,x_3+e\,x_2\,x_3+f\,x_3^2=0.
@@ -187,7 +182,6 @@ Novamente, em notação matricial:
  \qquad \text{ou} \qquad
  \x^\top C\,\x = 0.
 \end{equation*}
-
 Já que um ponto pertence à cônica se, e somente se, satisfaz a última equação, temos que $C$ fica definida como a matriz homogênea que representa uma cônica no plano projetivo $\mathbb{P}^2$,
 
 \begin{equation*}
@@ -197,7 +191,6 @@ C =  \begin{bmatrix}
       d/2 & e/2 & f
       \end{bmatrix}.
 \end{equation*}
-
 Percebemos que as cônicas são representadas por matrizes $3\times3$ simétricas e, portanto, possuem seis variáveis. Usando uma dessas variáveis para fixar a escala, temos que as cônicas possuem cinco graus de liberdade, pois podemos por exemplo, dividir todas as coordenadas da matriz $C$ por $f$. Portanto, são necessários cinco pontos para que a mesma fique determinada.  \\
 
 \subsubsection*{Retas tangentes a cônicas} 
@@ -397,7 +390,6 @@ x_{i1}&x_{j1}\\
 x_{i2}&x_{j2}
 \end{bmatrix}.
 \end{equation*}
-
 Vamos verificar que a razão cruzada é uma invariante sob transformação projetiva, ou seja, dada uma homografia como a equação \ref{eq.ponto-homografia-em-P} temos que 
 
 \begin{equation}\label{eq.invariante-cross}
@@ -628,7 +620,6 @@ generalizamos a representação do ponto e a equação se torna
 & \bpi^\top \, \X = 0.
 \end{array}
 \end{equation*}
-
 Desta forma, verificamos que, assim como os pontos, um plano $\bpi = (\pi_1,\pi_2,\pi_3,\pi_4)^\top$ fica inteiramente determinado por um vetor com quatro coordenadas em $\mathbb{P}^3$. Aqui temos uma analogia com o espaço $\mathbb{P}^2$, já que pontos e retas têm a mesma representação vetorial com três componentes naquele espaço, e a dualidade entre pontos e retas em $\mathbb{P}^2$ também se verifica entre pontos e planos em $\mathbb{P}^3$. Como multiplicar a equação algébrica de um plano por um escalar diferente de zero não altera o plano, temos que os planos possuem três graus de liberdade. Podemos dividir as três primeiras coordenadas pela última, por exemplo, e fixar uma escala.
 
 Obs: As três primeiras coordenadas do vetor que representa o plano corresponde ao vetor normal ao plano, conforme definido em Álgebra Linear.
@@ -761,7 +752,6 @@ De acordo com essas restrições e com esse sistema de coordenadas, e para satis
 \begin{equation*}
 X_1^2+X_2^2+X_3^2=0\Leftrightarrow(X_1,X_2,X_3)\,I\,(X_1,X_2,X_3)^\top=0.
 \end{equation*}
-
 Da mesma forma que o plano no infinito é invariante sob uma transformação afim, a cônica absoluta é invariante sob uma transformação de similaridade. Já que a cônica absoluta está contida no plano no infinito, a transformação afim que mantem fixo esse plano também deverá manter invariável as coordenadas da cônica, sendo então a cônica absoluta invariável sob uma transformação afim
 \begin{equation*}
 H_A=
@@ -940,11 +930,10 @@ X\\
 Y\\
 Z\\
 1
-\end{pmatrix}
+\end{pmatrix}.
 \end{array}
 $
 \end{center}
-
 Nessa matriz temos que $f$ é a distância focal (entre o centro da câmera e o plano da imagem), e o vetor de coluna de zeros à direita representa as coordenadas do centro da câmera, que nesse caso está na origem do sistema. Essa matriz pode ser desmembrada da seguinte maneria: uma matriz diagonal $diag(f,f,1)$ multiplicada pela matriz $[I|{\bf 0}]$, onde $I$ é uma matriz identidade $3\times3$ e ${\bf 0}$ é um vetor coluna de zeros. Compactamente, podemos escrever a ultima relaçao como:
 
 \begin{center}
@@ -1401,7 +1390,6 @@ P=[I|{\bf 0}]\qquad\text{e}\qquad P'=[R|{\bf t}],
 \begin{equation*}
 \x'=H\,\x,\qquad\text{onde}\qquad H=R-{\bf t}\,{\bf v}^\top.
 \end{equation*}
-
 Podemos tomar a última coordenada de $\bpi$ igual a $1$ pois, por enquanto, nos interessa apenas que o plano não passe pelo centro da primeira câmera $\C=(0,0,0,1)^\top$. Observe o esquema na figura \ref{fig.homografia}. 
 
 \begin{figure}[!htb]
@@ -1411,7 +1399,6 @@ Podemos tomar a última coordenada de $\bpi$ igual a $1$ pois, por enquanto, nos
 \label{fig.homografia}
 \end{figure}
 Na primeira câmera temos a projeção
-
 \begin{equation*}
 \x=P\,\X=[I|{\bf 0}]\,\X,
 \end{equation*}
@@ -1581,7 +1568,6 @@ Se $F$ é a matriz para as câmeras $(P,P')$ então $F^\top$ é a matriz para $(
 \x^\top F^\top\x'&=&0,\quad\text{onde}\quad F^\top\x'=\lightrgb.
 \end{array}
 \end{equation*}
-
 Os epipolos $\e$ e $\e'$ são os espaços nulos à direita e à esquerda de $F$, respectivamente. Vimos que $\e'\in\lightrgb'\Rightarrow\e'^\top\lightrgb'=0$, e $\lightrgb'=F\,\x$ para todo ponto $\x\in\lightrgb$ (exceto $\e$), daí
 \begin{equation*}
 \begin{array}{rcl}
@@ -1874,7 +1860,6 @@ w\,(2bd-2ac)&w\,(2ab+2cd)&w\,(a^2-b^2-c^2+d^2)&w\,t_z
 \end{bmatrix}
 \end{array}
 \end{equation*} 
-
 Substituindo $t'_z=w\,t_z$, temos que determinar as sete variáveis $\{b,c,d,t_x,t_y,t'_z,w\}$. Mas observe que as variáveis $\{t_x,t_y,t'_z\}$ são todas lineares usando as relações \ref{eq.astrom-pontos}, \ref{eq.astrom-retas} e \ref{eq.astrom-direcao}, e portanto podem ser eliminadas do sistemas de equações restando apenas as quatro variáveis $\{b,c,d,w\}$. Depois de determinadas essas quatro variáveis, o vetor de translação pode ser recuperado por substituição. 
 
 \subsection{Sistema de equações polinomiais}
