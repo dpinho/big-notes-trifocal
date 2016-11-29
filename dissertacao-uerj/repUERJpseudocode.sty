@@ -1,0 +1,498 @@
+\NeedsTeXFormat{LaTeX2e}
+% desenvolvido por Prof. Luis Fernando de Oliveira IF/UERJ
+\ProvidesPackage{repUERJpseudocode}[2015/12/04 v4 repUERJpseudocode.sty]
+
+\RequirePackage{ifthen}
+\RequirePackage{calc}
+\RequirePackage{caption}
+%\RequirePackage{xcolor}
+%\RequirePackage{enumitem}
+%\RequirePackage{pifont}
+%\RequirePackage{keyval}
+
+\RequirePackage{amsmath}
+%\setlength{\mathindent}{0pt}
+
+\newboolean{algline}
+\setboolean{algline}{true}
+
+\newboolean{numline}
+\setboolean{numline}{true}
+
+% turn on/off the line number printing
+\newcommand{\alglinenumberson}{
+    \setboolean{algline}{true}
+    \setboolean{numline}{true}
+}
+\newcommand{\alglinenumbersoff}{
+    \setboolean{algline}{false}
+    \setboolean{numline}{false}
+}
+
+\DeclareOption{line=yes}  {\alglinenumberson}
+\DeclareOption{line=no}   {\alglinenumbersoff}
+
+\ProcessOptions
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% Elemento textual - Configuração dos parâmetros de algoritmo
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% font size of line numbers
+\newcommand{\pseudocodefontsize}{\normalsize}
+\newcommand{\pseudocodenumbefontsize}{\scriptsize}
+
+\newlength{\tab} % tabbulation length
+\setlength{\tab}{1.5em}
+
+\newcounter{contlin}  % line counter
+\newcounter{conttab}  % tabbulation counter
+\newcounter{contitab} % initial tabbulation counter
+
+% increment and decrement tabbulation
+\newcommand{\backward}{\addtocounter{conttab}{-1}}
+\newcommand{\forward}{\addtocounter{conttab}{1}}
+
+% increment and decrement initial tabbulation
+\newcommand{\backwardi}{\addtocounter{contitab}{-1}}
+\newcommand{\forwardi}{\addtocounter{contitab}{1}}
+
+% paragraph tabbulation and incremental tabbulation
+\newcommand{\partab}{\hspace*{\value{contitab}\tab}\ignorespaces}
+\newcommand{\inctab}{\hspace*{\tab}\ignorespaces}
+
+% print the line number or not
+\newcommand{\nlin}{
+  \ifthenelse{\boolean{numline}}
+    % if option algline=yes
+    {\refstepcounter{contlin}{\backwardi\partab\forwardi\pseudocodenumbefontsize\makebox[\tab][l]{\thecontlin.}}\ignorespaces}
+    % if option algline=no
+    {\backwardi\partab\forwardi\inctab}
+}
+
+\newcommand{\resetlin}{\setcounter{contlin}{0}}
+
+\def\again#1#2{\count0=#1 \loop \ifnum\count0>0 \advance\count0 by -1 #2\repeat}
+
+% tabbulation before printed instructions
+%\newcommand{\tabulacao}{\nlin\hspace*{\value{conttab}\tab}\ignorespaces}
+\newcommand{\tabulacao}{\nlin\again{\value{conttab}}{\hspace*{0.2\tab}$\vert$\hspace*{0.7\tab}\ignorespaces}}
+
+\newcommand{\delin}{\{}
+\newcommand{\delout}{\}}
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% Elemento pre-textual - Lista de algoritmos
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%---
+\makeatletter
+%---
+
+\newcommand{\algorithmname}{Algoritmo}
+
+\newenvironment{pseudocode}
+  {\setcounter{contlin}{0}
+   \setcounter{conttab}{0}
+   \setcounter{contitab}{0}
+   \pseudocodefontsize\begingroup\singlespacing}
+  {\endgroup}
+
+\newenvironment{pseudocode*}
+  {\pseudocodefontsize\begingroup\singlespacing}
+  {\endgroup}
+
+\newcounter{algorithm}
+\renewcommand \thealgorithm {\@arabic\c@algorithm}
+
+\def\fps@algorithm{htbp}
+\def\ftype@algorithm{3}
+\def\ext@algorithm{loa}
+\def\fnum@algorithm{\algorithmname\nobreakspace\thealgorithm}
+
+\newenvironment{algorithm}
+  {\@float{algorithm}}
+  {\end@float}
+
+\newenvironment{algorithm*}
+  {\addtocounter{algorithm}{-1}
+   \captionsetup{list=no}
+   \@dblfloat{algorithm}}
+  {\end@dblfloat}
+
+\DeclareCaptionListFormat{algorithmfmt}{\algorithmname\hfill#2 - }
+\captionsetup[algorithm]{listformat=algorithmfmt}
+
+\newcommand*\l@algorithm{\@dottedtocline{0}{0em}{6.8em}}
+
+\newcommand{\listalgorithmname}{Lista de algoritmos}
+\newcommand\listofalgorithms{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \pretextualchapter{\listalgorithmname}%
+    \@starttoc{loa}%
+    \if@restonecol\twocolumn\fi
+    }
+
+%---
+\makeatother
+%---
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% Elemento textual - Estrutura de algoritmos
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%\onehalfspacing
+\newlength\myskip
+\setlength{\myskip}{0.3\baselineskip}
+
+% ------------------------------------------------------------------------
+% Estrutura de Documentação Externa
+% ------------------------------------------------------------------------
+
+\newcommand{\Documentacao}{
+  \textsc{Documenta\c{c}\~ao}\\[\myskip]
+%  \addtocounter{contitab}{1}
+  \forwardi
+}
+
+\newcommand{\FimDocumentacao}{
+  \backwardi
+%  \addtocounter{contitab}{-1}
+  \textsc{Fim Documenta\c{c}\~ao}\\[\myskip]
+}
+
+\newcommand{\Titulo}[1]{
+  \partab\textsc{T\'itulo}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{\textbf{#1}}\\[\myskip]
+}
+
+\newcommand{\Proposito}[1]{
+  \partab\textsc{Prop\'osito}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{#1}\\[2\myskip]
+}
+
+\newcommand{\Metodo}[1]{
+  \partab\textsc{M\'etodo}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{#1}\\[2\myskip]
+}
+
+\newcommand{\Entradas}[1]{
+  \partab\textsc{Entradas}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{#1}\\[2\myskip]
+}
+
+\newcommand{\Saidas}[1]{
+  \partab\textsc{Sa\'idas}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{#1}\\[2\myskip]
+}
+
+\newcommand{\Observacoes}[1]{
+  \partab\textsc{Observa\c{c}\~oes, Restri\c{c}\~oes, Requisitos}\\[\myskip]
+  \partab\inctab\parbox[t]{\textwidth-2\tab}{#1}\\[2\myskip]
+}
+
+% ------------------------------------------------------------------------
+% Estrutura de Pseudocódigo
+% ------------------------------------------------------------------------
+
+\newcommand{\tfuncao}{\color{blue}Função}
+\newcommand{\tfimfuncao}{\color{blue}Fim Função}
+\newcommand{\tsubrotina}{\color{blue}Subrotina}
+\newcommand{\tfimsubrotina}{\color{blue}Fim Subrotina}
+\newcommand{\tprocedimento}{\color{blue}Procedimento}
+\newcommand{\tfimprocedimento}{\color{blue}Fim Procedimento}
+
+\newcommand{\Algoritmo}[1]{
+  \resetlin
+  \partab{\textsc{Algoritmo} \ifnotempty{#1}{\textsc{#1}}}\\
+  \forwardi
+}
+
+\newcommand{\FimAlgoritmo}{
+  \backwardi
+  \partab{\textsc{Fim Algoritmo}}\\
+}
+
+\newcommand{\Programa}[1]{
+  \resetlin
+  \partab{\textsc{Programa} \ifnotempty{#1}{\textsc{#1}}}\\
+  \forwardi
+}
+
+\newcommand{\FimPrograma}{
+  \backwardi
+  \partab{\textsc{Fim Programa}}\\
+}
+
+\newcommand{\Funcao}[2]{
+  \resetlin
+  \partab{{\textsc{\tfuncao}} \textsc{#1} (#2)}\\
+  \forwardi
+}
+
+\newcommand{\FimFuncao}{
+  \backwardi
+  \partab{\textsc{\tfimfuncao}}\\
+}
+
+\newcommand{\Subrotina}[2]{
+  \resetlin
+  \partab{{\textsc{\tsubrotina}} \textsc{#1} (#2)}\\
+  \forwardi
+}
+
+\newcommand{\FimSubrotina}{
+  \backwardi
+  \partab{\textsc{\tfimsubrotina}}\\
+}
+
+\newcommand{\Procedimento}[2]{
+  \resetlin
+  \partab{{\textsc{\tprocedimento}} \textsc{#1} (#2)}\\
+  \forwardi
+}
+
+\newcommand{\FimProcedimento}{
+  \backwardi
+  \partab{\textsc{\tfimprocedimento}}\\
+}
+
+\newcommand{\Retornar}[1]{
+  \tabulacao\textbf{\tretornar} #1\\
+}
+
+\newcommand{\Continua}{
+  \partab--- \textsl{continua} ---\\
+}
+
+\newcommand{\Continuacao}{
+  \partab--- \textsl{continua\c{c}\~ao} ---\\
+}
+
+\newcommand{\LinhaEmBranco}{
+  \partab\inctab\\
+}
+
+\newcommand{\Comentario}[1]{
+%  \forwardi
+  \partab\delin \textsl{#1}\delout\\
+%  \backwardi
+}
+
+% Comandos
+
+\newcommand{\String}[1]{``#1''}
+
+\newcommand{\tdefinir}{\color{DarkOrange}definir}
+\newcommand{\tregistro}{\color{DarkOrange}registro}
+\newcommand{\tfimreg}{\color{DarkOrange}fim registro}
+
+\newcommand{\tdeclarar}{\color{Maroon}declarar}
+\newcommand{\tconstante}{\color{black}constante}
+\newcommand{\tporcopia}{\color{Maroon}por cópia}
+\newcommand{\tporref}{\color{Maroon}por referência}
+
+\newcommand{\tnumerico}{\color{Blue}numérico}
+\newcommand{\tnumericos}{\color{Blue}numéricos}
+\newcommand{\tnumerica}{\color{Blue}numérica}
+\newcommand{\tnumericas}{\color{Blue}numéricas}
+
+\newcommand{\tliteral}{\color{DarkBlue}literal}
+\newcommand{\tliterais}{\color{DarkBlue}literais}
+
+\newcommand{\tlogico}{\color{DarkBlue}lógico}
+\newcommand{\tlogicos}{\color{DarkBlue}lógicos}
+\newcommand{\tlogica}{\color{DarkBlue}lógica}
+\newcommand{\tlogicas}{\color{DarkBlue}lógicas}
+
+\newcommand{\tler}{\color{red}ler}
+\newcommand{\tescrever}{\color{red}escrever}
+\newcommand{\tem}{\color{red}em}
+\newcommand{\tabrir}{\color{DarkGreen}abrir}
+\newcommand{\tfechar}{\color{DarkGreen}fechar}
+\newcommand{\tcomo}{\color{DarkGreen}como}
+
+\newcommand{\tretornar}{\color{blue}retornar}
+\newcommand{\tparar}{\color{blue}parar}
+
+\newcommand{\tfazer}{\color{DarkGreen}fazer}
+\newcommand{\trepetir}{\color{DarkGreen}repetir}
+\newcommand{\tenquanto}{\color{DarkGreen}enquanto}
+\newcommand{\tpara}{\color{DarkGreen}para}
+\newcommand{\tde}{\color{DarkGreen}de}
+\newcommand{\tate}{\color{DarkGreen}at\'e}
+\newcommand{\tpasso}{\color{DarkGreen}passo}
+\newcommand{\tque}{\color{DarkGreen}que}
+\newcommand{\tfimenquanto}{\color{DarkGreen}fim enquanto}
+\newcommand{\tfimpara}{\color{DarkGreen}fim para}
+\newcommand{\tfimfazer}{\color{DarkGreen}fim fazer}
+
+\newcommand{\tse}{\color{violet}se}
+\newcommand{\tentao}{\color{violet}ent\~ao}
+\newcommand{\tsenao}{\color{violet}sen\~ao}
+\newcommand{\tfimse}{\color{violet}fim se}
+
+% Instrucoes
+
+\newcommand{\Declarar}[5][]{
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{false}}{\setboolean{numline}{false}}
+  \tabulacao\textbf{\tdeclarar} #2 \textbf{#3}\ifnotempty{#4}{(#4)}\ignorespaces
+  \ifnotempty{#5}{\textbf{#5}}\ifnotempty{#1}{\hfill\delin \textsl{#1}\delout}\ignorespaces\\
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{true}}{\setboolean{numline}{false}}
+}
+
+%---
+\makeatletter
+%---
+\newcommand{\Definir}[2][]{
+    \expandafter\def\csname t#2\endcsname{\color{RedOrange}#2}
+    \expandafter\def\csname t#2s\endcsname{\color{RedOrange}#2s}
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{false}}{\setboolean{numline}{false}}
+  \tabulacao\textbf{\tdefinir\ \tregistro} {\color{RedOrange}#2}\ifnotempty{#1}{\inctab\delin \textsl{#1}\delout}\\
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{true}}{\setboolean{numline}{false}}
+  \forward
+}
+%---
+\makeatother
+%---
+
+\newcommand{\FimRegistro}{
+  \backward
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{false}}{\setboolean{numline}{false}}
+  \tabulacao\textbf{\tfimreg}\\
+  \ifthenelse{\boolean{algline}}{\setboolean{numline}{true}}{\setboolean{numline}{false}}
+}
+
+\newcommand{\Abrir}[4][]{
+  \tabulacao\textbf{\tabrir} #2 \textbf{\tcomo} #3 \textbf{\tpara{} #4}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+}
+
+\newcommand{\Fechar}[2][]{
+  \tabulacao\textbf{\tfechar} #2\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+}
+
+\newcommand{\Ler}[3][]{
+  \tabulacao\textbf{\tler}\ignorespaces\ifnotempty{#3}{ \textbf{\tem} #3}#2\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+}
+
+\newcommand{\Escrever}[3][]{
+  \tabulacao\textbf{\tescrever}\ignorespaces\ifnotempty{#3}{ \textbf{\tem} #3}#2\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+}
+
+\newcommand{\SeEntao}[2][]{
+  \tabulacao\textbf{\tse} (#2), \textbf{\tentao}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward
+}
+
+\newcommand{\Senao}[1][]{
+  \backward
+  \tabulacao\textbf{\tsenao}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward
+}
+
+\newcommand{\SenaoSeEntao}[2][]{
+  \backward
+  \tabulacao\textbf{\tsenao\ \tse} (#2),
+    \textbf{\tentao}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward
+}
+
+\newcommand{\FimSe}{
+  \backward
+  \tabulacao\textbf{\tfimse}\\
+}
+
+\newboolean{enq}
+\setboolean{enq}{false}
+
+\newcommand{\Fazer}[1][]{
+  \tabulacao\textbf{\tfazer}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward\setboolean{enq}{true}
+}
+
+\newcommand{\Enquanto}[2][]{
+  \ifthenelse{\boolean{enq}}
+    {
+      \setboolean{enq}{false}\backward
+      \tabulacao\textbf{\tenquanto} (#2)\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+    }
+    {
+      \tabulacao\textbf{\tenquanto} (#2),
+        \textbf{\tfazer}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+      \forward
+    }
+}
+
+\newcommand{\FimEnquanto}{
+  \backward
+  \tabulacao\textbf{\tfimenquanto}\\
+}
+
+\newcommand{\FimFazer}{
+  \backward
+  \tabulacao\textbf{\tfimfazer}\\
+}
+
+\newcommand{\Repetir}[1][]{
+  \tabulacao\textbf{\trepetir}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward
+}
+
+\newcommand{\AteQue}[2][]{
+  \backward
+  \tabulacao\textbf{\tate\ \tque} (#2)\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+}
+
+\newcommand{\ParaDeAtePasso}[5][]{
+  \tabulacao\textbf{\tpara} #2 \textbf{\tde} #3 \textbf{\tate} #4\ignorespaces
+  \ifnotempty{#5}{\textbf{ \tpasso} #5\ignorespaces},
+  \textbf{\tfazer}\ifnotempty{#1}{\quad\dotfill\quad\delin \textsl{#1}\delout}\\
+  \forward
+}
+
+\newcommand{\FimPara}{
+  \backward
+  \tabulacao\textbf{\tfimpara}\\
+}
+
+\newcommand{\Parar}{ %parar
+  \tabulacao\textbf{\tparar}\\
+}
+
+\newcommand{\Alocar}[2]{ %parar
+  \tabulacao\textbf{alocar}(#1,#2)\\
+}
+
+\newcommand{\Desalocar}[1]{ %parar
+  \tabulacao\textbf{desalocar}(#1)\\
+}
+
+%---
+\makeatletter
+%---
+\newlength{\ltab}
+\newcommand{\Ins}[2][]{
+  \setlength{\ltab}{\textwidth-2\tab-\value{conttab}\tab}
+  \sbox\@tempboxa{#2}
+  \ifdim \wd\@tempboxa < \ltab
+    \tabulacao#2\ifnotempty{#1}{\quad\dotfill\quad\delin\textsl{#1}\delout}\\
+  \else
+    \tabulacao\parbox[t]{\ltab}{\setlength\hangindent{\tab}#2}\vspace{0.35\baselineskip}
+  \fi
+}
+%---
+\makeatother
+%---
+
+\let\listadealgoritmos\listofalgorithms
+
