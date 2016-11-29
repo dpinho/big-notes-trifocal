@@ -3,3 +3,13 @@ big_notes.synctex.gz
 main.dvi
 main.pdf
 main.synctex.gz
+*.log
+*.bak
+*.out
+*.blg
+*.aux
+*.toc
+*.gz
+*.dvi
+*.lof
+*.swp
