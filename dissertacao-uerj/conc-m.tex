@@ -1,0 +1,13 @@
+\newpage
+\chapter{Conclus\~ao}
+
+Existe toda uma engenhosidade no emprego de coordenadas homogêneas para fazer com que uma transformação projetiva funcione como uma transformação linear, mesmo que exista (disfarçadamente) a aplicação de uma translação e normalização por divisão. Além disso, a representação de pontos em coordenadas homogêneas favorece a representação de parâmetros e restrições através de objetos geométrico-algébricos abstratos, como pontos no infinito e a cônica absoluta, e a dedução consistente de propriedades como a interseção de retas paralelas.
+
+As pesquisas em visão computacional tridimensional são auxiliadas por outras áreas da matemática aparentemente desconexas da geometria projetiva, pois na seção \ref{sec.astrom} verificamos a utilização do quatérnion de Hamilton para parametrizar uma matriz de rotação e das bases de Gr\"obner e matriz de ação na solução de sistemas de equações polinomiais, ambos empregados na determinação de uma câmera. A própria utilização de sistemas de equações polinomiais com muitas variáveis na modelagem de problemas atuais pode se constituir uma novidade para vários pesquisadores.
+
+Constatamos na seção \ref{sec.geo-tri} alguns benefícios do uso do tensor trifocal num sistema com três imagens em detrimento do uso puramente da geometria epipolar. Há a diminuição de alguns casos de degeneração para a correspondência de pontos em três imagens, e há também o benefício da determinação direta de uma reta numa imagem dadas as retas correspondentes nas outras duas imagens. Não há equação para a transferência direta de retas usando apenas geometria epipolar.
+
+O estudo da geometria trifocal envolve uma quantidade grande de conhecimento da teoria básica de geometria projetiva conforme vimos na seção \ref{sec.nister}. Mais ainda, estudar geometria trifocal em problemas de reconstrução requer o conhecimento também da geometria epipolar, não somente em termos de comparação sobre qual das abordagens funciona melhor para reconstrução, mas também para entendermos de que forma a geometria epipolar pode ser útil num sistema com três imagens. Ficou clara a complexidade da tarefa de se determinar as três câmeras num sistema trifocal.
+
+Fazer essa determinação em termos de geometria diferencial é uma das fronteiras em visão computacional. Futuramente, temos a tarefa de tentar resolver esse problema usando geometria diferencial trifocal de primeira ordem com pontos-tangentes. Ademais, pretende-se verificar as vantagens dessa abordagem em determinação de estrutura a partir dos movimentos das câmeras e em sistemas de autocalibração estéreo.
+
