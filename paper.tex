@@ -1,5 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
+\pagenumbering{arabic}
 \usepackage{amsthm}
 \newtheorem{teorema}{Teorema}[section]
 \newtheorem{prop}{Proposição}[section]
@@ -36,13 +37,15 @@
 %\input{capa}
 %\input{anv-folha-rosto}
 
-\input{folha-aprovacao}
+%\input{folha-aprovacao}
 \input{agradecimento}
 \input{epigrafe}
 \input{resumo}
 \input{abstract}
 
 \tableofcontents
+%\input{sumario}
+
 
 \input{introducao}
 \input{geo_1_e_2_cam}
@@ -55,7 +58,8 @@
 \input{conc}
 \nocite{Fabbri:Kimia:CVPR10,Hartley2004,Faugeras,Schmid00,2503343,HartleyLi,koser,kukelova,pajdla,byrod}
 
-
+\bibliographystyle{plainnat} 
+\bibliography{biblio}
 \appendix
 \input{apen-alg-lin}
 \input{apen-geo-alg}
@@ -82,7 +86,5 @@
 %Experimentos:
 %- implementar bundler com geometria trifocal e observar melhorias
 	
-\bibliographystyle{plainnat} 
-\bibliography{biblio}
 \end{document}
 \grid
